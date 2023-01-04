@@ -1,12 +1,12 @@
 import React from 'react';
-import { animateMesh } from './Animations/animation';
+import AnimatedMesh from './Animations/animatedMesh';
 import { renderHtml } from './Html/html';
 
 export default function Experience({meshes, htmls})
 {
     const renderMeshes = () => {
-        return meshes.map((mesh, index) => {
-            return animateMesh(mesh);
+        return meshes.map((meshProps, index) => {
+            return <AnimatedMesh meshProps={meshProps} key={index} />;
         })
     }
 

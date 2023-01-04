@@ -10,7 +10,6 @@ const root = ReactDOM.createRoot(document.querySelector('#root'));
 const config = {
     type: ComponentTypes.Container,
     className: "rootContainer",
-    isLeaf: false,
     alignment: Alignment.Vertical,
     style: stylingDefaults.flexColumnContainer,
     children: [
@@ -25,17 +24,19 @@ const config = {
             meshes: [
                 {
                     position: [-10, 0, 0],
-                    animationType: AnimationTypes.Float,
+                    animations: [
+                       {type: AnimationTypes.Float}
+                    ],
                     scale: 3
                 },
                 {
                     position: [0, 0, 0],
-                    animationType: AnimationTypes.Float,
+                    animations: [{type: AnimationTypes.Float}, {type: AnimationTypes.Rotate, rotationArray: [0.1, 0.1, 0.1]}],
                     scale: 3
                 },
                 {
                     position: [10, 0, 0],
-                    animationType: AnimationTypes.BouncyFloat,
+                    animations: [{type: AnimationTypes.Rotate, rotationArray: [0.1, 0.1, 0.1]}],
                     scale: 3
                 },
             ]
@@ -51,7 +52,7 @@ const config = {
             meshes: [
                 {
                     position: [0, 0, 0],
-                    animationType: AnimationTypes.Bouncy,
+                    animations: [{type: AnimationTypes.Float}],
                     scale: 4
                 }
             ]
@@ -59,16 +60,16 @@ const config = {
         {
             type: ComponentTypes.Canvas,
             className: "canvas",
-            style: stylingDefaults.fullWidthLargeHeightCanvas,
+            style: stylingDefaults.fullWidthMediumHeightCanvas,
             camera: {
                 position: [0, 0, 5],
-                type: CameraTypes.Orthographic,
+                type: CameraTypes.Perspective,
             },
             meshes: [
                 {
                     position: [0, 0, 0],
-                    animationType: AnimationTypes.RotateByScroll,
-                    scale: 4
+                    animations: [{type: AnimationTypes.Rotate, rotationArray: [0.1, 0.1, 0.1]}],
+                    scale: 4,
                 }
             ]
         },

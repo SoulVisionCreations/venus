@@ -14,7 +14,7 @@ export default function RotateByScroll({mesh})
    
     return (
         <>
-            <mesh position={mesh.position} ref={objectRef} scale={mesh.scale}>
+            <mesh position={mesh.position} ref={objectRef} scale={mesh.scale} onClick={() => console.log("click")}>
                 <boxGeometry />
                 <meshStandardMaterial color="mediumpurple" />
             </mesh>

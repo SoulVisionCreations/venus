@@ -1,8 +1,6 @@
 export const AnimationTypes = {
-    RotateByScroll: 0,
+    Rotate: 0,
     Float: 1,
-    Bouncy: 2,
-    BouncyFloat: 3
 };
 
 export const CameraTypes = {

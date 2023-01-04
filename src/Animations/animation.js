@@ -1,28 +1,12 @@
-import { Scroll, ScrollControls} from '@react-three/drei';
-import { AnimationTypes } from '../types';
-import Bouncy from './bouncy';
-import BouncyFloat from './bouncyFloat';
-import Float from './Float';
-import RotateByScroll from './rotateByScroll';
+export const floatAnimation = (time, objectRef) => {
+    objectRef.rotation.x = -Math.PI / 1.75 + Math.cos(time / 4) / 8;
+    objectRef.rotation.y = Math.sin(time / 4) / 8;
+    objectRef.rotation.z = (1 + Math.sin(time / 1.5)) / 20;
+    objectRef.position.y = (1 + Math.sin(time / 1.5)) / 10;
+}
 
-export const animateMesh = (mesh) => {
-    switch(mesh.animationType) {
-        case AnimationTypes.RotateByScroll:
-            return (
-            <ScrollControls>
-                <Scroll>
-                    <RotateByScroll mesh={mesh} />
-                </Scroll>
-            </ScrollControls>);
-            break;
-        case AnimationTypes.Float :  
-            return (<Float mesh={mesh} />);
-            break;
-        case AnimationTypes.Bouncy :  
-            return (<Bouncy mesh={mesh} />);
-            break;
-        case AnimationTypes.BouncyFloat :  
-            return (<BouncyFloat mesh={mesh} />);
-            break;
-    }
+export const rotateAnimation = (time, objectRef, animation) => {
+    let rotationArray = animation.rotationArray ? animation.rotationArray : animationDefaults.rotationArray;
+    rotationArray = rotationArray.map(r => r*time);
+    objectRef.rotation.set(...rotationArray);
 }

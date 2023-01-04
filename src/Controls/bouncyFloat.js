@@ -1,9 +1,11 @@
+import { PresentationControls } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber'
 import { useRef } from 'react';
-import { floatAnimation } from './utility';
+import Bouncy from './bouncy';
+import { floatAnimation } from '../Animations/utility';
 
 
-export default function Float({mesh})
+export default function BouncyFloat({mesh})
 {
     const objectRef = useRef();
 
@@ -13,9 +15,6 @@ export default function Float({mesh})
     })
    
     return (
-        <mesh position={mesh.position} ref={objectRef} scale={mesh.scale}>
-            <boxGeometry />
-            <meshStandardMaterial color="mediumpurple" />
-        </mesh>
+        <Bouncy mesh={mesh} meshRef={objectRef} />
     );
 }
