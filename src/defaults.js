@@ -1,0 +1,25 @@
+export const cameraDefaults = {
+    position: [0,0,5]
+}
+
+export const stylingDefaults = {
+    flexRowContainer: {
+        display: 'flex',
+        flexDirection: 'row'
+    },
+    flexColumnContainer: {
+        display: 'flex',
+        flexDirection: 'column'
+    },
+    fullWidthMediumHeightCanvas: {
+        height: '300px',
+        width: '100%',
+        boxSizing: 'content-box',
+    },
+    fullWidthLargeHeightCanvas: {
+        height: '500px',
+        width: '100%',
+        boxSizing: 'content-box',
+    }
+
+}
