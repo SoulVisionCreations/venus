@@ -1,6 +1,7 @@
 import React from 'react';
 import { animateMesh } from './Animations/animation';
 import { renderHtml } from './Html/html';
+import Renderer from './Renderer';
 
 export default function Experience({meshes, htmls})
 {
@@ -22,6 +23,7 @@ export default function Experience({meshes, htmls})
         <ambientLight intensity={ 0.5 } />
         {meshes ? renderMeshes() : null}
         {htmls ? renderHtmls() : null}
+        <Renderer />
     </>
     );
 }
