@@ -1,3 +1,4 @@
+import { OrbitControls } from '@react-three/drei';
 import React from 'react';
 import AnimatedMesh from './Animations/animatedMesh';
 import { renderHtml } from './Html/html';
@@ -23,6 +24,7 @@ export default function Experience({meshes, htmls})
         <ambientLight intensity={ 0.5 } /> */}
         {/* {meshes ? renderMeshes() : null}
         {htmls ? renderHtmls() : null} */}
+        <OrbitControls />
         <Renderer />
     </>
     );
