@@ -1,4 +1,7 @@
 import React from "react";
+import { useEffect } from "react";
+import { useRef } from "react";
+import { useState } from "react";
 import WebGL from "three/examples/jsm/capabilities/WebGL.js";
 import { loadImplicitData } from "./data_loader.js";
 
@@ -20,12 +23,19 @@ function getPath() {
 }
 
 function Renderer() {
-  let dirUrl = getPath();
-  let ImpObj = loadImplicitData(dirUrl.dir);
-	ImpObj.name = "ImpObj";
-  console.info('ImpObj', ImpObj);
+  const [loading, updateLoading] = useState(true);
+  const ImpObj = useRef();
+  useEffect(() => {
+    let dirUrl = getPath();
+    loadImplicitData(dirUrl.dir).then(obj => {
+      ImpObj.current = obj;
+      console.info('ImpObj', ImpObj);
+      updateLoading(false);
+    });
+  }, []);
+  console.log(ImpObj);
   return (
-    <primitive object={ImpObj} />
+    <>{loading ? null : <primitive object={ImpObj.current} position={[0,0,0]} />}</>
   );
 }
 

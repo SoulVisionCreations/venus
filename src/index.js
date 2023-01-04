@@ -16,10 +16,10 @@ const config = {
         {
             type: ComponentTypes.Canvas,
             className: "canvas",
-            style: stylingDefaults.fullWidthMediumHeightCanvas,
+            style: stylingDefaults.fullWidthLargeHeightCanvas,
             camera: {
                 position: [0, 0, 5],
-                type: CameraTypes.Orthographic,
+                type: CameraTypes.Perspective,
             },
             meshes: [
                 {
@@ -41,38 +41,38 @@ const config = {
                 },
             ]
         },
-        {
-            type: ComponentTypes.Canvas,
-            className: "canvas",
-            style: stylingDefaults.fullWidthLargeHeightCanvas,
-            camera: {
-                position: [0, 0, 5],
-                type: CameraTypes.Orthographic,
-            },
-            meshes: [
-                {
-                    position: [0, 0, 0],
-                    animations: [{type: AnimationTypes.Float}],
-                    scale: 4
-                }
-            ]
-        },
-        {
-            type: ComponentTypes.Canvas,
-            className: "canvas",
-            style: stylingDefaults.fullWidthMediumHeightCanvas,
-            camera: {
-                position: [0, 0, 5],
-                type: CameraTypes.Perspective,
-            },
-            meshes: [
-                {
-                    position: [0, 0, 0],
-                    animations: [{type: AnimationTypes.Rotate, rotationArray: [0.1, 0.1, 0.1]}],
-                    scale: 4,
-                }
-            ]
-        },
+        // {
+        //     type: ComponentTypes.Canvas,
+        //     className: "canvas",
+        //     style: stylingDefaults.fullWidthLargeHeightCanvas,
+        //     camera: {
+        //         position: [0, 0, 5],
+        //         type: CameraTypes.Orthographic,
+        //     },
+        //     meshes: [
+        //         {
+        //             position: [0, 0, 0],
+        //             animations: [{type: AnimationTypes.Float}],
+        //             scale: 4
+        //         }
+        //     ]
+        // },
+        // {
+        //     type: ComponentTypes.Canvas,
+        //     className: "canvas",
+        //     style: stylingDefaults.fullWidthMediumHeightCanvas,
+        //     camera: {
+        //         position: [0, 0, 5],
+        //         type: CameraTypes.Perspective,
+        //     },
+        //     meshes: [
+        //         {
+        //             position: [0, 0, 0],
+        //             animations: [{type: AnimationTypes.Rotate, rotationArray: [0.1, 0.1, 0.1]}],
+        //             scale: 4,
+        //         }
+        //     ]
+        // },
     ]
 }
 root.render(<App config={config} />);

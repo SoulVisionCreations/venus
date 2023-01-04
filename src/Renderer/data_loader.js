@@ -1,7 +1,7 @@
 import * as THREE from "three";
 Window.THREE = THREE;
-import rayMarchVertexShader from "./shader/rayMarchVertexShader.vert";
-import rayMarchFragmentShader from "./shader/rayMarchFragmentShader.frag";
+import {rayMarchVertexShader} from "./shader/rayMarchVertexShader.js";
+import {rayMarchFragmentShader} from "./shader/rayMarchFragmentShader.js";
 let atlasIndexImage, gSceneParams, gNumTextures;
 /**
  * Loads PNG image from rgbaURL and decodes it to an Uint8Array.

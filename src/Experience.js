@@ -19,10 +19,10 @@ export default function Experience({meshes, htmls})
 
     return (
     <>
-        <directionalLight position={ [ 1, 2, 3 ] } intensity={ 1.5 } />
-        <ambientLight intensity={ 0.5 } />
-        {meshes ? renderMeshes() : null}
-        {htmls ? renderHtmls() : null}
+        {/* <directionalLight position={ [ 1, 2, 3 ] } intensity={ 1.5 } />
+        <ambientLight intensity={ 0.5 } /> */}
+        {/* {meshes ? renderMeshes() : null}
+        {htmls ? renderHtmls() : null} */}
         <Renderer />
     </>
     );

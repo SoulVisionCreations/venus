@@ -1,4 +1,4 @@
-precision highp float;
+export const rayMarchFragmentShader = `precision highp float;
 precision highp sampler3D;
 in vec3 vOrigin;
 in vec3 vDirection;
@@ -200,4 +200,4 @@ void main() {
     glColor = vec4(color, 1.0);
   }
 
-}
+}`
