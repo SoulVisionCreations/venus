@@ -6,6 +6,11 @@ export const animationDefaults = {
     rotationArray: [0.5, 0.5, 0.5]
 }
 
+export const objectDefaults = {
+    position: [0,0,0],
+    scale: 1
+}
+
 export const stylingDefaults = {
     flexRowContainer: {
         display: 'flex',

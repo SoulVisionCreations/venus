@@ -1,6 +1,6 @@
 import { OrthographicCamera, PerspectiveCamera } from '@react-three/drei';
-import { cameraDefaults } from './defaults.js';
-import {CameraTypes } from './types.js';
+import { CameraTypes } from '../../Configs/types.js';
+import { cameraDefaults } from '../../Constants/defaults.js';
 
 export const getCamera = (camera) => {
     switch(camera.type) {

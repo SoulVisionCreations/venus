@@ -1,7 +1,18 @@
+export const ObjectTypes = {
+    ImplicitObject: 0
+}
 export const AnimationTypes = {
     Rotate: 0,
     Float: 1,
 };
+
+export const ObjectControlTypes = {
+    BouncyPresentation: 0
+}
+
+export const SceneControlTypes = {
+    Orbit: 0
+}
 
 export const CameraTypes = {
     Perspective: 0,

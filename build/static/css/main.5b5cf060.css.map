@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/main.5b5cf060.css","mappings":"AAAA,gBAMI,gBAAiB,CADjB,WAAY,CADZ,UAGJ,CAEA,OAEI,UAAW,CADX,UAEJ","sources":["style.css"],"sourcesContent":["html,\nbody,\n#root\n{\n    width: 100%;\n    height: 200%;\n    background: ivory;\n}\n\nCanvas {\n    width: 100%;\n    height: 10%;\n}\n\n"],"names":[],"sourceRoot":""}

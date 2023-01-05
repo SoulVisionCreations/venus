@@ -1,3 +1,18 @@
+import { AnimationTypes } from "../../Configs/types";
+
+export const applyAnimations = (animations, time, objectRef) => {
+    animations.forEach(animation => {
+        switch(animation.type) {
+            case AnimationTypes.Rotate :  
+                rotateAnimation(time, objectRef, animation);
+                break;
+            case AnimationTypes.Float :  
+                floatAnimation(time, objectRef);
+                break;
+        }
+    }
+)};
+
 export const floatAnimation = (time, objectRef) => {
     objectRef.rotation.x = -Math.PI / 1.75 + Math.cos(time / 4) / 8;
     objectRef.rotation.y = Math.sin(time / 4) / 8;

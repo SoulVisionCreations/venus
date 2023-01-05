@@ -1,6 +1,6 @@
 import { useFrame } from '@react-three/fiber'
 import { useRef } from 'react';
-import { useScroll, Html } from '@react-three/drei';
+import { useScroll} from '@react-three/drei';
 
 
 export default function RotateByScroll({mesh})
