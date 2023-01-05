@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber'
 import { getCamera } from './Components/Camera/camera.js';
-import Scene from './Components/Scene/Scene.js'
+import Scene from './Components/Scene/scene.js'
 import { Alignment, ComponentTypes } from './Configs/types.js';
 
 export default function App({config})
@@ -13,8 +13,8 @@ export default function App({config})
           return (
             <div className={child.className} key={index} style={child.style}>
                  <Canvas>
-                    {getCamera(child.camera)}
-                    <Scene implicitObjects={child.implicitObjects} htmls={child.htmls} control={child.sceneControl} />
+                    {getCamera({type: child.camera.type, ...child.camera})}
+                    <Scene implicitObjects={child.implicitObjects} htmls={child.htmls} control={child.sceneControl} texts={child.texts} images={child.images} text3D={child.text3D} />
                  </Canvas>
             </div>
           );
