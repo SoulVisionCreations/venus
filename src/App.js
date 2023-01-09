@@ -14,13 +14,10 @@ export default function App({ config }) {
           <Canvas>
             {getCamera({ type: child.camera.type, ...child.camera })}
             <Scene
-              implicitObjects={child.implicitObjects}
-              htmls={child.htmls}
-              control={child.sceneControl}
+              objects={child.objects}
+              sceneControl={child.sceneControl}
               texts={child.texts}
               images={child.images}
-              text3D={child.text3D}
-              gltfs={child.gltfs}
               lights={child.lights}
             />
           </Canvas>

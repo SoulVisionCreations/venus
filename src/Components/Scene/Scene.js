@@ -1,7 +1,7 @@
 import React from "react";
-import { renderHtml } from "../Html/html";
-import { ImplicitObject } from "../ImplicitObject/implicitObject";
+import { ObjectTypes, TextTypes } from "../../Configs/types";
 import { applySceneControl } from "../../Utils/SceneControls/sceneControl";
+import { ImplicitObject } from "../ImplicitObject/implicitObject";
 import { imageLoader } from "../Image/image";
 import { textLoader } from "../Text/text";
 import { text3DLoader } from "../Text3D/text3D";
@@ -9,13 +9,10 @@ import { gltfLoader } from "../Gltf/gltf";
 import { getLight } from "../Light/light";
 
 export default function Scene({
-  implicitObjects,
-  htmls,
-  control,
+  objects,
+  sceneControl,
   texts,
   images,
-  text3D,
-  gltfs,
   lights,
 }) {
   const addLights = () => {
@@ -24,21 +21,32 @@ export default function Scene({
     });
   };
 
-  const renderImplicitObjects = () => {
-    return implicitObjects.map((implicitObjectProps, index) => {
-      return <ImplicitObject props={implicitObjectProps} key={index} />;
-    });
-  };
-
-  const renderHtmls = () => {
-    return htmls.map((html, index) => {
-      return renderHtml(html);
+  const renderObjects = () => {
+    return objects.map((objectProps, index) => {
+      switch (objectProps.type) {
+        case ObjectTypes.ImplicitObject:
+          return <ImplicitObject {...objectProps} key={index} />;
+        case ObjectTypes.GltfObject:
+          return gltfLoader({
+            url: objectProps.url,
+            ...objectProps,
+          });
+      }
     });
   };
 
   const renderTexts = () => {
     return texts.map((textProps, index) => {
-      return textLoader({ text: textProps.text, ...textProps });
+      switch (textProps.type) {
+        case TextTypes.Text2D:
+          return textLoader({ text: textProps.text, ...textProps });
+        case TextTypes.Text3D:
+          return text3DLoader({
+            font: textProps.font,
+            text: textProps.text,
+            ...textProps,
+          });
+      }
     });
   };
 
@@ -48,35 +56,13 @@ export default function Scene({
     });
   };
 
-  const renderText3D = () => {
-    return text3D.map((text3DProps, index) => {
-      return text3DLoader({
-        font: text3DProps.font,
-        text: text3DProps.text,
-        ...text3DProps,
-      });
-    });
-  };
-
-  const renderGltfs = () => {
-    return gltfs.map((gltfprops, index) => {
-      return gltfLoader({
-        url: gltfprops.url,
-        ...gltfprops,
-      });
-    });
-  };
-
   return (
     <>
       {lights ? addLights() : null}
-      {control ? applySceneControl(control) : null}
-      {implicitObjects ? renderImplicitObjects() : null}
-      {htmls ? renderHtmls() : null}
+      {sceneControl ? applySceneControl(sceneControl) : null}
+      {objects ? renderObjects() : null}
       {texts ? renderTexts() : null}
       {images ? renderImages() : null}
-      {text3D ? renderText3D() : null}
-      {gltfs ? renderGltfs() : null}
     </>
   );
 }

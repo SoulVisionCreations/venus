@@ -25,7 +25,7 @@ export function getPath() {
   };
 }
 
-export function ImplicitObject({ props }) {
+export function ImplicitObject({ ...props }) {
   const [loading, updateLoading] = useState(true);
   const ImpObjRef = useRef();
 
@@ -44,33 +44,27 @@ export function ImplicitObject({ props }) {
     let dirUrl = getPath();
     loadImplicitData(dirUrl.dir).then((obj) => {
       ImpObjRef.current = obj;
-      ImpObjRef.current.rotation.set(degToRad(-90), 0, degToRad(170));
+      ImpObjRef.current.rotation.set(degToRad(-90), 0, degToRad(-70));
       ImpObjRef.current.scale.set(5, 5, 5);
       updateLoading(false);
     });
   }, []);
-  const position =
-    props.position != undefined ? props.position : objectDefaults.position;
-  const scale = props.scale != undefined ? props.scale : objectDefaults.scale;
 
-  const renderWithControl = () => {
-    const ObjProps = {
-      position: position,
-      scale: scale,
-      type: ObjectTypes.ImplicitObject,
-    };
-    return applyObjectControl(props.control, ImpObjRef.current, ObjProps);
+  const renderWithControl = ({ ...props }) => {
+    return applyObjectControl(props.control, ImpObjRef.current, {
+      ...props,
+    });
   };
 
-  const renderWithoutControl = () => {
-    return (
-      <primitive object={ImpObjRef.current} position={position} scale={scale} />
-    );
+  const renderWithoutControl = ({ ...props }) => {
+    return <primitive object={ImpObjRef.current} {...props} />;
   };
 
   const renderImplicit = () => {
-    return props.control ? renderWithControl() : renderWithoutControl();
+    return props.control
+      ? renderWithControl({ ...props })
+      : renderWithoutControl({ ...props });
   };
 
-  return <>{loading ? null : renderImplicit()}</>;
+  return <>{loading ? null : renderImplicit({ ...props })}</>;
 }
