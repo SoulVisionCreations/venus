@@ -1,123 +1,40 @@
-import { AnimationTypes, ComponentTypes, CameraTypes, Alignment } from './types';
+import { ImplicitObject } from "../Components/ImplicitObject/implicitObject";
+import { stylingDefaults } from "../Constants/defaults";
+import {
+  AnimationTypes,
+  ComponentTypes,
+  CameraTypes,
+  Alignment,
+  ObjectTypes,
+  SceneEffectsTypes,
+  eventDrivenActionTypes,
+  ObjectControlTypes,
+} from "./types";
 
-const schema = {
-    type: ComponentTypes.Container,
-    className: "rootContainer",
-    isLeaf: false,
-    alignment: Alignment.Vertical,
-    children: [
+export const config1 = {
+  type: ComponentTypes.Container,
+  className: "rootContainer",
+  isLeaf: false,
+  alignment: Alignment.Vertical,
+  children: [
+    {
+      type: ComponentTypes.Canvas,
+      className: "canvas",
+      effects: SceneEffectsTypes.DisableScrollOnceOnCompletelyVisible,
+      style: stylingDefaults.fullWidthMediumHeightCanvas,
+      camera: {
+        position: [0, 0, 3],
+        type: CameraTypes.Perspective,
+      },
+      objects: [
         {
-            type: ComponentTypes.Canvas,
-            props: {
-                className: "fullWidthMediumHeight",
-                camera: {
-                    position: [0, 0, 3],
-                    type: CameraTypes.Orthographic,
-                },
-                mesh: {
-                    position: [-10, 0, 0],
-                    animationType: AnimationTypes.RotateByScroll,
-                    scale: 3
-                },
-                html: [
-                    {
-                        position: [4, 0, 0],
-                        
-                    }
-                ]
-            }
+          type: ObjectTypes.ImplicitObject,
+          position: [0, 0, 0],
+          events: [{type: eventDrivenActionTypes.rotateByScrollOnce, rotationArray: [0,0, Math.PI/180]}],
+          control: {type: ObjectControlTypes.BouncyPresentation},
+          scale: 1,
         },
-        {
-            type: ComponentTypes.Canvas,
-            props: {
-                className: "fullWidthMediumHeight",
-                camera: {
-                    position: [0, 0, 3],
-                    type: CameraTypes.Orthographic
-                },
-                mesh: {
-                    position: [-10, 0, 0],
-                    animationType: AnimationTypes.Float,
-                    scale: 3
-                },
-                html: {
-                    position: [4, 0, 0]
-                }
-            }
-        },
-        {
-            type: ComponentTypes.Canvas,
-            props: {
-                className: "fullWidthMediumHeight",
-                camera: {
-                    position: [0, 0, 3],
-                    type: CameraTypes.Perspective
-                },
-                mesh: {
-                    position: [-10, 0, 0],
-                    animationType: AnimationTypes.RotateByScroll,
-                    scale: 1
-                },
-                html: {
-                    position: [4, 0, 0]
-                }
-            }
-        },
-        {
-            type: ComponentTypes.Container,
-            className: "rootContainer",
-            isLeaf: false,
-            alignment: Alignment.Horizontal,
-            children: [
-                {
-                    type: ComponentTypes.Canvas,
-                    props: {
-                        className: "abcd",
-                        camera: {
-                            position: [0, 0, 3],
-                            type: CameraTypes.Orthographic,
-                            fov: 200
-                        },
-                        mesh: {
-                            position: [0, 0, 0],
-                            animationType: AnimationTypes.Float,
-                            scale: 3
-                        }
-                    }
-                },
-                {
-                    type: ComponentTypes.Canvas,
-                    props: {
-                        className: "abcd",
-                        camera: {
-                            position: [0, 0, 3],
-                            type: CameraTypes.Orthographic,
-                            fov: 200
-                        },
-                        mesh: {
-                            position: [0, 0, 0],
-                            animationType: AnimationTypes.Float,
-                            scale: 3
-                        }
-                    }
-                },
-                {
-                    type: ComponentTypes.Canvas,
-                    props: {
-                        className: "abcd",
-                        camera: {
-                            position: [0, 0, 3],
-                            type: CameraTypes.Perspective,
-                            fov: 200
-                        },
-                        mesh: {
-                            position: [0, 0, 0],
-                            animationType: AnimationTypes.Float,
-                            scale: 4
-                        }
-                    }
-                },
-            ]   
-        }
-    ]   
+      ],
+    },
+  ],
 };

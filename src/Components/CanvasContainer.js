@@ -29,8 +29,17 @@ export default function CanvasContainer(props)
     return (
         <div ref={canvasContainerRef} className={props.className} style={props.style} id={props.id}>
             <Canvas>
-                {getCamera(props.camera)}
-                <Scene implicitObjects={props.implicitObjects} htmls={props.htmls} control={props.sceneControl} completelyVisible={completelyVisible} completelyVisibleCount={completelyVisibleCount} setCompletelyVisibleCount={setCompletelyVisibleCount} />
+                {getCamera({ type: props.camera.type, ...props.camera })}
+                <Scene
+                    objects={props.objects}
+                    sceneControl={props.sceneControl}
+                    texts={props.texts}
+                    images={props.images}
+                    lights={props.lights}
+                    completelyVisible={completelyVisible} 
+                    completelyVisibleCount={completelyVisibleCount} 
+                    setCompletelyVisibleCount={setCompletelyVisibleCount}
+                />
             </Canvas>
         </div>
     );

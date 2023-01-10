@@ -441,3 +441,16 @@ export async function loadImplicitData(dirUrl) {
   var mesh = CreateImplicitObj(atlasIndexImage, data[0], data[1]);
   return mesh;
 }
+
+export function getPath() {
+  var urlParms = new URLSearchParams(window.location.search);
+  // var s3Path = 'https://fashion-simulation.s3.amazonaws.com/RnD_Datasets/ObjCap_out/'
+  var dir = urlParms.get("dir");
+  var id = urlParms.get("id");
+  // s3Path += dir;
+  return {
+    objpath: dir,
+    dir: dir,
+    id: id,
+  };
+}
