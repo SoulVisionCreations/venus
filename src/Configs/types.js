@@ -1,10 +1,20 @@
 export const ObjectTypes = {
     ImplicitObject: 0
 }
+
+export const SceneEffectsTypes = {
+    DisableScrollOnceOnCompletelyVisible: 0
+};
+
 export const AnimationTypes = {
     Rotate: 0,
     Float: 1,
 };
+
+export const eventDrivenActionTypes = {
+    rotateByScrollOnce: 0,
+    rotateByScrollContinously: 1
+}
 
 export const ObjectControlTypes = {
     BouncyPresentation: 0

@@ -1,7 +1,7 @@
 import './style.css'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-import { AnimationTypes, ComponentTypes, CameraTypes, Alignment, ObjectControlTypes } from './Configs/types';
+import { AnimationTypes, ComponentTypes, CameraTypes, Alignment, ObjectControlTypes, SceneEffectsTypes, eventDrivenActionTypes } from './Configs/types';
 import { stylingDefaults } from './Constants/defaults';
 import { SceneControlTypes } from './Configs/types';
 
@@ -17,7 +17,8 @@ const config = {
         {
             type: ComponentTypes.Canvas,
             className: "canvas",
-            style: stylingDefaults.fullWidthLargeHeightCanvas,
+            id: "canvas1",
+            style: stylingDefaults.fullWidthFullHeightCanvas,
             camera: {
                 position: [0, 0, 5],
                 type: CameraTypes.Perspective,
@@ -25,7 +26,6 @@ const config = {
             implicitObjects: [
                 {
                     position: [0, 0, 0],
-                    animations: [],
                     control: {
                         type: ObjectControlTypes.BouncyPresentation
                     },
@@ -36,7 +36,9 @@ const config = {
         {
             type: ComponentTypes.Canvas,
             className: "canvas",
-            style: stylingDefaults.fullWidthMediumHeightCanvas,
+            id: "canvas2",
+            style: stylingDefaults.fullWidthFullHeightCanvas,
+            effects: SceneEffectsTypes.DisableScrollOnceOnCompletelyVisible,
             camera: {
                 position: [0, 0, 5],
                 type: CameraTypes.Perspective,
@@ -44,13 +46,10 @@ const config = {
             implicitObjects: [
                 {
                     position: [0, 0, 0],
-                    animations: [{type: AnimationTypes.Rotate, rotationArray: [0, 0.1, 0]}],
+                    events: [{type: eventDrivenActionTypes.rotateByScrollOnce, rotationArray: [0,0, Math.PI/180]}],
                     scale: 4,
                 }
             ],
-            sceneControl: {
-                type: SceneControlTypes.Orbit
-            }
         },
     ]
 }
