@@ -52,6 +52,7 @@ export const config2 = {
               price: "$100",
               rotation: [Math.PI / 2, Math.PI / 4, 0],
               position: [-3, 0, 0],
+              scale: 1,
               transform: true,
             },
           ],
@@ -64,7 +65,6 @@ export const config2 = {
             {
               price: "$50",
               position: [0.01, 0.01, 0],
-              scale: 0.01,
               transform: true,
             },
           ],
