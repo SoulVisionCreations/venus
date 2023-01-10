@@ -1,3 +1,4 @@
+import { Stats } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber'
 import { useEffect, useRef, useState } from 'react';
 import { SceneEffectsTypes } from '../Configs/types.js';
@@ -40,6 +41,7 @@ export default function CanvasContainer(props)
                     completelyVisibleCount={completelyVisibleCount} 
                     setCompletelyVisibleCount={setCompletelyVisibleCount}
                 />
+            <Stats />
             </Canvas>
         </div>
     );

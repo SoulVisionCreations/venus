@@ -1,4 +1,3 @@
-import { ImplicitObject } from "../Components/ImplicitObject/implicitObject";
 import { stylingDefaults } from "../Constants/defaults";
 import {
   AnimationTypes,
@@ -30,8 +29,13 @@ export const config1 = {
         {
           type: ObjectTypes.ImplicitObject,
           position: [0, 0, 0],
-          events: [{type: eventDrivenActionTypes.rotateByScrollOnce, rotationArray: [0,0, Math.PI/180]}],
-          control: {type: ObjectControlTypes.BouncyPresentation},
+          events: [
+            {
+              type: eventDrivenActionTypes.rotateByScrollOnce,
+              rotationArray: [0, 0, Math.PI / 180],
+            },
+          ],
+          control: { type: ObjectControlTypes.BouncyPresentation },
           scale: 1,
         },
       ],

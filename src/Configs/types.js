@@ -2,6 +2,7 @@ export const ObjectTypes = {
   ImplicitObject: 0,
   GltfObject: 1,
   StandardObject: 2,
+  Text3D: 3,
 };
 
 export const StandardGeometryTypes = {
@@ -83,11 +84,6 @@ export const LightTypes = {
 export const ComponentTypes = {
   Container: 0,
   Canvas: 1,
-};
-
-export const TextTypes = {
-  Text2D: 0,
-  Text3D: 1,
 };
 
 export const Alignment = {

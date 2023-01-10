@@ -6,5 +6,5 @@ import { config2 } from "./Configs/example2";
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 
-root.render(<App config={config1} />);
-// root.render(<App config={config2} />);
+// root.render(<App config={config1} />);
+root.render(<App config={config2} />);

@@ -1,9 +1,10 @@
 import { ObjectTypes } from "../../Configs/types";
 import { renderGeometry } from "../Geometry/geometry";
-import { gltfLoader } from "../Gltf/gltf";
-import { renderHtml } from "../Html/html";
-import { ImplicitObject } from "../ImplicitObject/implicitObject";
 import { renderMaterial } from "../Material/material";
+import { renderHtml } from "./Utils/html";
+import { ImplicitObject } from "./Templates/implicitObject";
+import { GltfObject } from "./Templates/gltfObject";
+import { Text3DObject } from "./Templates/text3DObject";
 
 export function Object3D({ ...props }) {
   const renderHtmls = () => {
@@ -29,10 +30,7 @@ export function Object3D({ ...props }) {
         </ImplicitObject>
       );
     case ObjectTypes.GltfObject:
-      return gltfLoader({
-        url: props.url,
-        ...props,
-      });
+      return <GltfObject {...props}>{props.htmls && renderHtmls()}</GltfObject>;
     case ObjectTypes.StandardObject:
       return (
         <mesh>
@@ -40,5 +38,7 @@ export function Object3D({ ...props }) {
           {renderMaterials()}
         </mesh>
       );
+    case ObjectTypes.Text3D:
+      return <Text3DObject {...props}>{props.text}</Text3DObject>;
   }
 }

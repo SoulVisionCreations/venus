@@ -1,13 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
-import { loadImplicitData } from "../../Renderer/data_loader";
+import { loadImplicitData } from "../../../Renderer/data_loader";
 import { degToRad } from "three/src/math/MathUtils";
-import { animationDefaults, objectDefaults } from "../../Constants/defaults";
-import { applyAnimations } from "../../Utils/Animations/animation";
-import { eventDrivenActionTypes, ObjectTypes } from "../../Configs/types";
-import { applyEventDrivenActions, useEvents } from "../../Utils/Events/events";
+import { animationDefaults, objectDefaults } from "../../../Constants/defaults";
+import { applyAnimations } from "../../../Utils/Animations/animation";
+import { eventDrivenActionTypes, ObjectTypes } from "../../../Configs/types";
+import {
+  applyEventDrivenActions,
+  useEvents,
+} from "../../../Utils/Events/events";
 import WebGL from "three/examples/jsm/capabilities/WebGL.js";
-import { getPath } from "../../Renderer/data_loader";
+import { getPath } from "../../../Renderer/data_loader";
 
 if (WebGL.isWebGL2Available() === false) {
   viewSpace.appendChild(WebGL.getWebGL2ErrorMessage());
@@ -42,7 +45,7 @@ export function ImplicitObject(props) {
     let dirUrl = getPath();
     loadImplicitData(dirUrl.dir).then((obj) => {
       ImpObjRef.current = obj;
-      ImpObjRef.current.rotation.set(degToRad(-90), 0, degToRad(170));
+      ImpObjRef.current.rotation.set(degToRad(-90), 0, degToRad(-70));
       //ImpObjRef.current.scale.set(5, 5, 5);
       updateLoading(false);
     });
@@ -59,7 +62,9 @@ export function ImplicitObject(props) {
         position={position}
         scale={scale}
         {...props}
-      />
+      >
+        {props.children}
+      </primitive>
     );
   };
 
