@@ -10,6 +10,8 @@ import {
   ObjectControlTypes,
   ObjectTypes,
   TextTypes,
+  StandardGeometryTypes,
+  MaterialTypes,
 } from "./Configs/types";
 import { stylingDefaults } from "./Constants/defaults";
 import { SceneControlTypes } from "./Configs/types";
@@ -62,9 +64,13 @@ const config = {
           type: ObjectTypes.GltfObject,
           url: "./model.glb",
           scale: 10,
-          control: {
-            type: ObjectControlTypes.BouncyPresentation,
-          },
+        },
+        {
+          type: ObjectTypes.StandardObject,
+          geometry: [{ geometryType: StandardGeometryTypes.SphereGeometry }],
+          material: [
+            { materialType: MaterialTypes.MeshStandardMaterial, color: "green" },
+          ],
         },
       ],
       texts: [

@@ -8,7 +8,8 @@ export const animationDefaults = {
 
 export const objectDefaults = {
     position: [0,0,0],
-    scale: 1
+    scale: 1,
+    control: 0,
 }
 
 export const stylingDefaults = {

@@ -1,5 +1,5 @@
 import React from "react";
-import { ObjectControlTypes, TextTypes } from "../../Configs/types";
+import { TextTypes } from "../../Configs/types";
 import { applySceneControl } from "../../Utils/SceneControls/sceneControl";
 import { imageLoader } from "../Image/image";
 import { textLoader } from "../Text/text";
@@ -23,16 +23,11 @@ export default function Scene({
 
   const renderObjects = () => {
     return objects.map((objectProps, index) => {
-      switch (objectProps.control.type) {
-        case ObjectControlTypes.BouncyPresentation:
-          return (
-            <ObjectControls {...objectProps.control}>
-              <Object3D {...objectProps} key={index} />;
-            </ObjectControls>
-          );
-        default:
+      return (
+        <ObjectControls {...objectProps}>
           <Object3D {...objectProps} key={index} />;
-      }
+        </ObjectControls>
+      );
     });
   };
 
