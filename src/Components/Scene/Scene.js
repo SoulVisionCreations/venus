@@ -14,6 +14,7 @@ export default function Scene({
   texts,
   images,
   lights,
+  completelyVisible, completelyVisibleCount, setCompletelyVisibleCount
 }) {
   const addLights = () => {
     return lights.map((lightProps, index) => {

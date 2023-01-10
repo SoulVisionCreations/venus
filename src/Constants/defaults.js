@@ -3,7 +3,9 @@ export const cameraDefaults = {
 }
 
 export const animationDefaults = {
-    rotationArray: [0.5, 0.5, 0.5]
+    rotationArray: [0.5, 0.5, 0.5],
+    scrollByRotationContinouslySpeed: 0.05,
+    scrollByRotationOnceSpeed: 0.05
 }
 
 export const objectDefaults = {
@@ -22,7 +24,7 @@ export const stylingDefaults = {
         flexDirection: 'column'
     },
     fullWidthMediumHeightCanvas: {
-        height: '300px',
+        height: '800px',
         width: '100%',
         boxSizing: 'content-box',
     },
@@ -30,6 +32,11 @@ export const stylingDefaults = {
         height: '500px',
         width: '100%',
         boxSizing: 'content-box',
+    },
+    fullWidthFullHeightCanvas: {
+        height: `${window.innerHeight}px`,
+        widht: `${window.innerWidth}px`,
+        boxSizing: 'content-box'
     }
 
 }
