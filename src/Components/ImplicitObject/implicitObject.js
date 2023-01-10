@@ -1,12 +1,10 @@
-import { loadImplicitData } from "../../Renderer/data_loader";
-import { useFrame } from "@react-three/fiber";
 import React, { useEffect, useRef, useState } from "react";
-import { applyObjectControl } from "../../Utils/ObjectControls/objectControl";
+import { useFrame } from "@react-three/fiber";
+import { loadImplicitData } from "../../Renderer/data_loader";
 import { degToRad } from "three/src/math/MathUtils";
-import { objectDefaults } from "../../Constants/defaults";
 import { applyAnimations } from "../../Utils/Animations/animation";
-import { ObjectTypes } from "../../Configs/types";
 import WebGL from "three/examples/jsm/capabilities/WebGL.js";
+import { objectDefaults } from "../../Constants/defaults";
 
 if (WebGL.isWebGL2Available() === false) {
   viewSpace.appendChild(WebGL.getWebGL2ErrorMessage());
@@ -50,20 +48,19 @@ export function ImplicitObject({ ...props }) {
     });
   }, []);
 
-  const renderWithControl = ({ ...props }) => {
-    return applyObjectControl(props.control, ImpObjRef.current, {
-      ...props,
-    });
-  };
+  const position =
+    props.position != undefined ? props.position : objectDefaults.position;
+  const scale = props.scale != undefined ? props.scale : objectDefaults.scale;
 
-  const renderWithoutControl = ({ ...props }) => {
-    return <primitive object={ImpObjRef.current} {...props} />;
-  };
-
-  const renderImplicit = () => {
-    return props.control
-      ? renderWithControl({ ...props })
-      : renderWithoutControl({ ...props });
+  const renderImplicit = ({ ...props }) => {
+    return (
+      <primitive
+        object={ImpObjRef.current}
+        position={position}
+        scale={scale}
+        {...props}
+      />
+    );
   };
 
   return <>{loading ? null : renderImplicit({ ...props })}</>;

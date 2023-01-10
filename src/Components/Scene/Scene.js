@@ -1,12 +1,12 @@
 import React from "react";
-import { ObjectTypes, TextTypes } from "../../Configs/types";
+import { ObjectControlTypes, TextTypes } from "../../Configs/types";
 import { applySceneControl } from "../../Utils/SceneControls/sceneControl";
-import { ImplicitObject } from "../ImplicitObject/implicitObject";
 import { imageLoader } from "../Image/image";
 import { textLoader } from "../Text/text";
 import { text3DLoader } from "../Text3D/text3D";
-import { gltfLoader } from "../Gltf/gltf";
 import { getLight } from "../Light/light";
+import { Object3D } from "../Object3D/object3D";
+import { ObjectControls } from "../../Utils/ObjectControls/objectControls";
 
 export default function Scene({
   objects,
@@ -23,14 +23,15 @@ export default function Scene({
 
   const renderObjects = () => {
     return objects.map((objectProps, index) => {
-      switch (objectProps.type) {
-        case ObjectTypes.ImplicitObject:
-          return <ImplicitObject {...objectProps} key={index} />;
-        case ObjectTypes.GltfObject:
-          return gltfLoader({
-            url: objectProps.url,
-            ...objectProps,
-          });
+      switch (objectProps.control.type) {
+        case ObjectControlTypes.BouncyPresentation:
+          return (
+            <ObjectControls {...objectProps.control}>
+              <Object3D {...objectProps} key={index} />;
+            </ObjectControls>
+          );
+        default:
+          <Object3D {...objectProps} key={index} />;
       }
     });
   };
