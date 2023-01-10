@@ -9,6 +9,7 @@ import {
   SceneControlTypes,
   StandardGeometryTypes,
   MaterialTypes,
+  HtmlTypes,
 } from "./types";
 
 export const config2 = {
@@ -49,6 +50,7 @@ export const config2 = {
           },
           htmls: [
             {
+              type: HtmlTypes.priceTag,
               price: "$100",
               rotation: [Math.PI / 2, Math.PI / 4, 0],
               position: [-3, 0, 0],
@@ -63,6 +65,7 @@ export const config2 = {
           scale: 10,
           htmls: [
             {
+              type: HtmlTypes.priceTag,
               price: "$50",
               position: [0.01, 0.01, 0],
               transform: true,

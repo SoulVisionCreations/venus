@@ -43,6 +43,10 @@ export const MaterialTypes = {
   RawShaderMaterial: 10,
 };
 
+export const HtmlTypes = {
+  priceTag: 0,
+};
+
 export const SceneEffectsTypes = {
   DisableScrollOnceOnCompletelyVisible: 0,
 };
