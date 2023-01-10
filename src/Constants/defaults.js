@@ -22,8 +22,13 @@ export const stylingDefaults = {
         display: 'flex',
         flexDirection: 'column'
     },
+    fullWidthSmallHeightCanvas: {
+        height: '200px',
+        width: '100%',
+        boxSizing: 'content-box',
+    },
     fullWidthMediumHeightCanvas: {
-        height: '800px',
+        height: '400px',
         width: '100%',
         boxSizing: 'content-box',
     },

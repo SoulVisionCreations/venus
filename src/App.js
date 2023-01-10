@@ -6,7 +6,7 @@ export default function App({config})
   const renderConfig = () => {
       return config.children.map((child, index) => {
         if(child.type == ComponentTypes.Container) {
-          return <App config={child} />;
+          return <App config={child} key={index}/>;
         }
         return <CanvasContainer {...child} key={index} />;
       });

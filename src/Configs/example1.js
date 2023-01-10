@@ -18,10 +18,74 @@ export const config1 = {
   alignment: Alignment.Vertical,
   children: [
     {
+      type: ComponentTypes.Container,
+      alignment: Alignment.Horizontal,
+      style: {height: '400px'},
+      children: [
+        {
+          type: ComponentTypes.Canvas,
+          className: "canvas",
+          effects: SceneEffectsTypes.DisableScrollOnceOnCompletelyVisible,
+          style: {flexGrow: 1, height: '400px'},
+          camera: {
+            position: [0, 0, 3],
+            type: CameraTypes.Perspective,
+          },
+          objects: [
+            {
+              type: ObjectTypes.ImplicitObject,
+              position: [0, 0, 0],
+              control: {type: ObjectControlTypes.BouncyPresentation},
+              animations: [{type: AnimationTypes.Rotate}],
+              scale: 1,
+            },
+          ],
+        },
+        {
+          type: ComponentTypes.Canvas,
+          className: "canvas",
+          effects: SceneEffectsTypes.DisableScrollOnceOnCompletelyVisible,
+          style: {flexGrow: 1, height: '400px'},
+          camera: {
+            position: [0, 0, 3],
+            type: CameraTypes.Perspective,
+          },
+          objects: [
+            {
+              type: ObjectTypes.ImplicitObject,
+              position: [0, 0, 0],
+              control: {type: ObjectControlTypes.BouncyPresentation},
+              animations: [{type: AnimationTypes.Float}],
+              scale: 1,
+            },
+          ],
+        },
+        {
+          type: ComponentTypes.Canvas,
+          className: "canvas",
+          effects: SceneEffectsTypes.DisableScrollOnceOnCompletelyVisible,
+          style: {flexGrow: 1, height: '400px'},
+          camera: {
+            position: [0, 0, 3],
+            type: CameraTypes.Perspective,
+          },
+          objects: [
+            {
+              type: ObjectTypes.ImplicitObject,
+              position: [0, 0, 0],
+              control: {type: ObjectControlTypes.BouncyPresentation},
+              animations: [{type: AnimationTypes.Rotate}],
+              scale: 1,
+            },
+          ],
+        }
+      ]
+    },
+    {
       type: ComponentTypes.Canvas,
       className: "canvas",
       effects: SceneEffectsTypes.DisableScrollOnceOnCompletelyVisible,
-      style: stylingDefaults.fullWidthMediumHeightCanvas,
+      style: stylingDefaults.fullWidthFullHeightCanvas,
       camera: {
         position: [0, 0, 3],
         type: CameraTypes.Perspective,

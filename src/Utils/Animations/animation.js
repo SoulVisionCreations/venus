@@ -1,10 +1,11 @@
 import { AnimationTypes } from "../../Configs/types";
+import { animationDefaults } from "../../Constants/defaults";
 
 export const applyAnimations = (animations, time, objectRef) => {
     animations.forEach(animation => {
         switch(animation.type) {
             case AnimationTypes.Rotate :  
-                rotateAnimation(time, objectRef, animation);
+                rotateAnimation(time, objectRef, animation.rotationArray);
                 break;
             case AnimationTypes.Float :  
                 floatAnimation(time, objectRef);
