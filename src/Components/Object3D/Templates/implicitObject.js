@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import { loadImplicitData } from "../../../Renderer/data_loader";
 import { degToRad } from "three/src/math/MathUtils";
-import { animationDefaults, objectDefaults } from "../../../Constants/defaults";
+import { objectDefaults } from "../../../Constants/defaults";
 import { applyAnimations } from "../../../Utils/Animations/animation";
-import { eventDrivenActionTypes, ObjectTypes } from "../../../Configs/types";
+import { eventDrivenActionTypes } from "../../../Configs/types";
 import {
   applyEventDrivenActions,
   useEvents,
@@ -20,6 +20,10 @@ export function ImplicitObject(props) {
   const [loading, updateLoading] = useState(true);
   const ImpObjRef = useRef();
   const scrolledRotationValue = useRef(0);
+
+  const position =
+    props.position != undefined ? props.position : objectDefaults.position;
+  const scale = props.scale != undefined ? props.scale : objectDefaults.scale;
 
   useEvents(props, scrolledRotationValue);
 
@@ -46,14 +50,10 @@ export function ImplicitObject(props) {
     loadImplicitData(dirUrl.dir).then((obj) => {
       ImpObjRef.current = obj;
       ImpObjRef.current.rotation.set(degToRad(-90), 0, degToRad(-70));
-      //ImpObjRef.current.scale.set(5, 5, 5);
+      // ImpObjRef.current.scale.set(5, 5, 5);
       updateLoading(false);
     });
   }, []);
-
-  const position =
-    props.position != undefined ? props.position : objectDefaults.position;
-  const scale = props.scale != undefined ? props.scale : objectDefaults.scale;
 
   const renderImplicit = ({ ...props }) => {
     return (

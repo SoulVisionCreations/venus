@@ -10,6 +10,8 @@ import {
   StandardGeometryTypes,
   MaterialTypes,
   HtmlTypes,
+  eventDrivenActionTypes,
+  AnimationTypes,
 } from "./types";
 
 export const config2 = {
@@ -69,6 +71,11 @@ export const config2 = {
               price: "$50",
               position: [0.01, 0.01, 0],
               transform: true,
+            },
+          ],
+          animations: [
+            {
+              type: AnimationTypes.Float,
             },
           ],
         },

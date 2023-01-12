@@ -1,5 +1,6 @@
 export const cameraDefaults = {
   position: [0, 0, 5],
+  makeDefault: true,
 };
 
 export const animationDefaults = {
@@ -16,6 +17,7 @@ export const objectDefaults = {
 
 export const htmlDefaults = {
   scale: 0.01,
+  transform: true,
 };
 
 export const stylingDefaults = {

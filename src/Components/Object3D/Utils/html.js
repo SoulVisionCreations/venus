@@ -4,7 +4,6 @@ import { htmlDefaults } from "../../../Constants/defaults";
 
 export const renderHtml = ({ ...props }) => {
   const scale = props.scale ? props.scale : htmlDefaults.scale;
-  console.log(props);
   switch (props.type) {
     case HtmlTypes.priceTag:
       return (
