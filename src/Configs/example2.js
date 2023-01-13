@@ -23,7 +23,7 @@ export const config2 = {
     {
       type: ComponentTypes.Canvas,
       className: "canvas",
-      style: stylingDefaults.fullWidthLargeHeightCanvas,
+      style: stylingDefaults.fullWidthMediumHeightCanvas,
       camera: {
         position: [0, 0, 1],
         type: CameraTypes.Perspective,
@@ -38,9 +38,9 @@ export const config2 = {
           intensity: 2,
         },
       ],
-      sceneControl: {
-        type: SceneControlTypes.Orbit,
-      },
+      // sceneControl: {
+      //   type: SceneControlTypes.Orbit,
+      // },
       objects: [
         {
           type: ObjectTypes.ImplicitObject,
@@ -106,6 +106,46 @@ export const config2 = {
           fontSize: 0.05,
           color: "black",
           position: [0.5, 0, 0],
+        },
+      ],
+    },
+    {
+      type: ComponentTypes.Canvas,
+      className: "canvas",
+      style: stylingDefaults.fullWidthMediumHeightCanvas,
+      camera: {
+        position: [0, 0, 1],
+        type: CameraTypes.Perspective,
+      },
+      objects: [
+        {
+          type: ObjectTypes.ImplicitObject,
+          scale: 1,
+          position: [0, 0, 0],
+          animations: [],
+          control: {
+            type: ObjectControlTypes.BouncyPresentation,
+          },
+        },
+      ],
+    },
+    {
+      type: ComponentTypes.Canvas,
+      className: "canvas",
+      style: stylingDefaults.fullWidthMediumHeightCanvas,
+      camera: {
+        position: [0, 0, 1],
+        type: CameraTypes.Perspective,
+      },
+      objects: [
+        {
+          type: ObjectTypes.ImplicitObject,
+          scale: 1,
+          position: [0, 0, 0],
+          animations: [],
+          control: {
+            type: ObjectControlTypes.BouncyPresentation,
+          },
         },
       ],
     },

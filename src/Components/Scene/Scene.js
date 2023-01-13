@@ -26,7 +26,11 @@ export default function Scene({
     return objects.map((objectProps, index) => {
       return (
         <ObjectControls {...objectProps}>
-          <Object3D {...objectProps} key={index} />;
+          <Object3D
+            {...objectProps}
+            key={index}
+            completelyVisible={completelyVisible}
+          />
         </ObjectControls>
       );
     });

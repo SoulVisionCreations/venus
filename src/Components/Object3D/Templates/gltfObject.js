@@ -7,6 +7,7 @@ import {
   applyEventDrivenActions,
   useEvents,
 } from "../../../Utils/Events/events";
+import { AvataarLoader } from "../../AvataarLoader/avataarloader";
 
 export const GltfObject = ({ url, ...props }) => {
   const [loading, updateLoading] = useState(true);
@@ -51,5 +52,5 @@ export const GltfObject = ({ url, ...props }) => {
     );
   };
 
-  return <>{loading ? null : renderGltf({ ...props })}</>;
+  return <>{loading ? <AvataarLoader /> : renderGltf({ ...props })}</>;
 };

@@ -11,12 +11,13 @@ import {
 } from "../../../Utils/Events/events";
 import WebGL from "three/examples/jsm/capabilities/WebGL.js";
 import { getPath } from "../../../Renderer/data_loader";
+import { AvataarLoader } from "../../AvataarLoader/avataarloader";
 
 if (WebGL.isWebGL2Available() === false) {
   viewSpace.appendChild(WebGL.getWebGL2ErrorMessage());
 }
 
-export function ImplicitObject(props) {
+export function ImplicitObject({ ...props }) {
   const [loading, updateLoading] = useState(true);
   const ImpObjRef = useRef();
   const scrolledRotationValue = useRef(0);
@@ -46,14 +47,16 @@ export function ImplicitObject(props) {
   });
 
   useEffect(() => {
-    let dirUrl = getPath();
-    loadImplicitData(dirUrl.dir).then((obj) => {
-      ImpObjRef.current = obj;
-      ImpObjRef.current.rotation.set(degToRad(-90), 0, degToRad(-70));
-      // ImpObjRef.current.scale.set(5, 5, 5);
-      updateLoading(false);
-    });
-  }, []);
+    if (props.completelyVisible) {
+      let dirUrl = getPath();
+      loadImplicitData(dirUrl.dir).then((obj) => {
+        ImpObjRef.current = obj;
+        ImpObjRef.current.rotation.set(degToRad(-90), 0, degToRad(-70));
+        // ImpObjRef.current.scale.set(5, 5, 5);
+        updateLoading(false);
+      });
+    }
+  }, [props.completelyVisible]);
 
   const renderImplicit = ({ ...props }) => {
     return (
@@ -68,5 +71,5 @@ export function ImplicitObject(props) {
     );
   };
 
-  return <>{loading ? null : renderImplicit({ ...props })}</>;
+  return <>{loading ? <AvataarLoader /> : renderImplicit({ ...props })}</>;
 }
