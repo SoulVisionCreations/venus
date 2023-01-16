@@ -20,6 +20,11 @@ export const htmlDefaults = {
   transform: true,
 };
 
+export const text3DDefaults = {
+  scale: 0.1,
+  color: "white",
+};
+
 export const stylingDefaults = {
   flexRowContainer: {
     display: "flex",

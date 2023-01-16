@@ -5,6 +5,7 @@ import { textLoader } from "../Text/text";
 import { getLight } from "../Light/light";
 import { Object3D } from "../Object3D/object3D";
 import { ObjectControls } from "../../Utils/ObjectControls/objectControls";
+import { renderHtml } from "../Html/html";
 
 export default function Scene({
   objects,
@@ -24,13 +25,20 @@ export default function Scene({
 
   const renderObjects = () => {
     return objects.map((objectProps, index) => {
+      const renderHtmls = () => {
+        return objectProps.htmls.map((htmlProps, index) => {
+          return renderHtml({ ...htmlProps });
+        });
+      };
       return (
         <ObjectControls {...objectProps}>
           <Object3D
             {...objectProps}
             key={index}
             completelyVisible={completelyVisible}
-          />
+          >
+            {objectProps.htmls && renderHtmls()}
+          </Object3D>
         </ObjectControls>
       );
     });

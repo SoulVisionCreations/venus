@@ -9,13 +9,8 @@ import {
   applyEventDrivenActions,
   useEvents,
 } from "../../../Utils/Events/events";
-import WebGL from "three/examples/jsm/capabilities/WebGL.js";
 import { getPath } from "../../../Renderer/data_loader";
 import { AvataarLoader } from "../../AvataarLoader/avataarloader";
-
-if (WebGL.isWebGL2Available() === false) {
-  viewSpace.appendChild(WebGL.getWebGL2ErrorMessage());
-}
 
 export function ImplicitObject({ ...props }) {
   const [loading, updateLoading] = useState(true);

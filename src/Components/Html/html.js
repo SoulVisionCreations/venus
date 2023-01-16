@@ -1,6 +1,6 @@
 import { Html } from "@react-three/drei";
-import { HtmlTypes } from "../../../Configs/types";
-import { htmlDefaults } from "../../../Constants/defaults";
+import { HtmlTypes } from "../../Configs/types";
+import { htmlDefaults } from "../../Constants/defaults";
 
 export const renderHtml = ({ ...props }) => {
   const scale = props.scale ? props.scale : htmlDefaults.scale;
