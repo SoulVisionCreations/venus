@@ -44,7 +44,7 @@ export function ImplicitObject({ ...props }) {
   useEffect(() => {
     if (props.completelyVisible) {
       let dirUrl = getPath();
-      loadImplicitData(dirUrl.dir).then((obj) => {
+      loadImplicitData(dirUrl.dir, props.modelId).then((obj) => {
         ImpObjRef.current = obj;
         ImpObjRef.current.rotation.set(degToRad(-90), 0, degToRad(-70));
         // ImpObjRef.current.scale.set(5, 5, 5);
