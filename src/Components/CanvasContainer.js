@@ -24,8 +24,14 @@ export default function CanvasContainer(props)
         return () => {
             if(createVisibilityObserver) visiblityObserver.current.unobserve(canvasContainerRef.current);
         }
-    }, [canvasContainerRef.current])
-    
+    }, [canvasContainerRef.current]);
+
+    const sceneProps = {
+        completelyVisible: completelyVisible,
+        completelyVisibleCount: completelyVisibleCount,
+        setCompletelyVisibleCount: setCompletelyVisibleCount
+    };
+
     return (
         <div ref={canvasContainerRef} className={props.className} style={props.style} id={props.id}>
             <Canvas>
@@ -36,9 +42,7 @@ export default function CanvasContainer(props)
                     texts={props.texts}
                     images={props.images}
                     lights={props.lights}
-                    completelyVisible={completelyVisible} 
-                    completelyVisibleCount={completelyVisibleCount} 
-                    setCompletelyVisibleCount={setCompletelyVisibleCount}
+                    sceneProps={sceneProps}
                 />
             </Canvas>
         </div>

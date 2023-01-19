@@ -3,14 +3,15 @@ export const cameraDefaults = {
 }
 
 export const animationDefaults = {
-    rotationArray: [0.5, 0.5, 0.5],
-    scrollByRotationContinouslySpeed: 0.05,
-    scrollByRotationOnceSpeed: 0.05
+    rotationArray: [0, 0, 0.5],
+    scrollByRotationContinouslySpeed: 0.04,
+    scrollByRotationOnceSpeed: 0.06
 }
 
 export const objectDefaults = {
     position: [0,0,0],
-    scale: 1
+    scale: 1,
+    control: 0,
 }
 
 export const stylingDefaults = {
@@ -33,7 +34,7 @@ export const stylingDefaults = {
         boxSizing: 'content-box',
     },
     fullWidthLargeHeightCanvas: {
-        height: '500px',
+        height: '600px',
         width: '100%',
         boxSizing: 'content-box',
     },

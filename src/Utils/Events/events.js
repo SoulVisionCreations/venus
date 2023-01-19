@@ -2,49 +2,68 @@ import { useEffect } from "react";
 import { eventDrivenActionTypes } from "../../Configs/types";
 import { animationDefaults } from "../../Constants/defaults";
 
-export const applyEventDrivenActions = (props, time, objectRef, scrolledRotationValue) => {
-    if(!props.events) return;
-    props.events.forEach(event => {
-        switch(event.type) {
-            case eventDrivenActionTypes.rotateByScrollOnce :
-                objectRef.rotation.z = scrolledRotationValue.current;
-        }
-    }
+export const applyEventDrivenActions = (objectProps, time, objectRef, scrolledRotationValue) => {
+  if(!objectProps.events) return;
+  objectProps.events.forEach(event => {
+      switch(event.type) {
+          case eventDrivenActionTypes.rotateByScrollOnce :
+            objectRef.rotation.z = scrolledRotationValue.current;
+            break;
+          case eventDrivenActionTypes.rotateByScrollContinously :
+            objectRef.rotation.z = scrolledRotationValue.current;
+            break;
+      }
+  }
 )};
 
-export const useEvents = (props, scrolledRotationValue) => {
+export const useEvents = (objectProps, sceneProps, scrolledRotationValue) => {
+
+    console.log(objectProps);
 
     const rotateByScrollOnce =  (e) => {
-        if(props.completelyVisible && props.completelyVisibleCount <= 1 && (scrolledRotationValue.current < 2*Math.PI && scrolledRotationValue.current > -2*Math.PI)) {
+        if(sceneProps.completelyVisible && sceneProps.completelyVisibleCount <= 1 && (scrolledRotationValue.current < 2*Math.PI && scrolledRotationValue.current > -2*Math.PI)) {
             scrolledRotationValue.current += animationDefaults.scrollByRotationOnceSpeed*(e.wheelDeltaY > 0 ? 1 : -1);
             document.body.style.overflow = 'hidden';
             if(scrolledRotationValue.current >= 2*Math.PI || scrolledRotationValue.current <= -2*Math.PI) {
               document.body.style.overflow = 'auto';
-              props.setCompletelyVisibleCount(count => count + 1);
+              sceneProps.setCompletelyVisibleCount(count => count + 1);
             }
         } else {
           document.body.style.overflow = 'auto';
         }
     }
 
+    const rotateByScrollContinously =  (e) => {
+      console.log(scrolledRotationValue.current);
+      scrolledRotationValue.current += animationDefaults.scrollByRotationContinouslySpeed*(e.wheelDeltaY > 0 ? 1 : -1);
+    }
+
     useEffect(() => {
-        if(props.events) {
-          props.events.forEach(event => {
+        if(objectProps.events) {
+          objectProps.events.forEach(event => {
             switch(event.type) {
               case eventDrivenActionTypes.rotateByScrollOnce :
-                if(props.completelyVisibleCount == 0) window.addEventListener("wheel", rotateByScrollOnce);
+                if(sceneProps.completelyVisibleCount == 0) window.addEventListener("wheel", rotateByScrollOnce);
+                break;
+              case eventDrivenActionTypes.rotateByScrollContinously:
+                window.addEventListener("wheel", rotateByScrollContinously);
+                break;
             }
           });
         }
         return () => {
-          if(props.events) {
-            props.events.forEach(event => {
+          if(objectProps.events) {
+            objectProps.events.forEach(event => {
               switch(event.type) {
                 case eventDrivenActionTypes.rotateByScrollOnce :
                   window.removeEventListener("wheel", rotateByScrollOnce);
+                  break;
+                case eventDrivenActionTypes.rotateByScrollContinously:
+                  window.addEventListener("wheel", rotateByScrollContinously);
+                  break;
               }
             });
           }
         }
-    }, [props.completelyVisible, props.completelyVisibleCount]);
+    }, [sceneProps.completelyVisible, sceneProps.completelyVisibleCount]);
 }
