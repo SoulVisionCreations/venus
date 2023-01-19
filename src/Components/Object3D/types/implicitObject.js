@@ -13,7 +13,8 @@ if (WebGL.isWebGL2Available() === false) {
 
 export function ImplicitObject({objectProps, sceneProps}) {
   const [loading, updateLoading] = useState(true);
-  const ImpObjRef = useRef();
+  const [objectLoadTriggered, setObjectLoadTriggered] = useState(false);
+  const implicitMeshRef = useRef();
   const scrolledRotationValue = useRef(0);
   const position = objectProps.position != undefined ? objectProps.position : objectDefaults.position;
   const scale = objectProps.scale != undefined ? objectProps.scale : objectDefaults.scale;
@@ -22,28 +23,27 @@ export function ImplicitObject({objectProps, sceneProps}) {
 
   useFrame((state) => {
     if (!loading) {
-      ImpObjRef.current.material.uniforms.CamPos.value.copy(
-        state.camera.position
-      );
+      implicitMeshRef.current.material.uniforms.CamPos.value.copy(state.camera.position);
       const time = state.clock.getElapsedTime();
-      if (objectProps.animations) applyAnimations(objectProps.animations, time, ImpObjRef.current);
-      if (objectProps.events) applyEventDrivenAnimations(objectProps, time, ImpObjRef.current, scrolledRotationValue);
+      if (objectProps.animations) applyAnimations(objectProps.animations, time, implicitMeshRef.current);
+      if (objectProps.events) applyEventDrivenAnimations(objectProps, time, implicitMeshRef.current, scrolledRotationValue);
     }
   });
 
   useEffect(() => {
-    if (sceneProps.isSceneVisible && !loading) {
+    if (sceneProps.isSceneVisible && !objectLoadTriggered) {
+      setObjectLoadTriggered(true);
       let dirUrl = getPath();
-      loadImplicitData(dirUrl.dir).then((obj) => {
-        ImpObjRef.current = obj;
+      loadImplicitData(dirUrl.dir, objectProps.modelId).then((mesh) => {
+        implicitMeshRef.current = mesh;
         updateLoading(false);
       });
     }
-  }, [sceneProps.isSceneCompletelyVisible]);
+  }, [sceneProps.isSceneVisible]);
 
   const renderImplicit = (objectProps) => {
     return (
-      <primitive object={ImpObjRef.current} position={position} scale={scale} {...objectProps} />
+      <primitive object={implicitMeshRef.current} position={position} scale={scale} {...objectProps} />
     );
   };
 

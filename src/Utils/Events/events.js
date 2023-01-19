@@ -32,7 +32,6 @@ export const useEvents = (objectProps, sceneProps, scrolledRotationValue) => {
     }
 
     const rotateByScrollContinously =  (e) => {
-      console.log(scrolledRotationValue.current);
       scrolledRotationValue.current += animationDefaults.scrollByRotationContinouslySpeed*(e.wheelDeltaY > 0 ? 1 : -1);
     }
 

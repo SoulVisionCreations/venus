@@ -34,6 +34,7 @@ export const config1 = {
           objects: [
             {
               type: ObjectTypes.ImplicitObject,
+              modelId: 101,
               position: [0, 0, 0],
               control: {type: ObjectControlTypes.BouncyPresentation},
               animations: [{type: AnimationTypes.Rotate}],
@@ -52,6 +53,7 @@ export const config1 = {
           objects: [
             {
               type: ObjectTypes.ImplicitObject,
+              modelId: 101,
               position: [0, 0, 0],
               control: {type: ObjectControlTypes.BouncyPresentation},
               animations: [{type: AnimationTypes.Float}],
@@ -76,6 +78,7 @@ export const config1 = {
           objects: [
             {
               type: ObjectTypes.ImplicitObject,
+              modelId: 101,
               position: [1, 0, 0],
               control: {type: ObjectControlTypes.BouncyPresentation},
               events: [{type: eventDrivenActionTypes.rotateByScrollContinously}],
@@ -94,6 +97,7 @@ export const config1 = {
           objects: [
             {
               type: ObjectTypes.ImplicitObject,
+              modelId: 101,
               position: [1, 0, 0],
               control: {type: ObjectControlTypes.BouncyPresentation},
               events: [{type: eventDrivenActionTypes.rotateByScrollContinously}],
@@ -112,6 +116,7 @@ export const config1 = {
           objects: [
             {
               type: ObjectTypes.ImplicitObject,
+              modelId: 101,
               position: [1, 0.2, 0],
               control: {type: ObjectControlTypes.BouncyPresentation},
               events: [{type: eventDrivenActionTypes.rotateByScrollContinously}],
@@ -133,6 +138,7 @@ export const config1 = {
       objects: [
         {
           type: ObjectTypes.ImplicitObject,
+          modelId: 101,
           position: [1, 0, 0],
           events: [{type: eventDrivenActionTypes.rotateByScrollOnce, rotationArray: [0,0, Math.PI/180]}],
           control: {type: ObjectControlTypes.BouncyPresentation},
@@ -151,6 +157,7 @@ export const config1 = {
       objects: [
         {
           type: ObjectTypes.ImplicitObject,
+          modelId: 101,
           position: [1, 0, 0],
           animations: [{type: AnimationTypes.Float}],
           control: {type: ObjectControlTypes.BouncyPresentation},

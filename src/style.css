@@ -1,11 +1,3 @@
-html,
-body,
-#root
-{
-    background: ivory;
-    height: 200%;
-}
-
 .fullWidthMediumHeight {
     height: 300px;
     width: 100%;

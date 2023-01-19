@@ -22,6 +22,7 @@ export const config2 = {
   children: [
     {
       type: ComponentTypes.Canvas,
+      background: "pink",
       className: "canvas",
       style: stylingDefaults.fullWidthMediumHeightCanvas,
       camera: {
@@ -44,6 +45,7 @@ export const config2 = {
       objects: [
         {
           type: ObjectTypes.ImplicitObject,
+          modelId: 101,
           scale: 1,
           position: [0.7, 0, 0],
           animations: [],
@@ -111,6 +113,7 @@ export const config2 = {
     },
     {
       type: ComponentTypes.Canvas,
+      background: "red",
       className: "canvas",
       style: stylingDefaults.fullWidthMediumHeightCanvas,
       camera: {
@@ -120,6 +123,7 @@ export const config2 = {
       objects: [
         {
           type: ObjectTypes.ImplicitObject,
+          modelId: 101,
           scale: 1,
           position: [0, 0, 0],
           animations: [],
@@ -140,6 +144,7 @@ export const config2 = {
       objects: [
         {
           type: ObjectTypes.ImplicitObject,
+          modelId: 101,
           scale: 1,
           position: [0, 0, 0],
           animations: [],

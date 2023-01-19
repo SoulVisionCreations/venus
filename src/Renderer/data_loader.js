@@ -1,8 +1,9 @@
 import * as THREE from "three";
 Window.THREE = THREE;
-import {rayMarchVertexShader} from "./shader/rayMarchVertexShader.js";
-import {rayMarchFragmentShader} from "./shader/rayMarchFragmentShader.js";
+import { rayMarchVertexShader } from "./shader/rayMarchVertexShader.js";
+import { rayMarchFragmentShader } from "./shader/rayMarchFragmentShader.js";
 let atlasIndexImage, gSceneParams, gNumTextures;
+let modelMap = new Map();
 /**
  * Loads PNG image from rgbaURL and decodes it to an Uint8Array.
  * @param {string} rgbaUrl The URL of the PNG image.
@@ -414,9 +415,7 @@ const CreateImplicitObj = (atlasIndexImage, rgb_data, alpha_data) => {
     transparent: true,
   });
 
-  const mesh = new THREE.Mesh(geometry, material);
-  mesh.userData.SceneParams = gSceneParams;
-  return mesh;
+  return {geometry: geometry, material:material};
 };
 
 // export const errorLogs = (txt) => {
@@ -426,9 +425,20 @@ const CreateImplicitObj = (atlasIndexImage, rgb_data, alpha_data) => {
 //   $("#error").removeClass("hide");
 // };
 
-export async function loadImplicitData(dirUrl) {
+function createMesh(meshProps) {
+  const mesh = new THREE.Mesh(meshProps.geometry, meshProps.material);
+  mesh.userData.SceneParams = gSceneParams;
+  return mesh;
+}
+
+export async function loadImplicitData(dirUrl, id) {
   // $("#viewspacecontainer").removeClass("hide");
   // await loadSceneData(dirUrl)
+  if (modelMap.has(id)) {
+    const meshProps = modelMap.get(id);
+    const mesh = createMesh(meshProps);
+    return mesh;
+  }
   await loadJsonFiles(dirUrl);
   let rgb_data, alpha_data, feature_data;
   // [rgb_data, alpha_data] = await pngToVolumeData_onebyone(gSceneParams['dirUrl'], gNumTextures, "rgba");
@@ -438,7 +448,9 @@ export async function loadImplicitData(dirUrl) {
     "rgba"
   );
   // $("#viewspacecontainer").addClass("hide");
-  var mesh = CreateImplicitObj(atlasIndexImage, data[0], data[1]);
+  const meshProps = CreateImplicitObj(atlasIndexImage, data[0], data[1]);
+  const mesh = createMesh(meshProps);
+  modelMap.set(id, meshProps);
   return mesh;
 }
 
