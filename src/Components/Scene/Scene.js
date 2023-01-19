@@ -1,12 +1,11 @@
 import React from "react";
-import { TextTypes } from "../../Configs/types";
 import { applySceneControl } from "../../Utils/SceneControls/sceneControl";
 import { imageLoader } from "../Image/image";
 import { textLoader } from "../Text/text";
-import { text3DLoader } from "../Text3D/text3D";
 import { getLight } from "../Light/light";
 import { Object3D } from "../Object3D/object3D";
 import { ObjectControls } from "../../Utils/ObjectControls/objectControls";
+import { renderHtml } from "../Html/html";
 
 export default function Scene({
   objects,
@@ -22,11 +21,19 @@ export default function Scene({
     });
   };
 
+  const renderHtmls = (htmls) => {
+    return htmls.map((htmlProps, index) => {
+      return renderHtml({ ...htmlProps });
+    });
+  };
+
   const renderObjects = () => {
     return objects.map((objectProps, index) => {
       return (
         <ObjectControls {...objectProps} key={index}>
-          <Object3D objectProps={objectProps} sceneProps={sceneProps} />;
+          <Object3D objectProps={objectProps} sceneProps={sceneProps} key={index}>
+            {objectProps.htmls && renderHtmls(objectProps.htmls)}
+          </Object3D>
         </ObjectControls>
       );
     });
@@ -34,16 +41,7 @@ export default function Scene({
 
   const renderTexts = () => {
     return texts.map((textProps, index) => {
-      switch (textProps.type) {
-        case TextTypes.Text2D:
-          return textLoader({ text: textProps.text, ...textProps });
-        case TextTypes.Text3D:
-          return text3DLoader({
-            font: textProps.font,
-            text: textProps.text,
-            ...textProps,
-          });
-      }
+      return textLoader({ text: textProps.text, ...textProps });
     });
   };
 

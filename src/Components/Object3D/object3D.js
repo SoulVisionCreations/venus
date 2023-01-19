@@ -1,41 +1,18 @@
 import { ObjectTypes } from "../../Configs/types";
-import { renderGeometry } from "../Geometry/geometry";
-import { GltfLoader } from "../Gltf/gltf";
-import { renderHtml } from "../Html/html";
-import { ImplicitObject } from "../ImplicitObject/implicitObject";
-import { renderMaterial } from "../Material/material";
+import { ImplicitObject } from "./types/implicitObject";
+import { GltfObject } from "./types/gltfObject";
+import { StandardObject } from "./types/standardObject";
+import { Text3DObject } from "./types/text3DObject";
 
-export function Object3D({objectProps, sceneProps}) {
-  const renderHtmls = () => {
-    return objectProps.htmls.map((htmlProps, index) => {
-      return renderHtml({ ...htmlProps });
-    });
-  };
-  const renderGeometries = () => {
-    return objectProps.geometry.map((geometryProps, index) => {
-      return renderGeometry({ ...geometryProps });
-    });
-  };
-  const renderMaterials = () => {
-    return objectProps.material.map((materialProps, index) => {
-      return renderMaterial({ ...materialProps });
-    });
-  };
+export function Object3D({ objectProps, sceneProps }) {
   switch (objectProps.type) {
     case ObjectTypes.ImplicitObject:
-      return (
-        <ImplicitObject objectProps={objectProps} sceneProps={sceneProps}>
-          {objectProps.htmls && renderHtmls()}
-        </ImplicitObject>
-      );
+      return <ImplicitObject objectProps={objectProps} sceneProps={sceneProps} />;
     case ObjectTypes.GltfObject:
-      return <GltfLoader url={objectProps.url} objectProps={objectProps} sceneProps={sceneProps} />;
+      return <GltfObject objectProps={objectProps} sceneProps={sceneProps} />;
     case ObjectTypes.StandardObject:
-      return (
-        <mesh>
-          {renderGeometries()}
-          {renderMaterials()}
-        </mesh>
-      );
+      return <StandardObject objectProps={objectProps} sceneProps={sceneProps} />;
+    case ObjectTypes.Text3D:
+      return <Text3DObject objectProps={objectProps} sceneProps={sceneProps} />;
   }
 }

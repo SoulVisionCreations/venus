@@ -1,13 +1,17 @@
 import { Html } from "@react-three/drei";
+import { HtmlTypes } from "../../Configs/types";
+import { htmlDefaults } from "../../Constants/defaults";
 
 export const renderHtml = ({ ...props }) => {
-  return (
-    <Html
-      // rotation={[Math.PI / 2, Math.PI / 4, 0]}
-      // position={[1, 0, 0]}
-      transform
-    >
-      {props.price}
-    </Html>
-  );
+  const scale = props.scale ? props.scale : htmlDefaults.scale;
+  switch (props.type) {
+    case HtmlTypes.priceTag:
+      return (
+        <Html scale={scale} {...props}>
+          <div className="annotation">{props.price}</div>
+        </Html>
+      );
+    default:
+      return <Html>{props.text}</Html>;
+  }
 };

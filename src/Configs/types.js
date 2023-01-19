@@ -2,6 +2,7 @@ export const ObjectTypes = {
   ImplicitObject: 0,
   GltfObject: 1,
   StandardObject: 2,
+  Text3D: 3,
 };
 
 export const StandardGeometryTypes = {
@@ -40,6 +41,10 @@ export const MaterialTypes = {
   MeshBasicMaterial: 8,
   MeshMatcapMaterial: 9,
   RawShaderMaterial: 10,
+};
+
+export const HtmlTypes = {
+  priceTag: 0,
 };
 
 export const SceneEffectsTypes = {
@@ -83,11 +88,6 @@ export const LightTypes = {
 export const ComponentTypes = {
   Container: 0,
   Canvas: 1,
-};
-
-export const TextTypes = {
-  Text2D: 0,
-  Text3D: 1,
 };
 
 export const Alignment = {

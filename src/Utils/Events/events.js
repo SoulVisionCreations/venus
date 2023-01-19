@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { eventDrivenActionTypes } from "../../Configs/types";
 import { animationDefaults } from "../../Constants/defaults";
 
-export const applyEventDrivenActions = (objectProps, time, objectRef, scrolledRotationValue) => {
+export const applyEventDrivenAnimations = (objectProps, time, objectRef, scrolledRotationValue) => {
   if(!objectProps.events) return;
   objectProps.events.forEach(event => {
       switch(event.type) {
@@ -17,8 +17,6 @@ export const applyEventDrivenActions = (objectProps, time, objectRef, scrolledRo
 )};
 
 export const useEvents = (objectProps, sceneProps, scrolledRotationValue) => {
-
-    console.log(objectProps);
 
     const rotateByScrollOnce =  (e) => {
         if(sceneProps.completelyVisible && sceneProps.completelyVisibleCount <= 1 && (scrolledRotationValue.current < 2*Math.PI && scrolledRotationValue.current > -2*Math.PI)) {

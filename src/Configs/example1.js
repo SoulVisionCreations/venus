@@ -1,4 +1,3 @@
-import { ImplicitObject } from "../Components/ImplicitObject/implicitObject";
 import { stylingDefaults } from "../Constants/defaults";
 import {
   AnimationTypes,
@@ -9,7 +8,6 @@ import {
   SceneEffectsTypes,
   eventDrivenActionTypes,
   ObjectControlTypes,
-  TextTypes,
   LightTypes,
   SceneControlTypes,
 } from "./types";
@@ -84,23 +82,6 @@ export const config1 = {
               scale: 1.5,
             },
           ],
-          texts: [
-            {
-              type: TextTypes.Text2D,
-              text: "Chair Description",
-              fontSize: 0.05,
-              color: "black",
-              position: [1.4, 0, 0],
-            },
-            {
-              type: TextTypes.Text3D,
-              font: "./Inter_Bold.json",
-              text: "Chair",
-              scale: 0.1,
-              color: "green",
-              position: [1.2, 0.05, 0],
-            },
-          ],
         },
         {
           type: ComponentTypes.Canvas,
@@ -119,23 +100,6 @@ export const config1 = {
               scale: 2,
             },
           ],
-          texts: [
-            {
-              type: TextTypes.Text2D,
-              text: "Chair Description",
-              fontSize: 0.05,
-              color: "black",
-              position: [1.4, 0, 0],
-            },
-            {
-              type: TextTypes.Text3D,
-              font: "./Inter_Bold.json",
-              text: "Chair",
-              scale: 0.1,
-              color: "green",
-              position: [1.2, 0.05, 0],
-            },
-          ],
         },
         {
           type: ComponentTypes.Canvas,
@@ -152,23 +116,6 @@ export const config1 = {
               control: {type: ObjectControlTypes.BouncyPresentation},
               events: [{type: eventDrivenActionTypes.rotateByScrollContinously}],
               scale: 2.5,
-            },
-          ],
-          texts: [
-            {
-              type: TextTypes.Text2D,
-              text: "Chair Description",
-              fontSize: 0.05,
-              color: "black",
-              position: [1.4, 0, 0],
-            },
-            {
-              type: TextTypes.Text3D,
-              font: "./Inter_Bold.json",
-              text: "Chair",
-              scale: 0.1,
-              color: "green",
-              position: [1.2, 0.05, 0],
             },
           ],
         }
@@ -192,23 +139,6 @@ export const config1 = {
           scale: 1.5,
         },
       ],
-      texts: [
-        {
-          type: TextTypes.Text2D,
-          text: "Chair Description",
-          fontSize: 0.05,
-          color: "black",
-          position: [0.8, 0, 0],
-        },
-        {
-          type: TextTypes.Text3D,
-          font: "./Inter_Bold.json",
-          text: "Chair",
-          scale: 0.1,
-          color: "green",
-          position: [0.6, 0.05, 0],
-        },
-      ],
     },
     {
       type: ComponentTypes.Canvas,
@@ -227,53 +157,36 @@ export const config1 = {
           scale: 1.5,
         },
       ],
-      texts: [
-        {
-          type: TextTypes.Text2D,
-          text: "Chair Description",
-          fontSize: 0.05,
-          color: "black",
-          position: [0.8, 0, 0],
-        },
-        {
-          type: TextTypes.Text3D,
-          font: "./Inter_Bold.json",
-          text: "Chair",
-          scale: 0.1,
-          color: "green",
-          position: [0.6, 0.05, 0],
-        },
-      ],
     },
-    {
-      type: ComponentTypes.Canvas,
-      className: "canvas",
-      style: {height: '400px', width: '400px', border: '10px solid black', borderRadius:'15px'},
-      camera: {
-        position: [0, 0, 1],
-        type: CameraTypes.Perspective,
-      },
-      lights: [
-        {
-          type: LightTypes.Ambient,
-          intensity: 1,
-        },
-        {
-          type: LightTypes.Directional,
-          intensity: 2,
-        },
-      ],
-      objects: [
-        {
-          type: ObjectTypes.GltfObject,
-          url: "./model.glb",
-          scale: 5,
-          position: [0,0,0],
-        },
-      ],
-      sceneControl: {
-        type: SceneControlTypes.Orbit,
-      },
-    },
+    // {
+    //   type: ComponentTypes.Canvas,
+    //   className: "canvas",
+    //   style: {height: '400px', width: '400px', border: '10px solid black', borderRadius:'15px'},
+    //   camera: {
+    //     position: [0, 0, 1],
+    //     type: CameraTypes.Perspective,
+    //   },
+    //   lights: [
+    //     {
+    //       type: LightTypes.Ambient,
+    //       intensity: 1,
+    //     },
+    //     {
+    //       type: LightTypes.Directional,
+    //       intensity: 2,
+    //     },
+    //   ],
+    //   objects: [
+    //     {
+    //       type: ObjectTypes.GltfObject,
+    //       url: "./model.glb",
+    //       scale: 5,
+    //       position: [0,0,0],
+    //     },
+    //   ],
+    //   sceneControl: {
+    //     type: SceneControlTypes.Orbit,
+    //   },
+    // },
   ],
 };
