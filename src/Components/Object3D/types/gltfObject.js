@@ -24,8 +24,8 @@ export const GltfObject = ({ url, ...props }) => {
     }
     if (!loading) {
       const time = state.clock.getElapsedTime();
-      if (props.animations) applyAnimations(props.animations, time, model.scene);
-      if (props.events) applyEventDrivenAnimations(props, time, model.scene, scrolledRotationValue);
+      // if (props.animations) applyAnimations(props.animations, time, model.scene);
+      // if (props.events) applyEventDrivenAnimations(props, time, model.scene, scrolledRotationValue);
     }
   });
 

@@ -407,6 +407,7 @@ const CreateImplicitObj = (atlasIndexImage, rgb_data, alpha_data) => {
       selectedRegions: {
         value: sqrSelectedRegions,
       },
+      useInstancing: false,
     },
     vertexShader: rayMarchVertexShader,
     fragmentShader: rayMarchFragmentShader,
@@ -415,7 +416,7 @@ const CreateImplicitObj = (atlasIndexImage, rgb_data, alpha_data) => {
     transparent: true,
   });
 
-  return {geometry: geometry, material:material};
+  return {geometry: geometry, material: material, gSceneParams: gSceneParams};
 };
 
 // export const errorLogs = (txt) => {
@@ -434,11 +435,8 @@ function createMesh(meshProps) {
 export async function loadImplicitData(dirUrl, id) {
   // $("#viewspacecontainer").removeClass("hide");
   // await loadSceneData(dirUrl)
-  if (modelMap.has(id)) {
-    const meshProps = modelMap.get(id);
-    const mesh = createMesh(meshProps);
-    return mesh;
-  }
+  if (modelMap.has(id)) return modelMap.get(id);
+
   await loadJsonFiles(dirUrl);
   let rgb_data, alpha_data, feature_data;
   // [rgb_data, alpha_data] = await pngToVolumeData_onebyone(gSceneParams['dirUrl'], gNumTextures, "rgba");
@@ -449,9 +447,8 @@ export async function loadImplicitData(dirUrl, id) {
   );
   // $("#viewspacecontainer").addClass("hide");
   const meshProps = CreateImplicitObj(atlasIndexImage, data[0], data[1]);
-  const mesh = createMesh(meshProps);
   modelMap.set(id, meshProps);
-  return mesh;
+  return meshProps;
 }
 
 export function getPath() {

@@ -2,7 +2,7 @@ import { ObjectControlTypes } from "../../Configs/types";
 import { PresentationControls } from "@react-three/drei";
 import { objectDefaults } from "../../Constants/defaults";
 
-export const ObjectControls = ({ ...props }) => {
+export const ObjectControls = (props) => {
   const control = props.control ? props.control.type : objectDefaults.control;
   switch (control) {
     case ObjectControlTypes.BouncyPresentation:

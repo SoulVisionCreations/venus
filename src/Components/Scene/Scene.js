@@ -29,13 +29,7 @@ export default function Scene({
 
   const renderObjects = () => {
     return objects.map((objectProps, index) => {
-      return (
-        <ObjectControls {...objectProps} key={index}>
-          <Object3D objectProps={objectProps} sceneProps={sceneProps} key={index}>
-            {objectProps.htmls && renderHtmls(objectProps.htmls)}
-          </Object3D>
-        </ObjectControls>
-      );
+      return <Object3D objectProps={objectProps} sceneProps={sceneProps} key={index} />;
     });
   };
 

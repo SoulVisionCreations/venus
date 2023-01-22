@@ -1,18 +1,21 @@
+import { ObjectControlTypes } from "../Configs/types";
+
 export const cameraDefaults = {
   position: [0, 0, 5],
   makeDefault: true,
 };
 
 export const animationDefaults = {
-    rotationArray: [0, 0, 0.5],
+    rotationArray: [0, 0, 1],
     scrollByRotationContinouslySpeed: 0.04,
     scrollByRotationOnceSpeed: 0.06
 }
 
 export const objectDefaults = {
   position: [0, 0, 0],
-  scale: 1,
-  control: 0,
+  scale: [1, 1, 1],
+  rotation: [0,0,0], //[-Math.PI/4 - Math.PI/8, -Math.PI/16, 0],
+  control: ObjectControlTypes.NoControls,
 };
 
 export const htmlDefaults = {
