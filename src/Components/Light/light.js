@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import { LightTypes } from "../../Configs/types.js";
 
-export const getLight = ({ type, ...props }) => {
+const Light = ({type, ...props}) => {
   switch (type) {
     case LightTypes.Ambient:
       return <ambientLight {...props} />;
@@ -16,3 +17,9 @@ export const getLight = ({ type, ...props }) => {
       return <rectAreaLight {...props} />;
   }
 };
+
+Light.propTypes = {
+  type: PropTypes.oneOf(Object.values(LightTypes)).isRequired,
+}
+
+export default Light;

@@ -39,28 +39,39 @@ export const config2 = {
           intensity: 2,
         },
       ],
-      // sceneControl: {
-      //   type: SceneControlTypes.Orbit,
-      // },
+      sceneControl: {
+        type: SceneControlTypes.Orbit,
+      },
       objects: [
         {
           type: ObjectTypes.ImplicitObject,
           modelId: 101,
-          scale: 1,
-          position: [0.7, 0, 0],
-          animations: [],
           control: {
             type: ObjectControlTypes.BouncyPresentation,
           },
-          htmls: [
+          useInstancing: false,
+          instanceCount: 2,
+          autoGenerateInstance: false,
+          instances: [
             {
-              type: HtmlTypes.priceTag,
-              price: "$100",
-              rotation: [Math.PI / 2, Math.PI / 4, 0],
-              position: [-3, 0, 0],
-              scale: 1,
-              transform: true,
+              position: [0.5, 0.5, 0],
+              animations: [{type: AnimationTypes.Rotate}],
+              scale: [0.2, 0.2, 0.2],
+              htmls: [
+                {
+                  type: HtmlTypes.priceTag,
+                  price: "$100",
+                  rotation: [Math.PI / 2, Math.PI / 4, 0],
+                  position: [-3, 0, 0],
+                  scale: 1,
+                  transform: true,
+                },
+              ],
             },
+            {
+              position: [-0.5, -0.5, 0],
+              animations: [{type: AnimationTypes.Rotate}],
+            }
           ],
         },
         {
@@ -108,49 +119,6 @@ export const config2 = {
           fontSize: 0.05,
           color: "black",
           position: [0.5, 0, 0],
-        },
-      ],
-    },
-    {
-      type: ComponentTypes.Canvas,
-      background: "red",
-      className: "canvas",
-      style: stylingDefaults.fullWidthMediumHeightCanvas,
-      camera: {
-        position: [0, 0, 1],
-        type: CameraTypes.Perspective,
-      },
-      objects: [
-        {
-          type: ObjectTypes.ImplicitObject,
-          modelId: 101,
-          scale: 1,
-          position: [0, 0, 0],
-          animations: [],
-          control: {
-            type: ObjectControlTypes.BouncyPresentation,
-          },
-        },
-      ],
-    },
-    {
-      type: ComponentTypes.Canvas,
-      className: "canvas",
-      style: stylingDefaults.fullWidthMediumHeightCanvas,
-      camera: {
-        position: [0, 0, 1],
-        type: CameraTypes.Perspective,
-      },
-      objects: [
-        {
-          type: ObjectTypes.ImplicitObject,
-          modelId: 101,
-          scale: 1,
-          position: [0, 0, 0],
-          animations: [],
-          control: {
-            type: ObjectControlTypes.BouncyPresentation,
-          },
         },
       ],
     },

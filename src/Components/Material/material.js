@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import { MaterialTypes } from "../../Configs/types";
 
-export const renderMaterial = ({ ...props }) => {
-  switch (props.materialType) {
+const Material = ({type, ...props}) => {
+  switch (type) {
     case MaterialTypes.MeshBasicMaterial:
       return <meshBasicMaterial {...props} />;
     case MaterialTypes.MeshLambertMaterial:
@@ -28,3 +29,9 @@ export const renderMaterial = ({ ...props }) => {
       return <rawShaderMaterial {...props} />;
   }
 };
+
+Material.propTypes = {
+  type: PropTypes.oneOf(Object.values(MaterialTypes)).isRequired
+}
+
+export default Material;

@@ -1,7 +1,7 @@
-import { AdaptiveDpr, PerformanceMonitor, Stats } from "@react-three/drei";
+import { AdaptiveDpr, Stats } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
-import { getCamera } from "./Camera/camera.js";
+import Camera from "./Camera/camera.js";
 import Scene from "./Scene/Scene.js";
 
 export default function CanvasContainer(props) {
@@ -46,11 +46,7 @@ export default function CanvasContainer(props) {
         <Canvas frameloop="demand">
             <AdaptiveDpr pixelated />
             <Stats />
-            <PerformanceMonitor
-                onIncline={() => console.log("incline")}
-                onDecline={() => console.log("decline")}
-            />
-            {getCamera({ type: props.camera.type, ...props.camera })}
+            <Camera {...props.camera} />
             <color attach="background" args={[props.background]} />
             <Scene
                 objects={props.objects}

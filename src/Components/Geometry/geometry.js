@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import { StandardGeometryTypes } from "../../Configs/types";
 
-export const renderGeometry = ({ ...props }) => {
-  switch (props.geometryType) {
+const Geometry = ({type, ...props}) => {
+  switch (type) {
     case StandardGeometryTypes.BoxGeometry:
       return <boxGeometry {...props} />;
     case StandardGeometryTypes.CylinderGeometry:
@@ -46,3 +47,9 @@ export const renderGeometry = ({ ...props }) => {
       return <wireframeGeometry {...props} />;
   }
 };
+
+Geometry.propTypes = {
+  type: PropTypes.oneOf(Object.values(StandardGeometryTypes)).isRequired
+}
+
+export default Geometry;

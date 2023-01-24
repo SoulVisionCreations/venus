@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { invalidate, useFrame } from "@react-three/fiber";
 import { getInitialialStateMatrix4 } from "../Utils/utility";
-import { renderHtml } from "./Html/html";
 import { animateMesh } from "../Utils/Animations/animation";
 import { ObjectControls } from "../Utils/ObjectControls/objectControls";
+import { renderHtmls } from "./Object3D/object3D";
 
 export function Mesh({geometry, material, gSceneParams, objectProps}) {
   const meshRef = useRef();
@@ -32,7 +32,7 @@ export function Mesh({geometry, material, gSceneParams, objectProps}) {
   return (
     <ObjectControls {...instance}>
         <mesh ref={meshRef} geometry={geometry} material={material}>
-            {instance.htmls && renderHtml(instance.htmls)}
+            {instance.htmls && renderHtmls(instance.htmls)}
         </mesh>
     </ObjectControls>
   );

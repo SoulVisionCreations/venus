@@ -1,8 +1,15 @@
 import { ObjectTypes } from "../../Configs/types";
-import { ImplicitObject } from "./types/implicitObject";
-import { GltfObject } from "./types/gltfObject";
-import { StandardObject } from "./types/standardObject";
-import { Text3DObject } from "./types/text3DObject";
+import ImplicitObject from "./types/implicitObject";
+import GltfObject from "./types/gltfObject";
+import StandardObject from "./types/standardObject";
+import Text3DObject from "./types/text3DObject";
+import HtmlLoader from "../Html/html";
+
+export const renderHtmls = (htmls) => {
+  return htmls.map((htmlProps, index) => {
+    return <HtmlLoader {...htmlProps} />;
+  });
+};
 
 export function Object3D({ objectProps, sceneProps }) {
   switch (objectProps.type) {
