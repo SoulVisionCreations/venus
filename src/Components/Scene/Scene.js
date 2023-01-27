@@ -1,11 +1,9 @@
 import React from "react";
 import { applySceneControl } from "../../Utils/SceneControls/sceneControl";
-import { imageLoader } from "../Image/image";
-import { textLoader } from "../Text/text";
-import { getLight } from "../Light/light";
+import ImageLoader from "../Image/image";
+import TextLoader from "../Text/text";
+import Light from "../Light/light";
 import { Object3D } from "../Object3D/object3D";
-import { ObjectControls } from "../../Utils/ObjectControls/objectControls";
-import { renderHtml } from "../Html/html";
 
 export default function Scene({
   objects,
@@ -17,13 +15,7 @@ export default function Scene({
 }) {
   const addLights = () => {
     return lights.map((lightProps, index) => {
-      return getLight({ type: lightProps.type, lightProps });
-    });
-  };
-
-  const renderHtmls = (htmls) => {
-    return htmls.map((htmlProps, index) => {
-      return renderHtml({ ...htmlProps });
+      return <Light {...lightProps } />
     });
   };
 
@@ -35,13 +27,13 @@ export default function Scene({
 
   const renderTexts = () => {
     return texts.map((textProps, index) => {
-      return textLoader({ text: textProps.text, ...textProps });
+      return <TextLoader { ...textProps } />;
     });
   };
 
   const renderImages = () => {
     return images.map((imageProps, index) => {
-      return imageLoader({ url: imageProps.url, ...imageProps });
+      return <ImageLoader {...imageProps } />;
     });
   };
 

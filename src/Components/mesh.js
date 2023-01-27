@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from "react";
-import { useFrame } from "@react-three/fiber";
-import { renderHtml } from "./Html/html";
-import { ObjectControls } from "../Utils/ObjectControls/objectControls";
 import { animated } from '@react-spring/three';
 import { useSpringAnimation } from "../Utils/Animations/springAnimations";
+import React, { useEffect, useRef } from "react";
+import { useFrame } from "@react-three/fiber";
+import { ObjectControls } from "../Utils/ObjectControls/objectControls";
+import { renderHtmls } from "./Object3D/object3D";
 
 export function Mesh({geometry, material, gSceneParams, objectProps, sceneProps}) {
   const meshRef = useRef();
@@ -23,7 +23,7 @@ export function Mesh({geometry, material, gSceneParams, objectProps, sceneProps}
   return (
     <ObjectControls {...objectProps}>
         <animated.mesh ref={meshRef} geometry={geometry} material={material} rotation={spring.rotation} position={spring.position} scale={spring.scale}>
-            {instance.htmls && renderHtml(instance.htmls)}
+            {instance.htmls && renderHtmls(instance.htmls)}
         </animated.mesh>
     </ObjectControls>
   );

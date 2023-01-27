@@ -4,7 +4,7 @@ import { getPath, loadImplicitData } from "../../../Renderer/data_loader";
 import WebGL from "three/examples/jsm/capabilities/WebGL.js";
 import { applyEventDrivenAnimations, useEvents } from "../../../Utils/Events/events";
 import { animateMesh } from "../../../Utils/Animations/animation";
-import { AvataarLoader } from "../../AvataarLoader/avataarloader";
+import AvataarLoader from "../../AvataarLoader/avataarloader";
 import InstanceMesh from "../../InstanceMesh";
 import { ObjectControls } from "../../../Utils/ObjectControls/objectControls";
 import { renderHtml } from "../../Html/html";
@@ -16,7 +16,7 @@ if (WebGL.isWebGL2Available() === false) {
   viewSpace.appendChild(WebGL.getWebGL2ErrorMessage());
 }
 
-export function ImplicitObject({objectProps, sceneProps}) {
+function ImplicitObject({objectProps, sceneProps}) {
   const [loading, updateLoading] = useState(true);
   const [objectLoadTriggered, setObjectLoadTriggered] = useState(false);
   const geometry = useRef();
@@ -39,7 +39,7 @@ export function ImplicitObject({objectProps, sceneProps}) {
   return (
       <>
         {loading ? 
-        <AvataarLoader /> : 
+        <AvataarLoader center={true} /> : 
         (objectProps.useInstancing ? 
           <InstanceMesh geometry={geometry.current} material={material.current} gSceneParams={gSceneParams.current} objectProps={objectProps}></InstanceMesh> :
           <Mesh geometry={geometry.current} material={material.current} gSceneParams={gSceneParams.current} objectProps={objectProps} sceneProps={sceneProps}></Mesh>
@@ -48,3 +48,5 @@ export function ImplicitObject({objectProps, sceneProps}) {
       </>
   );
 }
+
+export default ImplicitObject;

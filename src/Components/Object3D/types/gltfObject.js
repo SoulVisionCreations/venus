@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import PropTypes from "prop-types";
 import { useFrame, useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { objectDefaults } from "../../../Constants/defaults";
@@ -7,16 +8,16 @@ import {
   applyEventDrivenAnimations,
   useEvents,
 } from "../../../Utils/Events/events";
-import { AvataarLoader } from "../../AvataarLoader/avataarloader";
+import AvataarLoader from "../../AvataarLoader/avataarloader";
+import { renderHtmls } from "../object3D";
 
-export const GltfObject = ({ url, ...props }) => {
+const GltfObject = ({objectProps, sceneProps}) => {
   const [loading, updateLoading] = useState(true);
-  const model = useLoader(GLTFLoader, url);
+  const model = useLoader(GLTFLoader, objectProps.url);
   const scrolledRotationValue = useRef(0);
-  const position = props.position != undefined ? props.position : objectDefaults.position;
-  const scale = props.scale != undefined ? props.scale : objectDefaults.scale;
-
-  useEvents(props, scrolledRotationValue);
+  const position = objectProps.position != undefined ? objectProps.position : objectDefaults.position;
+  const scale = objectProps.scale != undefined ? objectProps.scale : objectDefaults.scale;
+  useEvents(objectProps, scrolledRotationValue);
 
   useFrame((state) => {
     if (model.scene && loading) {
@@ -29,18 +30,29 @@ export const GltfObject = ({ url, ...props }) => {
     }
   });
 
-  const renderGltf = ({ ...props }) => {
+  const renderGltf = ({ ...objectProps }) => {
     return (
       <primitive
         object={model.scene}
         position={position}
         scale={scale}
-        {...props}
+        {...objectProps}
       >
-        {props.children}
+        {objectProps.htmls && renderHtmls(objectProps.htmls)}
       </primitive>
     );
   };
 
-  return <>{loading ? <AvataarLoader /> : renderGltf({ ...props })}</>;
+  return <>{loading ? <AvataarLoader center={true} /> : renderGltf({ ...objectProps })}</>;
 };
+
+GltfObject.propTypes = {
+  objectProps: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+    position: PropTypes.arrayOf(PropTypes.number),
+    rotation: PropTypes.arrayOf(PropTypes.number),
+    scale: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)])
+  })
+}
+
+export default GltfObject;

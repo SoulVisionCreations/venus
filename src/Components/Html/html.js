@@ -1,8 +1,9 @@
 import { Html } from "@react-three/drei";
+import PropTypes from 'prop-types';
 import { HtmlTypes } from "../../Configs/types";
 import { htmlDefaults } from "../../Constants/defaults";
 
-export const renderHtml = ({ ...props }) => {
+const HtmlLoader = (props) => {
   const scale = props.scale ? props.scale : htmlDefaults.scale;
   switch (props.type) {
     case HtmlTypes.priceTag:
@@ -15,3 +16,12 @@ export const renderHtml = ({ ...props }) => {
       return <Html>{props.text}</Html>;
   }
 };
+
+HtmlLoader.propTypes = {
+  position: PropTypes.arrayOf(PropTypes.number),
+  rotation: PropTypes.arrayOf(PropTypes.number),
+  scale: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+  transform: PropTypes.bool
+}
+
+export default HtmlLoader;
