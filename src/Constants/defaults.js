@@ -8,7 +8,12 @@ export const cameraDefaults = {
 export const animationDefaults = {
     rotationArray: [0, 0, 1],
     scrollByRotationContinouslySpeed: 0.04,
-    scrollByRotationOnceSpeed: 0.06
+    scrollByRotationOnceSpeed: 0.06,
+    increment: {
+      position: [0, 0, 0],
+      rotation: [0, 0, 0],
+      scale: [0, 0, 0]
+    }
 }
 
 export const objectDefaults = {

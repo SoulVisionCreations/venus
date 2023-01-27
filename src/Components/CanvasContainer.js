@@ -1,5 +1,5 @@
 import { AdaptiveDpr, PerformanceMonitor, Stats } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, invalidate } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import { getCamera } from "./Camera/camera.js";
 import Scene from "./Scene/Scene.js";
@@ -16,7 +16,7 @@ export default function CanvasContainer(props) {
       const intersectionCallback = (entries) => {
           const [ entry ] = entries;
           setIsSceneCompletelyVisible(entry.intersectionRatio >= 0.95);
-        //   setSceneCompletelyVisibleCount(count => entry.intersectionRatio >= 0.95 ? count + 1 : count);
+          setSceneCompletelyVisibleCount(count => entry.intersectionRatio >= 0.95 ? count + 1 : count);
         //   setSceneVisibleCount(count => entry.intersectionRatio > 0 ? count + 1: 0);
           setIsSceneVisibile(entry.intersectionRatio > 0);
       }
@@ -46,10 +46,7 @@ export default function CanvasContainer(props) {
         <Canvas frameloop="demand">
             <AdaptiveDpr pixelated />
             <Stats />
-            <PerformanceMonitor
-                onIncline={() => console.log("incline")}
-                onDecline={() => console.log("decline")}
-            />
+            <PerformanceMonitor/>
             {getCamera({ type: props.camera.type, ...props.camera })}
             <color attach="background" args={[props.background]} />
             <Scene

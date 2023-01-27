@@ -51,6 +51,14 @@ export const SceneEffectsTypes = {
   DisableScrollOnceOnCompletelyVisible: 0,
 };
 
+export const Animation = {
+  repeat: {
+    once: 0,
+    loop: 1,
+    interval: 2
+  }
+};
+
 export const AnimationTypes = {
   Rotate: 0,
   Float: 1,

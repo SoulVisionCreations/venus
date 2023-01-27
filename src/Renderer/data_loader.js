@@ -380,7 +380,7 @@ const CreateImplicitObj = (atlasIndexImage, rgb_data, alpha_data) => {
   };
   // const geometry = new THREE.BoxGeometry(1, 1, 1);
 
-  const geometry = new THREE.SphereGeometry(1, 32, 32);
+  const geometry = new THREE.BoxGeometry(1,1,1);
 
   const material = new THREE.RawShaderMaterial({
     glslVersion: THREE.GLSL3,

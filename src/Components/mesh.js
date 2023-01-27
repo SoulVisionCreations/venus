@@ -1,39 +1,30 @@
-import React, { useEffect, useRef, useState } from "react";
-import { invalidate, useFrame } from "@react-three/fiber";
-import { getInitialialStateMatrix4 } from "../Utils/utility";
+import React, { useEffect, useRef } from "react";
+import { useFrame } from "@react-three/fiber";
 import { renderHtml } from "./Html/html";
-import { animateMesh } from "../Utils/Animations/animation";
 import { ObjectControls } from "../Utils/ObjectControls/objectControls";
+import { animated } from '@react-spring/three';
+import { useSpringAnimation } from "../Utils/Animations/springAnimations";
 
-export function Mesh({geometry, material, gSceneParams, objectProps}) {
+export function Mesh({geometry, material, gSceneParams, objectProps, sceneProps}) {
   const meshRef = useRef();
   const instance = objectProps.instances[0];
+  const spring = instance.useSpringAnimations ? useSpringAnimation(instance, sceneProps) : null;
 
   useFrame((state) => {
     if(!meshRef.current) return;
     meshRef.current.material.uniforms.CamPos.value.copy(state.camera.position);
-    const time = state.clock.getElapsedTime();
-    const hasAnimations = instance.animations && instance.animations.length > 0;
-    if(hasAnimations) {
-      animateMesh(time, instance, meshRef.current);
-      invalidate();
-    }
   })
 
   useEffect(() => {
     if(!meshRef.current) return;
     meshRef.current.userData.SceneParams = gSceneParams.current;
-    const matrix = getInitialialStateMatrix4(instance);
-    meshRef.current.applyMatrix4(matrix);
-    meshRef.current.matrix.needsUpdate = true;
-    invalidate();
   }, [meshRef.current]);
 
   return (
-    <ObjectControls {...instance}>
-        <mesh ref={meshRef} geometry={geometry} material={material}>
+    <ObjectControls {...objectProps}>
+        <animated.mesh ref={meshRef} geometry={geometry} material={material} rotation={spring.rotation} position={spring.position} scale={spring.scale}>
             {instance.htmls && renderHtml(instance.htmls)}
-        </mesh>
+        </animated.mesh>
     </ObjectControls>
   );
 }

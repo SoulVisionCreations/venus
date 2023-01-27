@@ -27,15 +27,13 @@ export const instanceExample = {
         {
           type: ObjectTypes.ImplicitObject,
           modelId: 101,
-          control: {type: ObjectControlTypes.BouncyPresentation},
           useInstancing: false,
           instanceCount: 2,
           autoGenerateInstance: false,
           instances: [
             {
-              position: [0.5, 0.5, 0],
+              position: [0, 0, 0],
               animations: [{type: AnimationTypes.Rotate}],
-              scale: [0.2, 0.2, 0.2]
             },
             {
               position: [-0.5, -0.5, 0],

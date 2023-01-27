@@ -1,6 +1,6 @@
 import { invalidate, useFrame } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
-import { DynamicDrawUsage } from "three";
+import { DynamicDrawUsage, Matrix4 } from "three";
 import { getAnimatedTransformationMatrix } from "../Utils/Animations/animation";
 import { getInitialialStateMatrix4 } from "../Utils/utility";
 
@@ -41,9 +41,8 @@ export default function InstanceMesh({geometry, material, gSceneParams, objectPr
       } else {
         for(let i=0; i<objectProps.instanceCount; i++){
           const matrix = getInitialialStateMatrix4(instances[i]);
-          console.log(matrix);
           instanceMeshRef.current.setMatrixAt(i, matrix);
-          const hasAnimations = instances[i].animations &&  instances[i].animations.length > 0;
+            const hasAnimations = instances[i].animations &&  instances[i].animations.length > 0;
           if(hasAnimations) animatedInstances.current.push(i);
           const hasEvents = instances[i].events &&  instances[i].events.length > 0;
           if(hasEvents) eventDependentInstances.current.push(i);

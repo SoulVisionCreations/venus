@@ -10,6 +10,7 @@ import { ObjectControls } from "../../../Utils/ObjectControls/objectControls";
 import { renderHtml } from "../../Html/html";
 import { getInitialialStateMatrix4 } from "../../../Utils/utility";
 import { Mesh } from "../../mesh";
+import { MeshBasicMaterial } from "three";
 
 if (WebGL.isWebGL2Available() === false) {
   viewSpace.appendChild(WebGL.getWebGL2ErrorMessage());
@@ -41,7 +42,7 @@ export function ImplicitObject({objectProps, sceneProps}) {
         <AvataarLoader /> : 
         (objectProps.useInstancing ? 
           <InstanceMesh geometry={geometry.current} material={material.current} gSceneParams={gSceneParams.current} objectProps={objectProps}></InstanceMesh> :
-          <Mesh geometry={geometry.current} material={material.current} gSceneParams={gSceneParams.current} objectProps={objectProps}></Mesh>
+          <Mesh geometry={geometry.current} material={material.current} gSceneParams={gSceneParams.current} objectProps={objectProps} sceneProps={sceneProps}></Mesh>
         )
         }
       </>

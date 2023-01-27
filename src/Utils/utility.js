@@ -18,6 +18,15 @@ export const arrayToVec = (arr) => {
     }
 }
 
+export const getInitialStateArr = (instance) => {
+    const position = instance.position ? instance.position : objectDefaults.position;
+    const rotation = instance.rotation ? instance.rotation : objectDefaults.rotation;
+    const scale = instance.scale ? instance.scale : objectDefaults.scale;
+    return [position, rotation, scale];
+}
+
+
+
 export const getInitialState = (instance) => {
     const position = instance.position ? arrayToVec(instance.position) : arrayToVec(objectDefaults.position);
     const rotation = instance.rotation ? arrayToVec(instance.rotation) : arrayToVec(objectDefaults.rotation);
