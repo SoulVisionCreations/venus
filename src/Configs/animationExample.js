@@ -158,6 +158,66 @@ export const animationExample = {
           ]
         }
       ]
+    },
+    {
+      type: ComponentTypes.Canvas,
+      className: "canvas",
+      modelId: 101,
+      style: stylingDefaults.fullWidthFullHeightCanvas,
+      camera: {
+        position: [0, 0, 3],
+        type: CameraTypes.Perspective,
+      },
+      objects: [
+        {
+          type: ObjectTypes.ImplicitObject,
+          modelId: 101,
+          useInstancing: false,
+          instanceCount: 2,
+          autoGenerateInstance: false,
+          instances: [
+            {
+              position: [0.3, -0.4, 0],
+              rotation: [-Math.PI/2.5, 0, Math.PI/4],
+              scale: [0.4, 0.4, 0.4],
+              animations: [{
+                initialPause: 0,
+                type: Animation.type.intro,
+                trajectory: Animation.trajectory.curveDefinedByPoints,
+                trajectoryMetaData: {
+                  points: [[0.3,-0.4,0], [0.5, 0.6, -0.2], [2.5, 1, -0.4]],
+                  steps: 100,
+                },
+                config: {duration: 25}
+              }],
+            }
+          ]
+        },
+        {
+          type: ObjectTypes.ImplicitObject,
+          modelId: 101,
+          useInstancing: false,
+          instanceCount: 2,
+          autoGenerateInstance: false,
+          instances: [
+            {
+              position: [-0.3, -0.4, 0],
+              rotation: [-Math.PI/2.5, 0, -Math.PI/4],
+              scale: [0.4, 0.4, 0.4],
+              animations: [{
+                initialPause: 0,
+                type: Animation.type.intro,
+                trajectory: Animation.trajectory.curveDefinedByPoints,
+                trajectoryMetaData: {
+                  points: [[-0.3,-0.4,0], [-0.5, 0.6, -0.2], [-2.5, 1, -0.4]],
+                  steps: 100,
+                },
+                config: {duration: 25}
+              }],
+            }
+          ]
+        }
+      ]
     }
   ],
 };

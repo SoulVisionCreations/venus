@@ -3,15 +3,7 @@ import { invalidate } from "@react-three/fiber";
 import { useSpring, config } from '@react-spring/three';
 import { arrayToVec, getInitialState } from "../utility";
 import { Animation } from "../../Configs/types";
-import { createEllipse } from "./curves";
-
-const convertStateVecToArr = (stateVec) => {
-    return {
-        position: [...stateVec.position],
-        rotation: [...stateVec.rotation],
-        scale: [...stateVec.scale],
-    }
-}
+import { createEllipse, getTrajectory } from "./curves";
 
 export const useSpringAnimation = (instance, sceneProps) => {
     const [initialPosition, initialRotation, initialScale] = getInitialState(instance);
@@ -46,41 +38,13 @@ export const useSpringAnimation = (instance, sceneProps) => {
         });
     }, []);
 
-    const getTrajectory = (animation) => {
-        const trajectory = [];
-        const trajectoryVec = [];
-        trajectoryVec.push(state.current);
-        trajectory.push(convertStateVecToArr(state.current));
-        if(animation.trajectory == undefined) animation.trajectory = Animation.trajectory.manual;
-        switch(animation.trajectory) {
-            case(Animation.trajectory.manual) :
-                animation.stateIncrements.forEach(increment => {
-                    const currentState = trajectoryVec.slice(-1)[0];
-                    increment.position && currentState.position.add(arrayToVec(increment.position));
-                    increment.rotation && currentState.rotation.add(arrayToVec(increment.rotation));
-                    increment.scale && currentState.scale.add(arrayToVec(increment.scale));
-                    trajectoryVec.push(currentState);
-                    trajectory.push(convertStateVecToArr(currentState));
-                });
-                break;
-            case(Animation.trajectory.ellipse) :
-                const points = createEllipse(animation.trajectoryMetaData);
-                points.forEach(point => {
-                    trajectory.push({position: [...point]});
-                    trajectoryVec.push({position: point});
-                });
-                break;
-        }
-        return [trajectory, trajectoryVec];
-    }
-
     useEffect(() => {
         if(chainedAnimations.current.length == 0 || !introAnimationCompleted) return;
         chainedAnimations.current.forEach((animation) => {
             function executeAnimation(index) {
                 const childAnimation = animation.childAnimations[index];
                 const delay = childAnimation.initialPause ? childAnimation.initialPause : 0;
-                const [trajectory, trajectoryVec] = getTrajectory(childAnimation);
+                const [trajectory, trajectoryVec] = getTrajectory(childAnimation, state);
                 api.start({
                     to: async (next) => {
                         let t = 0;
@@ -150,7 +114,7 @@ export const useSpringAnimation = (instance, sceneProps) => {
     useEffect(() => {
         if(sceneProps.isSceneCompletelyVisible && introAnimation.current && !introAnimationCompleted) {
             const animation = introAnimation.current;
-            const [trajectory, trajectoryVec] = getTrajectory(animation);
+            const [trajectory, trajectoryVec] = getTrajectory(animation, state);
             const timeout = setTimeout(() => {
                 api.start({
                     to: async (next) => {

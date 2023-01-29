@@ -58,7 +58,9 @@ export const Animation = {
   },
   trajectory: {
     manual: 0,
-    ellipse: 1
+    ellipse: 1,
+    circle: 2,
+    curveDefinedByPoints: 3
   }
 };
 
