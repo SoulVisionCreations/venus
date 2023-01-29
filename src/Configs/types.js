@@ -52,10 +52,13 @@ export const SceneEffectsTypes = {
 };
 
 export const Animation = {
-  repeat: {
-    once: 0,
-    loop: 1,
-    interval: 2
+  type: {
+    intro: 0,
+    chained: 1
+  },
+  trajectory: {
+    manual: 0,
+    ellipse: 1
   }
 };
 

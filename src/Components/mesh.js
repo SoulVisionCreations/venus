@@ -8,7 +8,7 @@ import { renderHtmls } from "./Object3D/object3D";
 export function Mesh({geometry, material, gSceneParams, objectProps, sceneProps}) {
   const meshRef = useRef();
   const instance = objectProps.instances[0];
-  const spring = instance.useSpringAnimations ? useSpringAnimation(instance, sceneProps) : null;
+  const spring = useSpringAnimation(instance, sceneProps);
 
   useFrame((state) => {
     if(!meshRef.current) return;
