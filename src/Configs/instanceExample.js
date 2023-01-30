@@ -33,7 +33,7 @@ export const instanceExample = {
           instances: [
             {
               position: [0.5, 0.5, 0],
-              animations: [{type: AnimationTypes.Rotate}],
+              animations: [{type: AnimationTypes.Rotate, rotationArray: [1,0,0]}],
             },
             {
               position: [-0.5, -0.5, 0],
@@ -41,21 +41,29 @@ export const instanceExample = {
             }
           ],
         },
+      ],
+    },
+    {
+      type: ComponentTypes.Canvas,
+      className: "canvas",
+      style: stylingDefaults.fullWidthFullHeightCanvas,
+      camera: {
+        position: [0, 0, 3],
+        type: CameraTypes.Perspective,
+      },
+      objects: [
         {
           type: ObjectTypes.ImplicitObject,
           modelId: 101,
           useInstancing: true,
-          instanceCount: 2,
-          autoGenerateInstance: false,
+          instanceCount: 100,
+          autoGenerateInstance: true,
           instances: [
             {
-              position: [1, 0.5, 0],
-              animations: [{type: AnimationTypes.Rotate}],
+              position: [0.5, 0.5, 0],
+              animations: [{type: AnimationTypes.Rotate, rotationArray: [0,0,1]}],
+              scale: [0.2, 0.2, 0.2]
             },
-            {
-              position: [-1, -0.5, 0],
-              animations: [{type: AnimationTypes.Rotate}],
-            }
           ],
         },
       ],
