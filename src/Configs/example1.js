@@ -29,6 +29,7 @@ export const config1 = {
           style: {flexGrow: 1, height: '400px'},
           camera: {
             position: [0, 0, 3],
+            
             type: CameraTypes.Perspective,
           },
           objects: [
