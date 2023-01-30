@@ -407,7 +407,7 @@ const CreateImplicitObj = (atlasIndexImage, rgb_data, alpha_data) => {
       selectedRegions: {
         value: sqrSelectedRegions,
       },
-      useInstancing: false,
+      useInstancing: {value: 0},
     },
     vertexShader: rayMarchVertexShader,
     fragmentShader: rayMarchFragmentShader,

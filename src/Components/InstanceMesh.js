@@ -30,6 +30,7 @@ export default function InstanceMesh({geometry, material, gSceneParams, objectPr
 
     useEffect(() => {
       instanceMeshRef.current.userData.SceneParams = gSceneParams;
+      instanceMeshRef.current.material.uniforms.useInstancing.value = 1;
       if(objectProps.autoGenerateInstance) {
         let i = 0;
         for(let j=0; j<objectProps.instanceCount; j++){

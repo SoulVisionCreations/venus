@@ -27,16 +27,33 @@ export const instanceExample = {
         {
           type: ObjectTypes.ImplicitObject,
           modelId: 101,
-          useInstancing: false,
+          useInstancing: true,
           instanceCount: 2,
           autoGenerateInstance: false,
           instances: [
             {
-              position: [0, 0, 0],
+              position: [0.5, 0.5, 0],
               animations: [{type: AnimationTypes.Rotate}],
             },
             {
               position: [-0.5, -0.5, 0],
+              animations: [{type: AnimationTypes.Rotate}],
+            }
+          ],
+        },
+        {
+          type: ObjectTypes.ImplicitObject,
+          modelId: 101,
+          useInstancing: true,
+          instanceCount: 2,
+          autoGenerateInstance: false,
+          instances: [
+            {
+              position: [1, 0.5, 0],
+              animations: [{type: AnimationTypes.Rotate}],
+            },
+            {
+              position: [-1, -0.5, 0],
               animations: [{type: AnimationTypes.Rotate}],
             }
           ],

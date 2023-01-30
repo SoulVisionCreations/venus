@@ -7,8 +7,7 @@ import { renderHtmls } from "./Object3D/object3D";
 
 export function Mesh({geometry, material, gSceneParams, objectProps, sceneProps}) {
   const meshRef = useRef();
-  const instance = objectProps.instances[0];
-  const spring = useSpringAnimation(instance, sceneProps);
+  const spring = useSpringAnimation(objectProps, sceneProps);
 
   useFrame((state) => {
     if(!meshRef.current) return;
@@ -23,7 +22,7 @@ export function Mesh({geometry, material, gSceneParams, objectProps, sceneProps}
   return (
     <ObjectControls {...objectProps}>
         <animated.mesh ref={meshRef} geometry={geometry} material={material} rotation={spring.rotation} position={spring.position} scale={spring.scale}>
-            {instance.htmls && renderHtmls(instance.htmls)}
+            {objectProps.htmls && renderHtmls(objectProps.htmls)}
         </animated.mesh>
     </ObjectControls>
   );
