@@ -109,12 +109,6 @@ export const TextTypes = {
   List: 1
 }
 
-export const ImageShapeTypes = {
-  Rectangle: 0,
-  Circle: 1,
-  Square: 2
-}
-
 export const Alignment = {
   Vertical: 0,
   Horizontal: 1,

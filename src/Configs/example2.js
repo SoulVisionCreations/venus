@@ -12,7 +12,6 @@ import {
   HtmlTypes,
   eventDrivenActionTypes,
   AnimationTypes,
-  ImageShapeTypes,
   TextTypes
 } from "./types";
 
@@ -111,7 +110,6 @@ export const config2 = {
           scale: 1,
           transparent: true,
           zoom: 1,
-          shape: ImageShapeTypes.Circle,
           opacity: 0.8,
         },
       ],
