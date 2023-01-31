@@ -109,7 +109,7 @@ export const config2 = {
             type: Animation.type.intro,
             trajectory: Animation.trajectory.curveDefinedByPoints,
             trajectoryMetaData: {
-              points: [[0.1,-0.3,0], [0.1, -0.1, -0.1], [0.3, 0.1, -0.1]],
+              points: [[0.1,-0.3,0], [0.1, -0.1, -0.1], [0.3, 0.1, 0.4]],
               steps: 100,
             },
             config: {duration: 25}

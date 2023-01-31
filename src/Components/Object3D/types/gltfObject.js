@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { useFrame, useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { objectDefaults } from "../../../Constants/defaults";
 import { applyAnimations } from "../../../Utils/Animations/animation";
 import {
   applyEventDrivenAnimations,
@@ -19,9 +18,6 @@ const GltfObject = ({objectProps, sceneProps}) => {
   const scrolledRotationValue = useRef(0);
   
   const spring = useSpringAnimation(objectProps, sceneProps);
-  const position = spring ? spring.position : ( objectProps.position ? objectProps.position : objectDefaults.position );
-  const rotation = spring ? spring.rotation : objectProps.rotation;
-  const scale = spring ? spring.scale : ( objectProps.scale ?  objectProps.scale : objectDefaults.scale );
 
   useEvents(objectProps, scrolledRotationValue);
 
@@ -40,9 +36,9 @@ const GltfObject = ({objectProps, sceneProps}) => {
     return (
       <animated.primitive
         object={model.scene}
-        position={position}
-        rotation={rotation}
-        scale={scale}
+        position={spring.position}
+        rotation={spring.rotation}
+        scale={spring.scale}
         {...objectProps}
       >
         {objectProps.htmls && renderHtmls(objectProps.htmls)}
