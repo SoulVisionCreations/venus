@@ -1,4 +1,4 @@
-import { AdaptiveDpr, PerformanceMonitor, Stats } from "@react-three/drei";
+import { AdaptiveDpr, Environment, PerformanceMonitor, Stats } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import Camera from "./Camera/camera.js";
@@ -48,7 +48,6 @@ export default function CanvasContainer(props) {
             <Stats />
             <PerformanceMonitor/>
             <Camera {...props.camera} />
-            <color attach="background" args={[props.background]} />
             <Scene
                 objects={props.objects}
                 sceneControl={props.sceneControl}
@@ -57,6 +56,7 @@ export default function CanvasContainer(props) {
                 lights={props.lights}
                 sceneProps={sceneProps}
             />
+            <Environment files="puresky.hdr" />
         </Canvas>
     </div>
   );

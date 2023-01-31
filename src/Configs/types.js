@@ -44,7 +44,8 @@ export const MaterialTypes = {
 };
 
 export const HtmlTypes = {
-  priceTag: 0,
+  PriceTag: 0,
+  Custom: 1,
 };
 
 export const SceneEffectsTypes = {
@@ -102,6 +103,17 @@ export const ComponentTypes = {
   Container: 0,
   Canvas: 1,
 };
+
+export const TextTypes = {
+  Paragraph: 0,
+  List: 1
+}
+
+export const ImageShapeTypes = {
+  Rectangle: 0,
+  Circle: 1,
+  Square: 2
+}
 
 export const Alignment = {
   Vertical: 0,
