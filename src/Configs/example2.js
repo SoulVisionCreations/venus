@@ -11,7 +11,7 @@ import {
   MaterialTypes,
   HtmlTypes,
   eventDrivenActionTypes,
-  AnimationTypes,
+  Animation,
   TextTypes
 } from "./types";
 
@@ -24,9 +24,9 @@ export const config2 = {
     {
       type: ComponentTypes.Canvas,
       className: "canvas",
-      style: stylingDefaults.fullWidthMediumHeightCanvas,
+      style: stylingDefaults.fullWidthFullHeightCanvas,
       camera: {
-        position: [0, 0, 1],
+        position: [0, 0, 2],
         type: CameraTypes.Perspective,
       },
       lights: [
@@ -43,76 +43,89 @@ export const config2 = {
         type: SceneControlTypes.Orbit,
       },
       objects: [
-        {
-          type: ObjectTypes.ImplicitObject,
-          modelId: 101,
-          control: {
-            type: ObjectControlTypes.BouncyPresentation,
-          },
-          useInstancing: false,
-          position: [0.5, 0.5, 0],
-          // animations: [{type: AnimationTypes.Rotate}],
-          scale: [0.2, 0.2, 0.2],
-          htmls: [
-            {
-              type: HtmlTypes.PriceTag,
-              price: "$100",
-              rotation: [Math.PI / 2, Math.PI / 4, 0],
-              position: [-3, 0, 0],
-              scale: 1,
-              transform: true,
-            },
-          ],
-        },
+        // {
+        //   type: ObjectTypes.ImplicitObject,
+        //   modelId: 101,
+        //   control: {
+        //     type: ObjectControlTypes.BouncyPresentation,
+        //   },
+        //   useInstancing: false,
+        //   position: [0.5, 0.5, 0],
+        //   // animations: [{type: AnimationTypes.Rotate}],
+        //   scale: [0.2, 0.2, 0.2],
+        //   htmls: [
+        //     {
+        //       type: HtmlTypes.PriceTag,
+        //       price: "$100",
+        //       rotation: [Math.PI / 2, Math.PI / 4, 0],
+        //       position: [-3, 0, 0],
+        //       scale: 1,
+        //       transform: true,
+        //     },
+        //   ],
+        // },
         {
           type: ObjectTypes.GltfObject,
-          url: "./model.glb",
-          scale: 10,
+          url: "./1863416.glb",
+          scale: 1,
           htmls: [
             {
               type: HtmlTypes.PriceTag,
               price: "$50",
-              position: [0.01, 0.01, 0],
+              position: [0.3, 0.5, 0],
+              scale: 0.2,
               transform: true,
             },
           ],
-          animations: [
-            {
-              type: AnimationTypes.Float,
+          animations: [{
+            initialPause: 0,
+            type: Animation.type.intro,
+            trajectory: Animation.trajectory.curveDefinedByPoints,
+            trajectoryMetaData: {
+              points: [[-0.1,-0.3,0], [-0.1, -0.2, -0.1], [-0.3, -0.1, -0.1]],
+              steps: 100,
             },
-          ],
+            config: {duration: 25}
+          }],
         },
-        {
-          type: ObjectTypes.StandardObject,
-          geometry: [{ type: StandardGeometryTypes.SphereGeometry }],
-          material: [
-            {
-              type: MaterialTypes.MeshStandardMaterial,
-              color: "green",
-            },
-          ],
-        },
+        // {
+        //   type: ObjectTypes.StandardObject,
+        //   geometry: [{ type: StandardGeometryTypes.SphereGeometry }],
+        //   material: [
+        //     {
+        //       type: MaterialTypes.MeshStandardMaterial,
+        //       color: "green",
+        //     },
+        //   ],
+        // },
         {
           type: ObjectTypes.Text3D,
           font: "./Inter_Bold.json",
           text: "Chair",
           scale: 0.2,
-          position: [0.3, 0.05, 0],
-          control: {
-            type: ObjectControlTypes.BouncyPresentation,
-          },
+          color: "pink",
+          animations: [{
+            initialPause: 0,
+            type: Animation.type.intro,
+            trajectory: Animation.trajectory.curveDefinedByPoints,
+            trajectoryMetaData: {
+              points: [[0.1,-0.3,0], [0.1, -0.1, -0.1], [0.3, 0.1, -0.1]],
+              steps: 100,
+            },
+            config: {duration: 25}
+          }],
         },
       ],
-      images: [
-        { 
-          url: './chair.png',
-          position: [-0.5, 0, 0],
-          scale: 1,
-          transparent: true,
-          zoom: 1,
-          opacity: 0.8,
-        },
-      ],
+      // images: [
+      //   { 
+      //     url: './chair.png',
+      //     position: [-0.5, 0, 0],
+      //     scale: 1,
+      //     transparent: true,
+      //     zoom: 1,
+      //     opacity: 0.8,
+      //   },
+      // ],
       texts: [
         {
           type: TextTypes.Paragraph,

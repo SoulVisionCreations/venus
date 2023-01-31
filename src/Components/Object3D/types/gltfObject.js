@@ -10,13 +10,19 @@ import {
 } from "../../../Utils/Events/events";
 import AvataarLoader from "../../AvataarLoader/avataarloader";
 import { renderHtmls } from "../object3D";
+import { useSpringAnimation } from "../../../Utils/Animations/springAnimations";
+import { animated } from "@react-spring/three";
 
 const GltfObject = ({objectProps, sceneProps}) => {
   const [loading, updateLoading] = useState(true);
   const model = useLoader(GLTFLoader, objectProps.url);
   const scrolledRotationValue = useRef(0);
-  const position = objectProps.position != undefined ? objectProps.position : objectDefaults.position;
-  const scale = objectProps.scale != undefined ? objectProps.scale : objectDefaults.scale;
+  
+  const spring = useSpringAnimation(objectProps, sceneProps);
+  const position = spring ? spring.position : ( objectProps.position ? objectProps.position : objectDefaults.position );
+  const rotation = spring ? spring.rotation : objectProps.rotation;
+  const scale = spring ? spring.scale : ( objectProps.scale ?  objectProps.scale : objectDefaults.scale );
+
   useEvents(objectProps, scrolledRotationValue);
 
   useFrame((state) => {
@@ -32,14 +38,15 @@ const GltfObject = ({objectProps, sceneProps}) => {
 
   const renderGltf = ({ ...objectProps }) => {
     return (
-      <primitive
+      <animated.primitive
         object={model.scene}
         position={position}
+        rotation={rotation}
         scale={scale}
         {...objectProps}
       >
         {objectProps.htmls && renderHtmls(objectProps.htmls)}
-      </primitive>
+      </animated.primitive>
     );
   };
 

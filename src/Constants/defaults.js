@@ -18,7 +18,7 @@ export const animationDefaults = {
 
 export const objectDefaults = {
   position: [0, 0, 0],
-  scale: [1, 1, 1],
+  scale: 1,
   rotation: [0,0,0], //[-Math.PI/4 - Math.PI/8, -Math.PI/16, 0],
   control: ObjectControlTypes.NoControls,
 };
@@ -26,11 +26,6 @@ export const objectDefaults = {
 export const htmlDefaults = {
   scale: 0.01,
   transform: true,
-};
-
-export const text3DDefaults = {
-  scale: 0.1,
-  color: "white",
 };
 
 export const stylingDefaults = {
