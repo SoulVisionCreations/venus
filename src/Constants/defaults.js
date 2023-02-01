@@ -18,7 +18,7 @@ export const animationDefaults = {
 
 export const objectDefaults = {
   position: [0, 0, 0],
-  scale: 1,
+  scale: [1, 1, 1],
   rotation: [0,0,0], //[-Math.PI/4 - Math.PI/8, -Math.PI/16, 0],
   control: ObjectControlTypes.NoControls,
 };
