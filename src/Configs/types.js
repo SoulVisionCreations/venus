@@ -43,7 +43,7 @@ export const MaterialTypes = {
   RawShaderMaterial: 10,
 };
 
-export const HtmlTypes = {
+export const ObjectHtmlTypes = {
   PriceTag: 0,
   Custom: 1,
 };
@@ -55,14 +55,14 @@ export const SceneEffectsTypes = {
 export const Animation = {
   type: {
     intro: 0,
-    chained: 1
+    chained: 1,
   },
   trajectory: {
     manual: 0,
     ellipse: 1,
     circle: 2,
-    curveDefinedByPoints: 3
-  }
+    curveDefinedByPoints: 3,
+  },
 };
 
 export const AnimationTypes = {
@@ -106,8 +106,15 @@ export const ComponentTypes = {
 
 export const TextTypes = {
   Paragraph: 0,
-  List: 1
-}
+  List: 1,
+};
+
+export const ImageTypes = {
+  Rounded: 0,
+  Circle: 1,
+  Square: 2,
+  Icon: 3,
+};
 
 export const Alignment = {
   Vertical: 0,

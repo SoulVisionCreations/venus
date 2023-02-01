@@ -8,7 +8,7 @@ import {
   useEvents,
 } from "../../../Utils/Events/events";
 import AvataarLoader from "../../AvataarLoader/avataarloader";
-import { renderHtmls } from "../object3D";
+import { renderObjectHtmls } from "../object3D";
 import { useSpringAnimation } from "../../../Utils/Animations/springAnimations";
 import { animated } from "@react-spring/three";
 
@@ -41,7 +41,7 @@ const GltfObject = ({objectProps, sceneProps}) => {
         scale={spring.scale}
         {...objectProps}
       >
-        {objectProps.htmls && renderHtmls(objectProps.htmls)}
+        {objectProps.objectHtmls && renderObjectHtmls(objectProps.objectHtmls)}
       </animated.primitive>
     );
   };

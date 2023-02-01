@@ -1,10 +1,19 @@
 import { AdaptiveDpr, Environment, PerformanceMonitor, Stats } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import Camera from "./Camera/camera.js";
 import Scene from "./Scene/Scene.js";
 
 export default function CanvasContainer(props) {
+  
+  const GetInfo = () => {
+    const { gl } = useThree();
+    useEffect(() => {
+      console.log(gl.info);
+    });
+    return null;
+  };
+  
   const canvasContainerRef = useRef();
   const [isSceneVisible, setIsSceneVisibile] = useState(false);
   const [isSceneCompletelyVisible, setIsSceneCompletelyVisible] = useState(false);
@@ -44,6 +53,7 @@ export default function CanvasContainer(props) {
         id={props.id}
     >
         <Canvas frameloop="demand">
+            <GetInfo />
             <AdaptiveDpr pixelated />
             <Stats />
             <PerformanceMonitor/>

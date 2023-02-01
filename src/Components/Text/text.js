@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
-import { Html, Text } from "@react-three/drei";
+import { Html } from "@react-three/drei";
 import { TextTypes } from "../../Configs/types";
+import { htmlDefaults } from "../../Constants/defaults";
 
 const renderList = (list) => {
   return list.map(function (item, i) {
@@ -8,13 +9,20 @@ const renderList = (list) => {
   });
 };
 
-const TextLoader = (props) => {
+const Text = (props) => {
+  const scale = props.scale
+    ? props.scale * htmlDefaults.scale
+    : htmlDefaults.scale;
   switch (props.type) {
     case TextTypes.Paragraph:
-      return <Text {...props}> {props.text} </Text>;
+      return (
+        <Html transform {...props} scale={scale}>
+          {props.text}
+        </Html>
+      );
     case TextTypes.List:
       return (
-        <Html transform="true" {...props}>
+        <Html transform {...props} scale={scale}>
           {props.title}
           {props.numbererd ? (
             <ol> {renderList(props.list)} </ol>
@@ -26,17 +34,14 @@ const TextLoader = (props) => {
   }
 };
 
-TextLoader.propTypes = {
+Text.propTypes = {
   type: PropTypes.oneOf(Object.values(TextTypes)),
   text: PropTypes.string,
   title: PropTypes.string,
   list: PropTypes.arrayOf(PropTypes.string),
   position: PropTypes.arrayOf(PropTypes.number).isRequired,
   scale: PropTypes.number,
-  fontSize: PropTypes.number,
-  color: PropTypes.string,
-  maxWidth: PropTypes.number,
-  numbererd: PropTypes.bool
+  numbererd: PropTypes.bool,
 };
 
-export default TextLoader;
+export default Text;

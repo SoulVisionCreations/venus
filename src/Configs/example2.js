@@ -9,10 +9,11 @@ import {
   SceneControlTypes,
   StandardGeometryTypes,
   MaterialTypes,
-  HtmlTypes,
+  ObjectHtmlTypes,
   eventDrivenActionTypes,
   Animation,
-  TextTypes
+  TextTypes,
+  ImageTypes,
 } from "./types";
 
 export const config2 = {
@@ -43,110 +44,115 @@ export const config2 = {
         type: SceneControlTypes.Orbit,
       },
       objects: [
-        // {
-        //   type: ObjectTypes.ImplicitObject,
-        //   modelId: 101,
-        //   control: {
-        //     type: ObjectControlTypes.BouncyPresentation,
-        //   },
-        //   useInstancing: false,
-        //   position: [0.5, 0.5, 0],
-        //   // animations: [{type: AnimationTypes.Rotate}],
-        //   scale: [0.2, 0.2, 0.2],
-        //   htmls: [
-        //     {
-        //       type: HtmlTypes.PriceTag,
-        //       price: "$100",
-        //       rotation: [Math.PI / 2, Math.PI / 4, 0],
-        //       position: [-3, 0, 0],
-        //       scale: 1,
-        //       transform: true,
-        //     },
-        //   ],
-        // },
+        {
+          type: ObjectTypes.ImplicitObject,
+          modelId: 101,
+          control: {
+            type: ObjectControlTypes.BouncyPresentation,
+          },
+          useInstancing: false,
+          position: [0.5, 0.5, 0],
+          // animations: [{type: AnimationTypes.Rotate}],
+          scale: [0.2, 0.2, 0.2],
+          objectHtmls: [
+            {
+              type: ObjectHtmlTypes.PriceTag,
+              price: "$100",
+              rotation: [Math.PI / 2, Math.PI / 4, 0],
+              position: [-3, 0, 0],
+              scale: 1,
+              transform: true,
+            },
+          ],
+        },
         {
           type: ObjectTypes.GltfObject,
           url: "./1863416.glb",
           scale: 1,
-          htmls: [
+          objectHtmls: [
             {
-              type: HtmlTypes.PriceTag,
+              type: ObjectHtmlTypes.PriceTag,
               price: "$50",
               position: [0.3, 0.5, 0],
-              scale: 0.2,
+              scale: 2,
               transform: true,
             },
           ],
-          animations: [{
-            initialPause: 0,
-            type: Animation.type.intro,
-            trajectory: Animation.trajectory.curveDefinedByPoints,
-            trajectoryMetaData: {
-              points: [[-0.1,-0.3,0], [-0.1, -0.2, -0.1], [-0.3, -0.1, -0.1]],
-              steps: 100,
+          animations: [
+            {
+              initialPause: 0,
+              type: Animation.type.intro,
+              trajectory: Animation.trajectory.curveDefinedByPoints,
+              trajectoryMetaData: {
+                points: [
+                  [-0.1, -0.3, 0],
+                  [-0.1, -0.2, -0.1],
+                  [-0.3, -0.1, -0.1],
+                ],
+                steps: 100,
+              },
+              config: { duration: 25 },
             },
-            config: {duration: 25}
-          }],
+          ],
         },
-        // {
-        //   type: ObjectTypes.StandardObject,
-        //   geometry: [{ type: StandardGeometryTypes.SphereGeometry }],
-        //   material: [
-        //     {
-        //       type: MaterialTypes.MeshStandardMaterial,
-        //       color: "green",
-        //     },
-        //   ],
-        // },
+        {
+          type: ObjectTypes.StandardObject,
+          geometry: [{ type: StandardGeometryTypes.SphereGeometry }],
+          material: [
+            {
+              type: MaterialTypes.MeshStandardMaterial,
+              color: "green",
+            },
+          ],
+        },
         {
           type: ObjectTypes.Text3D,
           font: "./Inter_Bold.json",
           text: "Chair",
           scale: 0.2,
           color: "pink",
-          animations: [{
-            initialPause: 0,
-            type: Animation.type.intro,
-            trajectory: Animation.trajectory.curveDefinedByPoints,
-            trajectoryMetaData: {
-              points: [[0.1,-0.3,0], [0.1, -0.1, -0.1], [0.3, 0.1, 0.4]],
-              steps: 100,
+          animations: [
+            {
+              initialPause: 0,
+              type: Animation.type.intro,
+              trajectory: Animation.trajectory.curveDefinedByPoints,
+              trajectoryMetaData: {
+                points: [
+                  [0.1, -0.3, 0],
+                  [0.1, -0.1, -0.1],
+                  [0.3, 0.1, 0.4],
+                ],
+                steps: 100,
+              },
+              config: { duration: 25 },
             },
-            config: {duration: 25}
-          }],
+          ],
         },
       ],
-      // images: [
-      //   { 
-      //     url: './chair.png',
-      //     position: [-0.5, 0, 0],
-      //     scale: 1,
-      //     transparent: true,
-      //     zoom: 1,
-      //     opacity: 0.8,
-      //   },
-      // ],
+      images: [
+        {
+          type: ImageTypes.Square,
+          src: "./chair.png",
+          position: [-0.5, 0, 0],
+          scale: 1,
+        },
+      ],
       texts: [
         {
           type: TextTypes.Paragraph,
           text: "Yellow velvet recliner",
           position: [0.7, 0, 0],
-          scale: 1,
-          fontSize: 0.07,
-          color: "black",
-          maxWidth: 1,
+          scale: 2,
+          style: { color: "black" },
         },
         {
           type: TextTypes.List,
           title: "Features of Chair",
-          list: [
-            "Super Light",
-            "Affordable and Durable"
-          ],
+          list: ["Super Light", "Affordable and Durable"],
           position: [0.7, -0.2, 0],
-          scale: 0.1,
+          scale: 1.2,
           numbered: false,
-          style: { color: "gray", fontSize: "20px"},
+          style: { color: "gray" },
         },
       ],
     },
