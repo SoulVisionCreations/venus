@@ -7,7 +7,8 @@ import { HalfFloatType } from "three";
 let assetsMap = new Map();
 
 export function getAssetbyId(id) {
-  return assetsMap.get(id);
+  if(assetsMap.has(id)) return assetsMap.get(id);
+  return 'downloading';
 }
 
 export async function downloadAssets(assets) {

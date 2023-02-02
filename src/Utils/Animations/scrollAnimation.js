@@ -60,7 +60,7 @@ export const useScrollAnimation = (objectProps, sceneProps, springApi) => {
     const scrollTrajectory = useRef();
     const visibilityThreshold = useRef({top: 0, bottom: 0});
     const trajectoryState = useRef(0);
-    const trajectorySpeed = useRef(0.01);
+    const trajectorySpeed = useRef(0.0100000);
     const springConfigRef = useRef(springConfig.default);
 
     useEffect(() => {

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { invalidate } from '@react-three/fiber';
 import CanvasContainer from './Components/CanvasContainer.js';
 import { Alignment, ComponentTypes } from './Configs/types.js';
+import { downloadAssets } from './Utils/download.js';
 
 export default function App({config})
 {
@@ -17,6 +18,9 @@ export default function App({config})
   useEffect(() => {
     window.addEventListener('resize', ()=> {
       invalidate();
+    });
+    config.assets && setTimeout(() => {
+      downloadAssets(config.assets);
     })
   }, [])
 

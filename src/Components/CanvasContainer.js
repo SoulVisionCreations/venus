@@ -29,9 +29,9 @@ export default function CanvasContainer(props) {
 
   const GetInfo = () => {
     const { gl } = useThree();
-    useEffect(() => {
-      console.log(gl.info);
-    });
+    // useEffect(() => {
+    //   console.log(gl.info);
+    // });
     return null;
   };
   
@@ -63,19 +63,28 @@ export default function CanvasContainer(props) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (isSceneVisible && !objectLoadTriggered) {
-      setObjectLoadTriggered(true);
-      downloadAssets(props.assets)
-        .then(() => { setLoading(false) })
-        .catch((err) => console.log("error", err));
-    }
-  }, [isSceneVisible]);
+    const interval = setInterval(() => {
+      let allDownloaded = true;
+      props.assetIds && props.assetIds.forEach(assetId => {
+        if(getAssetbyId(assetId) == 'downloading') allDownloaded = false;
+      });
+      if(allDownloaded) {
+        setLoading(false);
+        clearInterval(interval);
+      }
+    }, 100)
+    // if (isSceneVisible && !objectLoadTriggered) {
+    //   setObjectLoadTriggered(true);
+    //   downloadAssets(props.assets)
+    //     .then(() => { setLoading(false) })
+    //     .catch((err) => console.log("error", err));
+    // }
+  }, []);
 
   const sceneProps = {
       isSceneVisible: isSceneVisible,
       isSceneCompletelyVisible: isSceneCompletelyVisible,
       canvasRect: canvasRect,
-      id: props.sceneId
   };
 
   return (
