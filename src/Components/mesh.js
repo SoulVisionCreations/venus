@@ -1,10 +1,10 @@
 import { animated } from '@react-spring/three';
 import { useSpringAnimation } from "../Utils/Animations/springAnimations";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { ObjectControls } from "../Utils/ObjectControls/objectControls";
-import { renderHtmls } from "./Object3D/object3D";
 import { useScrollAnimation } from '../Utils/Animations/scrollAnimation';
+import { renderObjectHtmls } from "./Object3D/object3D";
 
 export function Mesh({geometry, material, gSceneParams, objectProps, sceneProps}) {
   const meshRef = useRef();
@@ -24,7 +24,7 @@ export function Mesh({geometry, material, gSceneParams, objectProps, sceneProps}
   return (
     <ObjectControls {...objectProps}>
         <animated.mesh ref={meshRef} geometry={geometry} material={material} rotation={spring.rotation} position={spring.position} scale={spring.scale}>
-            {objectProps.htmls && renderHtmls(objectProps.htmls)}
+            {objectProps.objectHtmls && renderObjectHtmls(objectProps.objectHtmls)}
         </animated.mesh>
     </ObjectControls>
   );

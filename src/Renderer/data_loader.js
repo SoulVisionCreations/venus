@@ -3,7 +3,6 @@ Window.THREE = THREE;
 import { rayMarchVertexShader } from "./shader/rayMarchVertexShader.js";
 import { rayMarchFragmentShader } from "./shader/rayMarchFragmentShader.js";
 let atlasIndexImage, gSceneParams, gNumTextures;
-let modelMap = new Map();
 /**
  * Loads PNG image from rgbaURL and decodes it to an Uint8Array.
  * @param {string} rgbaUrl The URL of the PNG image.
@@ -432,10 +431,9 @@ function createMesh(meshProps) {
   return mesh;
 }
 
-export async function loadImplicitData(dirUrl, id) {
+export async function loadImplicitData(dirUrl) {
   // $("#viewspacecontainer").removeClass("hide");
   // await loadSceneData(dirUrl)
-  if (modelMap.has(id)) return modelMap.get(id);
 
   await loadJsonFiles(dirUrl);
   let rgb_data, alpha_data, feature_data;
@@ -447,7 +445,6 @@ export async function loadImplicitData(dirUrl, id) {
   );
   // $("#viewspacecontainer").addClass("hide");
   const meshProps = CreateImplicitObj(atlasIndexImage, data[0], data[1]);
-  modelMap.set(id, meshProps);
   return meshProps;
 }
 

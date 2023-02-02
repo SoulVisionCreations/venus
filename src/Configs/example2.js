@@ -9,9 +9,11 @@ import {
   SceneControlTypes,
   StandardGeometryTypes,
   MaterialTypes,
-  HtmlTypes,
+  ObjectHtmlTypes,
   eventDrivenActionTypes,
-  AnimationTypes,
+  Animation,
+  TextTypes,
+  ImageTypes,
 } from "./types";
 
 export const config2 = {
@@ -22,11 +24,22 @@ export const config2 = {
   children: [
     {
       type: ComponentTypes.Canvas,
-      background: "pink",
       className: "canvas",
-      style: stylingDefaults.fullWidthMediumHeightCanvas,
+      style: stylingDefaults.fullWidthFullHeightCanvas,
+      assets: {
+        'implicits' : [{
+          '100001': 'data'
+        }],
+        'gltfs' : [{'10001': './1863416.glb'}],
+        'images' : [{'1001': './chair.png'}],
+        'hdri' : [{'101': './puresky.hdr'}],
+        'fonts' : [{'11': './Inter_Bold.json'}]
+      },
+      environment: {
+        assetId: '101'
+      },
       camera: {
-        position: [0, 0, 1],
+        position: [0, 0, 2],
         type: CameraTypes.Perspective,
       },
       lights: [
@@ -45,80 +58,117 @@ export const config2 = {
       objects: [
         {
           type: ObjectTypes.ImplicitObject,
-          modelId: 101,
+          assetId: '100001',
           control: {
             type: ObjectControlTypes.BouncyPresentation,
           },
           useInstancing: false,
-          instanceCount: 2,
-          autoGenerateInstance: false,
-          instances: [
+          position: [0.5, 0.5, 0],
+          // animations: [{type: AnimationTypes.Rotate}],
+          scale: [0.2, 0.2, 0.2],
+          objectHtmls: [
             {
-              position: [0.5, 0.5, 0],
-              animations: [{type: AnimationTypes.Rotate}],
-              scale: [0.2, 0.2, 0.2],
-              htmls: [
-                {
-                  type: HtmlTypes.priceTag,
-                  price: "$100",
-                  rotation: [Math.PI / 2, Math.PI / 4, 0],
-                  position: [-3, 0, 0],
-                  scale: 1,
-                  transform: true,
-                },
-              ],
+              type: ObjectHtmlTypes.PriceTag,
+              price: "$100",
+              rotation: [Math.PI / 2, Math.PI / 4, 0],
+              position: [-3, 0, 0],
+              scale: 1,
+              transform: true,
             },
-            {
-              position: [-0.5, -0.5, 0],
-              animations: [{type: AnimationTypes.Rotate}],
-            }
           ],
         },
         {
           type: ObjectTypes.GltfObject,
-          url: "./model.glb",
-          scale: 10,
-          htmls: [
+          url: "./1863416.glb",
+          assetId: '10001',
+          scale: 1,
+          objectHtmls: [
             {
-              type: HtmlTypes.priceTag,
+              type: ObjectHtmlTypes.PriceTag,
               price: "$50",
-              position: [0.01, 0.01, 0],
+              position: [0.3, 0.5, 0],
+              scale: 2,
               transform: true,
             },
           ],
           animations: [
             {
-              type: AnimationTypes.Float,
+              initialPause: 0,
+              type: Animation.type.intro,
+              trajectory: Animation.trajectory.curveDefinedByPoints,
+              trajectoryMetaData: {
+                points: [
+                  [-0.1, -0.3, 0],
+                  [-0.1, -0.2, -0.1],
+                  [-0.3, -0.1, -0.1],
+                ],
+                steps: 100,
+              },
+              config: { duration: 25 },
             },
           ],
         },
         {
           type: ObjectTypes.StandardObject,
-          geometry: [{ geometryType: StandardGeometryTypes.SphereGeometry }],
+          geometry: [{ type: StandardGeometryTypes.SphereGeometry }],
           material: [
             {
-              materialType: MaterialTypes.MeshStandardMaterial,
+              type: MaterialTypes.MeshStandardMaterial,
               color: "green",
             },
           ],
         },
         {
           type: ObjectTypes.Text3D,
+          assetId: '11',
           font: "./Inter_Bold.json",
           text: "Chair",
-          scale: 0.1,
-          position: [0.3, 0.05, 0],
-          control: {
-            type: ObjectControlTypes.BouncyPresentation,
-          },
+          scale: 0.2,
+          color: "pink",
+          animations: [
+            {
+              initialPause: 0,
+              type: Animation.type.intro,
+              trajectory: Animation.trajectory.curveDefinedByPoints,
+              trajectoryMetaData: {
+                points: [
+                  [0.1, -0.3, 0],
+                  [0.1, -0.1, -0.1],
+                  [0.3, 0.1, 0.4],
+                ],
+                steps: 100,
+              },
+              config: { duration: 25 },
+            },
+          ],
+        },
+      ],
+      images: [
+        {
+          type: ImageTypes.Square,
+          assetId: '1001',
+          src: "./chair.png",
+          position: [-0.5, 0, 0],
+          rotation: [0, 0, 0],
+          scale: 1,
         },
       ],
       texts: [
         {
-          text: "Chair Description",
-          fontSize: 0.05,
-          color: "black",
-          position: [0.5, 0, 0],
+          type: TextTypes.Paragraph,
+          text: "Yellow velvet recliner",
+          position: [0.7, 0, 0],
+          scale: 2,
+          style: { color: "black" },
+        },
+        {
+          type: TextTypes.List,
+          title: "Features of Chair",
+          list: ["Super Light", "Affordable and Durable"],
+          position: [0.7, -0.2, 0],
+          scale: 1.2,
+          numbered: false,
+          style: { color: "gray" },
         },
       ],
     },

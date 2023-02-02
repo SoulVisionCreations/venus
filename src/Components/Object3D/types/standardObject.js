@@ -1,6 +1,6 @@
 import Geometry from "../../Geometry/geometry";
 import Material from "../../Material/material";
-import { renderHtmls } from "../object3D";
+import { renderObjectHtmls } from "../object3D";
 
 const StandardObject = ({ objectProps, sceneProps }) => {
   const renderGeometries = () => {
@@ -17,7 +17,7 @@ const StandardObject = ({ objectProps, sceneProps }) => {
     <mesh>
       {renderGeometries()}
       {renderMaterials()}
-      {objectProps.htmls && renderHtmls(objectProps.htmls)}
+      {objectProps.objectHtmls && renderObjectHtmls(objectProps.objectHtmls)}
     </mesh>
   );
 };

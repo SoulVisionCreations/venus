@@ -43,8 +43,9 @@ export const MaterialTypes = {
   RawShaderMaterial: 10,
 };
 
-export const HtmlTypes = {
-  priceTag: 0,
+export const ObjectHtmlTypes = {
+  PriceTag: 0,
+  Custom: 1,
 };
 
 export const SceneEffectsTypes = {
@@ -103,6 +104,18 @@ export const LightTypes = {
 export const ComponentTypes = {
   Container: 0,
   Canvas: 1,
+};
+
+export const TextTypes = {
+  Paragraph: 0,
+  List: 1,
+};
+
+export const ImageTypes = {
+  Rounded: 0,
+  Circle: 1,
+  Square: 2,
+  Icon: 3,
 };
 
 export const Alignment = {

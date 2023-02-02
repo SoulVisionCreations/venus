@@ -9,5 +9,4 @@ import { scrollAnimationExample } from "./Configs/scrollAnimationExample";
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 
-// root.render(<App config={config1} />);
 root.render(<App config={scrollAnimationExample} />);
