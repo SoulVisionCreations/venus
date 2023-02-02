@@ -1,13 +1,12 @@
+// import { HalfFloatType } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { TextureLoader } from 'three/src/loaders/TextureLoader'; 
-import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader"
+// import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 import { loadImplicitData } from "../Renderer/data_loader";
-import { HalfFloatType } from "three";
 
-let assetsMap = new Map();
+const assetsMap = {};
 
 export function getAssetbyId(id) {
-  return assetsMap.get(id);
+  return assetsMap[id];
 }
 
 export async function downloadAssets(assets) {
@@ -15,27 +14,28 @@ export async function downloadAssets(assets) {
     for (const [assetType, assetArray] of Object.entries(assets)) {
       for (let i = 0; i < assetArray.length; i++) {
         for (const [assetId, path] of Object.entries(assetArray[i])) {
-          if (!assetsMap.has(assetId)) {
+          if (!assetsMap[assetId]) {
             if (assetType === "implicits") {
               const mesh = await loadImplicitData(path);
-              assetsMap.set(assetId, {
-                geometry: mesh.geometry,
-                material: mesh.material,
-                gSceneParams: mesh.gSceneParams,
-              });
+              assetsMap[assetId] = { geometry: mesh.geometry, material: mesh.material, gSceneParams: mesh.gSceneParams };
             } else if (assetType === "gltfs") {
                 const gltfLoader = new GLTFLoader();
-                const gltf = await gltfLoader.loadAsync(path) 
-                assetsMap.set(assetId, gltf);
+                const gltf = await gltfLoader.loadAsync(path) ;
+                assetsMap[assetId] = gltf;
+            } else if (assetType === "images") {
+                const resp = await fetch(path);
+                const imgblob = await resp.blob();
+                assetsMap[assetId] = URL.createObjectURL(imgblob);
+            } else if (assetType === "fonts") {
+                const resp = await fetch(path);
+                assetsMap[assetId] = await resp.json();;
             } 
-            else if(assetType === "hdri") {
-                console.log(assetId, path);
-                const rgbeLoader = new RGBELoader();
-                rgbeLoader.setDataType(HalfFloatType);
-                const hdri = await rgbeLoader.loadAsync(path)
-                console.log(hdri);
-                assetsMap.set(assetId, hdri);
-            }
+            // else if(assetType === "hdri") {
+            //     const rgbeLoader = new RGBELoader();
+            //     rgbeLoader.setDataType(HalfFloatType);
+            //     const hdri = await rgbeLoader.loadAsync(path);
+            //     assetsMap[assetId] = hdri;
+            // }
           }
         }
       }

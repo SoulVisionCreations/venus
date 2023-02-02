@@ -84,8 +84,7 @@ export default function CanvasContainer(props) {
               lights={props.lights}
               sceneProps={sceneProps}
             />
-            {/* <Environment map={getAssetbyId(props.environment.assetId)} /> */}
-            <Environment files='puresky.hdr' />
+            <Environment files={props.environment.path} />
           </>
         )}
       </Canvas>

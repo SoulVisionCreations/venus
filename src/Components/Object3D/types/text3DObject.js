@@ -2,15 +2,17 @@ import { animated } from "@react-spring/three";
 import { Text3D } from "@react-three/drei";
 import PropTypes from "prop-types";
 import { useSpringAnimation } from "../../../Utils/Animations/springAnimations";
+import { getAssetbyId } from "../../../Utils/download";
 
 const AnimatedText3D = animated(Text3D);
 
 const Text3DObject = ({objectProps, sceneProps}) => {
   const spring = useSpringAnimation(objectProps, sceneProps);
+  const font = getAssetbyId(objectProps.assetId);
 
   return (
     <AnimatedText3D
-      font={objectProps.font}
+      font={font}
       scale={spring.scale}
       position={spring.position}
       rotation={spring.rotation}
@@ -24,7 +26,7 @@ const Text3DObject = ({objectProps, sceneProps}) => {
 
 Text3DObject.propTypes = {
   objectProps: PropTypes.shape({
-    font: PropTypes.string.isRequired,
+    assetId: PropTypes.string.isRequired,
     position: PropTypes.arrayOf(PropTypes.number),
     rotation: PropTypes.arrayOf(PropTypes.number),
     scale: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)])

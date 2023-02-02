@@ -32,11 +32,10 @@ export const config2 = {
         }],
         'gltfs' : [{'10001': './1863416.glb'}],
         'images' : [{'1001': './chair.png'}],
-        'hdri' : [{'101': './puresky.hdr'}],
-        'fonts' : [{'11': './Inter_Bold.json'}]
+        'fonts' : [{'101': './Inter_Bold.json'}],
       },
       environment: {
-        assetId: '101'
+        path: './puresky.hdr'
       },
       camera: {
         position: [0, 0, 2],
@@ -79,7 +78,6 @@ export const config2 = {
         },
         {
           type: ObjectTypes.GltfObject,
-          url: "./1863416.glb",
           assetId: '10001',
           scale: 1,
           objectHtmls: [
@@ -108,20 +106,19 @@ export const config2 = {
             },
           ],
         },
-        {
-          type: ObjectTypes.StandardObject,
-          geometry: [{ type: StandardGeometryTypes.SphereGeometry }],
-          material: [
-            {
-              type: MaterialTypes.MeshStandardMaterial,
-              color: "green",
-            },
-          ],
-        },
+        // {
+        //   type: ObjectTypes.StandardObject,
+        //   geometry: [{ type: StandardGeometryTypes.SphereGeometry }],
+        //   material: [
+        //     {
+        //       type: MaterialTypes.MeshStandardMaterial,
+        //       color: "green",
+        //     },
+        //   ],
+        // },
         {
           type: ObjectTypes.Text3D,
-          assetId: '11',
-          font: "./Inter_Bold.json",
+          assetId: '101',
           text: "Chair",
           scale: 0.2,
           color: "pink",
@@ -147,7 +144,6 @@ export const config2 = {
         {
           type: ImageTypes.Square,
           assetId: '1001',
-          src: "./chair.png",
           position: [-0.5, 0, 0],
           rotation: [0, 0, 0],
           scale: 1,
