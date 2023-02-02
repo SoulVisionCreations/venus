@@ -56,13 +56,15 @@ export const Animation = {
   type: {
     intro: 0,
     chained: 1,
+    scroll: 2
   },
   trajectory: {
     manual: 0,
     ellipse: 1,
     circle: 2,
     curveDefinedByPoints: 3,
-  },
+    multipleCurveDefinedByPoints: 4,
+  }
 };
 
 export const AnimationTypes = {

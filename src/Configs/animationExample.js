@@ -28,6 +28,7 @@ export const animationExample = {
         {
           type: ObjectTypes.ImplicitObject,
           modelId: 101,
+          instanceId: 101,
           position: [0, 0, 0],
           rotation: [-Math.PI/2.5, 0, Math.PI/4],
           scale: [0.15, 0.15, 0.15],
@@ -89,7 +90,6 @@ export const animationExample = {
     {
       type: ComponentTypes.Canvas,
       className: "canvas",
-      modelId: 101,
       style: stylingDefaults.fullWidthFullHeightCanvas,
       camera: {
         position: [0, 0, 3],
@@ -99,6 +99,7 @@ export const animationExample = {
         {
           type: ObjectTypes.ImplicitObject,
           modelId: 101,
+          instanceId: 102,
           useInstancing: false,
           position: [-0.5, 0, 0],
           rotation: [-Math.PI/2.5, 0, Math.PI/4],
@@ -133,7 +134,6 @@ export const animationExample = {
     {
       type: ComponentTypes.Canvas,
       className: "canvas",
-      modelId: 101,
       style: stylingDefaults.fullWidthFullHeightCanvas,
       camera: {
         position: [0, 0, 3],
@@ -143,6 +143,7 @@ export const animationExample = {
         {
           type: ObjectTypes.ImplicitObject,
           modelId: 101,
+          instanceId: 103,
           position: [0.3, -0.4, 0],
           rotation: [-Math.PI/2.5, 0, Math.PI/4],
           scale: [0.4, 0.4, 0.4],
@@ -160,6 +161,7 @@ export const animationExample = {
         {
           type: ObjectTypes.ImplicitObject,
           modelId: 101,
+          instanceId: 104,
           position: [-0.3, -0.4, 0],
           rotation: [-Math.PI/2.5, 0, -Math.PI/4],
           scale: [0.4, 0.4, 0.4],

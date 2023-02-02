@@ -6,6 +6,25 @@ import AvataarLoader from "./AvataarLoader/avataarloader.js";
 import Camera from "./Camera/camera.js";
 import Scene from "./Scene/Scene.js";
 
+function getCoords(elem) { // crossbrowser version
+  const box = elem.getBoundingClientRect();
+
+  const body = document.body;
+  const docEl = document.documentElement;
+
+  const scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
+  const scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft;
+
+  const clientTop = docEl.clientTop || body.clientTop || 0;
+  const clientLeft = docEl.clientLeft || body.clientLeft || 0;
+
+  const top  = box.top +  scrollTop - clientTop;
+  const left = box.left + scrollLeft - clientLeft;
+  const bottom = top + box.height;
+
+  return { top: top, left: left, bottom: bottom };
+}
+
 export default function CanvasContainer(props) {
 
   const GetInfo = () => {
@@ -19,21 +38,21 @@ export default function CanvasContainer(props) {
   const canvasContainerRef = useRef();
   const [isSceneVisible, setIsSceneVisibile] = useState(false);
   const [isSceneCompletelyVisible, setIsSceneCompletelyVisible] = useState(false);
-  const [sceneCompletelyVisibleCount, setSceneCompletelyVisibleCount] = useState(0);
-  const [sceneVisibleCount, setSceneVisibleCount] = useState(0);
   const visiblityObserver = useRef();
+  const [canvasRect, setCanvasRect] = useState();
 
   useEffect(()=>{
       const intersectionCallback = (entries) => {
           const [ entry ] = entries;
           setIsSceneCompletelyVisible(entry.intersectionRatio >= 0.95);
-          setSceneCompletelyVisibleCount(count => entry.intersectionRatio >= 0.95 ? count + 1 : count);
-        //   setSceneVisibleCount(count => entry.intersectionRatio > 0 ? count + 1: 0);
           setIsSceneVisibile(entry.intersectionRatio > 0);
       }
       if(canvasContainerRef.current) {
-        visiblityObserver.current = new IntersectionObserver(intersectionCallback, {threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.95, 0.96, 0.97, 0.98, 0.99, 1]});
+        visiblityObserver.current = new IntersectionObserver(intersectionCallback, {threshold: [0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.93, 0.94, 0.95, 0.96, 0.97, 0.98, 0.99, 1]});
         visiblityObserver.current.observe(canvasContainerRef.current);
+
+        const coords = getCoords(canvasContainerRef.current);
+        setCanvasRect(coords);
       }
       return () => {
         if(canvasContainerRef.current) visiblityObserver.current.unobserve(canvasContainerRef.current);
@@ -55,8 +74,8 @@ export default function CanvasContainer(props) {
   const sceneProps = {
       isSceneVisible: isSceneVisible,
       isSceneCompletelyVisible: isSceneCompletelyVisible,
-      sceneCompletelyVisibleCount: sceneCompletelyVisibleCount,
-      setSceneCompletelyVisibleCount: setSceneCompletelyVisibleCount
+      canvasRect: canvasRect,
+      id: props.sceneId
   };
 
   return (

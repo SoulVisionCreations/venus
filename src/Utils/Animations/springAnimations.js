@@ -1,20 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import { invalidate } from "@react-three/fiber";
-import { useSpring, config } from '@react-spring/three';
+import { useSpring, config as springConfig } from '@react-spring/three';
 import { arrayToVec, getInitialState } from "../utility";
 import { Animation } from "../../Configs/types";
-import { createEllipse, getTrajectory } from "./curves";
+import { createEllipse, getTrajectoryPoints } from "./curves";
 
 export const useSpringAnimation = (instance, sceneProps) => {
     const [initialPosition, initialRotation, initialScale] = getInitialState(instance);
     const state = useRef({position: initialPosition, rotation: initialRotation, scale: initialScale});
     const introAnimation = useRef();
-    // const animateByInterval = useRef([]);
-    // const animateByLoop = useRef();
     const chainedAnimations = useRef([]);
+    const hasSpringAnimation = useRef(false);
     const [introAnimationCompleted, updateIntroAnimationCompleted] = useState(false);
     const timeouts = useRef([]);
-    //const intervals = useRef([]);
 
     const [springs, api] = useSpring(
         () => ({
@@ -23,7 +21,7 @@ export const useSpringAnimation = (instance, sceneProps) => {
             position: [...state.current.position],
             scale: [...state.current.scale],
         },
-        config: config.default,
+        config: springConfig.default,
         onChange: () => invalidate(),
         }),
         []
@@ -32,8 +30,14 @@ export const useSpringAnimation = (instance, sceneProps) => {
     useEffect(() => {
         if(!instance.animations) return;
         instance.animations.forEach(animation => {
-            if(animation.type == Animation.type.intro) introAnimation.current = animation;
-            else if(animation.type == Animation.type.chained) chainedAnimations.current.push(animation); 
+            if(animation.type == Animation.type.intro) {
+                introAnimation.current = animation;
+                hasSpringAnimation.current = true;
+            }
+            else if(animation.type == Animation.type.chained) {
+                chainedAnimations.current.push(animation);
+                hasSpringAnimation.current = true;
+            }
             if(animation.initialPause == undefined) animation.initialPause = 0;
         });
     }, []);
@@ -44,7 +48,7 @@ export const useSpringAnimation = (instance, sceneProps) => {
             function executeAnimation(index) {
                 const childAnimation = animation.childAnimations[index];
                 const delay = childAnimation.initialPause ? childAnimation.initialPause : 0;
-                const [trajectory, trajectoryVec] = getTrajectory(childAnimation, state);
+                const [trajectory, trajectoryVec] = getTrajectoryPoints(childAnimation, state);
                 api.start({
                     to: async (next) => {
                         let t = 0;
@@ -76,7 +80,46 @@ export const useSpringAnimation = (instance, sceneProps) => {
         });
     }, [sceneProps.isSceneVisible, introAnimationCompleted]);
 
-    // useEffect(() => {
+    useEffect(() => {
+        if(sceneProps.isSceneCompletelyVisible && introAnimation.current && !introAnimationCompleted) {
+            const animation = introAnimation.current;
+            const [trajectory, trajectoryVec] = getTrajectoryPoints(animation, state);
+            const timeout = setTimeout(() => {
+                api.start({
+                    to: async (next) => {
+                        let t = 0;
+                        while(t < trajectory.length) {
+                            if(trajectoryVec[t].position) state.current.position = trajectoryVec[t].position;
+                            if(trajectoryVec[t].rotation) state.current.rotation = trajectoryVec[t].rotation;
+                            if(trajectoryVec[t].scale) state.current.scale = trajectoryVec[t].scale;
+                            await next(trajectory[t]);
+                            t++;
+                        }
+                        updateIntroAnimationCompleted(true);
+                    },
+                    config: animation.config ? animation.config : config.default, 
+                });
+                invalidate();
+            }, animation.initialPause);
+            timeouts.current.push(timeout);
+        }
+        if(sceneProps.isSceneVisible && !introAnimation.current) updateIntroAnimationCompleted(true);
+    }, [sceneProps.isSceneCompletelyVisible, sceneProps.isSceneVisible]);
+
+    useEffect(() => {
+        if(!sceneProps.isSceneVisible && hasSpringAnimation.current) {
+            timeouts.current.forEach(t => clearTimeout(t));
+            updateIntroAnimationCompleted(false);
+            state.current = {position: initialPosition, rotation: initialRotation, scale: initialScale};
+            api.stop();
+            api.set({position: [...initialPosition], rotation: [...initialRotation], scale: [...initialScale]});
+        }
+    }, [sceneProps.isSceneVisible]);
+
+    return [springs, api];
+}
+
+ // useEffect(() => {
     //     if(!animateOnceCompleted) return;
     //     animateByInterval.current.forEach(animation => {
     //         const timeout = setTimeout(() => {
@@ -110,43 +153,3 @@ export const useSpringAnimation = (instance, sceneProps) => {
     //     }, animation.initialPause);
     //     timeouts.current.push(timeout);
     // }, [sceneProps.isSceneVisible]);
-
-    useEffect(() => {
-        if(sceneProps.isSceneCompletelyVisible && introAnimation.current && !introAnimationCompleted) {
-            const animation = introAnimation.current;
-            const [trajectory, trajectoryVec] = getTrajectory(animation, state);
-            const timeout = setTimeout(() => {
-                api.start({
-                    to: async (next) => {
-                        let t = 0;
-                        while(t < trajectory.length) {
-                            if(trajectoryVec[t].position) state.current.position = trajectoryVec[t].position;
-                            if(trajectoryVec[t].rotation) state.current.rotation = trajectoryVec[t].rotation;
-                            if(trajectoryVec[t].scale) state.current.scale = trajectoryVec[t].scale;
-                            await next(trajectory[t]);
-                            t++;
-                        }
-                        updateIntroAnimationCompleted(true);
-                    },
-                    config: animation.config ? animation.config : config.default, 
-                });
-                invalidate();
-            }, animation.initialPause);
-            timeouts.current.push(timeout);
-        }
-        if(sceneProps.isSceneVisible && !introAnimation.current) updateIntroAnimationCompleted(true);
-    }, [sceneProps.isSceneCompletelyVisible, sceneProps.isSceneVisible]);
-
-    useEffect(() => {
-        if(!sceneProps.isSceneVisible) {
-            timeouts.current.forEach(t => clearTimeout(t));
-            //intervals.current.forEach(i => clearInterval(i));
-            updateIntroAnimationCompleted(false);
-            state.current = {position: initialPosition, rotation: initialRotation, scale: initialScale};
-            api.stop();
-            api.set({position: [...initialPosition], rotation: [...initialRotation], scale: [...initialScale]});
-        }
-    }, [sceneProps.isSceneVisible]);
-
-    return springs;
-}

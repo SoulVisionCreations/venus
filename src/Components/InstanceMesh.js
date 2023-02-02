@@ -33,6 +33,9 @@ export default function InstanceMesh({geometry, material, gSceneParams, objectPr
             instances.push({...instances[j-1]});
           }
           instances[j].position = [Math.random()*12-6, Math.random()*12-6, Math.random()];
+          instances[j].animations = instances[j].animations.map(animation => {
+            return {...animation, rotationArray: [Math.random(), Math.random(), Math.random()]};
+          })
           const matrix = getInitialialStateMatrix4(instances[j]);
           instanceMeshRef.current.setMatrixAt(j, matrix);
           animatedInstances.current.push(j);
