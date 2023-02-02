@@ -103,7 +103,7 @@ export default function CanvasContainer(props) {
               lights={props.lights}
               sceneProps={sceneProps}
             />
-            <Environment files={props.environment.path} />
+            {props.environment && <Environment files={props.environment.path} />}
           </>
         )}
       </Canvas>
