@@ -34,6 +34,7 @@ export const scrollAnimationExample = {
       objects: [
         {
           type: ObjectTypes.Text3D,
+          assetId: '11',
           text: 'Scroll Down',
           font: "./Inter_Bold.json",
           position: [-0.7, 0, 0],
@@ -155,7 +156,7 @@ export const scrollAnimationExample = {
             },
             trajectory: Animation.trajectory.curveDefinedByPoints,
             trajectoryMetaData: {
-              points: [[0.3,-0.4,0], [0.5, 1, -0.2], [3, 1, -0.4]],
+              points: [[0.3,-0.4,0], [0.5, 1, -0.2], [3.5, 1, -0.4]],
               speed: 0.0005
             },
             config: { mass: 4, tension: 280, friction: 90 }
@@ -176,7 +177,7 @@ export const scrollAnimationExample = {
             },
             trajectory: Animation.trajectory.curveDefinedByPoints,
             trajectoryMetaData: {
-              points: [[-0.3,-0.4,0], [-0.5, 1, -0.2], [-3, 1, -0.4]],
+              points: [[-0.3,-0.4,0], [-0.5, 1, -0.2], [-3.5, 1, -0.4]],
               speed: 0.0005,
             },
             config: { mass: 4, tension: 280, friction: 90 }

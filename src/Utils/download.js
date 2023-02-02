@@ -6,7 +6,7 @@ import { loadImplicitData } from "../Renderer/data_loader";
 const assetsMap = {};
 
 export function getAssetbyId(id) {
-  if(assetsMap.has(id)) return assetsMap.get(id);
+  if(id in assetsMap) return assetsMap[id];
   return 'downloading';
 }
 
