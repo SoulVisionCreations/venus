@@ -1,3 +1,5 @@
+import React, { useEffect } from 'react';
+import { invalidate } from '@react-three/fiber';
 import CanvasContainer from './Components/CanvasContainer.js';
 import { Alignment, ComponentTypes } from './Configs/types.js';
 
@@ -11,6 +13,12 @@ export default function App({config})
         return <CanvasContainer {...child} key={index} />;
       });
   };
+
+  useEffect(() => {
+    window.addEventListener('resize', ()=> {
+      invalidate();
+    })
+  }, [])
 
   const alignmentClassName = config.alignment == Alignment.Vertical ? "flexColumn" : "flexRow";
 

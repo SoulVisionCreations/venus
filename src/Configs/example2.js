@@ -26,6 +26,18 @@ export const config2 = {
       type: ComponentTypes.Canvas,
       className: "canvas",
       style: stylingDefaults.fullWidthFullHeightCanvas,
+      assets: {
+        'implicits' : [{
+          '100001': 'data'
+        }],
+        'gltfs' : [{'10001': './1863416.glb'}],
+        'images' : [{'1001': './chair.png'}],
+        'hdri' : [{'101': './puresky.hdr'}],
+        'fonts' : [{'11': './Inter_Bold.json'}]
+      },
+      environment: {
+        assetId: '101'
+      },
       camera: {
         position: [0, 0, 2],
         type: CameraTypes.Perspective,
@@ -46,7 +58,7 @@ export const config2 = {
       objects: [
         {
           type: ObjectTypes.ImplicitObject,
-          modelId: 101,
+          assetId: '100001',
           control: {
             type: ObjectControlTypes.BouncyPresentation,
           },
@@ -68,6 +80,7 @@ export const config2 = {
         {
           type: ObjectTypes.GltfObject,
           url: "./1863416.glb",
+          assetId: '10001',
           scale: 1,
           objectHtmls: [
             {
@@ -107,6 +120,7 @@ export const config2 = {
         },
         {
           type: ObjectTypes.Text3D,
+          assetId: '11',
           font: "./Inter_Bold.json",
           text: "Chair",
           scale: 0.2,
@@ -132,8 +146,10 @@ export const config2 = {
       images: [
         {
           type: ImageTypes.Square,
+          assetId: '1001',
           src: "./chair.png",
           position: [-0.5, 0, 0],
+          rotation: [0, 0, 0],
           scale: 1,
         },
       ],

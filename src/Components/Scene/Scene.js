@@ -39,7 +39,7 @@ export default function Scene({
 
   return (
     <>
-      {lights ? addLights() : null}
+      {/* {lights ? addLights() : null} */}
       {sceneControl ? applySceneControl(sceneControl) : null}
       {objects ? renderObjects() : null}
       {texts ? renderTexts() : null}

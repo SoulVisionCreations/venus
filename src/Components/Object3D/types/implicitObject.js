@@ -1,46 +1,31 @@
-import React, { useEffect, useRef, useState } from "react";
-import { getPath, loadImplicitData } from "../../../Renderer/data_loader";
 import WebGL from "three/examples/jsm/capabilities/WebGL.js";
-import AvataarLoader from "../../AvataarLoader/avataarloader";
+import PropTypes from 'prop-types';
 import InstanceMesh from "../../InstanceMesh";
 import { Mesh } from "../../mesh";
+import { getAssetbyId } from "../../../Utils/download";
 
 if (WebGL.isWebGL2Available() === false) {
   viewSpace.appendChild(WebGL.getWebGL2ErrorMessage());
 }
 
-function ImplicitObject({objectProps, sceneProps}) {
-  const [loading, updateLoading] = useState(true);
-  const [objectLoadTriggered, setObjectLoadTriggered] = useState(false);
-  const geometry = useRef();
-  const material = useRef();
-  const gSceneParams = useRef();
-  const useInstancing = (!(objectProps.useInstancing == undefined) && objectProps.useInstancing);
+const ImplicitObject = ({ objectProps, sceneProps }) => {
+  const asset = getAssetbyId(objectProps.assetId);
+  const useInstancing = !(objectProps.useInstancing == undefined) && objectProps.useInstancing;
 
-  useEffect(() => {
-    if (sceneProps.isSceneVisible && !objectLoadTriggered) {
-      setObjectLoadTriggered(true);
-      let dirUrl = getPath();
-      loadImplicitData(dirUrl.dir, objectProps.modelId).then((mesh) => {
-         geometry.current = mesh.geometry;
-         material.current = mesh.material;
-         gSceneParams.current = mesh.gSceneParams;
-        updateLoading(false);
-      });
-    }
-  }, [sceneProps.isSceneVisible]);
-
-  return (
-      <>
-        {loading ? 
-          <AvataarLoader center={true} /> : 
-          (useInstancing ? 
-            <InstanceMesh geometry={geometry.current} material={material.current} gSceneParams={gSceneParams.current} objectProps={objectProps}></InstanceMesh> :
-            <Mesh geometry={geometry.current} material={material.current} gSceneParams={gSceneParams.current} objectProps={objectProps} sceneProps={sceneProps}></Mesh>
-          )
-        }
-      </>
+  return useInstancing ? (
+    <InstanceMesh geometry={asset.geometry} material={asset.material} gSceneParams={asset.gSceneParams} objectProps={objectProps} /> ) : (
+    <Mesh geometry={asset.geometry} material={asset.material} gSceneParams={asset.gSceneParams} objectProps={objectProps} sceneProps={sceneProps} />
   );
+}
+
+ImplicitObject.propTypes = {
+  objectProps: PropTypes.shape({
+    assetId: PropTypes.string.isRequired,
+    position: PropTypes.arrayOf(PropTypes.number),
+    rotation: PropTypes.arrayOf(PropTypes.number),
+    scale: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+    useInstancing: PropTypes.bool
+  })
 }
 
 export default ImplicitObject;

@@ -20,9 +20,7 @@ const renderImage = (props) => {
 };
 
 const Image = (props) => {
-  const scale = props.scale
-    ? props.scale * htmlDefaults.scale
-    : htmlDefaults.scale;
+  const scale = props.scale ? props.scale * htmlDefaults.scale : htmlDefaults.scale;
   return (
     <Html transform {...props} scale={scale}>
       {renderImage(props)}
@@ -33,6 +31,7 @@ const Image = (props) => {
 Image.propTypes = {
   src: PropTypes.string.isRequired,
   position: PropTypes.arrayOf(PropTypes.number),
+  rotation: PropTypes.arrayOf(PropTypes.number),
   scale: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.arrayOf(PropTypes.number),

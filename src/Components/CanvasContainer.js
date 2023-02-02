@@ -1,11 +1,13 @@
 import { AdaptiveDpr, Environment, PerformanceMonitor, Stats } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
+import { downloadAssets, getAssetbyId } from "../Utils/download.js";
+import AvataarLoader from "./AvataarLoader/avataarloader.js";
 import Camera from "./Camera/camera.js";
 import Scene from "./Scene/Scene.js";
 
 export default function CanvasContainer(props) {
-  
+
   const GetInfo = () => {
     const { gl } = useThree();
     useEffect(() => {
@@ -38,6 +40,18 @@ export default function CanvasContainer(props) {
       }
   }, [canvasContainerRef.current]);
 
+  const [objectLoadTriggered, setObjectLoadTriggered] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (isSceneVisible && !objectLoadTriggered) {
+      setObjectLoadTriggered(true);
+      downloadAssets(props.assets)
+        .then(() => { setLoading(false) })
+        .catch((err) => console.log("error", err));
+    }
+  }, [isSceneVisible]);
+
   const sceneProps = {
       isSceneVisible: isSceneVisible,
       isSceneCompletelyVisible: isSceneCompletelyVisible,
@@ -52,22 +66,29 @@ export default function CanvasContainer(props) {
         style={props.style}
         id={props.id}
     >
-        <Canvas frameloop="demand">
+      <Canvas frameloop="demand">
+        {loading ? (
+          <AvataarLoader center={true} />
+        ) : (
+          <>
             <GetInfo />
             <AdaptiveDpr pixelated />
             <Stats />
-            <PerformanceMonitor/>
+            <PerformanceMonitor />
             <Camera {...props.camera} />
             <Scene
-                objects={props.objects}
-                sceneControl={props.sceneControl}
-                texts={props.texts}
-                images={props.images}
-                lights={props.lights}
-                sceneProps={sceneProps}
+              objects={props.objects}
+              sceneControl={props.sceneControl}
+              texts={props.texts}
+              images={props.images}
+              lights={props.lights}
+              sceneProps={sceneProps}
             />
-            <Environment files="puresky.hdr" />
-        </Canvas>
+            {/* <Environment map={getAssetbyId(props.environment.assetId)} /> */}
+            <Environment files='puresky.hdr' />
+          </>
+        )}
+      </Canvas>
     </div>
   );
 }

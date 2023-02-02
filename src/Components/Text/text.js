@@ -10,9 +10,7 @@ const renderList = (list) => {
 };
 
 const Text = (props) => {
-  const scale = props.scale
-    ? props.scale * htmlDefaults.scale
-    : htmlDefaults.scale;
+  const scale = props.scale ? props.scale * htmlDefaults.scale : htmlDefaults.scale;
   switch (props.type) {
     case TextTypes.Paragraph:
       return (
@@ -40,6 +38,7 @@ Text.propTypes = {
   title: PropTypes.string,
   list: PropTypes.arrayOf(PropTypes.string),
   position: PropTypes.arrayOf(PropTypes.number).isRequired,
+  rotation: PropTypes.arrayOf(PropTypes.number),
   scale: PropTypes.number,
   numbererd: PropTypes.bool,
 };
