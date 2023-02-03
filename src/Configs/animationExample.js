@@ -15,6 +15,11 @@ export const animationExample = {
   className: "rootContainer",
   isLeaf: false,
   alignment: Alignment.Vertical,
+  assets: {
+    'implicits' : [{
+      '101': 'data'
+    }],
+  },
   children: [
     {
       type: ComponentTypes.Canvas,
@@ -27,14 +32,14 @@ export const animationExample = {
       objects: [
         {
           type: ObjectTypes.ImplicitObject,
-          modelId: 101,
+          assetId: '101',
           instanceId: 101,
           position: [0, 0, 0],
           rotation: [-Math.PI/2.5, 0, Math.PI/4],
           scale: [0.15, 0.15, 0.15],
           animations: [
               {
-                initialPause: 500,
+                initialPause: 100,
                 type: Animation.type.intro,
                 trajectory: Animation.trajectory.manual,
                 stateIncrements: [
@@ -98,7 +103,7 @@ export const animationExample = {
       objects: [
         {
           type: ObjectTypes.ImplicitObject,
-          modelId: 101,
+          assetId: '101',
           instanceId: 102,
           useInstancing: false,
           position: [-0.5, 0, 0],
@@ -142,7 +147,7 @@ export const animationExample = {
       objects: [
         {
           type: ObjectTypes.ImplicitObject,
-          modelId: 101,
+          assetId: '101',
           instanceId: 103,
           position: [0.3, -0.4, 0],
           rotation: [-Math.PI/2.5, 0, Math.PI/4],
@@ -160,7 +165,7 @@ export const animationExample = {
         },
         {
           type: ObjectTypes.ImplicitObject,
-          modelId: 101,
+          assetId: '101',
           instanceId: 104,
           position: [-0.3, -0.4, 0],
           rotation: [-Math.PI/2.5, 0, -Math.PI/4],
