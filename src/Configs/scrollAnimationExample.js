@@ -139,8 +139,30 @@ export const scrollAnimationExample = {
         position: [0, 0, 3],
         type: CameraTypes.Perspective,
       },
-      assetIds: ['101'],
+      assetIds: ['101', '11'],
       objects: [
+        // {
+        //   type: ObjectTypes.Text3D,
+        //   assetId: '11',
+        //   text: 'Scroll Down',
+        //   font: "./Inter_Bold.json",
+        //   position: [-0.1,-0.5,-50],
+        //   rotation: [-0.5, 0, 0],
+        //   scale: 0.2,
+        //   animations: [{
+        //     type: Animation.type.scroll,
+        //     visibilityThreshold: {
+        //       top: 0.6,
+        //       bottom: -0.5
+        //     },
+        //     trajectory: Animation.trajectory.curveDefinedByPoints,
+        //     trajectoryMetaData: {
+        //       points: [[-0.1,-0.5,-50], [-0.3, -0.25, -20], [-0.7, 0, 0]],
+        //       speed: 0.0005
+        //     },
+        //     config: { mass: 4, tension: 280, friction: 90 }
+        //   }],
+        // },
         {
           type: ObjectTypes.ImplicitObject,
           assetId: '101',

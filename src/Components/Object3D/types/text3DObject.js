@@ -1,13 +1,15 @@
 import { animated } from "@react-spring/three";
 import { Text3D } from "@react-three/drei";
 import PropTypes from "prop-types";
+import { useScrollAnimation } from "../../../Utils/Animations/scrollAnimation";
 import { useSpringAnimation } from "../../../Utils/Animations/springAnimations";
 import { getAssetbyId } from "../../../Utils/download";
 
 const AnimatedText3D = animated(Text3D);
 
 const Text3DObject = ({objectProps, sceneProps}) => {
-  const spring = useSpringAnimation(objectProps, sceneProps);
+  const [spring, api] = useSpringAnimation(objectProps, sceneProps);
+  useScrollAnimation(objectProps, sceneProps, api);
   const font = getAssetbyId(objectProps.assetId);
 
   return (

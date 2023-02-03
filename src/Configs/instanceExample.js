@@ -14,6 +14,11 @@ export const instanceExample = {
   className: "rootContainer",
   isLeaf: false,
   alignment: Alignment.Vertical,
+  assets: {
+    'implicits' : [{
+      '101': 'data'
+    }],
+  },
   children: [
     {
       type: ComponentTypes.Canvas,
@@ -26,7 +31,7 @@ export const instanceExample = {
       objects: [
         {
           type: ObjectTypes.ImplicitObject,
-          modelId: 101,
+          assetId: '101',
           useInstancing: true,
           instanceCount: 2,
           autoGenerateInstance: false,
@@ -54,7 +59,7 @@ export const instanceExample = {
       objects: [
         {
           type: ObjectTypes.ImplicitObject,
-          modelId: 101,
+          assetId: '101',
           useInstancing: true,
           instanceCount: 100,
           autoGenerateInstance: true,
