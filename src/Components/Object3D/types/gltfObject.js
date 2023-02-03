@@ -6,7 +6,7 @@ import { getAssetbyId } from "../../../Utils/download";
 
 const GltfObject = ({ objectProps, sceneProps }) => {
   const model = getAssetbyId(objectProps.assetId);
-  const spring = useSpringAnimation(objectProps, sceneProps);
+  const [spring, api] = useSpringAnimation(objectProps, sceneProps);
 
   return (
     <animated.primitive object={model.scene} position={spring.position} rotation={spring.rotation} scale={spring.scale} {...objectProps}>

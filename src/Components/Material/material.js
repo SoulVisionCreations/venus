@@ -1,32 +1,45 @@
 import PropTypes from 'prop-types';
+import { LineBasicMaterial, LineDashedMaterial, MeshBasicMaterial, MeshDepthMaterial, MeshDistanceMaterial, MeshLambertMaterial, MeshMatcapMaterial, MeshNormalMaterial, MeshPhongMaterial, MeshPhysicalMaterial, MeshStandardMaterial, MeshToonMaterial, PointsMaterial, RawShaderMaterial, ShaderMaterial, ShadowMaterial, SpriteMaterial } from 'three';
 import { MaterialTypes } from "../../Configs/types";
 
 const Material = ({type, ...props}) => {
   switch (type) {
+    case MaterialTypes.LineBasicMaterial:
+      return new LineBasicMaterial(props);
+    case MaterialTypes.LineDashedMaterial:
+      return new LineDashedMaterial(props);
     case MaterialTypes.MeshBasicMaterial:
-      return <meshBasicMaterial {...props} />;
-    case MaterialTypes.MeshLambertMaterial:
-      return <meshLambertMaterial {...props} />;
-    case MaterialTypes.MeshStandardMaterial:
-      return <meshStandardMaterial {...props} />;
-    case MaterialTypes.MeshPhongMaterial:
-      return <meshPhongMaterial {...props} />;
-    case MaterialTypes.MeshToonMaterial:
-      return <meshToonMaterial {...props} />;
+      return new MeshBasicMaterial(props);
     case MaterialTypes.MeshDepthMaterial:
-      return <meshDepthMaterial {...props} />;
+      return new MeshDepthMaterial(props);
     case MaterialTypes.MeshDistanceMaterial:
-      return <meshDistanceMaterial {...props} />;
+      return new MeshDistanceMaterial(props);
+    case MaterialTypes.MeshLambertMaterial:
+      return new MeshLambertMaterial(props);
     case MaterialTypes.MeshMatcapMaterial:
-      return <meshMatcapMaterial {...props} />;
+      return new MeshMatcapMaterial(props);
     case MaterialTypes.MeshNormalMaterial:
-      return <meshNormalMaterial {...props} />;
+      return new MeshNormalMaterial(props);
     case MaterialTypes.MeshPhongMaterial:
-      return <meshPhongMaterial {...props} />;
+      return new MeshPhongMaterial(props);
     case MaterialTypes.MeshPhysicalMaterial:
-      return <meshPhysicalMaterial {...props} />;
+      return new MeshPhysicalMaterial(props);
+    case MaterialTypes.MeshStandardMaterial:
+      return new MeshStandardMaterial(props);
+    case MaterialTypes.MeshToonMaterial:
+      return new MeshToonMaterial(props);
+    case MaterialTypes.MeshPhongMaterial:
+      return new MeshPhongMaterial(props);
+    case MaterialTypes.PointsMaterial:
+      return new PointsMaterial(props);
     case MaterialTypes.RawShaderMaterial:
-      return <rawShaderMaterial {...props} />;
+      return new RawShaderMaterial(props);
+    case MaterialTypes.ShaderMaterial:
+      return new ShaderMaterial(props);
+    case MaterialTypes.ShadowMaterial:
+      return new ShadowMaterial(props);
+    case MaterialTypes.SpriteMaterial:
+      return new SpriteMaterial(props);
   }
 };
 
