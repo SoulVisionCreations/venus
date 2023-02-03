@@ -1,11 +1,19 @@
-import PropTypes from "prop-types";
+import React from "react";
 import { Html } from "@react-three/drei";
 import { ImageTypes } from "../../Configs/types";
 import { htmlDefaults } from "../../Constants/defaults";
 import { getAssetbyId } from "../../Utils/download";
 import "./image.css";
 
-const renderImage = (props, imgSrc) => {
+type ImageProps = {
+  assetId: string,
+  position: number[],
+  rotation: number[],
+  scale: number,
+  type?: 0|1|2|3|4,
+}
+
+const renderImage = (props: ImageProps, imgSrc: string) => {
   switch (props.type) {
     case ImageTypes.Rounded:
       return <img src={imgSrc} className="rounded" {...props} />;
@@ -20,7 +28,7 @@ const renderImage = (props, imgSrc) => {
   }
 };
 
-const Image = (props) => {
+const Image = (props: ImageProps) => {
   const scale = props.scale ? props.scale * htmlDefaults.scale : htmlDefaults.scale;
   const imgSrc = getAssetbyId(props.assetId);
   return (
@@ -28,16 +36,6 @@ const Image = (props) => {
       {renderImage(props, imgSrc)}
     </Html>
   );
-};
-
-Image.propTypes = {
-  assetId: PropTypes.string.isRequired,
-  position: PropTypes.arrayOf(PropTypes.number),
-  rotation: PropTypes.arrayOf(PropTypes.number),
-  scale: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.arrayOf(PropTypes.number),
-  ]),
 };
 
 export default Image;

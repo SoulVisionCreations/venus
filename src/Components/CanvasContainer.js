@@ -1,10 +1,9 @@
 import { AdaptiveDpr, Environment, PerformanceMonitor, Stats } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
-import { downloadAssets, getAssetbyId } from "../Utils/download.js";
-import AvataarLoader from "./AvataarLoader/avataarloader.js";
-import Camera from "./Camera/camera.js";
-import Scene from "./Scene/Scene.js";
+import { downloadAssets, getAssetbyId } from "../Utils/download";
+import AvataarLoader from "./AvataarLoader/avataarloader";
+import Scene from "./Scene/Scene";
 
 function getCoords(elem) { // crossbrowser version
   const box = elem.getBoundingClientRect();
@@ -94,7 +93,7 @@ export default function CanvasContainer(props) {
         style={props.style}
         id={props.id}
     >
-      <Canvas frameloop="demand">
+      <Canvas frameloop="demand" camera={props.camera}>
         {loading ? (
           <AvataarLoader center={true} />
         ) : (
@@ -103,7 +102,6 @@ export default function CanvasContainer(props) {
             <AdaptiveDpr pixelated />
             <Stats />
             <PerformanceMonitor />
-            <Camera {...props.camera} />
             <Scene
               objects={props.objects}
               sceneControl={props.sceneControl}

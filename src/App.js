@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { invalidate } from '@react-three/fiber';
-import CanvasContainer from './Components/CanvasContainer.js';
-import { Alignment, ComponentTypes } from './Configs/types.js';
-import { downloadAssets } from './Utils/download.js';
+import CanvasContainer from './Components/CanvasContainer';
+import { Alignment, ComponentTypes } from './Configs/types';
+import { downloadAssets } from './Utils/download';
 
-export default function App({config})
-{
+export default function App({config}) {
   const renderConfig = () => {
       return config.children.map((child, index) => {
         if(child.type == ComponentTypes.Container) {

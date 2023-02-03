@@ -1,7 +1,6 @@
 import { stylingDefaults } from "../Constants/defaults";
 import {
   ComponentTypes,
-  CameraTypes,
   Alignment,
   ObjectTypes,
   ObjectControlTypes,
@@ -40,7 +39,6 @@ export const config2 = {
       },
       camera: {
         position: [0, 0, 2],
-        type: CameraTypes.Perspective,
       },
       lights: [
         {
