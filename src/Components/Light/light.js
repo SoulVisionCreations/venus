@@ -1,25 +1,25 @@
-import PropTypes from 'prop-types';
-import { LightTypes } from "../../Configs/types.js";
+import PropTypes from 'prop-types'
+import { LightTypes } from '../../Configs/types.js'
 
-const Light = ({type, ...props}) => {
+const Light = ({ type, ...props }) => {
   switch (type) {
     case LightTypes.Ambient:
-      return <ambientLight {...props} />;
+      return <ambientLight {...props} />
     case LightTypes.Directional:
-      return <directionalLight {...props} />;
+      return <directionalLight {...props} />
     case LightTypes.Point:
-      return <pointLight {...props} />;
+      return <pointLight {...props} />
     case LightTypes.Spot:
-      return <spotLight {...props} />;
+      return <spotLight {...props} />
     case LightTypes.Hemisphere:
-      return <hemisphereLight {...props} />;
+      return <hemisphereLight {...props} />
     case LightTypes.Rectangle:
-      return <rectAreaLight {...props} />;
+      return <rectAreaLight {...props} />
   }
-};
+}
 
 Light.propTypes = {
   type: PropTypes.oneOf(Object.values(LightTypes)).isRequired,
 }
 
-export default Light;
+export default Light

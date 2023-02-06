@@ -1,10 +1,10 @@
-import React from "react";
-import { Html } from "@react-three/drei";
+import { Html } from '@react-three/drei'
+import { Euler, Vector3 } from 'three'
 
 type AvataarLoaderProps = {
-  position: number[],
-  rotation: number[],
-  scale: number[],
+  position: Vector3
+  rotation: Euler
+  scale: number
   center: boolean
 }
 
@@ -13,7 +13,7 @@ const AvataarLoader = (props: AvataarLoaderProps) => {
     <Html {...props}>
       <img src="./loader-avataar.gif" alt="Loading" width="200" />
     </Html>
-  );
-};
+  )
+}
 
-export default AvataarLoader;
+export default AvataarLoader

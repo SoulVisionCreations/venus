@@ -1,41 +1,68 @@
-import React from "react";
-import { Html } from "@react-three/drei";
-import { ImageTypes } from "../../Configs/types";
-import { htmlDefaults } from "../../Constants/defaults";
-import { getAssetbyId } from "../../Utils/download";
-import "./image.css";
+import React from 'react'
+import { Html } from '@react-three/drei'
+import { ImageTypes } from '../../Configs/types'
+import { htmlDefaults } from '../../Constants/defaults'
+import { getAssetbyId } from '../../Utils/download'
+import './image.css'
+import { Euler, Vector3 } from 'three'
 
 type ImageProps = {
-  assetId: string,
-  position: number[],
-  rotation: number[],
-  scale: number,
-  type?: 0|1|2|3|4,
+  assetId: string
+  position: Vector3
+  rotation: Euler
+  scale: number
+  type: any
+  imgSrc: string
 }
 
-const renderImage = (props: ImageProps, imgSrc: string) => {
-  switch (props.type) {
+const renderImage = ({ type, ...props }: ImageProps): JSX.Element => {
+  switch (type) {
     case ImageTypes.Rounded:
-      return <img src={imgSrc} className="rounded" {...props} />;
+      return (
+        <img
+          src={props.imgSrc}
+          className="rounded"
+          {...props}
+          alt="load failed"
+        />
+      )
     case ImageTypes.Circle:
-      return <img src={imgSrc} className="circle" {...props} />;
+      return (
+        <img
+          src={props.imgSrc}
+          className="circle"
+          {...props}
+          alt="load failed"
+        />
+      )
     case ImageTypes.Square:
-      return <img src={imgSrc} className="square" {...props} />;
+      return (
+        <img
+          src={props.imgSrc}
+          className="square"
+          {...props}
+          alt="load failed"
+        />
+      )
     case ImageTypes.Icon:
-      return <img src={imgSrc} className="icon" {...props} />;
+      return (
+        <img src={props.imgSrc} className="icon" {...props} alt="load failed" />
+      )
     default:
-      return <img src={imgSrc} />;
+      return <img src={props.imgSrc} alt="load failed" />
   }
-};
+}
 
-const Image = (props: ImageProps) => {
-  const scale = props.scale ? props.scale * htmlDefaults.scale : htmlDefaults.scale;
-  const imgSrc = getAssetbyId(props.assetId);
+const Image = ({ type, ...props }: ImageProps): JSX.Element => {
+  const scale: number = props.scale
+    ? props.scale * htmlDefaults.scale
+    : htmlDefaults.scale
+  const imgSrc: string = getAssetbyId(props.assetId)
   return (
     <Html transform {...props} scale={scale}>
-      {renderImage(props, imgSrc)}
+      {renderImage({ type, ...props, imgSrc })}
     </Html>
-  );
-};
+  )
+}
 
-export default Image;
+export default Image

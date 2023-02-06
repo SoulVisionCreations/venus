@@ -1,5 +1,5 @@
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls } from '@react-three/drei'
 
 export default function Orbit() {
-  return <OrbitControls />;
+  return <OrbitControls />
 }

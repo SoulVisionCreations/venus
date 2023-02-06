@@ -1,4 +1,4 @@
-import { stylingDefaults } from "../Constants/defaults";
+import { stylingDefaults } from '../Constants/defaults'
 import {
   AnimationTypes,
   ComponentTypes,
@@ -8,28 +8,26 @@ import {
   SceneEffectsTypes,
   eventDrivenActionTypes,
   ObjectControlTypes,
-  LightTypes,
-  SceneControlTypes,
-} from "./types";
+} from './types'
 
 export const config1 = {
   type: ComponentTypes.Container,
-  className: "rootContainer",
+  className: 'rootContainer',
   isLeaf: false,
   alignment: Alignment.Vertical,
   children: [
     {
       type: ComponentTypes.Container,
       alignment: Alignment.Horizontal,
-      style: {height: '400px'},
+      style: { height: '400px' },
       children: [
         {
           type: ComponentTypes.Canvas,
-          className: "canvas",
-          style: {flexGrow: 1, height: '400px'},
+          className: 'canvas',
+          style: { flexGrow: 1, height: '400px' },
           camera: {
             position: [0, 0, 3],
-            
+
             type: CameraTypes.Perspective,
           },
           objects: [
@@ -37,16 +35,16 @@ export const config1 = {
               type: ObjectTypes.ImplicitObject,
               modelId: 101,
               position: [0, 0, 0],
-              control: {type: ObjectControlTypes.BouncyPresentation},
-              animations: [{type: AnimationTypes.Rotate}],
+              control: { type: ObjectControlTypes.BouncyPresentation },
+              animations: [{ type: AnimationTypes.Rotate }],
               scale: 1.5,
             },
           ],
         },
         {
           type: ComponentTypes.Canvas,
-          className: "canvas",
-          style: {flexGrow: 1, height: '400px'},
+          className: 'canvas',
+          style: { flexGrow: 1, height: '400px' },
           camera: {
             position: [0, 0, 3],
             type: CameraTypes.Perspective,
@@ -56,13 +54,13 @@ export const config1 = {
               type: ObjectTypes.ImplicitObject,
               modelId: 101,
               position: [0, 0, 0],
-              control: {type: ObjectControlTypes.BouncyPresentation},
-              animations: [{type: AnimationTypes.Float}],
+              control: { type: ObjectControlTypes.BouncyPresentation },
+              animations: [{ type: AnimationTypes.Float }],
               scale: 1.5,
             },
           ],
-        }
-      ]
+        },
+      ],
     },
     {
       type: ComponentTypes.Container,
@@ -70,7 +68,7 @@ export const config1 = {
       children: [
         {
           type: ComponentTypes.Canvas,
-          className: "canvas",
+          className: 'canvas',
           camera: {
             position: [0, 0, 3],
             type: CameraTypes.Perspective,
@@ -81,15 +79,17 @@ export const config1 = {
               type: ObjectTypes.ImplicitObject,
               modelId: 101,
               position: [1, 0, 0],
-              control: {type: ObjectControlTypes.BouncyPresentation},
-              events: [{type: eventDrivenActionTypes.rotateByScrollContinously}],
+              control: { type: ObjectControlTypes.BouncyPresentation },
+              events: [
+                { type: eventDrivenActionTypes.rotateByScrollContinously },
+              ],
               scale: 1.5,
             },
           ],
         },
         {
           type: ComponentTypes.Canvas,
-          className: "canvas",
+          className: 'canvas',
           camera: {
             position: [0, 0, 3],
             type: CameraTypes.Perspective,
@@ -100,15 +100,17 @@ export const config1 = {
               type: ObjectTypes.ImplicitObject,
               modelId: 101,
               position: [1, 0, 0],
-              control: {type: ObjectControlTypes.BouncyPresentation},
-              events: [{type: eventDrivenActionTypes.rotateByScrollContinously}],
+              control: { type: ObjectControlTypes.BouncyPresentation },
+              events: [
+                { type: eventDrivenActionTypes.rotateByScrollContinously },
+              ],
               scale: 2,
             },
           ],
         },
         {
           type: ComponentTypes.Canvas,
-          className: "canvas",
+          className: 'canvas',
           camera: {
             position: [0, 0, 3],
             type: CameraTypes.Perspective,
@@ -119,17 +121,19 @@ export const config1 = {
               type: ObjectTypes.ImplicitObject,
               modelId: 101,
               position: [1, 0.2, 0],
-              control: {type: ObjectControlTypes.BouncyPresentation},
-              events: [{type: eventDrivenActionTypes.rotateByScrollContinously}],
+              control: { type: ObjectControlTypes.BouncyPresentation },
+              events: [
+                { type: eventDrivenActionTypes.rotateByScrollContinously },
+              ],
               scale: 2.5,
             },
           ],
-        }
-      ]
+        },
+      ],
     },
     {
       type: ComponentTypes.Canvas,
-      className: "canvas",
+      className: 'canvas',
       effects: SceneEffectsTypes.DisableScrollOnceOnCompletelyVisible,
       style: stylingDefaults.fullWidthFullHeightCanvas,
       camera: {
@@ -141,15 +145,20 @@ export const config1 = {
           type: ObjectTypes.ImplicitObject,
           modelId: 101,
           position: [1, 0, 0],
-          events: [{type: eventDrivenActionTypes.rotateByScrollOnce, rotationArray: [0,0, Math.PI/180]}],
-          control: {type: ObjectControlTypes.BouncyPresentation},
+          events: [
+            {
+              type: eventDrivenActionTypes.rotateByScrollOnce,
+              rotationArray: [0, 0, Math.PI / 180],
+            },
+          ],
+          control: { type: ObjectControlTypes.BouncyPresentation },
           scale: 1.5,
         },
       ],
     },
     {
       type: ComponentTypes.Canvas,
-      className: "canvas",
+      className: 'canvas',
       style: stylingDefaults.fullWidthFullHeightCanvas,
       camera: {
         position: [0, 0, 3],
@@ -160,8 +169,8 @@ export const config1 = {
           type: ObjectTypes.ImplicitObject,
           modelId: 101,
           position: [1, 0, 0],
-          animations: [{type: AnimationTypes.Float}],
-          control: {type: ObjectControlTypes.BouncyPresentation},
+          animations: [{ type: AnimationTypes.Float }],
+          control: { type: ObjectControlTypes.BouncyPresentation },
           scale: 1.5,
         },
       ],
@@ -197,4 +206,4 @@ export const config1 = {
     //   },
     // },
   ],
-};
+}

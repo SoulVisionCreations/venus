@@ -1,28 +1,29 @@
-import { stylingDefaults } from "../Constants/defaults";
+import { stylingDefaults } from '../Constants/defaults'
 import {
   AnimationTypes,
   ComponentTypes,
   CameraTypes,
   Alignment,
   ObjectTypes,
-  ObjectControlTypes,
   SceneControlTypes,
-} from "./types";
+} from './types'
 
 export const instanceExample = {
   type: ComponentTypes.Container,
-  className: "rootContainer",
+  className: 'rootContainer',
   isLeaf: false,
   alignment: Alignment.Vertical,
   assets: {
-    'implicits' : [{
-      '101': 'data'
-    }],
+    implicits: [
+      {
+        101: 'data',
+      },
+    ],
   },
   children: [
     {
       type: ComponentTypes.Canvas,
-      className: "canvas",
+      className: 'canvas',
       style: stylingDefaults.fullWidthFullHeightCanvas,
       camera: {
         position: [0, 0, 3],
@@ -38,19 +39,21 @@ export const instanceExample = {
           instances: [
             {
               position: [0.5, 0.5, 0],
-              animations: [{type: AnimationTypes.Rotate, rotationArray: [1,0,0]}],
+              animations: [
+                { type: AnimationTypes.Rotate, rotationArray: [1, 0, 0] },
+              ],
             },
             {
               position: [-0.5, -0.5, 0],
-              animations: [{type: AnimationTypes.Rotate}],
-            }
+              animations: [{ type: AnimationTypes.Rotate }],
+            },
           ],
         },
       ],
     },
     {
       type: ComponentTypes.Canvas,
-      className: "canvas",
+      className: 'canvas',
       style: stylingDefaults.fullWidthFullHeightCanvas,
       camera: {
         position: [0, 0, 3],
@@ -66,13 +69,15 @@ export const instanceExample = {
           instances: [
             {
               position: [0.5, 0.5, 0],
-              animations: [{type: AnimationTypes.Rotate, rotationArray: [0,0,1]}],
-              scale: [0.2, 0.2, 0.2]
+              animations: [
+                { type: AnimationTypes.Rotate, rotationArray: [0, 0, 1] },
+              ],
+              scale: [0.2, 0.2, 0.2],
             },
           ],
         },
       ],
-      sceneControl: {type: SceneControlTypes.Orbit}
+      sceneControl: { type: SceneControlTypes.Orbit },
     },
   ],
-};
+}

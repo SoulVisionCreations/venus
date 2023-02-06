@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import {
   BoxGeometry,
   ConeGeometry,
@@ -19,13 +18,57 @@ import {
   ExtrudeGeometry,
   LatheGeometry,
   PlaneGeometry,
-  Shape,
   WireframeGeometry,
+  BufferGeometry,
+  ShapeGeometry,
 } from 'three'
 import { StandardGeometryTypes } from '../../Configs/types'
 
-const generateParams = (type, props) => {
-  switch (type) {
+type GeometryProps = {
+  type: any
+  width: number
+  height: number
+  length: number
+  depth: number
+  widthSegments: number
+  heightSegments: number
+  depthSegments: number
+  radius: number
+  capSubdivisions: number
+  radialSegments: number
+  openEnded: boolean
+  thetaStart: number
+  thetaLength: number
+  radiusTop: number
+  radiusBottom: number
+  radiusLeft: number
+  detail: number
+  geometry: any
+  thresholdAngle: number
+  shapes: any
+  option: any
+  points: any
+  segments: number
+  vertices: any
+  indices: any
+  innerRadius: number
+  outerRadius: number
+  phiStart: number
+  phiLength: number
+  phiSegments: number
+  tube: number
+  tubularSegments: number
+  arc: any
+  p: any
+  q: any
+  thetaSegments: number
+  curveSegments: number
+  closed: boolean
+  path: string
+}
+
+const generateParams = (props: GeometryProps): any => {
+  switch (props.type) {
     case StandardGeometryTypes.BoxGeometry:
       return [
         props.width,
@@ -91,7 +134,7 @@ const generateParams = (type, props) => {
         props.heightSegments,
       ]
     case StandardGeometryTypes.PolyhedronGeometry:
-      return [props.vertices, props.indices, props.radius, props.detial]
+      return [props.vertices, props.indices, props.radius, props.detail]
     case StandardGeometryTypes.RingGeometry:
       return [
         props.innerRadius,
@@ -142,12 +185,14 @@ const generateParams = (type, props) => {
       ]
     case StandardGeometryTypes.WireframeGeometry:
       return [props.geometry]
+    default:
+      return null
   }
 }
 
-const Geometry = ({ type, ...props }) => {
-  const params = generateParams(type, props)
-  switch (type) {
+const Geometry = (props: GeometryProps): BufferGeometry | null => {
+  const params = generateParams(props)
+  switch (props.type) {
     case StandardGeometryTypes.BoxGeometry:
       return new BoxGeometry(...params)
     case StandardGeometryTypes.CapsuleGeometry:
@@ -177,7 +222,7 @@ const Geometry = ({ type, ...props }) => {
     case StandardGeometryTypes.RingGeometry:
       return new RingGeometry(...params)
     case StandardGeometryTypes.ShapeGeometry:
-      return new Shape(...params)
+      return new ShapeGeometry(...params)
     case StandardGeometryTypes.SphereGeometry:
       return new SphereGeometry(...params)
     case StandardGeometryTypes.TetrahedronGeometry:
@@ -190,11 +235,9 @@ const Geometry = ({ type, ...props }) => {
       return new TubeGeometry(...params)
     case StandardGeometryTypes.WireframeGeometry:
       return new WireframeGeometry(...params)
+    default:
+      return null
   }
-}
-
-Geometry.propTypes = {
-  type: PropTypes.oneOf(Object.values(StandardGeometryTypes)).isRequired,
 }
 
 export default Geometry

@@ -3,7 +3,7 @@ export const ObjectTypes = {
   GltfObject: 1,
   StandardObject: 2,
   Text3D: 3,
-};
+}
 
 export const StandardGeometryTypes = {
   BoxGeometry: 0,
@@ -27,7 +27,7 @@ export const StandardGeometryTypes = {
   TorusKnotGeometry: 18,
   TubeGeometry: 19,
   WireframeGeometry: 20,
-};
+}
 
 export const MaterialTypes = {
   LineBasicMaterial: 0,
@@ -48,16 +48,16 @@ export const MaterialTypes = {
   ShaderMaterial: 15,
   ShadowMaterial: 16,
   SpriteMaterial: 17,
-};
+}
 
 export const ObjectHtmlTypes = {
   PriceTag: 0,
   Custom: 1,
-};
+}
 
 export const SceneEffectsTypes = {
   DisableScrollOnceOnCompletelyVisible: 0,
-};
+}
 
 export const Animation = {
   type: {
@@ -72,32 +72,32 @@ export const Animation = {
     curveDefinedByPoints: 3,
     multipleCurveDefinedByPoints: 4,
   },
-};
+}
 
 export const AnimationTypes = {
   Rotate: 0,
   Float: 1,
-};
+}
 
 export const eventDrivenActionTypes = {
   rotateByScrollOnce: 0,
   rotateByScrollContinously: 1,
-};
+}
 
 export const ObjectControlTypes = {
   NoControls: 0,
   BouncyPresentation: 1,
-};
+}
 
 export const SceneControlTypes = {
   Orbit: 0,
-};
+}
 
 export const CameraTypes = {
   Perspective: 0,
   Orthographic: 1,
   Cube: 2,
-};
+}
 
 export const LightTypes = {
   Ambient: 0,
@@ -106,26 +106,26 @@ export const LightTypes = {
   Spot: 3,
   Hemisphere: 4,
   Rectangular: 5,
-};
+}
 
 export const ComponentTypes = {
   Container: 0,
   Canvas: 1,
-};
+}
 
 export const TextTypes = {
   Paragraph: 0,
   List: 1,
-};
+}
 
 export const ImageTypes = {
   Rounded: 0,
   Circle: 1,
   Square: 2,
   Icon: 3,
-};
+}
 
 export const Alignment = {
   Vertical: 0,
   Horizontal: 1,
-};
+}

@@ -1,29 +1,31 @@
-import React from "react";
-// import PropTypes from "prop-types";
-import { Html } from "@react-three/drei";
-import { htmlDefaults } from "../../Constants/defaults";
-import { TextTypes } from "../../Configs/types";
+import React from 'react'
+import { Html } from '@react-three/drei'
+import { htmlDefaults } from '../../Constants/defaults'
+import { TextTypes } from '../../Configs/types'
+import { Euler, Vector3 } from 'three'
 
 type TextProps = {
-  list: string[],
-  numbererd: boolean,
-  position?: number[],
-  rotation: number[],
-  scale: number,
-  text: string,
-  title: string,
-  type?: 0|1,
+  list: string[]
+  numbererd: boolean
+  position: Vector3
+  rotation: Euler
+  scale: number
+  text: string
+  title: string
+  type: any
 }
 
-const renderList = (list: string[]) => {
+const renderList = (list: string[]): JSX.Element[] => {
   return list.map(function (item, i) {
-    return <li key={i}>{item}</li>;
-  });
-};
+    return <li key={i}>{item}</li>
+  })
+}
 
-const Text = (props: TextProps) => {
-  const scale = props.scale ? props.scale * htmlDefaults.scale : htmlDefaults.scale;
-  switch (props.type) {
+const Text = ({ type, ...props }: TextProps): JSX.Element | null => {
+  const scale: number = props.scale
+    ? props.scale * htmlDefaults.scale
+    : htmlDefaults.scale
+  switch (type) {
     case TextTypes.List:
       return (
         <Html transform {...props} scale={scale}>
@@ -34,14 +36,16 @@ const Text = (props: TextProps) => {
             <ul> {renderList(props.list)} </ul>
           )}
         </Html>
-      );
+      )
     case TextTypes.Paragraph:
       return (
         <Html transform {...props} scale={scale}>
           {props.text}
         </Html>
-      );
+      )
+    default:
+      return null
   }
-};
+}
 
-export default Text;
+export default Text
