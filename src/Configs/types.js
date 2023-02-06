@@ -6,41 +6,48 @@ export const ObjectTypes = {
 };
 
 export const StandardGeometryTypes = {
-  WireframeGeometry: 0,
-  TetrahedronGeometry: 1,
-  OctahedronGeometry: 2,
-  IcosahedronGeometry: 3,
-  DodecahedronGeometry: 4,
-  PolyhedronGeometry: 5,
-  TubeGeometry: 6,
-  TorusKnotGeometry: 7,
-  TorusGeometry: 8,
-  SphereGeometry: 9,
-  RingGeometry: 10,
+  BoxGeometry: 0,
+  CapsuleGeometry: 1,
+  CircleGeometry: 2,
+  ConeGeometry: 3,
+  CylinderGeometry: 4,
+  DodecahedronGeometry: 5,
+  EdgesGeometry: 6,
+  ExtrudeGeometry: 7,
+  IcosahedronGeometry: 8,
+  LatheGeometry: 9,
+  OctahedronGeometry: 10,
   PlaneGeometry: 11,
-  LatheGeometry: 12,
-  ShapeGeometry: 13,
-  ExtrudeGeometry: 14,
-  EdgesGeometry: 15,
-  ConeGeometry: 16,
-  CylinderGeometry: 17,
-  CircleGeometry: 18,
-  BoxGeometry: 19,
-  CapsuleGeometry: 20,
+  PolyhedronGeometry: 12,
+  RingGeometry: 13,
+  ShapeGeometry: 14,
+  SphereGeometry: 15,
+  TetrahedronGeometry: 16,
+  TorusGeometry: 17,
+  TorusKnotGeometry: 18,
+  TubeGeometry: 19,
+  WireframeGeometry: 20,
 };
 
 export const MaterialTypes = {
-  MeshPhysicalMaterial: 0,
-  MeshStandardMaterial: 1,
-  MeshPhongMaterial: 2,
-  MeshToonMaterial: 3,
-  MeshNormalMaterial: 4,
+  LineBasicMaterial: 0,
+  LineDashedMaterial: 1,
+  MeshBasicMaterial: 2,
+  MeshDepthMaterial: 3,
+  MeshDistanceMaterial: 4,
   MeshLambertMaterial: 5,
-  MeshDepthMaterial: 6,
-  MeshDistanceMaterial: 7,
-  MeshBasicMaterial: 8,
-  MeshMatcapMaterial: 9,
-  RawShaderMaterial: 10,
+  MeshMatcapMaterial: 6,
+  MeshNormalMaterial: 7,
+  MeshPhongMaterial: 8,
+  MeshPhysicalMaterial: 9,
+  MeshStandardMaterial: 10,
+  MeshToonMaterial: 11,
+  MeshPhongMaterial: 12,
+  PointsMaterial: 13,
+  RawShaderMaterial: 14,
+  ShaderMaterial: 15,
+  ShadowMaterial: 16,
+  SpriteMaterial: 17,
 };
 
 export const ObjectHtmlTypes = {
@@ -56,7 +63,7 @@ export const Animation = {
   type: {
     intro: 0,
     chained: 1,
-    scroll: 2
+    scroll: 2,
   },
   trajectory: {
     manual: 0,
@@ -64,7 +71,7 @@ export const Animation = {
     circle: 2,
     curveDefinedByPoints: 3,
     multipleCurveDefinedByPoints: 4,
-  }
+  },
 };
 
 export const AnimationTypes = {

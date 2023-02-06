@@ -21,19 +21,20 @@ export const config2 = {
   className: "rootContainer",
   alignment: Alignment.Vertical,
   style: stylingDefaults.flexColumnContainer,
+  assets: {
+    'implicits' : [{
+      '100001': 'data'
+    }],
+    'gltfs' : [{'10001': './1863416.glb'}],
+    'images' : [{'1001': './chair.png'}],
+    'fonts' : [{'101': './Inter_Bold.json'}],
+  },
   children: [
     {
       type: ComponentTypes.Canvas,
       className: "canvas",
       style: stylingDefaults.fullWidthFullHeightCanvas,
-      assets: {
-        'implicits' : [{
-          '100001': 'data'
-        }],
-        'gltfs' : [{'10001': './1863416.glb'}],
-        'images' : [{'1001': './chair.png'}],
-        'fonts' : [{'101': './Inter_Bold.json'}],
-      },
+      assetIds: ['100001', '10001', '10001', '101'],
       environment: {
         path: './puresky.hdr'
       },
@@ -106,16 +107,14 @@ export const config2 = {
             },
           ],
         },
-        // {
-        //   type: ObjectTypes.StandardObject,
-        //   geometry: [{ type: StandardGeometryTypes.SphereGeometry }],
-        //   material: [
-        //     {
-        //       type: MaterialTypes.MeshStandardMaterial,
-        //       color: "green",
-        //     },
-        //   ],
-        // },
+        {
+          type: ObjectTypes.StandardObject,
+          geometry: { type: StandardGeometryTypes.BoxGeometry, height:0.1 },
+          material: {
+              type: MaterialTypes.MeshStandardMaterial,
+              color: "green",
+            },
+        },
         {
           type: ObjectTypes.Text3D,
           assetId: '101',

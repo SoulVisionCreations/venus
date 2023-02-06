@@ -13,12 +13,12 @@ export function Mesh({geometry, material, gSceneParams, objectProps, sceneProps}
 
   useFrame((state) => {
     if(!meshRef.current) return;
-    meshRef.current.material.uniforms.CamPos.value.copy(state.camera.position);
+    meshRef.current.material.uniforms?.CamPos.value.copy(state.camera.position);
   });
 
   useEffect(() => {
     if(!meshRef.current) return;
-    meshRef.current.userData.SceneParams = gSceneParams.current;
+    if(gSceneParams) meshRef.current.userData.SceneParams = gSceneParams.current;
   }, [meshRef.current]);
 
   return (
