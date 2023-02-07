@@ -13,7 +13,7 @@ import {
 export type ScenePropsType = {
   isSceneVisible: boolean
   isSceneCompletelyVisible: boolean
-  canvasRect: number[]
+  canvasRect: Array<number>
 }
 
 type Props = {
@@ -25,7 +25,7 @@ type Props = {
   sceneProps: ScenePropsType
 }
 
-const addLights = (lights: Array<LightPropsType>): JSX.Element[] => {
+const addLights = (lights: Array<LightPropsType>): Array<JSX.Element> => {
   return lights.map(
     (lightProps: LightPropsType, index: number): JSX.Element => {
       return <Light {...lightProps} key={index} />
@@ -36,7 +36,7 @@ const addLights = (lights: Array<LightPropsType>): JSX.Element[] => {
 const renderObjects = (
   objects: Array<ObjectPropsType>,
   sceneProps: ScenePropsType
-): JSX.Element[] => {
+): Array<JSX.Element> => {
   return objects.map(
     (objectProps: ObjectPropsType, index: number): JSX.Element => {
       return (
@@ -50,13 +50,13 @@ const renderObjects = (
   )
 }
 
-const renderTexts = (texts: Array<TextPropsType>): JSX.Element[] => {
+const renderTexts = (texts: Array<TextPropsType>): Array<JSX.Element> => {
   return texts.map((textProps: TextPropsType, index: number): JSX.Element => {
     return <Text {...textProps} key={index} />
   })
 }
 
-const renderImages = (images: Array<ImagePropsType>): JSX.Element[] => {
+const renderImages = (images: Array<ImagePropsType>): Array<JSX.Element> => {
   return images.map(
     (imageProps: ImagePropsType, index: number): JSX.Element => {
       return <Image {...imageProps} key={index} />

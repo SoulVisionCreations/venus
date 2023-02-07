@@ -9,7 +9,7 @@ import { ObjectPropsType, ObjectHtmlPropsType } from '../../Configs/propTypes'
 
 export const renderObjectHtmls = (
   objectHtmls: Array<ObjectHtmlPropsType>
-): JSX.Element[] => {
+): Array<JSX.Element> => {
   return objectHtmls.map(
     (objectHtmlProps: ObjectHtmlPropsType, index: number): JSX.Element => {
       return <ObjectHtml {...objectHtmlProps} key={index} />

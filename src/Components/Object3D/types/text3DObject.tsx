@@ -17,9 +17,11 @@ const Text3DObject = ({
 }) => {
   const [spring, api] = useSpringAnimation(objectProps, sceneProps)
   useScrollAnimation(objectProps, sceneProps, api)
-  const font = getAssetbyId(objectProps.assetId)
+  const font: any = getAssetbyId(objectProps.assetId)
 
   return (
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     <AnimatedText3D
       font={font}
       {...objectProps}

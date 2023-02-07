@@ -3,7 +3,7 @@ import { htmlDefaults } from '../../Constants/defaults'
 import { TextTypes } from '../../Configs/types'
 import { TextPropsType } from '../../Configs/propTypes'
 
-const renderList = (list: string[]): JSX.Element[] => {
+const renderList = (list: Array<string>): Array<JSX.Element> => {
   return list.map((item: string, i: number): JSX.Element => {
     return <li key={i}>{item}</li>
   })

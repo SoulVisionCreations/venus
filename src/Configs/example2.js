@@ -19,16 +19,13 @@ export const config2 = {
   className: 'rootContainer',
   alignment: Alignment.Vertical,
   style: stylingDefaults.flexColumnContainer,
-  assets: {
-    implicits: [
-      {
-        100001: 'data',
-      },
-    ],
-    gltfs: [{ 10001: './1863416.glb' }],
-    images: [{ 1001: './chair.png' }],
-    fonts: [{ 101: './Inter_Bold.json' }],
-  },
+  assets: [
+    // 'REC-jxvfZgVpLiDq9sM/deliverables/DLV-AhYTvfCZEUcLdXeekERqrymJA/
+    { assetId: 100001, assetPath: 'data', assetType: 'implicit' },
+    { assetId: 10001, assetPath: './1863416.glb', assetType: 'gltf' },
+    { assetId: 1001, assetPath: './chair.png', assetType: 'image' },
+    { assetId: 101, assetPath: './Inter_Bold.json', assetType: 'font' },
+  ],
   children: [
     {
       type: ComponentTypes.Canvas,

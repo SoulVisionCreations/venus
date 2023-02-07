@@ -2,10 +2,14 @@ import InstanceMesh from '../../InstanceMesh'
 import { Mesh } from '../../mesh'
 import { getAssetbyId } from '../../../Utils/download'
 import { ScenePropsType } from '../../Scene/Scene'
-import {
-  ImplicitAssetPropsType,
-  ObjectPropsType,
-} from '../../../Configs/propTypes'
+import { ObjectPropsType } from '../../../Configs/propTypes'
+import { BufferGeometry, Material } from 'three'
+
+interface ImplicitAssetPropsType {
+  geometry: BufferGeometry
+  gSceneParams?: object
+  material: Material
+}
 
 const ImplicitObject = ({
   objectProps,

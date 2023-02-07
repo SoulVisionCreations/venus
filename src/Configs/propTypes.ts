@@ -1,4 +1,4 @@
-import { Vector3, Euler, BufferGeometry, Material, Shape, Vector2 } from 'three'
+import { Vector3, Euler, BufferGeometry, Shape, Vector2 } from 'three'
 
 export interface AvataarLoaderPropsType {
   center: boolean
@@ -85,19 +85,13 @@ export interface ObjectPropsType {
   color: string
   geometry: GeometryPropsType
   material: MaterialPropsType
-  objectHtmls: ObjectHtmlPropsType[]
+  objectHtmls: Array<ObjectHtmlPropsType>
   position: Vector3
   rotation: Euler
   scale: Vector3
   text: string
   type: any
   useInstancing: boolean
-}
-
-export interface ImplicitAssetPropsType {
-  geometry: BufferGeometry
-  gSceneParams?: object
-  material: Material
 }
 
 export interface ObjectHtmlPropsType {
