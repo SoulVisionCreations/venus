@@ -4,14 +4,26 @@ import GltfObject from './types/gltfObject'
 import StandardObject from './types/standardObject'
 import Text3DObject from './types/text3DObject'
 import ObjectHtml from '../ObjectHtml/objecthtml'
+import { ScenePropsType } from '../Scene/Scene'
+import { ObjectPropsType, ObjectHtmlPropsType } from '../../Configs/propTypes'
 
-export const renderObjectHtmls = (objectHtmls) => {
-  return objectHtmls.map((objectHtmlProps, index) => {
-    return <ObjectHtml {...objectHtmlProps} key={index} />
-  })
+export const renderObjectHtmls = (
+  objectHtmls: Array<ObjectHtmlPropsType>
+): JSX.Element[] => {
+  return objectHtmls.map(
+    (objectHtmlProps: ObjectHtmlPropsType, index: number): JSX.Element => {
+      return <ObjectHtml {...objectHtmlProps} key={index} />
+    }
+  )
 }
 
-export function Object3D({ objectProps, sceneProps }) {
+export const Object3D = ({
+  objectProps,
+  sceneProps,
+}: {
+  objectProps: ObjectPropsType
+  sceneProps: ScenePropsType
+}): JSX.Element | null => {
   switch (objectProps.type) {
     case ObjectTypes.ImplicitObject:
       return (
@@ -25,5 +37,7 @@ export function Object3D({ objectProps, sceneProps }) {
       )
     case ObjectTypes.Text3D:
       return <Text3DObject objectProps={objectProps} sceneProps={sceneProps} />
+    default:
+      return null
   }
 }

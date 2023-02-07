@@ -71,7 +71,7 @@ async function pngToVolumeDataAsync(url, num_slices) {
     let rgbaPromise = loadPNG(rgbaUrl)
 
     rgbaPromise = rgbaPromise.then((data) => {
-      imgLoadedCount++
+      //imgLoadedCount++
       // updateLoadingProgress(gNumTextures, imgLoadedCount);
       return data
     })

@@ -1,25 +1,7 @@
-import React from 'react'
-import { Euler, Vector3 } from 'three'
-import { LightTypes } from '../../Configs/types.js'
+import { LightPropsType } from '../../Configs/propTypes'
+import { LightTypes } from '../../Configs/types'
 
-type LightProps = {
-  angle: number
-  color: string
-  decay: number
-  distance: number
-  groundColor: string
-  height: number
-  intensity: number
-  penumbra: number
-  position: Vector3
-  rotation: Euler
-  scale: Vector3 | number
-  skyColor: string
-  width: number
-  type: any
-}
-
-const Light = ({ type, ...props }: LightProps): JSX.Element | null => {
+const Light = ({ type, ...props }: LightPropsType): JSX.Element | null => {
   switch (type) {
     case LightTypes.Ambient:
       return <ambientLight {...props} />

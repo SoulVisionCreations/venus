@@ -33,6 +33,7 @@
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.10",
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
+    "@types/three": "^0.149.0",
     "@typescript-eslint/eslint-plugin": "5.50.0",
     "@typescript-eslint/parser": "5.50.0",
     "babel-loader": "9.1.2",

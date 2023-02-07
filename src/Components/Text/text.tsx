@@ -1,27 +1,15 @@
-import React from 'react'
 import { Html } from '@react-three/drei'
 import { htmlDefaults } from '../../Constants/defaults'
 import { TextTypes } from '../../Configs/types'
-import { Euler, Vector3 } from 'three'
-
-type TextProps = {
-  list: string[]
-  numbererd: boolean
-  position: Vector3
-  rotation: Euler
-  scale: number
-  text: string
-  title: string
-  type: any
-}
+import { TextPropsType } from '../../Configs/propTypes'
 
 const renderList = (list: string[]): JSX.Element[] => {
-  return list.map(function (item, i) {
+  return list.map((item: string, i: number): JSX.Element => {
     return <li key={i}>{item}</li>
   })
 }
 
-const Text = ({ type, ...props }: TextProps): JSX.Element | null => {
+const Text = ({ type, ...props }: TextPropsType): JSX.Element | null => {
   const scale: number = props.scale
     ? props.scale * htmlDefaults.scale
     : htmlDefaults.scale

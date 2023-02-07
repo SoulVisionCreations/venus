@@ -1,21 +1,11 @@
-import React from 'react'
 import { Html } from '@react-three/drei'
+import { ImagePropsType } from '../../Configs/propTypes'
 import { ImageTypes } from '../../Configs/types'
 import { htmlDefaults } from '../../Constants/defaults'
 import { getAssetbyId } from '../../Utils/download'
 import './image.css'
-import { Euler, Vector3 } from 'three'
 
-type ImageProps = {
-  assetId: string
-  position: Vector3
-  rotation: Euler
-  scale: number
-  type: any
-  imgSrc: string
-}
-
-const renderImage = ({ type, ...props }: ImageProps): JSX.Element => {
+const renderImage = ({ type, ...props }: ImagePropsType): JSX.Element => {
   switch (type) {
     case ImageTypes.Rounded:
       return (
@@ -53,7 +43,7 @@ const renderImage = ({ type, ...props }: ImageProps): JSX.Element => {
   }
 }
 
-const Image = ({ type, ...props }: ImageProps): JSX.Element => {
+const Image = ({ type, ...props }: ImagePropsType): JSX.Element => {
   const scale: number = props.scale
     ? props.scale * htmlDefaults.scale
     : htmlDefaults.scale

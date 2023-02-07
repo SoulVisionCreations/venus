@@ -1,6 +1,6 @@
 import { animated } from '@react-spring/three'
 import { useSpringAnimation } from '../Utils/Animations/springAnimations'
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { ObjectControls } from '../Utils/ObjectControls/objectControls'
 import { useScrollAnimation } from '../Utils/Animations/scrollAnimation'
