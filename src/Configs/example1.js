@@ -1,4 +1,4 @@
-import { stylingDefaults } from '../Constants/defaults'
+import { stylingDefaults } from '../Constants/defaults';
 import {
   AnimationTypes,
   ComponentTypes,
@@ -8,7 +8,7 @@ import {
   SceneEffectsTypes,
   eventDrivenActionTypes,
   ObjectControlTypes,
-} from './types'
+} from '../Types/types';
 
 export const config1 = {
   type: ComponentTypes.Container,
@@ -80,9 +80,7 @@ export const config1 = {
               modelId: 101,
               position: [1, 0, 0],
               control: { type: ObjectControlTypes.BouncyPresentation },
-              events: [
-                { type: eventDrivenActionTypes.rotateByScrollContinously },
-              ],
+              events: [{ type: eventDrivenActionTypes.rotateByScrollContinously }],
               scale: 1.5,
             },
           ],
@@ -101,10 +99,23 @@ export const config1 = {
               modelId: 101,
               position: [1, 0, 0],
               control: { type: ObjectControlTypes.BouncyPresentation },
-              events: [
-                { type: eventDrivenActionTypes.rotateByScrollContinously },
-              ],
+              events: [{ type: eventDrivenActionTypes.rotateByScrollContinously }],
               scale: 2,
+            },
+          ],
+          objects: [
+            {
+              type: ObjectTypes.ImplicitObject,
+              modelId: 101,
+              position: [1, 0, 0],
+              events: [
+                {
+                  type: eventDrivenActionTypes.rotateByScrollOnce,
+                  rotationArray: [0, 0, Math.PI / 180],
+                },
+              ],
+              control: { type: ObjectControlTypes.BouncyPresentation },
+              scale: 1.5,
             },
           ],
         },
@@ -122,9 +133,7 @@ export const config1 = {
               modelId: 101,
               position: [1, 0.2, 0],
               control: { type: ObjectControlTypes.BouncyPresentation },
-              events: [
-                { type: eventDrivenActionTypes.rotateByScrollContinously },
-              ],
+              events: [{ type: eventDrivenActionTypes.rotateByScrollContinously }],
               scale: 2.5,
             },
           ],
@@ -206,4 +215,4 @@ export const config1 = {
     //   },
     // },
   ],
-}
+};

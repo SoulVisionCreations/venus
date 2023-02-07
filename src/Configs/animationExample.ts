@@ -1,16 +1,10 @@
-import { stylingDefaults } from '../Constants/defaults'
-import {
-  ComponentTypes,
-  CameraTypes,
-  Alignment,
-  ObjectTypes,
-  Animation,
-} from './types'
+import { stylingDefaults } from '../Constants/defaults';
+import { Alignment, AnimationTrajectory, AnimationTypes, ComponentTypes, ObjectTypes } from '../enums';
+import { Container } from '../Types/types';
 
-export const animationExample = {
+export const animationExample: Container = {
   type: ComponentTypes.Container,
   className: 'rootContainer',
-  isLeaf: false,
   alignment: Alignment.Vertical,
   assets: {
     implicits: [
@@ -26,21 +20,19 @@ export const animationExample = {
       style: stylingDefaults.fullWidthFullHeightCanvas,
       camera: {
         position: [0, 0, 3],
-        type: CameraTypes.Perspective,
       },
       objects: [
         {
           type: ObjectTypes.ImplicitObject,
           assetId: '101',
-          instanceId: 101,
           position: [0, 0, 0],
           rotation: [-Math.PI / 2.5, 0, Math.PI / 4],
           scale: [0.15, 0.15, 0.15],
           animations: [
             {
               initialPause: 100,
-              type: Animation.type.intro,
-              trajectory: Animation.trajectory.manual,
+              type: AnimationTypes.intro,
+              trajectory: AnimationTrajectory.manual,
               stateIncrements: [
                 {
                   rotation: [0, 0, 2 * Math.PI],
@@ -51,7 +43,7 @@ export const animationExample = {
             },
             {
               initialPause: 0,
-              type: Animation.type.chained,
+              type: AnimationTypes.chained,
               repeat: true,
               interval: 100,
               childAnimations: [
@@ -97,13 +89,11 @@ export const animationExample = {
       style: stylingDefaults.fullWidthFullHeightCanvas,
       camera: {
         position: [0, 0, 3],
-        type: CameraTypes.Perspective,
       },
       objects: [
         {
           type: ObjectTypes.ImplicitObject,
           assetId: '101',
-          instanceId: 102,
           useInstancing: false,
           position: [-0.5, 0, 0],
           rotation: [-Math.PI / 2.5, 0, Math.PI / 4],
@@ -111,18 +101,18 @@ export const animationExample = {
           animations: [
             {
               initialPause: 0,
-              type: Animation.type.chained,
+              type: AnimationTypes.chained,
               repeat: true,
               interval: 100,
               childAnimations: [
                 {
-                  trajectory: Animation.trajectory.ellipse,
+                  trajectory: AnimationTrajectory.ellipse,
                   trajectoryMetaData: {
                     center: [0, 0, 0],
                     height: 0.5,
                     width: 1.5,
                     steps: 100,
-                    rotate: [
+                    rotateCurve: [
                       {
                         axis: [1, 0, 0],
                         angle: -Math.PI / 4,
@@ -143,21 +133,19 @@ export const animationExample = {
       style: stylingDefaults.fullWidthFullHeightCanvas,
       camera: {
         position: [0, 0, 3],
-        type: CameraTypes.Perspective,
       },
       objects: [
         {
           type: ObjectTypes.ImplicitObject,
           assetId: '101',
-          instanceId: 103,
           position: [0.3, -0.4, 0],
           rotation: [-Math.PI / 2.5, 0, Math.PI / 4],
           scale: [0.4, 0.4, 0.4],
           animations: [
             {
               initialPause: 0,
-              type: Animation.type.intro,
-              trajectory: Animation.trajectory.curveDefinedByPoints,
+              type: AnimationTypes.intro,
+              trajectory: AnimationTrajectory.curveDefinedByPoints,
               trajectoryMetaData: {
                 points: [
                   [0.3, -0.4, 0],
@@ -173,15 +161,14 @@ export const animationExample = {
         {
           type: ObjectTypes.ImplicitObject,
           assetId: '101',
-          instanceId: 104,
           position: [-0.3, -0.4, 0],
           rotation: [-Math.PI / 2.5, 0, -Math.PI / 4],
           scale: [0.4, 0.4, 0.4],
           animations: [
             {
               initialPause: 0,
-              type: Animation.type.intro,
-              trajectory: Animation.trajectory.curveDefinedByPoints,
+              type: AnimationTypes.intro,
+              trajectory: AnimationTrajectory.curveDefinedByPoints,
               trajectoryMetaData: {
                 points: [
                   [-0.3, -0.4, 0],
@@ -197,4 +184,4 @@ export const animationExample = {
       ],
     },
   ],
-}
+};

@@ -1,7 +1,7 @@
+import PropTypes from 'prop-types';
 import {
   LineBasicMaterial,
   LineDashedMaterial,
-  Material,
   MeshBasicMaterial,
   MeshDepthMaterial,
   MeshDistanceMaterial,
@@ -18,10 +18,9 @@ import {
   ShadowMaterial,
   SpriteMaterial,
 } from 'three';
-import { MaterialPropsType } from '../../Configs/propTypes';
-import { MaterialTypes } from '../../Types/types';
+import { MaterialTypes } from '../../Configs/enums';
 
-const MaterialLoader = ({ type, ...props }: MaterialPropsType): Material | null => {
+const Material = ({ type, ...props }) => {
   switch (type) {
     case MaterialTypes.LineBasicMaterial:
       return new LineBasicMaterial(props);
@@ -59,9 +58,11 @@ const MaterialLoader = ({ type, ...props }: MaterialPropsType): Material | null 
       return new ShadowMaterial(props);
     case MaterialTypes.SpriteMaterial:
       return new SpriteMaterial(props);
-    default:
-      return null;
   }
 };
 
-export default MaterialLoader;
+Material.propTypes = {
+  type: PropTypes.oneOf(Object.values(MaterialTypes)).isRequired,
+};
+
+export default Material;

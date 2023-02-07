@@ -1,12 +1,5 @@
-import { stylingDefaults } from '../Constants/defaults'
-import {
-  AnimationTypes,
-  ComponentTypes,
-  CameraTypes,
-  Alignment,
-  ObjectTypes,
-  SceneControlTypes,
-} from './types'
+import { stylingDefaults } from '../Constants/defaults';
+import { AnimationTypes, ComponentTypes, CameraTypes, Alignment, ObjectTypes, SceneControlTypes } from '../Types/types';
 
 export const instanceExample = {
   type: ComponentTypes.Container,
@@ -39,9 +32,7 @@ export const instanceExample = {
           instances: [
             {
               position: [0.5, 0.5, 0],
-              animations: [
-                { type: AnimationTypes.Rotate, rotationArray: [1, 0, 0] },
-              ],
+              animations: [{ type: AnimationTypes.Rotate, rotationArray: [1, 0, 0] }],
             },
             {
               position: [-0.5, -0.5, 0],
@@ -69,10 +60,27 @@ export const instanceExample = {
           instances: [
             {
               position: [0.5, 0.5, 0],
-              animations: [
-                { type: AnimationTypes.Rotate, rotationArray: [0, 0, 1] },
-              ],
+              animations: [{ type: AnimationTypes.Rotate, rotationArray: [0, 0, 1] }],
               scale: [0.2, 0.2, 0.2],
+            },
+          ],
+          objects: [
+            {
+              type: ObjectTypes.ImplicitObject,
+              assetId: '101',
+              useInstancing: true,
+              instanceCount: 2,
+              autoGenerateInstance: false,
+              instances: [
+                {
+                  position: [0.5, 0.5, 0],
+                  animations: [{ type: AnimationTypes.Rotate, rotationArray: [1, 0, 0] }],
+                },
+                {
+                  position: [-0.5, -0.5, 0],
+                  animations: [{ type: AnimationTypes.Rotate }],
+                },
+              ],
             },
           ],
         },
@@ -80,4 +88,4 @@ export const instanceExample = {
       sceneControl: { type: SceneControlTypes.Orbit },
     },
   ],
-}
+};

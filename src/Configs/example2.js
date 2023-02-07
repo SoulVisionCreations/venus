@@ -1,4 +1,4 @@
-import { stylingDefaults } from '../Constants/defaults'
+import { stylingDefaults } from '../Constants/defaults';
 import {
   ComponentTypes,
   Alignment,
@@ -12,7 +12,7 @@ import {
   Animation,
   TextTypes,
   ImageTypes,
-} from './types'
+} from '../Types/types';
 
 export const config2 = {
   type: ComponentTypes.Container,
@@ -167,4 +167,4 @@ export const config2 = {
       ],
     },
   ],
-}
+};

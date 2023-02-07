@@ -200,4 +200,4 @@ void main() {
     glColor = vec4(color, 1.0);
   }
 
-}`
+}`;

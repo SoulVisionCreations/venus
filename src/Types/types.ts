@@ -1,0 +1,130 @@
+import { Alignment, ComponentTypes } from '../enums';
+import { Vector3, Euler, BufferGeometry, Material, Shape, Vector2 } from 'three';
+import { Object3DProps } from './object3DTypes';
+
+export interface GeometryProps {
+  arc: number;
+  capSubdivisions: number;
+  closed: boolean;
+  curveSegments: number;
+  depth: number;
+  depthSegments: number;
+  detail: number;
+  geometry: BufferGeometry;
+  height: number;
+  heightSegments: number;
+  indices: Array<number>;
+  innerRadius: number;
+  length: number;
+  openEnded: boolean;
+  options: object;
+  outerRadius: number;
+  p: number;
+  path: any;
+  phiLength: number;
+  phiSegments: number;
+  phiStart: number;
+  points: Array<Vector2>;
+  q: number;
+  radialSegments: number;
+  radius: number;
+  radiusBottom: number;
+  radiusLeft: number;
+  radiusTop: number;
+  segments: number;
+  shapes: Shape | Array<Shape>;
+  thetaLength: number;
+  thetaSegments: number;
+  thetaStart: number;
+  thresholdAngle: number;
+  tube: number;
+  tubularSegments: number;
+  type: any;
+  vertices: Array<number>;
+  width: number;
+  widthSegments: number;
+}
+
+export interface ImageProps {
+  assetId: string;
+  imgSrc: string;
+  position: Vector3;
+  rotation: Euler;
+  scale: number;
+  type: any;
+}
+
+export interface LightProps {
+  angle: number;
+  color: string;
+  decay: number;
+  distance: number;
+  groundColor: string;
+  height: number;
+  intensity: number;
+  penumbra: number;
+  position: Vector3;
+  rotation: Euler;
+  scale: Vector3 | number;
+  skyColor: string;
+  type: any;
+  width: number;
+}
+
+export interface MaterialProps {
+  type: any;
+}
+
+export interface ImplicitAssetProps {
+  geometry: BufferGeometry;
+  gSceneParams?: object;
+  material: Material;
+}
+
+export interface TextProps {
+  list: Array<string>;
+  numbererd: boolean;
+  position: number[] | Vector3;
+  rotation: number[] | Euler;
+  scale: number;
+  text: string;
+  title: string;
+  type: any;
+}
+
+interface CameraProps {
+  position: number[] | Vector3;
+  fov?: number;
+  near?: number;
+  far?: number;
+  orthographic?: boolean;
+}
+
+export interface CanvasNodeProps {
+  type: ComponentTypes;
+  style?: any;
+  className?: string;
+  id?: string;
+  camera: CameraProps;
+  assetIds?: string[];
+  objects?: Array<Object3DProps>;
+  texts?: Array<TextProps>;
+  lights?: Array<LightProps>;
+  images?: Array<ImageProps>;
+  sceneControl?: { control: any };
+}
+
+export interface ContainerNodeProps {
+  type: ComponentTypes;
+  alignment?: Alignment;
+  assets?: any;
+  style?: any;
+  className?: string;
+  children: Array<ContainerNodeProps | CanvasNodeProps>;
+}
+
+export type CanvasRect = {
+  top: number;
+  left: number;
+  bottom: number;
+};

@@ -1,19 +1,17 @@
-import { ObjectTypes } from '../../Types/types';
+import { ObjectTypes } from '../../Configs/enums';
 import ImplicitObject from './types/implicitObject';
 import GltfObject from './types/gltfObject';
 import StandardObject from './types/standardObject';
 import Text3DObject from './types/text3DObject';
 import ObjectHtml from '../ObjectHtml/objecthtml';
-import { ScenePropsType } from '../Scene/Scene';
-import { ObjectPropsType, ObjectHtmlPropsType } from '../../Configs/propTypes';
 
-export const renderObjectHtmls = (objectHtmls: Array<ObjectHtmlPropsType>): JSX.Element[] => {
-  return objectHtmls.map((objectHtmlProps: ObjectHtmlPropsType, index: number): JSX.Element => {
-    return <ObjectHtml {...objectHtmlProps} key={index} />;
+export const renderObjectHtmls = (objectHtmls) => {
+  return objectHtmls.map((objectHtmlProps, index) => {
+    return <ObjectHtml {...objectHtmlProps} />;
   });
 };
 
-export const Object3D = ({ objectProps, sceneProps }: { objectProps: ObjectPropsType; sceneProps: ScenePropsType }): JSX.Element | null => {
+export function Object3D({ objectProps, sceneProps }) {
   switch (objectProps.type) {
     case ObjectTypes.ImplicitObject:
       return <ImplicitObject objectProps={objectProps} sceneProps={sceneProps} />;
@@ -23,7 +21,5 @@ export const Object3D = ({ objectProps, sceneProps }: { objectProps: ObjectProps
       return <StandardObject objectProps={objectProps} sceneProps={sceneProps} />;
     case ObjectTypes.Text3D:
       return <Text3DObject objectProps={objectProps} sceneProps={sceneProps} />;
-    default:
-      return null;
   }
-};
+}

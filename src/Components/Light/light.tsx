@@ -1,23 +1,23 @@
-import { LightPropsType } from '../../Configs/propTypes'
-import { LightTypes } from '../../Configs/types'
+import { LightPropsType } from '../../Configs/propTypes';
+import { LightTypes } from '../../Types/types';
 
 const Light = ({ type, ...props }: LightPropsType): JSX.Element | null => {
   switch (type) {
     case LightTypes.Ambient:
-      return <ambientLight {...props} />
+      return <ambientLight {...props} />;
     case LightTypes.Directional:
-      return <directionalLight {...props} />
+      return <directionalLight {...props} />;
     case LightTypes.Hemisphere:
-      return <hemisphereLight {...props} />
+      return <hemisphereLight {...props} />;
     case LightTypes.Point:
-      return <pointLight {...props} />
+      return <pointLight {...props} />;
     case LightTypes.Rectangular:
-      return <rectAreaLight {...props} />
+      return <rectAreaLight {...props} />;
     case LightTypes.Spot:
-      return <spotLight {...props} />
+      return <spotLight {...props} />;
     default:
-      return null
+      return null;
   }
-}
+};
 
-export default Light
+export default Light;

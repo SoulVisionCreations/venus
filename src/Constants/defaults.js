@@ -1,9 +1,9 @@
-import { ObjectControlTypes } from '../Configs/types'
+import { ObjectControlTypes } from '../Types/types';
 
 export const cameraDefaults = {
   position: [0, 0, 5],
   makeDefault: true,
-}
+};
 
 export const animationDefaults = {
   rotationArray: [0, 0, 1],
@@ -14,19 +14,19 @@ export const animationDefaults = {
     rotation: [0, 0, 0],
     scale: [0, 0, 0],
   },
-}
+};
 
 export const objectDefaults = {
   position: [0, 0, 0],
   scale: [1, 1, 1],
   rotation: [0, 0, 0], //[-Math.PI/4 - Math.PI/8, -Math.PI/16, 0],
   control: ObjectControlTypes.NoControls,
-}
+};
 
 export const htmlDefaults = {
   scale: 0.1,
   transform: true,
-}
+};
 
 export const stylingDefaults = {
   flexRowContainer: {
@@ -57,4 +57,4 @@ export const stylingDefaults = {
     widht: `${window.innerWidth}px`,
     boxSizing: 'content-box',
   },
-}
+};
