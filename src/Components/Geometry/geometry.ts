@@ -77,7 +77,7 @@ const generateParams = (props: GeometryPropsType): Array<any> => {
     case StandardGeometryTypes.EdgesGeometry:
       return [props.geometry, props.thresholdAngle]
     case StandardGeometryTypes.ExtrudeGeometry:
-      return [props.shapes, props.option]
+      return [props.shapes, props.options]
     case StandardGeometryTypes.IcosahedronGeometry:
       return [props.radius, props.detail]
     case StandardGeometryTypes.LatheGeometry:

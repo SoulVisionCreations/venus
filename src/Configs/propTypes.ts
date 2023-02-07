@@ -1,62 +1,62 @@
-import { Vector3, Euler, BufferGeometry, Material } from 'three'
+import { Vector3, Euler, BufferGeometry, Material, Shape, Vector2 } from 'three'
 
 export interface AvataarLoaderPropsType {
+  center: boolean
   position: Vector3
   rotation: Euler
   scale: number
-  center: boolean
 }
 
 export interface GeometryPropsType {
-  type: any
-  width: number
-  height: number
-  length: number
-  depth: number
-  widthSegments: number
-  heightSegments: number
-  depthSegments: number
-  radius: number
+  arc: number
   capSubdivisions: number
-  radialSegments: number
-  openEnded: boolean
-  thetaStart: number
-  thetaLength: number
-  radiusTop: number
-  radiusBottom: number
-  radiusLeft: number
+  closed: boolean
+  curveSegments: number
+  depth: number
+  depthSegments: number
   detail: number
-  geometry: any
-  thresholdAngle: number
-  shapes: any
-  option: any
-  points: any
-  segments: number
-  vertices: any
-  indices: any
+  geometry: BufferGeometry
+  height: number
+  heightSegments: number
+  indices: Array<number>
   innerRadius: number
+  length: number
+  openEnded: boolean
+  options: object
   outerRadius: number
-  phiStart: number
+  p: number
+  path: any
   phiLength: number
   phiSegments: number
+  phiStart: number
+  points: Array<Vector2>
+  q: number
+  radialSegments: number
+  radius: number
+  radiusBottom: number
+  radiusLeft: number
+  radiusTop: number
+  segments: number
+  shapes: Shape | Array<Shape>
+  thetaLength: number
+  thetaSegments: number
+  thetaStart: number
+  thresholdAngle: number
   tube: number
   tubularSegments: number
-  arc: any
-  p: any
-  q: any
-  thetaSegments: number
-  curveSegments: number
-  closed: boolean
-  path: string
+  type: any
+  vertices: Array<number>
+  width: number
+  widthSegments: number
 }
 
 export interface ImagePropsType {
   assetId: string
+  imgSrc: string
   position: Vector3
   rotation: Euler
   scale: number
   type: any
-  imgSrc: string
 }
 
 export interface LightPropsType {
@@ -72,8 +72,8 @@ export interface LightPropsType {
   rotation: Euler
   scale: Vector3 | number
   skyColor: string
-  width: number
   type: any
+  width: number
 }
 
 export interface MaterialPropsType {
@@ -81,23 +81,23 @@ export interface MaterialPropsType {
 }
 
 export interface ObjectPropsType {
+  assetId: string
+  color: string
+  geometry: GeometryPropsType
+  material: MaterialPropsType
+  objectHtmls: ObjectHtmlPropsType[]
   position: Vector3
   rotation: Euler
   scale: Vector3
-  assetId: string
-  objectHtmls: ObjectHtmlPropsType[]
+  text: string
   type: any
   useInstancing: boolean
-  geometry: GeometryPropsType
-  material: MaterialPropsType
-  text: string
-  color: string
 }
 
 export interface ImplicitAssetPropsType {
   geometry: BufferGeometry
-  material: Material
   gSceneParams?: object
+  material: Material
 }
 
 export interface ObjectHtmlPropsType {
