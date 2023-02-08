@@ -78,8 +78,8 @@ export interface MaterialProps {
 export interface TextProps {
     list: Array<string>;
     numbererd: boolean;
-    position: number[] | Vector3;
-    rotation: number[] | Euler;
+    position: number[];
+    rotation: number[];
     scale: number;
     text: string;
     title: string;
@@ -87,7 +87,7 @@ export interface TextProps {
 }
 
 interface CameraProps {
-    position: number[] | Vector3;
+    position: number[];
     fov?: number;
     near?: number;
     far?: number;
@@ -129,6 +129,6 @@ export type CanvasRect = {
     bottom: number;
 };
 
-export type unkownObject = {
+export type unknownObject = {
     [key: string | number | symbol]: any;
 };
