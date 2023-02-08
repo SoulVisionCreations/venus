@@ -4,6 +4,7 @@ import { useSpring, config as springConfig } from '@react-spring/three';
 import { getInitialState } from '../utility';
 import { getTrajectoryPoints } from './trajectory';
 import { AnimationTypes } from '../../enums';
+import { Object3DProps } from '../../Types/object3DTypes';
 
 export const useSpringAnimation = (instance, sceneProps) => {
     const [initialPosition, initialRotation, initialScale] = getInitialState(instance);

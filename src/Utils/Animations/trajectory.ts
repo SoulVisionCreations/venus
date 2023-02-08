@@ -1,7 +1,7 @@
 import { CatmullRomCurve3, CubicBezierCurve3, CurvePath, EllipseCurve, QuadraticBezierCurve3, Vector, Vector3 } from 'three';
 import { AnimationTrajectory } from '../../enums';
-import { animationGeneratedTrajectoryData, animationManualTrajectoryData, animationTrajectoryData, ObjectState } from '../../Types/animationTypes';
-import { circleMetaData, curveMetaData, ellipseMetaData, multipleCurveMetaData, trajectoryMetaData } from '../../Types/trajectoryTypes';
+import { AnimationGeneratedTrajectoryData, AnimationManualTrajectoryData, AnimationTrajectoryData, ObjectState } from '../../Types/animationTypes';
+import { CircleMetaData, CurveMetaData, EllipseMetaData, MultipleCurveMetaData, TrajectoryMetaData } from '../../Types/trajectoryTypes';
 import { convertVec3ToArray } from '../utility';
 
 type stateVec = {
@@ -24,7 +24,7 @@ const convertStateVecToArr = (stateVec: stateVec): stateArr => {
     };
 };
 
-export const getTrajectoryPoints = (animation: object & animationTrajectoryData, state: { current: stateVec }) => {
+export const getTrajectoryPoints = (animation: object & AnimationTrajectoryData, state: { current: stateVec }) => {
     const trajectory: Array<stateArr> = [];
     const trajectoryVec: Array<stateVec> = [];
     trajectoryVec.push(state.current);
@@ -32,7 +32,7 @@ export const getTrajectoryPoints = (animation: object & animationTrajectoryData,
     if (animation.trajectory == undefined) animation.trajectory = AnimationTrajectory.manual;
     switch (animation.trajectory) {
         case AnimationTrajectory.manual:
-            (animation as object & animationManualTrajectoryData).stateIncrements.forEach((increment: ObjectState) => {
+            (animation as object & AnimationManualTrajectoryData).stateIncrements.forEach((increment: ObjectState) => {
                 const currentState = trajectoryVec.slice(-1)[0];
                 increment.position && currentState.position.add(new Vector3(...increment.position));
                 increment.rotation && currentState.rotation.add(new Vector3(...increment.rotation));
@@ -43,7 +43,7 @@ export const getTrajectoryPoints = (animation: object & animationTrajectoryData,
             break;
         case AnimationTrajectory.ellipse:
             const pointsE = getPointsOnEllipse(
-                (animation as object & animationGeneratedTrajectoryData).trajectoryMetaData as object & ellipseMetaData
+                (animation as object & AnimationGeneratedTrajectoryData).trajectoryMetaData as object & EllipseMetaData
             );
             pointsE.forEach((point) => {
                 trajectory.push({ position: convertVec3ToArray(point), rotation: trajectory[0].rotation, scale: trajectory[0].scale });
@@ -51,15 +51,15 @@ export const getTrajectoryPoints = (animation: object & animationTrajectoryData,
             });
             break;
         case AnimationTrajectory.circle:
-            const pointsC = getPointsOnCircle((animation as object & animationGeneratedTrajectoryData).trajectoryMetaData as object & circleMetaData);
+            const pointsC = getPointsOnCircle((animation as object & AnimationGeneratedTrajectoryData).trajectoryMetaData as object & CircleMetaData);
             pointsC.forEach((point) => {
                 trajectory.push({ position: convertVec3ToArray(point), rotation: trajectory[0].rotation, scale: trajectory[0].scale });
                 trajectoryVec.push({ position: point, rotation: trajectoryVec[0].rotation, scale: trajectoryVec[0].scale });
             });
             break;
         case AnimationTrajectory.curveDefinedByPoints:
-            const curve = createCurveByPoints((animation as object & animationGeneratedTrajectoryData).trajectoryMetaData as object & curveMetaData);
-            const pointsD = getPointsOn3DCurve(curve, (animation as object & animationGeneratedTrajectoryData).trajectoryMetaData.steps);
+            const curve = createCurveByPoints((animation as object & AnimationGeneratedTrajectoryData).trajectoryMetaData as object & CurveMetaData);
+            const pointsD = getPointsOn3DCurve(curve, (animation as object & AnimationGeneratedTrajectoryData).trajectoryMetaData.steps);
             pointsD.forEach((point) => {
                 trajectory.push({ position: convertVec3ToArray(point), rotation: trajectory[0].rotation, scale: trajectory[0].scale });
                 trajectoryVec.push({ position: point, rotation: trajectoryVec[0].rotation, scale: trajectoryVec[0].scale });
@@ -67,9 +67,9 @@ export const getTrajectoryPoints = (animation: object & animationTrajectoryData,
             break;
         case AnimationTrajectory.multipleCurveDefinedByPoints:
             const curvePath = createMultipleCurvesByPoints(
-                (animation as object & animationGeneratedTrajectoryData).trajectoryMetaData as object & multipleCurveMetaData
+                (animation as object & AnimationGeneratedTrajectoryData).trajectoryMetaData as object & MultipleCurveMetaData
             );
-            const pointsP = getPointsOn3DCurve(curvePath, (animation as object & animationGeneratedTrajectoryData).trajectoryMetaData.steps);
+            const pointsP = getPointsOn3DCurve(curvePath, (animation as object & AnimationGeneratedTrajectoryData).trajectoryMetaData.steps);
             pointsP.forEach((point) => {
                 trajectory.push({ position: convertVec3ToArray(point), rotation: trajectory[0].rotation, scale: trajectory[0].scale });
                 trajectoryVec.push({ position: point, rotation: trajectoryVec[0].rotation, scale: trajectoryVec[0].scale });
@@ -79,25 +79,25 @@ export const getTrajectoryPoints = (animation: object & animationTrajectoryData,
     return [trajectory, trajectoryVec];
 };
 
-export const getTrajectory = <T extends { trajectory: AnimationTrajectory; trajectoryMetaData: object & trajectoryMetaData }>(animation: T) => {
+export const getTrajectory = <T extends { trajectory: AnimationTrajectory; trajectoryMetaData: object & TrajectoryMetaData }>(animation: T) => {
     let curve;
     switch (animation.trajectory) {
         case AnimationTrajectory.circle:
-            curve = createCircle(animation.trajectoryMetaData as circleMetaData);
+            curve = createCircle(animation.trajectoryMetaData as CircleMetaData);
             break;
         case AnimationTrajectory.ellipse:
-            curve = createEllipse(animation.trajectoryMetaData as ellipseMetaData);
+            curve = createEllipse(animation.trajectoryMetaData as EllipseMetaData);
             break;
         case AnimationTrajectory.curveDefinedByPoints:
-            curve = createCurveByPoints(animation.trajectoryMetaData as curveMetaData);
+            curve = createCurveByPoints(animation.trajectoryMetaData as CurveMetaData);
             break;
         case AnimationTrajectory.multipleCurveDefinedByPoints:
-            curve = createMultipleCurvesByPoints(animation.trajectoryMetaData as multipleCurveMetaData);
+            curve = createMultipleCurvesByPoints(animation.trajectoryMetaData as MultipleCurveMetaData);
     }
     return curve;
 };
 
-export const createEllipse = (data: ellipseMetaData): EllipseCurve => {
+export const createEllipse = (data: EllipseMetaData): EllipseCurve => {
     const clockwise = data.clockwise == undefined ? false : data.clockwise;
     const rotationZ = data.rotationZ == undefined ? Math.PI / 2 : data.rotationZ;
     const ellipse = new EllipseCurve(
@@ -113,7 +113,7 @@ export const createEllipse = (data: ellipseMetaData): EllipseCurve => {
     return ellipse;
 };
 
-export const getPointsOnEllipse = (data: ellipseMetaData): Array<Vector3> => {
+export const getPointsOnEllipse = (data: EllipseMetaData): Array<Vector3> => {
     const ellipse = createEllipse(data);
     const steps = data.steps == undefined ? 100 : data.steps;
     const points2D = ellipse.getPoints(steps);
@@ -130,7 +130,7 @@ export const getPointsOnEllipse = (data: ellipseMetaData): Array<Vector3> => {
     return points3D;
 };
 
-export const createCircle = (data: circleMetaData): EllipseCurve => {
+export const createCircle = (data: CircleMetaData): EllipseCurve => {
     const clockwise = data.clockwise == undefined ? false : data.clockwise;
     const rotationZ = data.rotationZ == undefined ? Math.PI / 2 : data.rotationZ;
     const circle = new EllipseCurve(
@@ -146,7 +146,7 @@ export const createCircle = (data: circleMetaData): EllipseCurve => {
     return circle;
 };
 
-export const getPointsOnCircle = (data: circleMetaData): Array<Vector3> => {
+export const getPointsOnCircle = (data: CircleMetaData): Array<Vector3> => {
     const circle = createCircle(data);
     const points2D = circle.getPoints(data.steps);
     const points3D: Array<Vector3> = [];
@@ -162,7 +162,7 @@ export const getPointsOnCircle = (data: circleMetaData): Array<Vector3> => {
     return points3D;
 };
 
-export const createQuadraticBezierCurve = (data: curveMetaData): QuadraticBezierCurve3 => {
+export const createQuadraticBezierCurve = (data: CurveMetaData): QuadraticBezierCurve3 => {
     const point1Vec = new Vector3(...data.points[0]);
     const point2Vec = new Vector3(...data.points[1]);
     const point3Vec = new Vector3(...data.points[2]);
@@ -170,7 +170,7 @@ export const createQuadraticBezierCurve = (data: curveMetaData): QuadraticBezier
     return curve;
 };
 
-export const createCubicBezierCurve = (data: curveMetaData): CubicBezierCurve3 => {
+export const createCubicBezierCurve = (data: CurveMetaData): CubicBezierCurve3 => {
     const point1Vec = new Vector3(...data.points[0]);
     const point2Vec = new Vector3(...data.points[1]);
     const point3Vec = new Vector3(...data.points[2]);
@@ -179,7 +179,7 @@ export const createCubicBezierCurve = (data: curveMetaData): CubicBezierCurve3 =
     return curve;
 };
 
-export const createSplineCurve = (data: curveMetaData): CatmullRomCurve3 => {
+export const createSplineCurve = (data: CurveMetaData): CatmullRomCurve3 => {
     const pointsVec: Array<Vector3> = [];
     data.points.forEach((point) => {
         pointsVec.push(new Vector3(...point));
@@ -188,7 +188,7 @@ export const createSplineCurve = (data: curveMetaData): CatmullRomCurve3 => {
     return curve;
 };
 
-export const createCurveByPoints = (data: curveMetaData): CurvePath<Vector3> => {
+export const createCurveByPoints = (data: CurveMetaData): CurvePath<Vector3> => {
     let curve;
     switch (data.points.length) {
         case 3:
@@ -208,7 +208,7 @@ export const createCurveByPoints = (data: curveMetaData): CurvePath<Vector3> => 
     return curvePath as CurvePath<Vector3>;
 };
 
-export const createMultipleCurvesByPoints = (data: multipleCurveMetaData): CurvePath<Vector3> => {
+export const createMultipleCurvesByPoints = (data: MultipleCurveMetaData): CurvePath<Vector3> => {
     const curvePath = new CurvePath();
     data.curves.forEach((curve) => {
         switch (curve.points.length) {

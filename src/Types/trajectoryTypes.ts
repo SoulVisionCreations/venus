@@ -1,6 +1,6 @@
 import { CatmullRomCurve3, CubicBezierCurve, QuadraticBezierCurve, SplineCurve } from 'three';
 
-export type ellipseMetaData = {
+export type EllipseMetaData = {
     clockwise?: boolean;
     rotationZ?: number;
     center: number[];
@@ -10,7 +10,7 @@ export type ellipseMetaData = {
     rotateCurve?: Array<{ axis: number[]; angle: number }>;
 };
 
-export type circleMetaData = {
+export type CircleMetaData = {
     clockwise?: boolean;
     rotationZ?: number;
     center: number[];
@@ -19,18 +19,18 @@ export type circleMetaData = {
     rotateCurve?: Array<{ axis: number[]; angle: number }>;
 };
 
-export type curveMetaData = {
+export type CurveMetaData = {
     points: Array<number[]>;
     steps?: number;
     closed?: boolean;
 };
 
-export type multipleCurveMetaData = {
+export type MultipleCurveMetaData = {
     curves: Array<{ points: Array<number[]> }>;
     closed?: boolean;
     steps?: number;
 };
 
-export type trajectoryMetaData = ellipseMetaData | circleMetaData | curveMetaData | multipleCurveMetaData;
+export type TrajectoryMetaData = EllipseMetaData | CircleMetaData | CurveMetaData | MultipleCurveMetaData;
 
-export type curve = QuadraticBezierCurve | CubicBezierCurve | SplineCurve | CatmullRomCurve3;
+export type CurveType = QuadraticBezierCurve | CubicBezierCurve | SplineCurve | CatmullRomCurve3;
