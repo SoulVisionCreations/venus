@@ -1,23 +1,23 @@
 .rounded {
-  border-radius: 10%;
-  width: 90%;
-  height: 90%;
+    border-radius: 10%;
+    width: 90%;
+    height: 90%;
 }
 
 .circle {
-  border-radius: 50%;
-  width: 250px;
-  height: 250px;
-  object-fit: cover;
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
 }
 
 .square {
-  width: 250px;
-  height: 250px;
-  object-fit: cover;
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
 }
 
 .icon {
-  width: 16px;
-  height: 16px;
+    width: 16px;
+    height: 16px;
 }

@@ -7,15 +7,15 @@ import { useScrollAnimation } from '../../../Utils/Animations/scrollAnimation';
 import { ScenePropsType } from '../../Scene/Scene';
 
 const GltfObject = ({ objectProps, sceneProps }: { objectProps: gltfObjectProps; sceneProps: ScenePropsType }): JSX.Element => {
-  const model = getAssetbyId(objectProps.assetId);
-  const [spring, api] = useSpringAnimation(objectProps, sceneProps);
-  useScrollAnimation(objectProps, sceneProps, api);
+    const model = getAssetbyId(objectProps.assetId);
+    const [spring, api] = useSpringAnimation(objectProps, sceneProps);
+    useScrollAnimation(objectProps, sceneProps, api);
 
-  return (
-    <animated.primitive object={model.scene} {...objectProps} position={spring.position} rotation={spring.rotation} scale={spring.scale}>
-      {objectProps.objectHtmls && renderObjectHtmls(objectProps.objectHtmls)}
-    </animated.primitive>
-  );
+    return (
+        <animated.primitive object={model.scene} {...objectProps} position={spring.position} rotation={spring.rotation} scale={spring.scale}>
+            {objectProps.objectHtmls && renderObjectHtmls(objectProps.objectHtmls)}
+        </animated.primitive>
+    );
 };
 
 export default GltfObject;
