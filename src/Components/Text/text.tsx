@@ -16,7 +16,7 @@ const Text = ({ type, ...props }: TextProps): JSX.Element | null => {
             return (
                 <Html transform {...props} scale={scale}>
                     {props.title}
-                    {props.numbererd ? <ol> {renderList(props.list)} </ol> : <ul> {renderList(props.list)} </ul>}
+                    {props.list && (props.numbered ? <ol> {renderList(props.list)} </ol> : <ul> {renderList(props.list)} </ul>)}
                 </Html>
             );
         case TextTypes.Paragraph:

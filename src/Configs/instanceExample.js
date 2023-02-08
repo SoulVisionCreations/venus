@@ -6,18 +6,13 @@ export const instanceExample = {
     className: 'rootContainer',
     isLeaf: false,
     alignment: Alignment.Vertical,
-    assets: {
-        implicits: [
-            {
-                101: 'data',
-            },
-        ],
-    },
+    assets: [{ assetId: '101', assetPath: 'data', assetType: AssetTypes.Implicit }],
     children: [
         {
             type: ComponentTypes.Canvas,
             className: 'canvas',
             style: stylingDefaults.fullWidthFullHeightCanvas,
+            assetIds: ['101'],
             camera: {
                 position: [0, 0, 3],
                 type: CameraTypes.Perspective,
@@ -45,6 +40,7 @@ export const instanceExample = {
         {
             type: ComponentTypes.Canvas,
             className: 'canvas',
+            assetIds: ['101'],
             style: stylingDefaults.fullWidthFullHeightCanvas,
             camera: {
                 position: [0, 0, 3],

@@ -108,7 +108,7 @@ export default function CanvasNode(props: CanvasNodeProps) {
                             lights={props.lights}
                             sceneProps={sceneProps}
                         />
-                        {props.environment && <Environment files={props.environment.path} />}
+                        {props.environment && <Environment {...props.environment} />}
                     </>
                 )}
             </Canvas>

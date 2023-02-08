@@ -1,29 +1,29 @@
-import { MaterialProps } from '@react-three/fiber';
 import { Euler, Vector3 } from 'three';
-import { ObjectTypes } from '../enums';
+import { MaterialTypes, ObjectTypes } from '../enums';
 import { Animation } from './animationTypes';
-import { GeometryProps } from './types';
+import { GeometryProps, unkownObject } from './types';
 
 export type ObjectHtmlProps = {
-    html: string;
-    position: number[] | Vector3;
-    price: number;
-    rotation: number[] | Euler;
-    scale: number;
+    html?: string;
+    position?: number[] | Vector3;
+    price?: string;
+    rotation?: number[] | Euler;
+    scale?: number;
     type: any;
 };
 
 export type commonObject3DProps = {
     animations?: Array<Animation>;
-    position: number[] | Vector3;
+    position?: number[] | Vector3;
     rotation?: number[] | Euler;
     scale?: number[] | Vector3;
     type: ObjectTypes;
 };
 
+export type MaterialProps = unkownObject & { type: MaterialTypes };
+
 export type standardObjectProps = commonObject3DProps & {
     useInstancing?: boolean;
-    color: string;
     geometry: GeometryProps;
     material: MaterialProps;
     objectHtmls?: ObjectHtmlProps[];

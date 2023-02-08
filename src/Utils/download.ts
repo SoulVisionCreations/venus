@@ -1,15 +1,10 @@
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { AssetTypes } from '../enums';
 import { loadImplicitData } from '../Renderer/data_loader';
+import { AssetProps } from '../Types/types';
 // import { getS3UrlFromRequest } from './requests'
 
 const assetsMap: { [key: string]: any } = {};
-
-interface AssetProps {
-    assetId: string;
-    assetPath: string;
-    assetType: AssetTypes;
-}
 
 export function getAssetbyId(id: string) {
     if (id in assetsMap) return assetsMap[id];

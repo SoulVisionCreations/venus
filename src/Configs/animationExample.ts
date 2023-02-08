@@ -6,18 +6,13 @@ export const animationExample: ContainerNodeProps = {
     type: ComponentTypes.Container,
     className: 'rootContainer',
     alignment: Alignment.Vertical,
-    assets: {
-        implicits: [
-            {
-                101: 'data',
-            },
-        ],
-    },
+    assets: [{ assetId: '101', assetPath: 'data', assetType: AssetTypes.Implicit }],
     children: [
         {
             type: ComponentTypes.Canvas,
             className: 'canvas',
             style: stylingDefaults.fullWidthFullHeightCanvas,
+            assetIds: ['101'],
             camera: {
                 position: [0, 0, 3],
             },
@@ -89,6 +84,7 @@ export const animationExample: ContainerNodeProps = {
         {
             type: ComponentTypes.Canvas,
             className: 'canvas',
+            assetIds: ['101'],
             style: stylingDefaults.fullWidthFullHeightCanvas,
             camera: {
                 position: [0, 0, 3],
@@ -133,6 +129,7 @@ export const animationExample: ContainerNodeProps = {
         {
             type: ComponentTypes.Canvas,
             className: 'canvas',
+            assetIds: ['101'],
             style: stylingDefaults.fullWidthFullHeightCanvas,
             camera: {
                 position: [0, 0, 3],

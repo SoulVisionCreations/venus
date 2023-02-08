@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { OrthographicCamera, PerspectiveCamera, CubeCamera } from '@react-three/drei';
-import { CameraTypes } from '../../enums.js';
+import { CameraTypes } from '../../enums.ts';
 
 const Camera = (props) => {
     switch (props.type) {

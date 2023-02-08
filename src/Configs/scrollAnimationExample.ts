@@ -6,8 +6,8 @@ export const scrollAnimationExample: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
     assets: [
-        { assetId: 101, assetPath: 'data', assetType: AssetTypes.Implicit },
-        { assetId: 11, assetPath: './Inter_Bold.json', assetType: AssetTypes.Font },
+        { assetId: '101', assetPath: 'data', assetType: AssetTypes.Implicit },
+        { assetId: '11', assetPath: './Inter_Bold.json', assetType: AssetTypes.Font },
     ],
     children: [
         {
@@ -34,6 +34,10 @@ export const scrollAnimationExample: ContainerNodeProps = {
             type: ComponentTypes.Container,
             className: 'rootContainer',
             alignment: Alignment.Horizontal,
+            assets: [
+                { assetId: '101', assetPath: 'data', assetType: AssetTypes.Implicit },
+                { assetId: '11', assetPath: './Inter_Bold.json', assetType: AssetTypes.Font },
+            ],
             children: [
                 {
                     type: ComponentTypes.Canvas,

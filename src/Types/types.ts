@@ -1,4 +1,4 @@
-import { Alignment, ComponentTypes } from '../enums';
+import { Alignment, AssetTypes, ComponentTypes } from '../enums';
 import { Vector3, Euler, BufferGeometry, Shape, Vector2 } from 'three';
 import { Object3DProps } from './object3DTypes';
 
@@ -117,8 +117,18 @@ export interface ContainerNodeProps {
     children: Array<ContainerNodeProps | CanvasNodeProps>;
 }
 
+export interface AssetProps {
+    assetId: string;
+    assetPath: string;
+    assetType: AssetTypes;
+}
+
 export type CanvasRect = {
     top: number;
     left: number;
     bottom: number;
+};
+
+export type unkownObject = {
+    [key: string | number | symbol]: any;
 };

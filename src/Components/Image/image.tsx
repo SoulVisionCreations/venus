@@ -5,27 +5,27 @@ import { htmlDefaults } from '../../Constants/defaults';
 import { getAssetbyId } from '../../Utils/download';
 import './image.css';
 
-const renderImage = ({ type, ...props }: ImageProps): JSX.Element => {
+const renderImage = ({ type, ...props }: ImageProps) => {
     switch (type) {
         case ImageTypes.Rounded:
-            return <img src={props.imgSrc} className="rounded" {...props} alt="load failed" />;
+            return <img className="rounded" {...props} alt="load failed" />;
         case ImageTypes.Circle:
-            return <img src={props.imgSrc} className="circle" {...props} alt="load failed" />;
+            return <img className="circle" {...props} alt="load failed" />;
         case ImageTypes.Square:
-            return <img src={props.imgSrc} className="square" {...props} alt="load failed" />;
+            return <img className="square" {...props} alt="load failed" />;
         case ImageTypes.Icon:
-            return <img src={props.imgSrc} className="icon" {...props} alt="load failed" />;
+            return <img className="icon" {...props} alt="load failed" />;
         default:
-            return <img src={props.imgSrc} alt="load failed" />;
+            return <img alt="load failed" />;
     }
 };
 
-const Image = ({ type, ...props }: ImageProps): JSX.Element => {
+const Image = ({ type, ...props }: ImageProps) => {
     const scale: number = props.scale ? props.scale * htmlDefaults.scale : htmlDefaults.scale;
-    const imgSrc: string = getAssetbyId(props.assetId);
+    const src: string = getAssetbyId(props.assetId);
     return (
         <Html transform {...props} scale={scale}>
-            {renderImage({ type, ...props, imgSrc })}
+            {renderImage({ type, ...props, src })}
         </Html>
     );
 };
