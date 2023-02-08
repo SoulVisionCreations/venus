@@ -127,3 +127,10 @@ export const enum Alignment {
   Vertical,
   Horizontal,
 }
+
+export const enum AssetTypes {
+  Implicit,
+  Gltf,
+  Image,
+  Font,
+}

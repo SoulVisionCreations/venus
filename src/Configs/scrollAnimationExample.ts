@@ -1,18 +1,14 @@
 import { stylingDefaults } from '../Constants/defaults';
-import { Alignment, AnimationTrajectory, AnimationTypes, ComponentTypes, ObjectTypes } from '../enums';
+import { Alignment, AnimationTrajectory, AnimationTypes, AssetTypes, ComponentTypes, ObjectTypes } from '../enums';
 import { ContainerNodeProps } from '../Types/types';
 
 export const scrollAnimationExample: ContainerNodeProps = {
   type: ComponentTypes.Container,
   alignment: Alignment.Vertical,
-  assets: {
-    implicits: [
-      {
-        101: 'data',
-      },
-    ],
-    fonts: [{ 11: './Inter_Bold.json' }],
-  },
+  assets: [
+    { assetId: 101, assetPath: 'data', assetType: AssetTypes.Implicit },
+    { assetId: 11, assetPath: './Inter_Bold.json', assetType: AssetTypes.Font },
+  ],
   children: [
     {
       type: ComponentTypes.Canvas,
