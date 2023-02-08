@@ -32,40 +32,36 @@ type animationTrajectoryMetaData = trajectoryMetaData & {
     scaleTrajectory?: scaleTrajectory;
 };
 
+export type animationManualTrajectoryData = {
+    trajectory: AnimationTrajectory;
+    config: springConfig;
+    stateIncrements: Array<ObjectState>;
+};
+
+export type animationGeneratedTrajectoryData = {
+    trajectory: AnimationTrajectory;
+    config: springConfig;
+    trajectoryMetaData: animationTrajectoryMetaData;
+};
+
+export type animationTrajectoryData = animationManualTrajectoryData | animationGeneratedTrajectoryData;
+
 export type IntroAnimation = {
     type: AnimationTypes;
     initialPause?: number;
-    trajectory: AnimationTrajectory;
-    stateIncrements?: Array<ObjectState>;
-    trajectoryMetaData?: animationTrajectoryMetaData;
-    config?: springConfig;
-};
+} & animationTrajectoryData;
 
 export type ChainedAnimation = {
     type: AnimationTypes;
     initialPause?: number;
-    trajectory: AnimationTrajectory;
-    stateIncrements: Array<ObjectState>;
-    config?: springConfig;
     repeat: boolean;
     interval?: number;
-    childAnimations: Array<
-        | { stateIncrements: Array<ObjectState>; config: springConfig }
-        | {
-              trajectory: AnimationTrajectory;
-              trajectoryMetaData: animationTrajectoryMetaData;
-              config: springConfig;
-          }
-    >;
+    childAnimations: Array<animationTrajectoryData>;
 };
 
 export type scrollAnimation = {
     type: AnimationTypes;
     visibilityThreshold?: { top: number; bottom: number };
-    trajectory?: AnimationTrajectory;
-    trajectoryMetaData?: animationTrajectoryMetaData;
-    speed?: number;
-    config?: springConfig;
-};
+} & animationTrajectoryData;
 
 export type Animation = scrollAnimation | IntroAnimation | ChainedAnimation;

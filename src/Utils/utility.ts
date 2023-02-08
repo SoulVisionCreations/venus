@@ -5,7 +5,11 @@ export function degToRad(deg: number): number {
     return deg * (Math.PI / 180);
 }
 
-export const arrayToVec = (arr: Array<any>) => {
+export const convertVec3ToArray = (vec: Vector3) => {
+    return [vec.x, vec.y, vec.z];
+};
+
+export const arrayToVec = (arr: Array<number>) => {
     switch (arr.length) {
         case 2:
             return new Vector2(...arr);

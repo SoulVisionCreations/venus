@@ -1,6 +1,7 @@
 import { MaterialProps } from '@react-three/fiber';
 import { Euler, Vector3 } from 'three';
 import { ObjectTypes } from '../enums';
+import { Animation } from './animationTypes';
 import { GeometryProps } from './types';
 
 export type ObjectHtmlProps = {

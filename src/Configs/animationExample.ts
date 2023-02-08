@@ -1,8 +1,8 @@
 import { stylingDefaults } from '../Constants/defaults';
 import { Alignment, AnimationTrajectory, AnimationTypes, ComponentTypes, ObjectTypes } from '../enums';
-import { Container } from '../Types/types';
+import { ContainerNodeProps } from '../Types/types';
 
-export const animationExample: Container = {
+export const animationExample: ContainerNodeProps = {
     type: ComponentTypes.Container,
     className: 'rootContainer',
     alignment: Alignment.Vertical,
@@ -48,6 +48,7 @@ export const animationExample: Container = {
                             interval: 100,
                             childAnimations: [
                                 {
+                                    trajectory: AnimationTrajectory.manual,
                                     stateIncrements: [
                                         {
                                             rotation: [0, 0, Math.PI],
@@ -59,6 +60,7 @@ export const animationExample: Container = {
                                     config: { mass: 4, friction: 17 },
                                 },
                                 {
+                                    trajectory: AnimationTrajectory.manual,
                                     stateIncrements: [
                                         {
                                             position: [0.7, 0, 0],
@@ -70,6 +72,7 @@ export const animationExample: Container = {
                                     config: { duration: 1000 },
                                 },
                                 {
+                                    trajectory: AnimationTrajectory.manual,
                                     stateIncrements: [
                                         {
                                             position: [-0.7, -0.7, 0],

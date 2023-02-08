@@ -1,4 +1,4 @@
-import { CubicBezierCurve, Curve, CurvePath, QuadraticBezierCurve, SplineCurve } from 'three';
+import { CatmullRomCurve3, CubicBezierCurve, QuadraticBezierCurve, SplineCurve } from 'three';
 
 export type ellipseMetaData = {
     clockwise?: boolean;
@@ -28,9 +28,9 @@ export type curveMetaData = {
 export type multipleCurveMetaData = {
     curves: Array<{ points: Array<number[]> }>;
     closed?: boolean;
-    steps?: boolean;
+    steps?: number;
 };
 
-export type trajectoryMetaData = ellipseMetaData | circleMetaData | curveMetaData;
+export type trajectoryMetaData = ellipseMetaData | circleMetaData | curveMetaData | multipleCurveMetaData;
 
-export type curve = QuadraticBezierCurve | CubicBezierCurve | SplineCurve;
+export type curve = QuadraticBezierCurve | CubicBezierCurve | SplineCurve | CatmullRomCurve3;
