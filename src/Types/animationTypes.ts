@@ -33,12 +33,14 @@ type AnimationTrajectoryMetaData = TrajectoryMetaData & {
 };
 
 export type AnimationManualTrajectoryData = {
+    initialPause?: number;
     trajectory: AnimationTrajectory;
     config: springConfig;
     stateIncrements: Array<ObjectState>;
 };
 
 export type AnimationGeneratedTrajectoryData = {
+    initialPause?: number;
     trajectory: AnimationTrajectory;
     config: springConfig;
     trajectoryMetaData: AnimationTrajectoryMetaData;
