@@ -1,7 +1,7 @@
 import { Html } from '@react-three/drei';
 import { htmlDefaults } from '../../Constants/defaults';
-import { TextTypes } from '../../Types/types';
-import { TextPropsType } from '../../Configs/propTypes';
+import { TextTypes } from '../../enums';
+import { TextProps } from '../../Types/types';
 
 const renderList = (list: string[]): JSX.Element[] => {
   return list.map((item: string, i: number): JSX.Element => {
@@ -9,7 +9,7 @@ const renderList = (list: string[]): JSX.Element[] => {
   });
 };
 
-const Text = ({ type, ...props }: TextPropsType): JSX.Element | null => {
+const Text = ({ type, ...props }: TextProps): JSX.Element | null => {
   const scale: number = props.scale ? props.scale * htmlDefaults.scale : htmlDefaults.scale;
   switch (type) {
     case TextTypes.List:

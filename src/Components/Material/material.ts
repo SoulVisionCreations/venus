@@ -18,10 +18,10 @@ import {
   ShadowMaterial,
   SpriteMaterial,
 } from 'three';
-import { MaterialPropsType } from '../../Configs/propTypes';
-import { MaterialTypes } from '../../Types/types';
+import { MaterialProps } from '../../Types/types';
+import { MaterialTypes } from '../../enums';
 
-const MaterialLoader = ({ type, ...props }: MaterialPropsType): Material | null => {
+const MaterialLoader = ({ type, ...props }: MaterialProps): Material | null => {
   switch (type) {
     case MaterialTypes.LineBasicMaterial:
       return new LineBasicMaterial(props);

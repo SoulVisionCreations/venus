@@ -2,9 +2,9 @@ import { invalidate } from '@react-three/fiber';
 import { config as springConfig } from '@react-spring/three';
 import { useEffect, useRef } from 'react';
 import { Vector3 } from 'three';
-import { Animation } from '../../Types/types';
 import { getInitialState } from '../utility';
 import { getTrajectory } from './trajectory';
+import { AnimationTypes } from '../../enums';
 
 // const getVisibleSceneHeight = (sceneProps) => {
 //   const sceneTop = sceneProps.canvasRect.top
@@ -71,7 +71,7 @@ export const useScrollAnimation = (objectProps, sceneProps, springApi) => {
   useEffect(() => {
     if (!objectProps.animations) return;
     objectProps.animations.forEach((animation) => {
-      if (animation.type == Animation.type.scroll) {
+      if (animation.type == AnimationTypes.scroll) {
         scrollAnimation.current = animation;
         if (animation.trajectory) scrollTrajectory.current = getTrajectory(animation);
         if (animation.visibilityThreshold != undefined) visibilityThreshold.current = animation.visibilityThreshold;

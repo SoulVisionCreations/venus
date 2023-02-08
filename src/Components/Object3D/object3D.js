@@ -1,13 +1,13 @@
-import { ObjectTypes } from '../../Configs/enums';
 import ImplicitObject from './types/implicitObject';
 import GltfObject from './types/gltfObject';
 import StandardObject from './types/standardObject';
 import Text3DObject from './types/text3DObject';
 import ObjectHtml from '../ObjectHtml/objecthtml';
+import { ObjectTypes } from '../../enums';
 
 export const renderObjectHtmls = (objectHtmls) => {
   return objectHtmls.map((objectHtmlProps, index) => {
-    return <ObjectHtml {...objectHtmlProps} />;
+    return <ObjectHtml {...objectHtmlProps} key={index} />;
   });
 };
 

@@ -111,7 +111,7 @@ export const enum ComponentTypes {
   Canvas,
 }
 
-export const enum TextType {
+export const enum TextTypes {
   Paragraph,
   List,
 }

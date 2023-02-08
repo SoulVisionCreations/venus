@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { invalidate } from '@react-three/fiber';
 import { useSpring, config as springConfig } from '@react-spring/three';
 import { getInitialState } from '../utility';
-import { Animation } from '../../Types/types';
 import { getTrajectoryPoints } from './trajectory';
+import { AnimationTypes } from '../../enums';
 
 export const useSpringAnimation = (instance, sceneProps) => {
   const [initialPosition, initialRotation, initialScale] = getInitialState(instance);
@@ -34,10 +34,10 @@ export const useSpringAnimation = (instance, sceneProps) => {
   useEffect(() => {
     if (!instance.animations) return;
     instance.animations.forEach((animation) => {
-      if (animation.type == Animation.type.intro) {
+      if (animation.type == AnimationTypes.intro) {
         introAnimation.current = animation;
         hasSpringAnimation.current = true;
-      } else if (animation.type == Animation.type.chained) {
+      } else if (animation.type == AnimationTypes.chained) {
         chainedAnimations.current.push(animation);
         hasSpringAnimation.current = true;
       }

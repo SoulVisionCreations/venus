@@ -1,9 +1,9 @@
 import { MaterialProps } from '@react-three/fiber';
 import { Euler, Vector3 } from 'three';
-import { ObjectType } from 'typescript';
+import { ObjectTypes } from '../enums';
 import { GeometryProps } from './types';
 
-export type ObjectHtmlPropsType = {
+export type ObjectHtmlProps = {
   html: string;
   position: number[] | Vector3;
   price: number;
@@ -14,11 +14,11 @@ export type ObjectHtmlPropsType = {
 
 export type standardObjectProps = {
   useInstancing?: boolean;
-  type: ObjectType;
+  type: ObjectTypes;
   color: string;
   geometry: GeometryProps;
   material: MaterialProps;
-  objectHtmls?: ObjectHtmlPropsType[];
+  objectHtmls?: ObjectHtmlProps[];
   position: number[] | Vector3;
   rotation?: number[] | Euler;
   scale?: number[] | Vector3;
@@ -27,8 +27,8 @@ export type standardObjectProps = {
 
 export type gltfObjectProps = {
   assetId: string;
-  type: ObjectType;
-  objectHtmls?: ObjectHtmlPropsType[];
+  type: ObjectTypes;
+  objectHtmls?: ObjectHtmlProps[];
   position: number[] | Vector3;
   rotation?: number[] | Euler;
   scale?: number[] | Vector3;
@@ -42,15 +42,16 @@ export type text3DObjectProps = {
   scale?: number[] | Vector3;
   text: string;
   font: string;
-  type: ObjectType;
+  type: ObjectTypes;
   animations?: Array<Animation>;
+  color: string;
 };
 
 export type implicitObjectProps = {
   assetId: string;
   useInstancing?: boolean;
-  type: ObjectType;
-  objectHtmls?: ObjectHtmlPropsType[];
+  type: ObjectTypes;
+  objectHtmls?: ObjectHtmlProps[];
   position: number[] | Vector3;
   rotation?: number[] | Euler;
   scale?: number[] | Vector3;

@@ -1,11 +1,11 @@
 import { Html } from '@react-three/drei';
-import { ImagePropsType } from '../../Configs/propTypes';
-import { ImageTypes } from '../../Types/types';
+import { ImageProps } from '../../Types/types';
+import { ImageTypes } from '../../enums';
 import { htmlDefaults } from '../../Constants/defaults';
 import { getAssetbyId } from '../../Utils/download';
 import './image.css';
 
-const renderImage = ({ type, ...props }: ImagePropsType): JSX.Element => {
+const renderImage = ({ type, ...props }: ImageProps): JSX.Element => {
   switch (type) {
     case ImageTypes.Rounded:
       return <img src={props.imgSrc} className="rounded" {...props} alt="load failed" />;
@@ -20,7 +20,7 @@ const renderImage = ({ type, ...props }: ImagePropsType): JSX.Element => {
   }
 };
 
-const Image = ({ type, ...props }: ImagePropsType): JSX.Element => {
+const Image = ({ type, ...props }: ImageProps): JSX.Element => {
   const scale: number = props.scale ? props.scale * htmlDefaults.scale : htmlDefaults.scale;
   const imgSrc: string = getAssetbyId(props.assetId);
   return (

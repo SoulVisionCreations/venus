@@ -1,5 +1,5 @@
 import { Alignment, ComponentTypes } from '../enums';
-import { Vector3, Euler, BufferGeometry, Material, Shape, Vector2 } from 'three';
+import { Vector3, Euler, BufferGeometry, Shape, Vector2 } from 'three';
 import { Object3DProps } from './object3DTypes';
 
 export interface GeometryProps {
@@ -73,12 +73,6 @@ export interface LightProps {
 
 export interface MaterialProps {
   type: any;
-}
-
-export interface ImplicitAssetProps {
-  geometry: BufferGeometry;
-  gSceneParams?: object;
-  material: Material;
 }
 
 export interface TextProps {

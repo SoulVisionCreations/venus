@@ -1,7 +1,7 @@
-import { LightPropsType } from '../../Configs/propTypes';
-import { LightTypes } from '../../Types/types';
+import { LightProps } from '../../Types/types';
+import { LightTypes } from '../../enums';
 
-const Light = ({ type, ...props }: LightPropsType): JSX.Element | null => {
+const Light = ({ type, ...props }: LightProps): JSX.Element | null => {
   switch (type) {
     case LightTypes.Ambient:
       return <ambientLight {...props} />;

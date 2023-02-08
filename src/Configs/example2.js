@@ -3,7 +3,6 @@ import {
   ComponentTypes,
   Alignment,
   ObjectTypes,
-  ObjectControlTypes,
   LightTypes,
   SceneControlTypes,
   StandardGeometryTypes,
@@ -58,9 +57,6 @@ export const config2 = {
         {
           type: ObjectTypes.ImplicitObject,
           assetId: '100001',
-          control: {
-            type: ObjectControlTypes.BouncyPresentation,
-          },
           useInstancing: false,
           position: [0.5, 0.5, 0],
           // animations: [{type: AnimationTypes.Rotate}],
@@ -79,7 +75,7 @@ export const config2 = {
         {
           type: ObjectTypes.GltfObject,
           assetId: '10001',
-          scale: 1,
+          scale: [1, 1, 1],
           objectHtmls: [
             {
               type: ObjectHtmlTypes.PriceTag,
@@ -118,7 +114,7 @@ export const config2 = {
           type: ObjectTypes.Text3D,
           assetId: '101',
           text: 'Chair',
-          scale: 0.2,
+          scale: [0.2, 0.2, 0.2],
           color: 'pink',
           animations: [
             {

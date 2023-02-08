@@ -1,10 +1,10 @@
 import { Html } from '@react-three/drei';
-import { ObjectHtmlTypes } from '../../Types/types';
+import { ObjectHtmlProps } from '../../Types/object3DTypes';
+import { ObjectHtmlTypes } from '../../enums';
 import { htmlDefaults } from '../../Constants/defaults';
 import './objecthtml.css';
-import { ObjectHtmlPropsType } from '../../Configs/propTypes';
 
-const ObjectHtml = ({ type, ...props }: ObjectHtmlPropsType): JSX.Element | null => {
+const ObjectHtml = ({ type, ...props }: ObjectHtmlProps): JSX.Element | null => {
   const scale: number = props.scale ? htmlDefaults.scale * props.scale : htmlDefaults.scale;
   switch (type) {
     case ObjectHtmlTypes.PriceTag:
