@@ -12,50 +12,38 @@ export type ObjectHtmlProps = {
   type: any;
 };
 
-export type standardObjectProps = {
-  useInstancing?: boolean;
+export type commonObject3DProps = {
+  animations?: Array<Animation>;
+  position: number[] | Vector3;
+  rotation?: number[] | Euler;
+  scale?: number[] | Vector3;
   type: ObjectTypes;
+};
+
+export type standardObjectProps = commonObject3DProps & {
+  useInstancing?: boolean;
   color: string;
   geometry: GeometryProps;
   material: MaterialProps;
   objectHtmls?: ObjectHtmlProps[];
-  position: number[] | Vector3;
-  rotation?: number[] | Euler;
-  scale?: number[] | Vector3;
-  animations?: Array<Animation>;
 };
 
-export type gltfObjectProps = {
+export type gltfObjectProps = commonObject3DProps & {
   assetId: string;
-  type: ObjectTypes;
   objectHtmls?: ObjectHtmlProps[];
-  position: number[] | Vector3;
-  rotation?: number[] | Euler;
-  scale?: number[] | Vector3;
-  animations?: Array<Animation>;
 };
 
-export type text3DObjectProps = {
+export type text3DObjectProps = commonObject3DProps & {
   assetId: string;
-  position: number[] | Vector3;
-  rotation?: number[] | Euler;
-  scale?: number[] | Vector3;
   text: string;
   font: string;
-  type: ObjectTypes;
-  animations?: Array<Animation>;
   color: string;
 };
 
-export type implicitObjectProps = {
+export type implicitObjectProps = commonObject3DProps & {
   assetId: string;
   useInstancing?: boolean;
-  type: ObjectTypes;
   objectHtmls?: ObjectHtmlProps[];
-  position: number[] | Vector3;
-  rotation?: number[] | Euler;
-  scale?: number[] | Vector3;
-  animations?: Array<Animation>;
 };
 
 export type Object3DProps = implicitObjectProps | text3DObjectProps | gltfObjectProps | standardObjectProps;
