@@ -3,7 +3,7 @@ import { ObjectHtmlProps } from '../types/object3DTypes';
 import { ObjectHtmlTypes } from '../types/enums';
 import { htmlDefaults } from '../constants/defaults';
 import { arrayToVec3, arrayToEuler } from '../utils/utility';
-import './objecthtml.css';
+import './ObjectHtml.css';
 
 const ObjectHtml = ({ type, position = [0, 0, 0], rotation = [0, 0, 0], scale = 1, ...props }: ObjectHtmlProps) => {
     const prs = { position: arrayToVec3(position), rotation: arrayToEuler(rotation), scale: scale * htmlDefaults.scale };

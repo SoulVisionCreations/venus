@@ -4,7 +4,7 @@ import { ImageTypes } from '../types/enums';
 import { htmlDefaults } from '../constants/defaults';
 import { getAssetbyId } from '../utils/download';
 import { arrayToVec3, arrayToEuler } from '../utils/utility';
-import './image.css';
+import './Image.css';
 
 const renderImage = ({ type, ...props }: any) => {
     switch (type) {
