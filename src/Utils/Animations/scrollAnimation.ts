@@ -1,10 +1,15 @@
 import { invalidate } from '@react-three/fiber';
 import { config as springConfig } from '@react-spring/three';
 import { useEffect, useRef } from 'react';
-import { Vector3 } from 'three';
-import { getInitialState } from '../utility';
+import { CurvePath, EllipseCurve, Vector3 } from 'three';
+import { convertVec3ToArray, getInitialState } from '../utility';
 import { getTrajectory } from './trajectory';
-import { AnimationTypes } from '../../enums';
+import { AnimationTrajectory, AnimationTypes } from '../../enums';
+import { ScenePropsType } from '../../Components/Scene/Scene';
+import { AnimationGeneratedTrajectoryData, ScrollAnimation, SpringConfig, VisibilityThreshold } from '../../Types/animationTypes';
+import { Object3DProps } from '../../Types/object3DTypes';
+import { unknownObject } from '../../Types/types';
+import { TrajectoryMetaData } from '../../Types/trajectoryTypes';
 
 // const getVisibleSceneHeight = (sceneProps) => {
 //   const sceneTop = sceneProps.canvasRect.top
@@ -38,7 +43,7 @@ import { AnimationTypes } from '../../enums';
 //   return visibleScenePer
 // }
 
-const shouldAnimate = (sceneProps, visibilityThreshold, delta) => {
+const shouldAnimate = (sceneProps: ScenePropsType, visibilityThreshold: { current: VisibilityThreshold }, delta: number) => {
     const sceneTop = sceneProps.canvasRect.top;
     const sceneBottom = sceneProps.canvasRect.bottom;
     const sceneHeight = sceneBottom - sceneTop;
@@ -47,50 +52,58 @@ const shouldAnimate = (sceneProps, visibilityThreshold, delta) => {
     const sceneTopToScreenBottomDist = scrolledHeight + screenHeight - sceneTop;
     const sceneBottomToScreenBottomDist = sceneBottom - (scrolledHeight + screenHeight);
     const sceneBottomToScreenTopDist = sceneBottom - scrolledHeight;
-    if (sceneProps.id == 2) console.log(sceneHeight);
     if (sceneBottomToScreenTopDist <= 0 || sceneTopToScreenBottomDist <= 0) return false;
     if (delta > 0 && sceneTopToScreenBottomDist / sceneHeight >= visibilityThreshold.current.top) return true;
     if (delta < 0 && sceneBottomToScreenBottomDist / sceneHeight >= visibilityThreshold.current.bottom) return true;
     return false;
 };
 
-export const useScrollAnimation = (objectProps, sceneProps, springApi) => {
+export const useScrollAnimation = (objectProps: Object3DProps, sceneProps: ScenePropsType, springApi: any) => {
     const [initialPosition, initialRotation, initialScale] = getInitialState(objectProps);
     const state = useRef({
         position: initialPosition,
         rotation: initialRotation,
         scale: initialScale,
     });
-    const scrollAnimation = useRef();
-    const scrollTrajectory = useRef();
-    const visibilityThreshold = useRef({ top: 0, bottom: 0 });
+    const scrollAnimation = useRef<ScrollAnimation>();
+    const scrollTrajectory = useRef<EllipseCurve | CurvePath<Vector3>>();
+    const visibilityThreshold = useRef<VisibilityThreshold>({ top: 0, bottom: 0 });
     const trajectoryState = useRef(0);
     const trajectorySpeed = useRef(0.01);
-    const springConfigRef = useRef(springConfig.default);
+    const springConfigRef = useRef<SpringConfig>(springConfig.default);
 
     useEffect(() => {
         if (!objectProps.animations) return;
         objectProps.animations.forEach((animation) => {
             if (animation.type == AnimationTypes.scroll) {
-                scrollAnimation.current = animation;
-                if (animation.trajectory) scrollTrajectory.current = getTrajectory(animation);
-                if (animation.visibilityThreshold != undefined) visibilityThreshold.current = animation.visibilityThreshold;
-                if (animation.trajectoryMetaData && animation.trajectoryMetaData.speed != undefined)
-                    trajectorySpeed.current = animation.trajectoryMetaData.speed;
-                if (animation.config) springConfigRef.current = animation.config;
+                scrollAnimation.current = animation as ScrollAnimation;
+                if ((animation as ScrollAnimation).trajectory)
+                    scrollTrajectory.current = getTrajectory(animation as unknownObject & { trajectory: AnimationTrajectory; trajectoryMetaData: unknownObject & TrajectoryMetaData });
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                if ((animation as ScrollAnimation).visibilityThreshold != undefined) visibilityThreshold.current = (animation as ScrollAnimation).visibilityThreshold!;
+                if (
+                    (animation as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData &&
+                    (animation as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData.speed != undefined
+                ) {
+                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                    trajectorySpeed.current = (animation as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData.speed!;
+                }
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                if ((animation as ScrollAnimation).config) springConfigRef.current = (animation as ScrollAnimation).config!;
             }
         });
     }, []);
 
-    const updateStateByDelta = (deltaY) => {
+    const updateStateByDelta = (deltaY: number) => {
         if (scrollTrajectory.current) {
             trajectoryState.current += trajectorySpeed.current * deltaY;
             if (trajectoryState.current > 1) trajectoryState.current = 1;
             if (trajectoryState.current < 0) trajectoryState.current = 0;
-            state.current.position = scrollTrajectory.current.getPoint(trajectoryState.current);
+            state.current.position = scrollTrajectory.current.getPoint(trajectoryState.current) as Vector3;
 
-            if (scrollAnimation.current.trajectoryMetaData.rotationTrajectory) {
-                const rotationTrajectory = scrollAnimation.current.trajectoryMetaData.rotationTrajectory;
+            if ((scrollAnimation.current as unknownObject & AnimationGeneratedTrajectoryData)?.trajectoryMetaData?.rotationTrajectory) {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                const rotationTrajectory = (scrollAnimation.current as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData.rotationTrajectory!;
                 const maxRotation = Math.PI * 2 * rotationTrajectory.frequency;
                 const axis = rotationTrajectory.axis;
                 state.current.rotation = new Vector3(
@@ -100,8 +113,9 @@ export const useScrollAnimation = (objectProps, sceneProps, springApi) => {
                 );
             }
 
-            if (scrollAnimation.current.trajectoryMetaData.scaleTrajectory) {
-                const scaleTrajectory = scrollAnimation.current.trajectoryMetaData.scaleTrajectory;
+            if ((scrollAnimation.current as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData.scaleTrajectory) {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                const scaleTrajectory = (scrollAnimation.current as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData.scaleTrajectory!;
                 const scaleRatio = scaleTrajectory.scaleRatio;
                 state.current.scale = new Vector3(
                     initialScale.x + trajectoryState.current * scaleRatio[0],
@@ -110,17 +124,15 @@ export const useScrollAnimation = (objectProps, sceneProps, springApi) => {
                 );
             }
         }
-        if (scrollAnimation.current.rotationMetaData) {
+        if (scrollAnimation.current?.rotationMetaData) {
             const axis = scrollAnimation.current.rotationMetaData.axis;
             const velocity = scrollAnimation.current.rotationMetaData.velocity;
             state.current.rotation.add(new Vector3(axis[0] * velocity * deltaY, axis[1] * velocity * deltaY, axis[2] * velocity * deltaY));
         }
-        if (scrollAnimation.current.scaleMetaData) {
+        if (scrollAnimation.current?.scaleMetaData) {
             const scaleRatio = scrollAnimation.current.scaleMetaData.scaleRatio;
             const velocity = scrollAnimation.current.scaleMetaData.velocity;
-            state.current.scale.add(
-                new Vector3(scaleRatio[0] * velocity * deltaY, scaleRatio[1] * velocity * deltaY, scaleRatio[2] * velocity * deltaY)
-            );
+            state.current.scale.add(new Vector3(scaleRatio[0] * velocity * deltaY, scaleRatio[1] * velocity * deltaY, scaleRatio[2] * velocity * deltaY));
             if (scrollAnimation.current.scaleMetaData.maxScale) {
                 const maxScale = scrollAnimation.current.scaleMetaData.maxScale;
                 state.current.scale.x = Math.min(maxScale[0], state.current.scale.x);
@@ -142,8 +154,8 @@ export const useScrollAnimation = (objectProps, sceneProps, springApi) => {
         springApi.start({
             to: async (next) => {
                 await next({
-                    position: [...state.current.position],
-                    rotation: [...state.current.rotation],
+                    position: convertVec3ToArray(state.current.position),
+                    rotation: convertVec3ToArray(state.current.rotation),
                 });
             },
             config: springConfigRef.current, //{ mass: 4, tension: 280, friction: 90 }
@@ -166,8 +178,8 @@ export const useScrollAnimation = (objectProps, sceneProps, springApi) => {
                     springApi.start({
                         to: async (next) => {
                             await next({
-                                position: [...state.current.position],
-                                rotation: [...state.current.rotation],
+                                position: convertVec3ToArray(state.current.position),
+                                rotation: convertVec3ToArray(state.current.rotation),
                             });
                         },
                     });
@@ -177,7 +189,7 @@ export const useScrollAnimation = (objectProps, sceneProps, springApi) => {
             window.addEventListener('wheel', animate, { passive: true });
         }
         return () => {
-            window.removeEventListener('wheel', animate, { passive: true });
+            window.removeEventListener('wheel', animate);
         };
     }, [sceneProps.isSceneVisible]);
 };

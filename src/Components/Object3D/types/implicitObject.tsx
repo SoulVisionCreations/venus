@@ -18,13 +18,7 @@ const ImplicitObject = ({ objectProps, sceneProps }: { objectProps: implicitObje
     return useInstancing ? (
         <InstanceMesh geometry={asset.geometry} material={asset.material} gSceneParams={asset.gSceneParams} objectProps={objectProps} />
     ) : (
-        <Mesh
-            geometry={asset.geometry}
-            material={asset.material}
-            gSceneParams={asset.gSceneParams}
-            objectProps={objectProps}
-            sceneProps={sceneProps}
-        />
+        <Mesh geometry={asset.geometry} material={asset.material} gSceneParams={asset.gSceneParams} objectProps={objectProps} sceneProps={sceneProps} />
     );
 };
 

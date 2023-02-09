@@ -100,14 +100,7 @@ export default function CanvasNode(props: CanvasNodeProps) {
                         <AdaptiveDpr pixelated />
                         <Stats />
                         <PerformanceMonitor />
-                        <Scene
-                            objects={props.objects}
-                            sceneControl={props.sceneControl}
-                            texts={props.texts}
-                            images={props.images}
-                            lights={props.lights}
-                            sceneProps={sceneProps}
-                        />
+                        <Scene objects={props.objects} sceneControl={props.sceneControl} texts={props.texts} images={props.images} lights={props.lights} sceneProps={sceneProps} />
                         {props.environment && <Environment files={props.environment.path} />}
                     </>
                 )}

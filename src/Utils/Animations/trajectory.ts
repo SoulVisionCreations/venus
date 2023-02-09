@@ -5,7 +5,7 @@ import { CircleMetaData, CurveMetaData, EllipseMetaData, MultipleCurveMetaData, 
 import { unknownObject } from '../../Types/types';
 import { convertVec3ToArray } from '../utility';
 
-type stateVec = {
+export type stateVec = {
     position: Vector3;
     rotation: Vector3;
     scale: Vector3;
@@ -25,10 +25,7 @@ const convertStateVecToArr = (stateVec: stateVec): stateArr => {
     };
 };
 
-export const getTrajectoryPoints = (
-    animation: unknownObject & AnimationTrajectoryData,
-    state: { current: stateVec }
-): [Array<stateArr>, Array<stateVec>] => {
+export const getTrajectoryPoints = (animation: unknownObject & AnimationTrajectoryData, state: { current: stateVec }): [Array<stateArr>, Array<stateVec>] => {
     const trajectory: Array<stateArr> = [];
     const trajectoryVec: Array<stateVec> = [];
     trajectoryVec.push(state.current);
@@ -46,27 +43,21 @@ export const getTrajectoryPoints = (
             });
             break;
         case AnimationTrajectory.ellipse:
-            const pointsE = getPointsOnEllipse(
-                (animation as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData as unknownObject & EllipseMetaData
-            );
+            const pointsE = getPointsOnEllipse((animation as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData as unknownObject & EllipseMetaData);
             pointsE.forEach((point) => {
                 trajectory.push({ position: convertVec3ToArray(point), rotation: trajectory[0].rotation, scale: trajectory[0].scale });
                 trajectoryVec.push({ position: point, rotation: trajectoryVec[0].rotation, scale: trajectoryVec[0].scale });
             });
             break;
         case AnimationTrajectory.circle:
-            const pointsC = getPointsOnCircle(
-                (animation as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData as unknownObject & CircleMetaData
-            );
+            const pointsC = getPointsOnCircle((animation as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData as unknownObject & CircleMetaData);
             pointsC.forEach((point) => {
                 trajectory.push({ position: convertVec3ToArray(point), rotation: trajectory[0].rotation, scale: trajectory[0].scale });
                 trajectoryVec.push({ position: point, rotation: trajectoryVec[0].rotation, scale: trajectoryVec[0].scale });
             });
             break;
         case AnimationTrajectory.curveDefinedByPoints:
-            const curve = createCurveByPoints(
-                (animation as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData as unknownObject & CurveMetaData
-            );
+            const curve = createCurveByPoints((animation as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData as unknownObject & CurveMetaData);
             const pointsD = getPointsOn3DCurve(curve, (animation as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData.steps);
             pointsD.forEach((point) => {
                 trajectory.push({ position: convertVec3ToArray(point), rotation: trajectory[0].rotation, scale: trajectory[0].scale });
@@ -74,9 +65,7 @@ export const getTrajectoryPoints = (
             });
             break;
         case AnimationTrajectory.multipleCurveDefinedByPoints:
-            const curvePath = createMultipleCurvesByPoints(
-                (animation as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData as unknownObject & MultipleCurveMetaData
-            );
+            const curvePath = createMultipleCurvesByPoints((animation as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData as unknownObject & MultipleCurveMetaData);
             const pointsP = getPointsOn3DCurve(curvePath, (animation as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData.steps);
             pointsP.forEach((point) => {
                 trajectory.push({ position: convertVec3ToArray(point), rotation: trajectory[0].rotation, scale: trajectory[0].scale });
@@ -87,9 +76,7 @@ export const getTrajectoryPoints = (
     return [trajectory, trajectoryVec];
 };
 
-export const getTrajectory = <T extends { trajectory: AnimationTrajectory; trajectoryMetaData: unknownObject & TrajectoryMetaData }>(
-    animation: T
-) => {
+export const getTrajectory = <T extends { trajectory: AnimationTrajectory; trajectoryMetaData: unknownObject & TrajectoryMetaData }>(animation: T) => {
     let curve;
     switch (animation.trajectory) {
         case AnimationTrajectory.circle:

@@ -278,12 +278,7 @@ const CreateImplicitObj = (atlasIndexImage, rgb_data, alpha_data) => {
     rgbVolumeTexture.type = THREE.UnsignedByteType;
     rgbVolumeTexture.needsUpdate = true;
 
-    let alphaVolumeTexture = new THREE.Data3DTexture(
-        alphaPixels,
-        gSceneParams['atlas_width'],
-        gSceneParams['atlas_height'],
-        gSceneParams['atlas_depth']
-    );
+    let alphaVolumeTexture = new THREE.Data3DTexture(alphaPixels, gSceneParams['atlas_width'], gSceneParams['atlas_height'], gSceneParams['atlas_depth']);
     alphaVolumeTexture.format = THREE.RedFormat;
     alphaVolumeTexture.generateMipmaps = true;
     alphaVolumeTexture.magFilter = THREE.LinearFilter;
@@ -309,17 +304,7 @@ const CreateImplicitObj = (atlasIndexImage, rgb_data, alpha_data) => {
     // Material
     let worldspace_R_opengl = new THREE.Matrix3();
     let M_dict = gSceneParams['worldspace_T_opengl'];
-    worldspace_R_opengl['set'](
-        M_dict[0][0],
-        M_dict[0][1],
-        M_dict[0][2],
-        M_dict[1][0],
-        M_dict[1][1],
-        M_dict[1][2],
-        M_dict[2][0],
-        M_dict[2][1],
-        M_dict[2][2]
-    );
+    worldspace_R_opengl['set'](M_dict[0][0], M_dict[0][1], M_dict[0][2], M_dict[1][0], M_dict[1][1], M_dict[1][2], M_dict[2][0], M_dict[2][1], M_dict[2][2]);
 
     let voxelSize = gSceneParams['voxel_size'],
         blockSize = gSceneParams['block_size'],

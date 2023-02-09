@@ -56,8 +56,7 @@ export const useSpringAnimation = (instance: Object3DProps, sceneProps: ScenePro
                 chainedAnimations.current.push(animation as ChainedAnimation);
                 hasSpringAnimation.current = true;
             }
-            if ((animation as IntroAnimation | ChainedAnimation).initialPause == undefined)
-                (animation as IntroAnimation | ChainedAnimation).initialPause = 0;
+            if ((animation as IntroAnimation | ChainedAnimation).initialPause == undefined) (animation as IntroAnimation | ChainedAnimation).initialPause = 0;
         });
     }, []);
 

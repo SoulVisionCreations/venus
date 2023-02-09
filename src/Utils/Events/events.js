@@ -18,12 +18,7 @@ export const applyEventDrivenAnimations = (objectProps, time, objectRef, scrolle
 
 export const useEvents = (objectProps, sceneProps, scrolledRotationValue) => {
     const rotateByScrollOnce = (e) => {
-        if (
-            sceneProps.completelyVisible &&
-            sceneProps.completelyVisibleCount <= 1 &&
-            scrolledRotationValue.current < 2 * Math.PI &&
-            scrolledRotationValue.current > -2 * Math.PI
-        ) {
+        if (sceneProps.completelyVisible && sceneProps.completelyVisibleCount <= 1 && scrolledRotationValue.current < 2 * Math.PI && scrolledRotationValue.current > -2 * Math.PI) {
             scrolledRotationValue.current += animationDefaults.scrollByRotationOnceSpeed * (e.wheelDeltaY > 0 ? 1 : -1);
             document.body.style.overflow = 'hidden';
             if (scrolledRotationValue.current >= 2 * Math.PI || scrolledRotationValue.current <= -2 * Math.PI) {

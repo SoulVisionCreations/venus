@@ -58,9 +58,7 @@ export const floatAnimation = (time: number): Array<Vector3> => {
 export const rotateAnimation = (time: number, animation: any): Array<Vector3> => {
     const position = new Vector3(0, 0, 0);
     const scale = new Vector3(0, 0, 0);
-    const rotationArray: Vector3 = animation.rotationArray
-        ? new Vector3(...animation.rotationArray)
-        : new Vector3(...animationDefaults.rotationArray);
+    const rotationArray: Vector3 = animation.rotationArray ? new Vector3(...animation.rotationArray) : new Vector3(...animationDefaults.rotationArray);
     rotationArray.multiplyScalar(time);
     return [position, rotationArray, scale];
 };

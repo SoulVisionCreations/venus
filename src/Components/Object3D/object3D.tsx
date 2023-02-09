@@ -1,11 +1,4 @@
-import {
-    gltfObjectProps,
-    implicitObjectProps,
-    Object3DProps,
-    ObjectHtmlProps,
-    standardObjectProps,
-    text3DObjectProps,
-} from '../../Types/object3DTypes';
+import { gltfObjectProps, implicitObjectProps, Object3DProps, ObjectHtmlProps, standardObjectProps, text3DObjectProps } from '../../Types/object3DTypes';
 import ImplicitObject from './types/implicitObject';
 import GltfObject from './types/gltfObject';
 import StandardObject from './types/standardObject';

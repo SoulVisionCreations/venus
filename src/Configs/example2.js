@@ -1,17 +1,5 @@
 import { stylingDefaults } from '../Constants/defaults';
-import {
-    ComponentTypes,
-    Alignment,
-    ObjectTypes,
-    LightTypes,
-    SceneControlTypes,
-    StandardGeometryTypes,
-    MaterialTypes,
-    ObjectHtmlTypes,
-    Animation,
-    TextTypes,
-    ImageTypes,
-} from '../Types/types';
+import { ComponentTypes, Alignment, ObjectTypes, LightTypes, SceneControlTypes, StandardGeometryTypes, MaterialTypes, ObjectHtmlTypes, Animation, TextTypes, ImageTypes } from '../Types/types';
 
 export const config2 = {
     type: ComponentTypes.Container,
