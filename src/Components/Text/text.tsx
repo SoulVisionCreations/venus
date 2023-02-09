@@ -1,6 +1,6 @@
 import { Html } from '@react-three/drei';
 import { htmlDefaults } from '../../Constants/defaults';
-import { TextTypes } from '../../enums';
+import { TextTypes } from '../../Types/enums';
 import { TextProps } from '../../Types/types';
 
 const renderList = (list: string[]): JSX.Element[] => {

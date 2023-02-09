@@ -1,4 +1,4 @@
-import { ObjectControlTypes } from '../../enums';
+import { ObjectControlTypes } from '../../Types/enums';
 import { PresentationControls } from '@react-three/drei';
 import { objectDefaults } from '../../Constants/defaults';
 

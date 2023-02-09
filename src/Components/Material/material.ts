@@ -19,7 +19,7 @@ import {
     SpriteMaterial,
 } from 'three';
 import { MaterialProps } from '../../Types/types';
-import { MaterialTypes } from '../../enums';
+import { MaterialTypes } from '../../Types/enums';
 
 const MaterialLoader = ({ type, ...props }: MaterialProps): Material | null => {
     switch (type) {

@@ -1,4 +1,4 @@
-import { MaterialTypes, ObjectTypes } from '../enums';
+import { MaterialTypes, ObjectTypes } from './enums';
 import { Animation } from './animationTypes';
 import { GeometryProps, unknownObject } from './types';
 

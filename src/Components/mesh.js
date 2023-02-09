@@ -1,9 +1,9 @@
 import { animated } from '@react-spring/three';
-import { useSpringAnimation } from '../Utils/Animations/springAnimations';
+import { useSpringAnimation } from '../utils/Animations/springAnimations';
 import { useEffect, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { ObjectControls } from '../Utils/ObjectControls/objectControls';
-import { useScrollAnimation } from '../Utils/Animations/scrollAnimation';
+import { ObjectControls } from '../utils/ObjectControls/objectControls';
+import { useScrollAnimation } from '../utils/Animations/scrollAnimation';
 import { renderObjectHtmls } from './Object3D/object3D';
 
 export function Mesh({ geometry, material, gSceneParams, objectProps, sceneProps }) {

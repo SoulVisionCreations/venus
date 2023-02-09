@@ -12,7 +12,7 @@ import StandardObject from './types/standardObject';
 import Text3DObject from './types/text3DObject';
 import ObjectHtml from '../ObjectHtml/objecthtml';
 import { ScenePropsType } from '../Scene/Scene';
-import { ObjectTypes } from '../../enums';
+import { ObjectTypes } from '../../Types/enums';
 
 export const renderObjectHtmls = (objectHtmls: Array<ObjectHtmlProps>): JSX.Element[] => {
     return objectHtmls.map((objectHtmlProps: ObjectHtmlProps, index: number): JSX.Element => {

@@ -1,4 +1,4 @@
-import { applySceneControl } from '../../Utils/SceneControls/sceneControl';
+import { applySceneControl } from '../../utils/SceneControls/sceneControl';
 import Image from '../Image/image';
 import Text from '../Text/text';
 import Light from '../Light/light';

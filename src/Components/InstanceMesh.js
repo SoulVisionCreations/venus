@@ -1,8 +1,8 @@
 import { invalidate, useFrame } from '@react-three/fiber';
 import { useEffect, useRef } from 'react';
 import { DynamicDrawUsage } from 'three';
-import { getAnimatedTransformationMatrix } from '../Utils/Animations/animation';
-import { getInitialialStateMatrix4 } from '../Utils/utility';
+import { getAnimatedTransformationMatrix } from '../utils/Animations/animation';
+import { getInitialialStateMatrix4 } from '../utils/utility';
 
 export default function InstanceMesh({ geometry, material, gSceneParams, objectProps }) {
     const instanceMeshRef = useRef();

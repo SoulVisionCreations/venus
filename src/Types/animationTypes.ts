@@ -1,4 +1,4 @@
-import { AnimationTrajectory, AnimationTypes } from '../enums';
+import { AnimationTrajectory, AnimationTypes } from './enums';
 import { TrajectoryMetaData } from './trajectoryTypes';
 
 export type springConfig = {

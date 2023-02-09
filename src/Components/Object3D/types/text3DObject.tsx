@@ -1,8 +1,8 @@
 import { animated } from '@react-spring/three';
 import { Text3D } from '@react-three/drei';
-import { useScrollAnimation } from '../../../Utils/Animations/scrollAnimation';
-import { useSpringAnimation } from '../../../Utils/Animations/springAnimations';
-import { getAssetbyId } from '../../../Utils/download';
+import { useScrollAnimation } from '../../../utils/Animations/scrollAnimation';
+import { useSpringAnimation } from '../../../utils/Animations/springAnimations';
+import { getAssetbyId } from '../../../utils/download';
 import { text3DObjectProps } from '../../../Types/object3DTypes';
 import { ScenePropsType } from '../../Scene/Scene';
 

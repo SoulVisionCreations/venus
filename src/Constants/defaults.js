@@ -1,4 +1,4 @@
-import { ObjectControlTypes } from '../enums';
+import { ObjectControlTypes } from '../Types/enums';
 
 export const cameraDefaults = {
     position: [0, 0, 5],

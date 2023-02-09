@@ -1,6 +1,6 @@
 import InstanceMesh from '../../InstanceMesh';
 import { Mesh } from '../../mesh';
-import { getAssetbyId } from '../../../Utils/download';
+import { getAssetbyId } from '../../../utils/download';
 import { ScenePropsType } from '../../Scene/Scene';
 import { implicitObjectProps } from '../../../Types/object3DTypes';
 import { BufferGeometry, Material } from 'three';

@@ -1,5 +1,5 @@
 import { stylingDefaults } from '../Constants/defaults';
-import { Alignment, AnimationTrajectory, AnimationTypes, AssetTypes, ComponentTypes, ObjectTypes } from '../enums';
+import { Alignment, AnimationTrajectory, AnimationTypes, AssetTypes, ComponentTypes, ObjectTypes } from '../Types/enums';
 import { ContainerNodeProps } from '../Types/types';
 
 export const scrollAnimationExample: ContainerNodeProps = {

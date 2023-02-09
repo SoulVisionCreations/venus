@@ -22,7 +22,7 @@ import {
     BufferGeometry,
     ShapeGeometry,
 } from 'three';
-import { StandardGeometryTypes } from '../../enums';
+import { StandardGeometryTypes } from '../../Types/enums';
 import { GeometryProps } from '../../Types/types';
 
 const generateParams = (props: GeometryProps): Array<any> => {

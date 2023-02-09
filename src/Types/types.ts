@@ -1,4 +1,4 @@
-import { Alignment, AssetTypes, ComponentTypes } from '../enums';
+import { Alignment, AssetTypes, ComponentTypes } from './enums';
 import { Vector3, Euler, BufferGeometry, Shape, Vector2 } from 'three';
 import { Object3DProps } from './object3DTypes';
 

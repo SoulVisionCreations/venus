@@ -1,9 +1,9 @@
 import { renderObjectHtmls } from '../object3D';
 import { gltfObjectProps } from '../../../Types/object3DTypes';
-import { useSpringAnimation } from '../../../Utils/Animations/springAnimations';
+import { useSpringAnimation } from '../../../utils/Animations/springAnimations';
 import { animated } from '@react-spring/three';
-import { getAssetbyId } from '../../../Utils/download';
-import { useScrollAnimation } from '../../../Utils/Animations/scrollAnimation';
+import { getAssetbyId } from '../../../utils/download';
+import { useScrollAnimation } from '../../../utils/Animations/scrollAnimation';
 import { ScenePropsType } from '../../Scene/Scene';
 
 const GltfObject = ({ objectProps, sceneProps }: { objectProps: gltfObjectProps; sceneProps: ScenePropsType }): JSX.Element => {
