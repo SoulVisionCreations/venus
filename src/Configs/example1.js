@@ -1,4 +1,4 @@
-import { stylingDefaults } from '../Constants/defaults';
+import { stylingDefaults } from '../constants/defaults';
 import {
     AnimationTypes,
     ComponentTypes,

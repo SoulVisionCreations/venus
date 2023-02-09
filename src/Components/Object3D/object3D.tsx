@@ -10,8 +10,8 @@ import ImplicitObject from './types/implicitObject';
 import GltfObject from './types/gltfObject';
 import StandardObject from './types/standardObject';
 import Text3DObject from './types/text3DObject';
-import ObjectHtml from '../ObjectHtml/objecthtml';
-import { ScenePropsType } from '../Scene/Scene';
+import ObjectHtml from '../ObjectHtml';
+import { ScenePropsType } from '../Scene';
 import { ObjectTypes } from '../../types/enums';
 
 export const renderObjectHtmls = (objectHtmls: Array<ObjectHtmlProps>): JSX.Element[] => {

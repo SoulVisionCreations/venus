@@ -18,8 +18,8 @@ import {
     ShadowMaterial,
     SpriteMaterial,
 } from 'three';
-import { MaterialProps } from '../../types/types';
-import { MaterialTypes } from '../../types/enums';
+import { MaterialProps } from '../types/types';
+import { MaterialTypes } from '../types/enums';
 
 const MaterialLoader = ({ type, ...props }: MaterialProps): Material | null => {
     switch (type) {

@@ -3,8 +3,8 @@ import { Canvas, useThree } from '@react-three/fiber';
 import { useEffect, useRef, useState } from 'react';
 import { CanvasNodeProps, CanvasRect } from '../types/types';
 import { getAssetbyId } from '../utils/download';
-import AvataarLoader from './AvataarLoader/avataarloader';
-import Scene from './Scene/Scene';
+import AvataarLoader from './AvataarLoader';
+import Scene from './Scene';
 
 function getCoords(elem: HTMLElement): CanvasRect {
     // crossbrowser version

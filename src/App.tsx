@@ -3,7 +3,7 @@ import { invalidate } from '@react-three/fiber';
 import { Alignment, ComponentTypes } from './types/enums';
 import { downloadAssets } from './utils/download';
 import { ContainerNodeProps } from './types/types';
-import CanvasNode from './Components/CanvasNode';
+import CanvasNode from './components/CanvasNode';
 
 type AppProps = {
     config: ContainerNodeProps;

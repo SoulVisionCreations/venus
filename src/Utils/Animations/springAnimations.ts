@@ -3,7 +3,7 @@ import { invalidate } from '@react-three/fiber';
 import { useSpring, config as springConfig } from '@react-spring/three';
 import { AnimationTypes } from '../../types/enums';
 import { Object3DProps } from '../../types/object3DTypes';
-import { ScenePropsType } from '../../Components/Scene/Scene';
+import { ScenePropsType } from '../../components/Scene';
 import { ChainedAnimation, IntroAnimation } from '../../types/animationTypes';
 import { convertVec3ToArray, getInitialState } from '../utility';
 import { getTrajectoryPoints } from './trajectory';

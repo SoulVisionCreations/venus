@@ -1,8 +1,8 @@
 import { Html } from '@react-three/drei';
-import { ImageProps } from '../../types/types';
-import { ImageTypes } from '../../types/enums';
-import { htmlDefaults } from '../../Constants/defaults';
-import { getAssetbyId } from '../../utils/download';
+import { ImageProps } from '../types/types';
+import { ImageTypes } from '../types/enums';
+import { htmlDefaults } from '../constants/defaults';
+import { getAssetbyId } from '../utils/download';
 import './image.css';
 
 const renderImage = ({ type, ...props }: ImageProps) => {

@@ -1,6 +1,6 @@
 import { Vector3 } from 'three';
 import { InstanceMeshAnimationTypes } from '../../types/enums';
-import { animationDefaults } from '../../Constants/defaults';
+import { animationDefaults } from '../../constants/defaults';
 import { createMatrix4, getInitialState } from '../utility';
 
 // export const animateMesh = (time: Date, meshConfig, meshRef) => {

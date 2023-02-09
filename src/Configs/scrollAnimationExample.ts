@@ -1,4 +1,4 @@
-import { stylingDefaults } from '../Constants/defaults';
+import { stylingDefaults } from '../constants/defaults';
 import { Alignment, AnimationTrajectory, AnimationTypes, AssetTypes, ComponentTypes, ObjectTypes } from '../types/enums';
 import { ContainerNodeProps } from '../types/types';
 

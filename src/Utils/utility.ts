@@ -1,5 +1,5 @@
 import { Euler, Matrix4, Quaternion, Vector2, Vector3, Vector4 } from 'three';
-import { objectDefaults } from '../Constants/defaults';
+import { objectDefaults } from '../constants/defaults';
 
 export function degToRad(deg: number): number {
     return deg * (Math.PI / 180);

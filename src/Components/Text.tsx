@@ -1,7 +1,7 @@
 import { Html } from '@react-three/drei';
-import { htmlDefaults } from '../../Constants/defaults';
-import { TextTypes } from '../../types/enums';
-import { TextProps } from '../../types/types';
+import { htmlDefaults } from '../constants/defaults';
+import { TextTypes } from '../types/enums';
+import { TextProps } from '../types/types';
 
 const renderList = (list: string[]): JSX.Element[] => {
     return list.map((item: string, i: number): JSX.Element => {

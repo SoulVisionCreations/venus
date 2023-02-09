@@ -1,4 +1,4 @@
-import { stylingDefaults } from '../Constants/defaults';
+import { stylingDefaults } from '../constants/defaults';
 import { AnimationTypes, ComponentTypes, CameraTypes, Alignment, ObjectTypes, SceneControlTypes } from '../types/types';
 
 export const instanceExample = {

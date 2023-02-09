@@ -4,7 +4,7 @@ import { useScrollAnimation } from '../../../utils/Animations/scrollAnimation';
 import { useSpringAnimation } from '../../../utils/Animations/springAnimations';
 import { getAssetbyId } from '../../../utils/download';
 import { text3DObjectProps } from '../../../types/object3DTypes';
-import { ScenePropsType } from '../../Scene/Scene';
+import { ScenePropsType } from '../../Scene';
 
 const AnimatedText3D = animated(Text3D);
 

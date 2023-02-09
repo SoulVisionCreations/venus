@@ -1,7 +1,7 @@
 import { Html } from '@react-three/drei';
-import { ObjectHtmlProps } from '../../types/object3DTypes';
-import { ObjectHtmlTypes } from '../../types/enums';
-import { htmlDefaults } from '../../Constants/defaults';
+import { ObjectHtmlProps } from '../types/object3DTypes';
+import { ObjectHtmlTypes } from '../types/enums';
+import { htmlDefaults } from '../constants/defaults';
 import './objecthtml.css';
 
 const ObjectHtml = ({ type, ...props }: ObjectHtmlProps): JSX.Element | null => {

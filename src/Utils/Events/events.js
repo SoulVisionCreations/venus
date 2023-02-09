@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { eventDrivenActionTypes } from '../../types/types';
-import { animationDefaults } from '../../Constants/defaults';
+import { animationDefaults } from '../../constants/defaults';
 
 export const applyEventDrivenAnimations = (objectProps, time, objectRef, scrolledRotationValue) => {
     if (!objectProps.events) return;

@@ -12,8 +12,8 @@
 
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { config2 } from './Configs/example2';
-// import { scrollAnimationExample } from './Configs/scrollAnimationExample';
+import { config2 } from './configs/example2';
+// import { scrollAnimationExample } from './configs/scrollAnimationExample';
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = ReactDOM.createRoot(document.querySelector('#root')!);

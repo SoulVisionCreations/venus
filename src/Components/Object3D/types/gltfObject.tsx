@@ -4,7 +4,7 @@ import { useSpringAnimation } from '../../../utils/Animations/springAnimations';
 import { animated } from '@react-spring/three';
 import { getAssetbyId } from '../../../utils/download';
 import { useScrollAnimation } from '../../../utils/Animations/scrollAnimation';
-import { ScenePropsType } from '../../Scene/Scene';
+import { ScenePropsType } from '../../Scene';
 
 const GltfObject = ({ objectProps, sceneProps }: { objectProps: gltfObjectProps; sceneProps: ScenePropsType }): JSX.Element => {
     const model = getAssetbyId(objectProps.assetId);

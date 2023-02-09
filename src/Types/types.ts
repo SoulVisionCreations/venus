@@ -1,5 +1,5 @@
 import { Alignment, AssetTypes, ComponentTypes } from './enums';
-import { Vector3, Euler, BufferGeometry, Shape, Vector2 } from 'three';
+import { Vector3, Euler, BufferGeometry, Shape, Vector2, TextureEncoding } from 'three';
 import { Object3DProps } from './object3DTypes';
 
 export interface GeometryProps {
@@ -47,7 +47,7 @@ export interface GeometryProps {
 
 export interface ImageProps {
     assetId: string;
-    imgSrc: string;
+    src: string;
     position: Vector3;
     rotation: Euler;
     scale: number;
@@ -77,7 +77,7 @@ export interface MaterialProps {
 
 export interface TextProps {
     list: Array<string>;
-    numbererd: boolean;
+    numbered: boolean;
     position: number[];
     rotation: number[];
     scale: number;
@@ -94,6 +94,12 @@ interface CameraProps {
     orthographic?: boolean;
 }
 
+export interface EnvironmentProps {
+    files: string | string[];
+    background: boolean;
+    encoding: TextureEncoding;
+}
+
 export interface CanvasNodeProps {
     type: ComponentTypes;
     style?: any;
@@ -106,6 +112,7 @@ export interface CanvasNodeProps {
     lights?: Array<LightProps>;
     images?: Array<ImageProps>;
     sceneControl?: { control: any };
+    environment: EnvironmentProps;
 }
 
 export interface ContainerNodeProps {

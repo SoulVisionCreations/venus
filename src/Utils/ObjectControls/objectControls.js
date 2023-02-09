@@ -1,6 +1,6 @@
 import { ObjectControlTypes } from '../../types/enums';
 import { PresentationControls } from '@react-three/drei';
-import { objectDefaults } from '../../Constants/defaults';
+import { objectDefaults } from '../../constants/defaults';
 
 export const ObjectControls = (props) => {
     const control = props.control ? props.control.type : objectDefaults.control;
