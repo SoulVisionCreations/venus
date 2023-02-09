@@ -1,10 +1,17 @@
 import { AdaptiveDpr, Environment, PerformanceMonitor, Stats } from '@react-three/drei';
 import { Canvas, useThree } from '@react-three/fiber';
 import { useEffect, useRef, useState } from 'react';
-import { CanvasNodeProps, CanvasRect } from '../types/types';
+import { CanvasNodeProps } from '../types/types';
 import { getAssetbyId } from '../utils/download';
+import { positionTransform } from '../utils/utility';
 import AvataarLoader from './AvataarLoader';
 import Scene from './Scene';
+
+export type CanvasRect = {
+    top: number;
+    left: number;
+    bottom: number;
+};
 
 function getCoords(elem: HTMLElement): CanvasRect {
     // crossbrowser version
@@ -91,7 +98,7 @@ export default function CanvasNode(props: CanvasNodeProps) {
 
     return (
         <div ref={canvasContainerRef} className={props.className} style={props.style} id={props.id}>
-            <Canvas frameloop="demand" camera={props.camera} orthographic={orthographicCamera}>
+            <Canvas frameloop="demand" camera={positionTransform(props.camera)} orthographic={orthographicCamera}>
                 {loading ? (
                     <AvataarLoader center={true} />
                 ) : (
@@ -100,14 +107,7 @@ export default function CanvasNode(props: CanvasNodeProps) {
                         <AdaptiveDpr pixelated />
                         <Stats />
                         <PerformanceMonitor />
-                        <Scene
-                            objects={props.objects}
-                            sceneControl={props.sceneControl}
-                            texts={props.texts}
-                            images={props.images}
-                            lights={props.lights}
-                            sceneProps={sceneProps}
-                        />
+                        <Scene objects={props.objects} sceneControl={props.sceneControl} texts={props.texts} images={props.images} lights={props.lights} sceneProps={sceneProps} />
                         {props.environment && <Environment {...props.environment} />}
                     </>
                 )}

@@ -1,6 +1,6 @@
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { AssetTypes } from '../types/enums';
-import { loadImplicitData } from '../Renderer/data_loader';
+import { loadImplicitData } from '../renderer/data_loader';
 import { AssetProps } from '../types/types';
 // import { getS3UrlFromRequest } from './requests'
 

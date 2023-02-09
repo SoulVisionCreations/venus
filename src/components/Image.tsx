@@ -3,9 +3,10 @@ import { ImageProps } from '../types/types';
 import { ImageTypes } from '../types/enums';
 import { htmlDefaults } from '../constants/defaults';
 import { getAssetbyId } from '../utils/download';
+import { arrayToVec3, arrayToEuler } from '../utils/utility';
 import './image.css';
 
-const renderImage = ({ type, ...props }: ImageProps) => {
+const renderImage = ({ type, ...props }: any) => {
     switch (type) {
         case ImageTypes.Rounded:
             return <img className="rounded" {...props} alt="load failed" />;
@@ -20,11 +21,11 @@ const renderImage = ({ type, ...props }: ImageProps) => {
     }
 };
 
-const Image = ({ type, ...props }: ImageProps) => {
-    const scale: number = props.scale ? props.scale * htmlDefaults.scale : htmlDefaults.scale;
+const Image = ({ type, position = [0, 0, 0], rotation = [0, 0, 0], scale = 1, ...props }: ImageProps) => {
     const src: string = getAssetbyId(props.assetId);
+    const prs = { position: arrayToVec3(position), rotation: arrayToEuler(rotation), scale: scale * htmlDefaults.scale };
     return (
-        <Html transform {...props} scale={scale}>
+        <Html transform {...props} {...prs}>
             {renderImage({ type, ...props, src })}
         </Html>
     );

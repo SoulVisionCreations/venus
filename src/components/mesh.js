@@ -23,14 +23,7 @@ export function Mesh({ geometry, material, gSceneParams, objectProps, sceneProps
 
     return (
         <ObjectControls {...objectProps}>
-            <animated.mesh
-                ref={meshRef}
-                geometry={geometry}
-                material={material}
-                rotation={spring.rotation}
-                position={spring.position}
-                scale={spring.scale}
-            >
+            <animated.mesh ref={meshRef} geometry={geometry} material={material} rotation={spring.rotation} position={spring.position} scale={spring.scale}>
                 {objectProps.objectHtmls && renderObjectHtmls(objectProps.objectHtmls)}
             </animated.mesh>
         </ObjectControls>

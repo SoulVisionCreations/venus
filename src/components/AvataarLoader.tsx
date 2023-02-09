@@ -1,16 +1,17 @@
 import { Html } from '@react-three/drei';
-import { Euler, Vector3 } from 'three';
+import { arrayToVec3, arrayToEuler } from '../utils/utility';
 
 export interface AvataarLoaderProps {
     center?: boolean;
-    position?: Vector3;
-    rotation?: Euler;
+    position?: number[];
+    rotation?: number[];
     scale?: number;
 }
 
-const AvataarLoader = (props: AvataarLoaderProps) => {
+const AvataarLoader = ({ position = [0, 0, 0], rotation = [0, 0, 0], scale = 1, ...props }: AvataarLoaderProps) => {
+    const prs = { position: arrayToVec3(position), rotation: arrayToEuler(rotation), scale: scale };
     return (
-        <Html {...props}>
+        <Html {...props} {...prs}>
             <img src="./loader-avataar.gif" alt="Loading" width="200" />
         </Html>
     );

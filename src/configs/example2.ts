@@ -1,17 +1,5 @@
 import { stylingDefaults } from '../constants/defaults';
-import {
-    Alignment,
-    AssetTypes,
-    ComponentTypes,
-    ImageTypes,
-    LightTypes,
-    MaterialTypes,
-    ObjectHtmlTypes,
-    ObjectTypes,
-    SceneControlTypes,
-    StandardGeometryTypes,
-    TextTypes,
-} from '../types/enums';
+import { Alignment, AssetTypes, ComponentTypes, ImageTypes, LightTypes, MaterialTypes, ObjectHtmlTypes, ObjectTypes, SceneControlTypes, StandardGeometryTypes, TextTypes } from '../types/enums';
 import { ContainerNodeProps } from '../types/types';
 
 export const config2: ContainerNodeProps = {

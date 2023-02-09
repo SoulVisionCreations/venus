@@ -1,93 +1,95 @@
-import { Alignment, AssetTypes, ComponentTypes } from './enums';
-import { Vector3, Euler, BufferGeometry, Shape, Vector2, TextureEncoding } from 'three';
+import { Alignment, AssetTypes, ComponentTypes, ImageTypes, LightTypes, MaterialTypes, StandardGeometryTypes, TextTypes } from './enums';
+import { BufferGeometry, Shape, Vector2, TextureEncoding } from 'three';
 import { Object3DProps } from './object3DTypes';
 
 export interface GeometryProps {
-    arc: number;
-    capSubdivisions: number;
-    closed: boolean;
-    curveSegments: number;
-    depth: number;
-    depthSegments: number;
-    detail: number;
-    geometry: BufferGeometry;
-    height: number;
-    heightSegments: number;
-    indices: Array<number>;
-    innerRadius: number;
-    length: number;
-    openEnded: boolean;
-    options: object;
-    outerRadius: number;
-    p: number;
-    path: any;
-    phiLength: number;
-    phiSegments: number;
-    phiStart: number;
-    points: Array<Vector2>;
-    q: number;
-    radialSegments: number;
-    radius: number;
-    radiusBottom: number;
-    radiusLeft: number;
-    radiusTop: number;
-    segments: number;
-    shapes: Shape | Array<Shape>;
-    thetaLength: number;
-    thetaSegments: number;
-    thetaStart: number;
-    thresholdAngle: number;
-    tube: number;
-    tubularSegments: number;
-    type: any;
-    vertices: Array<number>;
-    width: number;
-    widthSegments: number;
+    arc?: number;
+    capSubdivisions?: number;
+    closed?: boolean;
+    curveSegments?: number;
+    depth?: number;
+    depthSegments?: number;
+    detail?: number;
+    geometry?: BufferGeometry;
+    height?: number;
+    heightSegments?: number;
+    indices?: Array<number>;
+    innerRadius?: number;
+    length?: number;
+    openEnded?: boolean;
+    options?: object;
+    outerRadius?: number;
+    p?: number;
+    path?: any;
+    phiLength?: number;
+    phiSegments?: number;
+    phiStart?: number;
+    points?: Array<Vector2>;
+    q?: number;
+    radialSegments?: number;
+    radius?: number;
+    radiusBottom?: number;
+    radiusLeft?: number;
+    radiusTop?: number;
+    segments?: number;
+    shapes?: Shape | Array<Shape>;
+    thetaLength?: number;
+    thetaSegments?: number;
+    thetaStart?: number;
+    thresholdAngle?: number;
+    tube?: number;
+    tubularSegments?: number;
+    type: StandardGeometryTypes;
+    vertices?: Array<number>;
+    width?: number;
+    widthSegments?: number;
 }
 
 export interface ImageProps {
     assetId: string;
-    src: string;
-    position: Vector3;
-    rotation: Euler;
-    scale: number;
-    type: any;
+    src?: string;
+    position?: number[];
+    rotation?: number[];
+    scale?: number;
+    type: ImageTypes;
+    style?: any;
 }
 
 export interface LightProps {
-    angle: number;
-    color: string;
-    decay: number;
-    distance: number;
-    groundColor: string;
-    height: number;
-    intensity: number;
-    penumbra: number;
-    position: Vector3;
-    rotation: Euler;
-    scale: Vector3 | number;
-    skyColor: string;
-    type: any;
-    width: number;
+    angle?: number;
+    color?: string;
+    decay?: number;
+    distance?: number;
+    groundColor?: string;
+    height?: number;
+    intensity?: number;
+    penumbra?: number;
+    position?: number[];
+    rotation?: number[];
+    scale?: number[];
+    skyColor?: string;
+    type: LightTypes;
+    width?: number;
 }
 
 export interface MaterialProps {
-    type: any;
+    type: MaterialTypes;
 }
 
 export interface TextProps {
-    list: Array<string>;
-    numbered: boolean;
-    position: number[];
-    rotation: number[];
-    scale: number;
-    text: string;
-    title: string;
-    type: any;
+    list?: Array<string>;
+    numbered?: boolean;
+    position?: number[];
+    rotation?: number[];
+    scale?: number;
+    text?: string;
+    title?: string;
+    type: TextTypes;
+    style?: any;
 }
 
 interface CameraProps {
-    position: number[];
+    position?: number[];
     fov?: number;
     near?: number;
     far?: number;
@@ -96,8 +98,8 @@ interface CameraProps {
 
 export interface EnvironmentProps {
     files: string | string[];
-    background: boolean;
-    encoding: TextureEncoding;
+    background?: boolean;
+    encoding?: TextureEncoding;
 }
 
 export interface CanvasNodeProps {
@@ -129,12 +131,6 @@ export interface AssetProps {
     assetPath: string;
     assetType: AssetTypes;
 }
-
-export type CanvasRect = {
-    top: number;
-    left: number;
-    bottom: number;
-};
 
 export type unknownObject = {
     [key: string | number | symbol]: any;

@@ -1,14 +1,5 @@
 import { stylingDefaults } from '../constants/defaults';
-import {
-    AnimationTypes,
-    ComponentTypes,
-    CameraTypes,
-    Alignment,
-    ObjectTypes,
-    SceneEffectsTypes,
-    eventDrivenActionTypes,
-    ObjectControlTypes,
-} from '../types/types';
+import { AnimationTypes, ComponentTypes, CameraTypes, Alignment, ObjectTypes, SceneEffectsTypes, eventDrivenActionTypes, ObjectControlTypes } from '../types/types';
 
 export const config1 = {
     type: ComponentTypes.Container,

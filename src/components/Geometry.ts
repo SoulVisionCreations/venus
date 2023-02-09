@@ -36,17 +36,7 @@ const generateParams = (props: GeometryProps): Array<any> => {
         case StandardGeometryTypes.ConeGeometry:
             return [props.radius, props.height, props.radialSegments, props.heightSegments, props.openEnded, props.thetaStart, props.thetaLength];
         case StandardGeometryTypes.CylinderGeometry:
-            return [
-                props.radiusTop,
-                props.radiusBottom,
-                props.radiusLeft,
-                props.height,
-                props.radialSegments,
-                props.heightSegments,
-                props.openEnded,
-                props.thetaStart,
-                props.thetaLength,
-            ];
+            return [props.radiusTop, props.radiusBottom, props.radiusLeft, props.height, props.radialSegments, props.heightSegments, props.openEnded, props.thetaStart, props.thetaLength];
         case StandardGeometryTypes.DodecahedronGeometry:
             return [props.radius, props.detail];
         case StandardGeometryTypes.EdgesGeometry:

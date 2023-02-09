@@ -1,4 +1,4 @@
-import { MaterialTypes, ObjectTypes } from './enums';
+import { MaterialTypes, ObjectHtmlTypes, ObjectTypes } from './enums';
 import { Animation } from './animationTypes';
 import { GeometryProps, unknownObject } from './types';
 
@@ -8,7 +8,8 @@ export type ObjectHtmlProps = {
     price?: string;
     rotation?: number[];
     scale?: number;
-    type: any;
+    type: ObjectHtmlTypes;
+    style?: any;
 };
 
 export type commonObject3DProps = {

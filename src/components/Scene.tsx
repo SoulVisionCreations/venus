@@ -3,10 +3,11 @@ import Image from './Image';
 import Text from './Text';
 import Light from './Light';
 import { Object3D } from './Object3D/object3D';
-import { CanvasRect, ImageProps, LightProps, TextProps } from '../types/types';
+import { ImageProps, LightProps, TextProps } from '../types/types';
 import { Object3DProps } from '../types/object3DTypes';
+import { CanvasRect } from './CanvasNode';
 
-export type ScenePropsType = {
+export type SceneProps = {
     isSceneVisible: boolean;
     isSceneCompletelyVisible: boolean;
     canvasRect: CanvasRect;
@@ -18,34 +19,34 @@ type Props = {
     sceneControl?: object | undefined;
     texts?: Array<TextProps> | undefined;
     images?: Array<ImageProps> | undefined;
-    sceneProps: ScenePropsType;
+    sceneProps: SceneProps;
 };
 
-const addLights = (lights: Array<LightProps>): JSX.Element[] => {
-    return lights.map((lightProps: LightProps, index: number): JSX.Element => {
+const addLights = (lights: Array<LightProps>) => {
+    return lights.map((lightProps: LightProps, index: number) => {
         return <Light {...lightProps} key={index} />;
     });
 };
 
-const renderObjects = (objects: Array<Object3DProps>, sceneProps: ScenePropsType): JSX.Element[] => {
-    return objects.map((objectProps: Object3DProps, index: number): JSX.Element => {
+const renderObjects = (objects: Array<Object3DProps>, sceneProps: SceneProps) => {
+    return objects.map((objectProps: Object3DProps, index: number) => {
         return <Object3D objectProps={objectProps} sceneProps={sceneProps} key={index} />;
     });
 };
 
-const renderTexts = (texts: Array<TextProps>): JSX.Element[] => {
-    return texts.map((textProps: TextProps, index: number): JSX.Element => {
+const renderTexts = (texts: Array<TextProps>) => {
+    return texts.map((textProps: TextProps, index: number) => {
         return <Text {...textProps} key={index} />;
     });
 };
 
-const renderImages = (images: Array<ImageProps>): JSX.Element[] => {
-    return images.map((imageProps: ImageProps, index: number): JSX.Element => {
+const renderImages = (images: Array<ImageProps>) => {
+    return images.map((imageProps: ImageProps, index: number) => {
         return <Image {...imageProps} key={index} />;
     });
 };
 
-export default function Scene(props: Props): JSX.Element {
+export default function Scene(props: Props) {
     return (
         <>
             {props.lights ? addLights(props.lights) : null}

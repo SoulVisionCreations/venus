@@ -22,6 +22,14 @@ export const arrayToVec = (arr: Array<number>) => {
     }
 };
 
+export const arrayToVec3 = (arr: Array<number>) => {
+    return new Vector3(...arr);
+};
+
+export const arrayToEuler = (arr: Array<number>) => {
+    return new Euler(...arr);
+};
+
 export const getInitialStateArr = (instance: any): Array<number[]> => {
     const position = instance.position ? instance.position : objectDefaults.position;
     const rotation = instance.rotation ? instance.rotation : objectDefaults.rotation;
@@ -50,4 +58,8 @@ export const getInitialialStateMatrix4 = (instance: any): Matrix4 => {
     const [position, rotation, scale]: Array<Vector3> = getInitialState(instance);
     const matrix = createMatrix4(position, rotation, scale);
     return matrix;
+};
+
+export const positionTransform = ({ position = [0, 0, 2], ...props }) => {
+    return { position: arrayToVec3(position), ...props };
 };

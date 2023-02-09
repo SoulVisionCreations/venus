@@ -75,8 +75,7 @@ export const useScrollAnimation = (objectProps, sceneProps, springApi) => {
                 scrollAnimation.current = animation;
                 if (animation.trajectory) scrollTrajectory.current = getTrajectory(animation);
                 if (animation.visibilityThreshold != undefined) visibilityThreshold.current = animation.visibilityThreshold;
-                if (animation.trajectoryMetaData && animation.trajectoryMetaData.speed != undefined)
-                    trajectorySpeed.current = animation.trajectoryMetaData.speed;
+                if (animation.trajectoryMetaData && animation.trajectoryMetaData.speed != undefined) trajectorySpeed.current = animation.trajectoryMetaData.speed;
                 if (animation.config) springConfigRef.current = animation.config;
             }
         });
@@ -118,9 +117,7 @@ export const useScrollAnimation = (objectProps, sceneProps, springApi) => {
         if (scrollAnimation.current.scaleMetaData) {
             const scaleRatio = scrollAnimation.current.scaleMetaData.scaleRatio;
             const velocity = scrollAnimation.current.scaleMetaData.velocity;
-            state.current.scale.add(
-                new Vector3(scaleRatio[0] * velocity * deltaY, scaleRatio[1] * velocity * deltaY, scaleRatio[2] * velocity * deltaY)
-            );
+            state.current.scale.add(new Vector3(scaleRatio[0] * velocity * deltaY, scaleRatio[1] * velocity * deltaY, scaleRatio[2] * velocity * deltaY));
             if (scrollAnimation.current.scaleMetaData.maxScale) {
                 const maxScale = scrollAnimation.current.scaleMetaData.maxScale;
                 state.current.scale.x = Math.min(maxScale[0], state.current.scale.x);
