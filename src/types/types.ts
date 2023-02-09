@@ -114,7 +114,7 @@ export interface CanvasNodeProps {
     lights?: Array<LightProps>;
     images?: Array<ImageProps>;
     sceneControl?: { control: any };
-    environment: EnvironmentProps;
+    environment?: EnvironmentProps;
 }
 
 export interface ContainerNodeProps {

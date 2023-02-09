@@ -3,12 +3,12 @@ import { invalidate } from '@react-three/fiber';
 import { useSpring, config as springConfig } from '@react-spring/three';
 import { AnimationTypes } from '../../types/enums';
 import { Object3DProps } from '../../types/object3DTypes';
-import { ScenePropsType } from '../../components/Scene';
+import { SceneProps } from '../../components/Scene';
 import { ChainedAnimation, IntroAnimation } from '../../types/animationTypes';
 import { convertVec3ToArray, getInitialState } from '../utility';
 import { getTrajectoryPoints } from './trajectory';
 
-export const useSpringAnimation = (instance: Object3DProps, sceneProps: ScenePropsType) => {
+export const useSpringAnimation = (instance: Object3DProps, sceneProps: SceneProps) => {
     const [initialPosition, initialRotation, initialScale] = getInitialState(instance);
     const state = useRef({
         position: initialPosition,

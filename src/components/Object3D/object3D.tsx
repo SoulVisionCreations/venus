@@ -1,4 +1,4 @@
-import { gltfObjectProps, implicitObjectProps, Object3DProps, ObjectHtmlProps, standardObjectProps, text3DObjectProps } from '../../types/object3DTypes';
+import { GltfObjectProps, ImplicitObjectProps, Object3DProps, ObjectHtmlProps, StandardObjectProps, Text3DObjectProps } from '../../types/object3DTypes';
 import ImplicitObject from './types/implicitObject';
 import GltfObject from './types/gltfObject';
 import StandardObject from './types/standardObject';
@@ -16,13 +16,13 @@ export const renderObjectHtmls = (objectHtmls: Array<ObjectHtmlProps>) => {
 export const Object3D = ({ objectProps, sceneProps }: { objectProps: Object3DProps; sceneProps: SceneProps }) => {
     switch (objectProps.type) {
         case ObjectTypes.ImplicitObject:
-            return <ImplicitObject objectProps={objectProps as implicitObjectProps} sceneProps={sceneProps} />;
+            return <ImplicitObject objectProps={objectProps as ImplicitObjectProps} sceneProps={sceneProps} />;
         case ObjectTypes.GltfObject:
-            return <GltfObject objectProps={objectProps as gltfObjectProps} sceneProps={sceneProps} />;
+            return <GltfObject objectProps={objectProps as GltfObjectProps} sceneProps={sceneProps} />;
         case ObjectTypes.StandardObject:
-            return <StandardObject objectProps={objectProps as standardObjectProps} sceneProps={sceneProps} />;
+            return <StandardObject objectProps={objectProps as StandardObjectProps} sceneProps={sceneProps} />;
         case ObjectTypes.Text3D:
-            return <Text3DObject objectProps={objectProps as text3DObjectProps} sceneProps={sceneProps} />;
+            return <Text3DObject objectProps={objectProps as Text3DObjectProps} sceneProps={sceneProps} />;
         default:
             return null;
     }

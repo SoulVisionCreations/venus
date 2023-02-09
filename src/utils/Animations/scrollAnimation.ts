@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import { CurvePath, EllipseCurve, Vector3 } from 'three';
 import { convertVec3ToArray, getInitialState } from '../utility';
 import { getTrajectory } from './trajectory';
-// import { SceneProps } from '../../components/Scene';
+import { SceneProps } from '../../components/Scene';
 import { Object3DProps } from '../../types/object3DTypes';
 import { AnimationGeneratedTrajectoryData, ScrollAnimation, SpringConfig, VisibilityThreshold } from '../../types/animationTypes';
 import { AnimationTrajectory, AnimationTypes } from '../../types/enums';
@@ -43,7 +43,7 @@ import { TrajectoryMetaData } from '../../types/trajectoryTypes';
 //   return visibleScenePer
 // }
 
-const shouldAnimate = (sceneProps: ScenePropsType, visibilityThreshold: { current: VisibilityThreshold }, delta: number) => {
+const shouldAnimate = (sceneProps: SceneProps, visibilityThreshold: { current: VisibilityThreshold }, delta: number) => {
     const sceneTop = sceneProps.canvasRect.top;
     const sceneBottom = sceneProps.canvasRect.bottom;
     const sceneHeight = sceneBottom - sceneTop;
@@ -58,7 +58,7 @@ const shouldAnimate = (sceneProps: ScenePropsType, visibilityThreshold: { curren
     return false;
 };
 
-export const useScrollAnimation = (objectProps: Object3DProps, sceneProps: ScenePropsType, springApi: any) => {
+export const useScrollAnimation = (objectProps: Object3DProps, sceneProps: SceneProps, springApi: any) => {
     const [initialPosition, initialRotation, initialScale] = getInitialState(objectProps);
     const state = useRef({
         position: initialPosition,
@@ -148,11 +148,11 @@ export const useScrollAnimation = (objectProps: Object3DProps, sceneProps: Scene
         }
     };
 
-    const animate = (e) => {
+    const animate = (e: any) => {
         if (!shouldAnimate(sceneProps, visibilityThreshold, e.deltaY)) return;
         updateStateByDelta(e.deltaY);
         springApi.start({
-            to: async (next) => {
+            to: async (next: any) => {
                 await next({
                     position: convertVec3ToArray(state.current.position),
                     rotation: convertVec3ToArray(state.current.rotation),
@@ -176,7 +176,7 @@ export const useScrollAnimation = (objectProps: Object3DProps, sceneProps: Scene
                 if (delta > 0) {
                     updateStateByDelta(delta);
                     springApi.start({
-                        to: async (next) => {
+                        to: async (next: any) => {
                             await next({
                                 position: convertVec3ToArray(state.current.position),
                                 rotation: convertVec3ToArray(state.current.rotation),

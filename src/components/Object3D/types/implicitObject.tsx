@@ -1,7 +1,7 @@
 import InstanceMesh from '../../InstanceMesh';
 import { getAssetbyId } from '../../../utils/download';
 import { SceneProps } from '../../Scene';
-import { implicitObjectProps } from '../../../types/object3DTypes';
+import { ImplicitObjectProps } from '../../../types/object3DTypes';
 import { BufferGeometry, Material } from 'three';
 import { Mesh } from '../../Mesh';
 
@@ -11,7 +11,7 @@ export interface ImplicitAssetProps {
     material: Material;
 }
 
-const ImplicitObject = ({ objectProps, sceneProps }: { objectProps: implicitObjectProps; sceneProps: SceneProps }) => {
+const ImplicitObject = ({ objectProps, sceneProps }: { objectProps: ImplicitObjectProps; sceneProps: SceneProps }) => {
     const asset: ImplicitAssetProps = getAssetbyId(objectProps.assetId);
     const useInstancing: boolean = !(objectProps.useInstancing == undefined) && objectProps.useInstancing;
 
