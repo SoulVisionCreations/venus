@@ -2,9 +2,9 @@ import { invalidate } from '@react-three/fiber';
 import { config as springConfig } from '@react-spring/three';
 import { useEffect, useRef } from 'react';
 import { Vector3 } from 'three';
-import { getInitialState } from '../utility';
+import { AnimationTypes } from '../../Types/enums';
 import { getTrajectory } from './trajectory';
-import { AnimationTypes } from '../../enums';
+import { getInitialState } from '../utility';
 
 // const getVisibleSceneHeight = (sceneProps) => {
 //   const sceneTop = sceneProps.canvasRect.top

@@ -1,4 +1,4 @@
-import { SceneControlTypes } from '../../enums';
+import { SceneControlTypes } from '../../Types/enums';
 import Orbit from './Orbit';
 
 export const applySceneControl = (sceneControl) => {

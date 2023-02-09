@@ -1,5 +1,5 @@
 import { CatmullRomCurve3, CubicBezierCurve3, CurvePath, EllipseCurve, QuadraticBezierCurve3, Vector, Vector3 } from 'three';
-import { AnimationTrajectory } from '../../enums';
+import { AnimationTrajectory } from '../../Types/enums';
 import { AnimationGeneratedTrajectoryData, AnimationManualTrajectoryData, AnimationTrajectoryData, ObjectState } from '../../Types/animationTypes';
 import { CircleMetaData, CurveMetaData, EllipseMetaData, MultipleCurveMetaData, TrajectoryMetaData } from '../../Types/trajectoryTypes';
 import { unknownObject } from '../../Types/types';
