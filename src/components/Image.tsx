@@ -17,7 +17,7 @@ const renderImage = ({ type, ...props }: any) => {
         case ImageTypes.Icon:
             return <img className="icon" {...props} alt="load failed" />;
         default:
-            return <img alt="load failed" />;
+            return <img {...props} alt="load failed" />;
     }
 };
 

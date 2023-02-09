@@ -12,10 +12,11 @@
 
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { config2 } from './configs/example2';
+import { textImageExample } from './configs/textImageExample';
+// import { config2 } from './configs/example2';
 // import { scrollAnimationExample } from './configs/scrollAnimationExample';
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = ReactDOM.createRoot(document.querySelector('#root')!);
 
-root.render(<App config={config2} />);
+root.render(<App config={textImageExample} />);

@@ -1,4 +1,4 @@
-import { Alignment, AssetTypes, ComponentTypes, ImageTypes, LightTypes, MaterialTypes, StandardGeometryTypes, TextTypes } from './enums';
+import { Alignment, AssetTypes, ComponentTypes, ImageTypes, LightTypes, MaterialTypes, SceneControlTypes, StandardGeometryTypes, TextTypes } from './enums';
 import { BufferGeometry, Shape, Vector2, TextureEncoding } from 'three';
 import { Object3DProps } from './object3DTypes';
 
@@ -51,7 +51,7 @@ export interface ImageProps {
     position?: number[];
     rotation?: number[];
     scale?: number;
-    type: ImageTypes;
+    type?: ImageTypes;
     style?: any;
 }
 
@@ -113,7 +113,7 @@ export interface CanvasNodeProps {
     texts?: Array<TextProps>;
     lights?: Array<LightProps>;
     images?: Array<ImageProps>;
-    sceneControl?: { control: any };
+    sceneControl?: { type: SceneControlTypes };
     environment?: EnvironmentProps;
 }
 

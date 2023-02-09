@@ -16,7 +16,7 @@ const Text = ({ type, position = [0, 0, 0], rotation = [0, 0, 0], scale = 1, ...
         case TextTypes.List:
             return (
                 <Html transform {...props} {...prs}>
-                    {props.title}
+                    <b>{props.title}</b>
                     {props.list && (props.numbered ? <ol> {renderList(props.list)} </ol> : <ul> {renderList(props.list)} </ul>)}
                 </Html>
             );

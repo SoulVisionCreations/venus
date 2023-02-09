@@ -19,7 +19,7 @@ export const config2: ContainerNodeProps = {
             type: ComponentTypes.Canvas,
             className: 'canvas',
             style: stylingDefaults.fullWidthFullHeightCanvas,
-            assetIds: ['100001', '10001', '10001', '101'],
+            assetIds: ['100001', '10001', '1001', '101'],
             environment: { files: './puresky.hdr' },
             camera: {
                 position: [0, 0, 2],
@@ -35,7 +35,7 @@ export const config2: ContainerNodeProps = {
                 },
             ],
             sceneControl: {
-                control: SceneControlTypes.Orbit,
+                type: SceneControlTypes.Orbit,
             },
             objects: [
                 {
