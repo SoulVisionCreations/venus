@@ -1,7 +1,7 @@
 import { AnimationTrajectory, AnimationTypes } from './enums';
 import { TrajectoryMetaData } from './trajectoryTypes';
 
-export type springConfig = {
+export type SpringConfig = {
     mass?: number;
     tension?: number;
     friction?: number;
@@ -35,14 +35,14 @@ type AnimationTrajectoryMetaData = TrajectoryMetaData & {
 export type AnimationManualTrajectoryData = {
     initialPause?: number;
     trajectory: AnimationTrajectory;
-    config: springConfig;
+    config?: SpringConfig;
     stateIncrements: Array<ObjectState>;
 };
 
 export type AnimationGeneratedTrajectoryData = {
     initialPause?: number;
     trajectory: AnimationTrajectory;
-    config: springConfig;
+    config?: SpringConfig;
     trajectoryMetaData: AnimationTrajectoryMetaData;
 };
 
@@ -61,9 +61,21 @@ export type ChainedAnimation = {
     childAnimations: Array<AnimationTrajectoryData>;
 };
 
+export type VisibilityThreshold = { top: number; bottom: number };
+
 export type ScrollAnimation = {
     type: AnimationTypes;
-    visibilityThreshold?: { top: number; bottom: number };
+    visibilityThreshold?: VisibilityThreshold;
+    rotationMetaData?: {
+        axis: number[];
+        velocity: number;
+    };
+    scaleMetaData?: {
+        scaleRatio: number[];
+        velocity: number;
+        minScale: number[];
+        maxScale: number[];
+    };
 } & AnimationTrajectoryData;
 
 export type Animation = ScrollAnimation | IntroAnimation | ChainedAnimation;

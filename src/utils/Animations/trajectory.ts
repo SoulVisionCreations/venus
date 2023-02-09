@@ -5,7 +5,7 @@ import { CircleMetaData, CurveMetaData, EllipseMetaData, MultipleCurveMetaData, 
 import { unknownObject } from '../../types/types';
 import { convertVec3ToArray } from '../utility';
 
-type stateVec = {
+export type stateVec = {
     position: Vector3;
     rotation: Vector3;
     scale: Vector3;
