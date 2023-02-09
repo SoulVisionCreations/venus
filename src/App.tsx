@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { invalidate } from '@react-three/fiber';
-import { Alignment, ComponentTypes } from './enums';
-import { downloadAssets } from './Utils/download';
-import { ContainerNodeProps } from './Types/types';
-import CanvasNode from './Components/CanvasNode';
+import { Alignment, ComponentTypes } from './types/enums';
+import { downloadAssets } from './utils/download';
+import { ContainerNodeProps } from './types/types';
+import CanvasNode from './components/CanvasNode';
 
 type AppProps = {
     config: ContainerNodeProps;
