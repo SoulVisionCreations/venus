@@ -1,5 +1,5 @@
 import { renderObjectHtmls } from '../object3D';
-import { gltfObjectProps } from '../../../Types/object3DTypes';
+import { gltfObjectProps } from '../../../types/object3DTypes';
 import { useSpringAnimation } from '../../../utils/Animations/springAnimations';
 import { animated } from '@react-spring/three';
 import { getAssetbyId } from '../../../utils/download';

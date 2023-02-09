@@ -2,7 +2,7 @@ import { invalidate } from '@react-three/fiber';
 import { config as springConfig } from '@react-spring/three';
 import { useEffect, useRef } from 'react';
 import { Vector3 } from 'three';
-import { AnimationTypes } from '../../Types/enums';
+import { AnimationTypes } from '../../types/enums';
 import { getTrajectory } from './trajectory';
 import { getInitialState } from '../utility';
 

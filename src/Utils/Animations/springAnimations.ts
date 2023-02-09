@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { invalidate } from '@react-three/fiber';
 import { useSpring, config as springConfig } from '@react-spring/three';
-import { AnimationTypes } from '../../Types/enums';
-import { Object3DProps } from '../../Types/object3DTypes';
+import { AnimationTypes } from '../../types/enums';
+import { Object3DProps } from '../../types/object3DTypes';
 import { ScenePropsType } from '../../Components/Scene/Scene';
-import { ChainedAnimation, IntroAnimation } from '../../Types/animationTypes';
+import { ChainedAnimation, IntroAnimation } from '../../types/animationTypes';
 import { convertVec3ToArray, getInitialState } from '../utility';
 import { getTrajectoryPoints } from './trajectory';
 

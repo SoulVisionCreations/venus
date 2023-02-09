@@ -2,7 +2,7 @@ import Geometry from '../../Geometry/geometry';
 import InstanceMesh from '../../InstanceMesh';
 import MaterialLoader from '../../Material/material';
 import { Mesh } from '../../mesh';
-import { standardObjectProps } from '../../../Types/object3DTypes';
+import { standardObjectProps } from '../../../types/object3DTypes';
 import { ScenePropsType } from '../../Scene/Scene';
 
 const StandardObject = ({ objectProps, sceneProps }: { objectProps: standardObjectProps; sceneProps: ScenePropsType }): JSX.Element => {

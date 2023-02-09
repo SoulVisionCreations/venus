@@ -1,8 +1,8 @@
 import { CatmullRomCurve3, CubicBezierCurve3, CurvePath, EllipseCurve, QuadraticBezierCurve3, Vector, Vector3 } from 'three';
-import { AnimationTrajectory } from '../../Types/enums';
-import { AnimationGeneratedTrajectoryData, AnimationManualTrajectoryData, AnimationTrajectoryData, ObjectState } from '../../Types/animationTypes';
-import { CircleMetaData, CurveMetaData, EllipseMetaData, MultipleCurveMetaData, TrajectoryMetaData } from '../../Types/trajectoryTypes';
-import { unknownObject } from '../../Types/types';
+import { AnimationTrajectory } from '../../types/enums';
+import { AnimationGeneratedTrajectoryData, AnimationManualTrajectoryData, AnimationTrajectoryData, ObjectState } from '../../types/animationTypes';
+import { CircleMetaData, CurveMetaData, EllipseMetaData, MultipleCurveMetaData, TrajectoryMetaData } from '../../types/trajectoryTypes';
+import { unknownObject } from '../../types/types';
 import { convertVec3ToArray } from '../utility';
 
 type stateVec = {

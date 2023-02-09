@@ -1,7 +1,7 @@
 import { AdaptiveDpr, Environment, PerformanceMonitor, Stats } from '@react-three/drei';
 import { Canvas, useThree } from '@react-three/fiber';
 import { useEffect, useRef, useState } from 'react';
-import { CanvasNodeProps, CanvasRect } from '../Types/types';
+import { CanvasNodeProps, CanvasRect } from '../types/types';
 import { getAssetbyId } from '../utils/download';
 import AvataarLoader from './AvataarLoader/avataarloader';
 import Scene from './Scene/Scene';

@@ -5,14 +5,14 @@ import {
     ObjectHtmlProps,
     standardObjectProps,
     text3DObjectProps,
-} from '../../Types/object3DTypes';
+} from '../../types/object3DTypes';
 import ImplicitObject from './types/implicitObject';
 import GltfObject from './types/gltfObject';
 import StandardObject from './types/standardObject';
 import Text3DObject from './types/text3DObject';
 import ObjectHtml from '../ObjectHtml/objecthtml';
 import { ScenePropsType } from '../Scene/Scene';
-import { ObjectTypes } from '../../Types/enums';
+import { ObjectTypes } from '../../types/enums';
 
 export const renderObjectHtmls = (objectHtmls: Array<ObjectHtmlProps>): JSX.Element[] => {
     return objectHtmls.map((objectHtmlProps: ObjectHtmlProps, index: number): JSX.Element => {

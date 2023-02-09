@@ -1,5 +1,5 @@
 import { Vector3 } from 'three';
-import { InstanceMeshAnimationTypes } from '../../Types/enums';
+import { InstanceMeshAnimationTypes } from '../../types/enums';
 import { animationDefaults } from '../../Constants/defaults';
 import { createMatrix4, getInitialState } from '../utility';
 

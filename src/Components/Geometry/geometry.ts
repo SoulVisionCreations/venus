@@ -22,8 +22,8 @@ import {
     BufferGeometry,
     ShapeGeometry,
 } from 'three';
-import { StandardGeometryTypes } from '../../Types/enums';
-import { GeometryProps } from '../../Types/types';
+import { StandardGeometryTypes } from '../../types/enums';
+import { GeometryProps } from '../../types/types';
 
 const generateParams = (props: GeometryProps): Array<any> => {
     switch (props.type) {

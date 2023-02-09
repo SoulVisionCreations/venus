@@ -1,6 +1,6 @@
 import { stylingDefaults } from '../Constants/defaults';
-import { Alignment, AnimationTrajectory, AnimationTypes, AssetTypes, ComponentTypes, ObjectTypes } from '../Types/enums';
-import { ContainerNodeProps } from '../Types/types';
+import { Alignment, AnimationTrajectory, AnimationTypes, AssetTypes, ComponentTypes, ObjectTypes } from '../types/enums';
+import { ContainerNodeProps } from '../types/types';
 
 export const scrollAnimationExample: ContainerNodeProps = {
     type: ComponentTypes.Container,

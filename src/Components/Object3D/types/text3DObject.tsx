@@ -3,7 +3,7 @@ import { Text3D } from '@react-three/drei';
 import { useScrollAnimation } from '../../../utils/Animations/scrollAnimation';
 import { useSpringAnimation } from '../../../utils/Animations/springAnimations';
 import { getAssetbyId } from '../../../utils/download';
-import { text3DObjectProps } from '../../../Types/object3DTypes';
+import { text3DObjectProps } from '../../../types/object3DTypes';
 import { ScenePropsType } from '../../Scene/Scene';
 
 const AnimatedText3D = animated(Text3D);

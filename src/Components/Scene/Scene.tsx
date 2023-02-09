@@ -3,8 +3,8 @@ import Image from '../Image/image';
 import Text from '../Text/text';
 import Light from '../Light/light';
 import { Object3D } from '../Object3D/object3D';
-import { CanvasRect, ImageProps, LightProps, TextProps } from '../../Types/types';
-import { Object3DProps } from '../../Types/object3DTypes';
+import { CanvasRect, ImageProps, LightProps, TextProps } from '../../types/types';
+import { Object3DProps } from '../../types/object3DTypes';
 
 export type ScenePropsType = {
     isSceneVisible: boolean;

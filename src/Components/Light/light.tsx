@@ -1,5 +1,5 @@
-import { LightProps } from '../../Types/types';
-import { LightTypes } from '../../Types/enums';
+import { LightProps } from '../../types/types';
+import { LightTypes } from '../../types/enums';
 
 const Light = ({ type, ...props }: LightProps) => {
     switch (type) {

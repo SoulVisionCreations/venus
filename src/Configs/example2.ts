@@ -11,8 +11,8 @@ import {
     SceneControlTypes,
     StandardGeometryTypes,
     TextTypes,
-} from '../Types/enums';
-import { ContainerNodeProps } from '../Types/types';
+} from '../types/enums';
+import { ContainerNodeProps } from '../types/types';
 
 export const config2: ContainerNodeProps = {
     type: ComponentTypes.Container,

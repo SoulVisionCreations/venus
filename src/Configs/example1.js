@@ -8,7 +8,7 @@ import {
     SceneEffectsTypes,
     eventDrivenActionTypes,
     ObjectControlTypes,
-} from '../Types/types';
+} from '../types/types';
 
 export const config1 = {
     type: ComponentTypes.Container,

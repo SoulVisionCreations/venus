@@ -1,6 +1,6 @@
 import { Html } from '@react-three/drei';
-import { ObjectHtmlProps } from '../../Types/object3DTypes';
-import { ObjectHtmlTypes } from '../../Types/enums';
+import { ObjectHtmlProps } from '../../types/object3DTypes';
+import { ObjectHtmlTypes } from '../../types/enums';
 import { htmlDefaults } from '../../Constants/defaults';
 import './objecthtml.css';
 
