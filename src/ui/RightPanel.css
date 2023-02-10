@@ -1,0 +1,9 @@
+.right-panel {
+    padding: 10px;
+    width: 25%;
+    float: right;
+    background-color: #1d2e39;
+    height: 100vh;
+    overflow: auto;
+    color: #ffffff;
+}

@@ -1,39 +1,19 @@
-import { useEffect } from 'react';
-import { invalidate } from '@react-three/fiber';
-import { Alignment, ComponentTypes } from './types/enums';
-import { downloadAssets } from './utils/download';
-import { ContainerNodeProps } from './types/types';
-import CanvasNode from './components/CanvasNode';
+import './App.css';
+import { textImageExample } from './configs/textImageExample';
+import ConfigRenderer from './components/config_renderer';
+import { LeftPanel } from './ui/LeftPanel';
+import { RightPanel } from './ui/RightPanel';
+import { Header } from './ui/Header';
 
-type AppProps = {
-    config: ContainerNodeProps;
-};
-
-export default function App({ config }: AppProps) {
-    const renderConfig = () => {
-        return config.children.map((child: any, index: number) => {
-            if (child.type == ComponentTypes.Container) {
-                return <App config={child} key={index} />;
-            }
-            return <CanvasNode {...child} key={index} />;
-        });
-    };
-
-    useEffect(() => {
-        window.addEventListener('resize', () => {
-            invalidate();
-        });
-        config.assets &&
-            setTimeout(() => {
-                downloadAssets(config.assets);
-            });
-    }, [config]);
-
-    const alignmentClassName: string = config.alignment == Alignment.Vertical ? 'flexColumn' : 'flexRow';
-
+export default function App() {
     return (
-        <div className={`${config.className} ${alignmentClassName}`} style={config.style}>
-            {renderConfig()}
+        <div className="wrapper">
+            <Header />
+            <div className="container">
+                <LeftPanel />
+                <ConfigRenderer config={textImageExample} />
+                <RightPanel />
+            </div>
         </div>
     );
 }

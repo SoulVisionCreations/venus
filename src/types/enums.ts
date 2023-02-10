@@ -87,7 +87,7 @@ export const enum ObjectControlTypes {
     BouncyPresentation,
 }
 
-export const enum SceneControlTypes {
+export enum SceneControlTypes {
     Orbit,
 }
 

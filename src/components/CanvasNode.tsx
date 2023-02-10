@@ -1,4 +1,4 @@
-import { AdaptiveDpr, Environment, PerformanceMonitor, Stats } from '@react-three/drei';
+import { AdaptiveDpr, Environment, PerformanceMonitor } from '@react-three/drei';
 import { Canvas, useThree } from '@react-three/fiber';
 import { useEffect, useRef, useState } from 'react';
 import { CanvasNodeProps } from '../types/types';
@@ -105,7 +105,7 @@ export default function CanvasNode(props: CanvasNodeProps) {
                     <>
                         <GetInfo />
                         <AdaptiveDpr pixelated />
-                        <Stats />
+                        {/* <Stats /> */}
                         <PerformanceMonitor />
                         <Scene objects={props.objects} sceneControl={props.sceneControl} texts={props.texts} images={props.images} lights={props.lights} sceneProps={sceneProps} />
                         {props.environment && <Environment {...props.environment} />}
