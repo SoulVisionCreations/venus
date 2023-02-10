@@ -88,7 +88,7 @@ export const config2: ContainerNodeProps = {
                     assetId: '1001',
                     position: [-0.5, 0, 0],
                     rotation: [0, 0, 0],
-                    scale: 1,
+                    scale: [1, 1, 1],
                 },
             ],
             texts: [
@@ -96,7 +96,7 @@ export const config2: ContainerNodeProps = {
                     type: TextTypes.Paragraph,
                     text: 'Yellow velvet recliner',
                     position: [0.7, 0, 0],
-                    scale: 2,
+                    scale: [2, 2, 2],
                     style: { color: 'black' },
                 },
                 {
@@ -104,7 +104,7 @@ export const config2: ContainerNodeProps = {
                     title: 'Features of Chair',
                     list: ['Super Light', 'Affordable and Durable'],
                     position: [0.7, -0.2, 0],
-                    scale: 1.2,
+                    scale: [1.2, 1.2, 1.2],
                     numbered: false,
                     style: { color: 'gray' },
                 },

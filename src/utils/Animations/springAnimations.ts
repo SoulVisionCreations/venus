@@ -7,8 +7,9 @@ import { SceneProps } from '../../components/Scene';
 import { ChainedAnimation, IntroAnimation } from '../../types/animationTypes';
 import { convertVec3ToArray, getInitialState } from '../utility';
 import { getTrajectoryPoints } from './trajectory';
+import { ImageProps, TextProps } from '../../types/types';
 
-export const useSpringAnimation = (instance: Object3DProps, sceneProps: SceneProps) => {
+export const useSpringAnimation = (instance: Object3DProps | ImageProps | TextProps, sceneProps: SceneProps) => {
     const [initialPosition, initialRotation, initialScale] = getInitialState(instance);
     const state = useRef({
         position: initialPosition,

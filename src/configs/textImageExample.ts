@@ -1,5 +1,5 @@
 import { stylingDefaults } from '../constants/defaults';
-import { Alignment, AssetTypes, ComponentTypes, ImageTypes, LightTypes, ObjectHtmlTypes, ObjectTypes, SceneControlTypes, TextTypes } from '../types/enums';
+import { Alignment, AnimationTrajectory, AnimationTypes, AssetTypes, ComponentTypes, ImageTypes, LightTypes, ObjectHtmlTypes, ObjectTypes, SceneControlTypes, TextTypes } from '../types/enums';
 import { ContainerNodeProps } from '../types/types';
 
 export const textImageExample: ContainerNodeProps = {
@@ -82,21 +82,21 @@ export const textImageExample: ContainerNodeProps = {
                     assetId: '1002',
                     position: [-1.5, -0.5, 0],
                     rotation: [0, 0.5, 0],
-                    scale: 0.7,
+                    scale: [0.07, 0.07, 0.07],
                 },
                 {
                     // type: ImageTypes.Rounded,
                     assetId: '1003',
                     position: [0, -0.5, -0.25],
                     rotation: [0, 0, 0],
-                    scale: 0.15,
+                    scale: [0.015, 0.015, 0.015],
                 },
                 {
                     // type: ImageTypes.Rounded,
                     assetId: '1004',
                     position: [1.5, -0.5, 0],
                     rotation: [0, -0.5, 0],
-                    scale: 0.7,
+                    scale: [0.07, 0.07, 0.07],
                 },
             ],
         },
@@ -125,14 +125,33 @@ export const textImageExample: ContainerNodeProps = {
                     assetId: '1005',
                     position: [0, 0.5, 0],
                     rotation: [0, 0, 0],
-                    scale: 1,
+                    scale: [0.1, 0.1, 0.1],
+                    animations: [
+                        {
+                            type: AnimationTypes.scroll,
+                            visibilityThreshold: {
+                                top: 0.6,
+                                bottom: -1,
+                            },
+                            trajectory: AnimationTrajectory.curveDefinedByPoints,
+                            trajectoryMetaData: {
+                                points: [
+                                    [0, 0.5, 0],
+                                    [-2, 0.5, 0],
+                                    [-4, 0.5, 0],
+                                ],
+                                speed: 0.0005,
+                            },
+                            config: { mass: 4, tension: 280, friction: 90 },
+                        },
+                    ],
                 },
                 {
                     type: ImageTypes.Icon,
                     assetId: '1006',
                     position: [-2, -0.8, 0],
                     rotation: [0, 0, 0],
-                    scale: 5,
+                    scale: [0.5, 0.5, 0.5],
                 },
             ],
             texts: [
@@ -140,7 +159,7 @@ export const textImageExample: ContainerNodeProps = {
                     type: TextTypes.Paragraph,
                     text: 'Trusted by everyone around the world !',
                     position: [0, -1.4, 0],
-                    scale: 2,
+                    scale: [0.2, 0.2, 0.2],
                     style: { color: '#60bcea' },
                 },
                 {
@@ -152,7 +171,7 @@ export const textImageExample: ContainerNodeProps = {
                         'Increase shopper confidence, order volume, and sales.',
                     ],
                     position: [0, -0.8, 0],
-                    scale: 2,
+                    scale: [0.2, 0.2, 0.2],
                     numbered: false,
                     style: { color: 'black', alignText: 'center' },
                 },

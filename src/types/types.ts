@@ -1,6 +1,7 @@
 import { Alignment, AssetTypes, ComponentTypes, ImageTypes, LightTypes, MaterialTypes, SceneControlTypes, StandardGeometryTypes, TextTypes } from './enums';
 import { BufferGeometry, Shape, Vector2, TextureEncoding } from 'three';
 import { Object3DProps } from './object3DTypes';
+import { Animation } from './animationTypes';
 
 export interface GeometryProps {
     arc?: number;
@@ -50,9 +51,10 @@ export interface ImageProps {
     src?: string;
     position?: number[];
     rotation?: number[];
-    scale?: number;
+    scale?: number[];
     type?: ImageTypes;
     style?: any;
+    animations?: Array<Animation>;
 }
 
 export interface LightProps {
@@ -81,7 +83,8 @@ export interface TextProps {
     numbered?: boolean;
     position?: number[];
     rotation?: number[];
-    scale?: number;
+    scale?: number[];
+    animations?: Array<Animation>;
     text?: string;
     title?: string;
     type: TextTypes;

@@ -8,7 +8,7 @@ import { SceneProps } from '../../components/Scene';
 import { Object3DProps } from '../../types/object3DTypes';
 import { AnimationGeneratedTrajectoryData, ScrollAnimation, SpringConfig, VisibilityThreshold } from '../../types/animationTypes';
 import { AnimationTrajectory, AnimationTypes } from '../../types/enums';
-import { unknownObject } from '../../types/types';
+import { ImageProps, TextProps, unknownObject } from '../../types/types';
 import { TrajectoryMetaData } from '../../types/trajectoryTypes';
 
 // const getVisibleSceneHeight = (sceneProps) => {
@@ -58,7 +58,7 @@ const shouldAnimate = (sceneProps: SceneProps, visibilityThreshold: { current: V
     return false;
 };
 
-export const useScrollAnimation = (objectProps: Object3DProps, sceneProps: SceneProps, springApi: any) => {
+export const useScrollAnimation = (objectProps: Object3DProps | ImageProps | TextProps, sceneProps: SceneProps, springApi: any) => {
     const [initialPosition, initialRotation, initialScale] = getInitialState(objectProps);
     const state = useRef({
         position: initialPosition,

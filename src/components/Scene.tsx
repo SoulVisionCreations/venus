@@ -34,15 +34,15 @@ const renderObjects = (objects: Array<Object3DProps>, sceneProps: SceneProps) =>
     });
 };
 
-const renderTexts = (texts: Array<TextProps>) => {
+const renderTexts = (texts: Array<TextProps>, sceneProps: SceneProps) => {
     return texts.map((textProps: TextProps, index: number) => {
-        return <Text {...textProps} key={index} />;
+        return <Text textProps={textProps} sceneProps={sceneProps} key={index} />;
     });
 };
 
-const renderImages = (images: Array<ImageProps>) => {
+const renderImages = (images: Array<ImageProps>, sceneProps: SceneProps) => {
     return images.map((imageProps: ImageProps, index: number) => {
-        return <Image {...imageProps} key={index} />;
+        return <Image imageProps={imageProps} sceneProps={sceneProps} key={index} />;
     });
 };
 
@@ -52,8 +52,8 @@ export default function Scene(props: Props) {
             {props.lights ? addLights(props.lights) : null}
             {props.sceneControl ? applySceneControl(props.sceneControl) : null}
             {props.objects ? renderObjects(props.objects, props.sceneProps) : null}
-            {props.texts ? renderTexts(props.texts) : null}
-            {props.images ? renderImages(props.images) : null}
+            {props.texts ? renderTexts(props.texts, props.sceneProps) : null}
+            {props.images ? renderImages(props.images, props.sceneProps) : null}
         </>
     );
 }
