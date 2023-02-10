@@ -16,9 +16,9 @@ const Camera = () => {
             </p>
             <p>
                 Position:
-                <input type="number" id="farx" value={0} />
-                <input type="number" id="fary" value={0} />
-                <input type="number" id="farz" value={0} />
+                <input type="number" id="posx" value={0} />
+                <input type="number" id="posy" value={0} />
+                <input type="number" id="posz" value={0} />
             </p>
             <p>
                 <label htmlFor="orthographic">Orthographic: </label>

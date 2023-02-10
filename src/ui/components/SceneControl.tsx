@@ -1,23 +1,11 @@
 import { SceneControlTypes } from '../../types/enums';
+import Select from './Select/Select';
 
 const SceneControl = () => {
     return (
-        <>
-            <p>
-                <label htmlFor="encoding">Choose Scene Controls: </label>
-                <select name="encoding" id="encoding">
-                    {Object.keys(SceneControlTypes)
-                        .filter((v) => isNaN(Number(v)))
-                        .map((encoding: string, index: number) => {
-                            return (
-                                <option value={encoding} key={index}>
-                                    {encoding}
-                                </option>
-                            );
-                        })}
-                </select>
-            </p>
-        </>
+        <p>
+            <Select options={SceneControlTypes} title="Scene Controls" />
+        </p>
     );
 };
 

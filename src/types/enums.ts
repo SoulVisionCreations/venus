@@ -97,7 +97,7 @@ export const enum CameraTypes {
     Cube,
 }
 
-export const enum LightTypes {
+export enum LightTypes {
     Ambient,
     Directional,
     Point,
