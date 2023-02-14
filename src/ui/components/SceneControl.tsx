@@ -6,7 +6,7 @@ const SceneControl = () => {
     const [type, setType] = useSceneControlStore((s) => [s.type, s.setType]);
 
     const handleSceneControlChange = (event: any) => {
-        setType(event.target.value);
+        setType(Number(event.target.value));
     };
 
     return (

@@ -70,9 +70,9 @@ const Texts = () => {
 
     return (
         <>
-            <ObjectArray array={texts} title="Texts" removeElement={removeTexts} />
-            <button onClick={() => setAdd(true)}>
-                <IoMdAddCircle size={35} />
+            <ObjectArray array={texts} title="Text" removeElement={removeTexts} />
+            <button className="add-more-button" onClick={() => setAdd(true)}>
+                Add More <IoMdAddCircle size={28} />
             </button>
             {add && (
                 <>

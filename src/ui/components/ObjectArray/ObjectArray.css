@@ -1,0 +1,17 @@
+.object-array {
+    padding: 0;
+    border: 1px solid black;
+}
+
+.delete-button {
+    float: right;
+    margin: 10px auto;
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    color: red;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+}

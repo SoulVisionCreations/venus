@@ -49,11 +49,11 @@ const renderImages = (images: Array<ImageProps>, sceneProps: SceneProps) => {
 export default function Scene(props: Props) {
     return (
         <>
-            {props.lights ? addLights(props.lights) : null}
+            {props.lights && props.lights.length > 0 ? addLights(props.lights) : null}
             {props.sceneControl ? applySceneControl(props.sceneControl) : null}
-            {props.objects ? renderObjects(props.objects, props.sceneProps) : null}
-            {props.texts ? renderTexts(props.texts, props.sceneProps) : null}
-            {props.images ? renderImages(props.images, props.sceneProps) : null}
+            {props.objects && props.objects.length > 0 ? renderObjects(props.objects, props.sceneProps) : null}
+            {props.texts && props.texts.length > 0 ? renderTexts(props.texts, props.sceneProps) : null}
+            {props.images && props.images.length > 0 ? renderImages(props.images, props.sceneProps) : null}
         </>
     );
 }

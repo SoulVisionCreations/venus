@@ -9,7 +9,17 @@ import useLightStore from '../store/Lights/lightStore';
 const Lights = () => {
     const [add, setAdd] = useState(false);
     const [lights, addLights, removeLights] = useLightsStore((s) => [s.lights, s.addLights, s.removeLights]);
-    const [type, color, position, setType, setColor, setPosition, resetLight] = useLightStore((s) => [s.type, s.color, s.position, s.setType, s.setColor, s.setPosition, s.resetLight]);
+    const [type, color, intensity, position, setType, setColor, setIntensity, setPosition, resetLight] = useLightStore((s) => [
+        s.type,
+        s.color,
+        s.intensity,
+        s.position,
+        s.setType,
+        s.setColor,
+        s.setIntensity,
+        s.setPosition,
+        s.resetLight,
+    ]);
 
     const handleLightTypeChange = (event: any) => {
         setType(Number(event.target.value));
@@ -19,21 +29,25 @@ const Lights = () => {
         setColor(event.target.value);
     };
 
+    const handleIntensityChange = (event: any) => {
+        setIntensity(event.target.valueAsNumber);
+    };
+
     const handlePositionChange = (event: any, pos: string) => {
         setPosition(event.target.valueAsNumber, pos);
     };
 
     const addLight = () => {
-        addLights({ type: type, color: color, position: position });
+        addLights({ type: type, color: color, intensity: intensity, position: position });
         setAdd(false);
         resetLight();
     };
 
     return (
         <>
-            <ObjectArray array={lights} title="Lights" removeElement={removeLights} />
-            <button onClick={() => setAdd(true)}>
-                <IoMdAddCircle size={35} />
+            <ObjectArray array={lights} title="Light" removeElement={removeLights} />
+            <button className="add-more-button" onClick={() => setAdd(true)}>
+                Add More <IoMdAddCircle size={28} />
             </button>
             {add && (
                 <>
@@ -43,6 +57,10 @@ const Lights = () => {
                     <p>
                         <label htmlFor="color">Color: </label>
                         <input type="color" id="color" name="color" onChange={handleColorChange} value={color} />
+                    </p>
+                    <p>
+                        <label htmlFor="intensity">Intensity: </label>
+                        <input type="number" id="intensity" name="intensity" onChange={handleIntensityChange} value={intensity} />
                     </p>
                     <p>
                         Position:

@@ -7,3 +7,9 @@
     overflow: auto;
     color: #ffffff;
 }
+
+.add-more-button {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}

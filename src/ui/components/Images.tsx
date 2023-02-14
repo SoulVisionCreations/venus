@@ -51,9 +51,9 @@ const Images = () => {
 
     return (
         <>
-            <ObjectArray array={images} title="Images" removeElement={removeImages} />
-            <button onClick={() => setAdd(true)}>
-                <IoMdAddCircle size={35} />
+            <ObjectArray array={images} title="Image" removeElement={removeImages} />
+            <button className="add-more-button" onClick={() => setAdd(true)}>
+                Add More <IoMdAddCircle size={28} />
             </button>
             {add && (
                 <>
