@@ -16,7 +16,6 @@ export async function downloadAssets(assets: AssetProps[]) {
         for (let i = 0; i < assets.length; i++) {
             const { assetId, assetPath, assetType } = assets[i];
             if (!assetsMap[assetId]) {
-                console.log(assets[i]);
                 switch (assetType) {
                     case AssetTypes.Implicit: {
                         // const signedUrl = await getS3UrlFromRequest(

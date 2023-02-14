@@ -1,11 +1,11 @@
 import { create } from 'zustand';
 
-type PanelState = {
+type Panel = {
     panel: number;
     setPanel: (panel: number) => void;
 };
 
-const usePanelStore = create<PanelState>((set) => ({
+const usePanelStore = create<Panel>((set) => ({
     panel: 0,
     setPanel: (panel) => set({ panel }),
 }));

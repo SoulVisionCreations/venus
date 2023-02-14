@@ -88,6 +88,7 @@ export const enum ObjectControlTypes {
 }
 
 export enum SceneControlTypes {
+    None,
     Orbit,
 }
 
@@ -98,6 +99,7 @@ export const enum CameraTypes {
 }
 
 export enum LightTypes {
+    None,
     Ambient,
     Directional,
     Point,

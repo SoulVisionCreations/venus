@@ -2,7 +2,13 @@ import { useState } from 'react';
 import { FcExpand, FcCollapse } from 'react-icons/fc';
 import './Accordion.css';
 
-const Accordion = ({ title, children, defaultExpanded }) => {
+type Accordion = {
+    title: string;
+    children: any;
+    defaultExpanded: boolean;
+};
+
+const Accordion = ({ title, children, defaultExpanded }: Accordion) => {
     const [expandState, setExpandState] = useState(defaultExpanded);
     const handleOnClick = () => {
         setExpandState(!expandState);
