@@ -27,8 +27,7 @@ const Camera = () => {
     };
 
     const handlePositionChange = (event: any, pos: string) => {
-        position[pos as keyof typeof position] = event.target.valueAsNumber;
-        setPosition(position);
+        setPosition(event.target.valueAsNumber, pos);
     };
 
     const handleOrthographicChange = (event: any) => {

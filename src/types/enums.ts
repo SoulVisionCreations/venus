@@ -99,7 +99,6 @@ export const enum CameraTypes {
 }
 
 export enum LightTypes {
-    None,
     Ambient,
     Directional,
     Point,
@@ -113,12 +112,13 @@ export const enum ComponentTypes {
     Canvas,
 }
 
-export const enum TextTypes {
+export enum TextTypes {
     Paragraph,
     List,
 }
 
-export const enum ImageTypes {
+export enum ImageTypes {
+    None,
     Rounded,
     Circle,
     Square,

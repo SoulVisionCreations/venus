@@ -1,7 +1,9 @@
 import { CameraStoreState } from './store/cameraStore';
 import { EnvironmentStoreState } from './store/environmentStore';
-import { LightsStoreState } from './store/lightsStore';
+import { ImagesStoreState } from './store/Images/imagesStore';
+import { LightsStoreState } from './store/Lights/lightsStore';
 import { SceneControlStoreState } from './store/sceneControlStore';
+import { TextsStoreState } from './store/Texts/textsStore';
 
 function ConfigGenerator() {
     const config = {};
@@ -21,6 +23,8 @@ function ConfigGenerator() {
         type: SceneControlStoreState().type,
     };
     config.lights = LightsStoreState().lights;
+    config.texts = TextsStoreState().texts;
+    config.images = ImagesStoreState().images;
     return config;
 }
 

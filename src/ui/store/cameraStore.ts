@@ -9,7 +9,7 @@ type Camera = {
     setFov: (fov: number) => void;
     setNear: (near: number) => void;
     setFar: (far: number) => void;
-    setPosition: (position: { x: number; y: number; z: number }) => void;
+    setPosition: (value: number, pos: string) => void;
     setOrthographic: (orthographic: boolean) => void;
 };
 
@@ -22,7 +22,11 @@ const useCameraStore = create<Camera>((set) => ({
     setFov: (fov) => set({ fov }),
     setNear: (near) => set({ near }),
     setFar: (far) => set({ far }),
-    setPosition: (position) => set({ position }),
+    setPosition: (value, pos) => {
+        if (pos === 'x') set((state) => ({ position: { ...state.position, x: value } }));
+        else if (pos === 'y') set((state) => ({ position: { ...state.position, y: value } }));
+        else if (pos === 'z') set((state) => ({ position: { ...state.position, z: value } }));
+    },
     setOrthographic: (orthographic) => set({ orthographic }),
 }));
 

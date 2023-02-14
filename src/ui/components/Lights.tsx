@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { IoMdAddCircle } from 'react-icons/io';
-import { AiFillDelete } from 'react-icons/ai';
 import { LightTypes } from '../../types/enums';
-import useLightsStore from '../store/lightsStore';
-import useLightStore from '../store/lightStore';
+import useLightsStore from '../store/Lights/lightsStore';
 import Select from './Select/Select';
+import ObjectArray from './ObjectArray/ObjectArray';
+import useLightStore from '../store/Lights/lightStore';
 
 const Lights = () => {
     const [add, setAdd] = useState(false);
@@ -31,24 +31,7 @@ const Lights = () => {
 
     return (
         <>
-            {lights.length > 0 &&
-                lights.map((light, key) => {
-                    return (
-                        <p key={key}>
-                            Light {key}
-                            <button onClick={() => removeLights(key)}>
-                                <AiFillDelete />
-                            </button>
-                            {Object.keys(light).map((prop, propKey) => {
-                                return (
-                                    <li key={propKey}>
-                                        {prop}: {JSON.stringify(light[prop as keyof typeof light])}
-                                    </li>
-                                );
-                            })}
-                        </p>
-                    );
-                })}
+            <ObjectArray array={lights} title="Lights" removeElement={removeLights} />
             <button onClick={() => setAdd(true)}>
                 <IoMdAddCircle size={35} />
             </button>

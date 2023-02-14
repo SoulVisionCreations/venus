@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { LightTypes } from '../../types/enums';
+import { LightTypes } from '../../../types/enums';
 
 export type Light = {
     type: LightTypes;
@@ -15,7 +15,7 @@ export type LightActions = {
 };
 
 const InitialState: Light = {
-    type: LightTypes.None,
+    type: LightTypes.Ambient,
     color: '#ffffff',
     position: { x: 0, y: 0, z: 0 },
 };
