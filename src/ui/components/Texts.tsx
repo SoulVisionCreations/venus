@@ -9,25 +9,28 @@ import ObjectArray from './ObjectArray/ObjectArray';
 const Texts = () => {
     const [add, setAdd] = useState(false);
     const [texts, addTexts, removeTexts] = useTextsStore((s) => [s.texts, s.addTexts, s.removeTexts]);
-    const [type, text, title, numbered, list, position, rotation, scale, setType, setText, setTitle, setNumbered, setList, setPosition, setRotation, setScale, resetText] = useTextStore((s) => [
-        s.type,
-        s.text,
-        s.title,
-        s.numbered,
-        s.list,
-        s.position,
-        s.rotation,
-        s.scale,
-        s.setType,
-        s.setText,
-        s.setTitle,
-        s.setNumbered,
-        s.setList,
-        s.setPosition,
-        s.setRotation,
-        s.setScale,
-        s.resetText,
-    ]);
+    const [type, text, title, numbered, list, color, position, rotation, scale, setType, setText, setTitle, setNumbered, setList, setColor, setPosition, setRotation, setScale, resetText] =
+        useTextStore((s) => [
+            s.type,
+            s.text,
+            s.title,
+            s.numbered,
+            s.list,
+            s.color,
+            s.position,
+            s.rotation,
+            s.scale,
+            s.setType,
+            s.setText,
+            s.setTitle,
+            s.setNumbered,
+            s.setList,
+            s.setColor,
+            s.setPosition,
+            s.setRotation,
+            s.setScale,
+            s.resetText,
+        ]);
 
     const handleTextTypeChange = (event: any) => {
         setType(Number(event.target.value));
@@ -49,6 +52,10 @@ const Texts = () => {
         setList(event.target.value);
     };
 
+    const handleColorChange = (event: any) => {
+        setColor(event.target.value);
+    };
+
     const handlePositionChange = (event: any, pos: string) => {
         setPosition(event.target.valueAsNumber, pos);
     };
@@ -62,8 +69,8 @@ const Texts = () => {
     };
 
     const addText = () => {
-        if (type === TextTypes.Paragraph) addTexts({ type: type, text: text, position: position, rotation: rotation, scale: scale });
-        else if (type === TextTypes.List) addTexts({ type: type, title: title, numbered: numbered, list: list, position: position, rotation: rotation, scale: scale });
+        if (type === TextTypes.Paragraph) addTexts({ type: type, text: text, color: color, position: position, rotation: rotation, scale: scale });
+        else if (type === TextTypes.List) addTexts({ type: type, title: title, numbered: numbered, list: list, color: color, position: position, rotation: rotation, scale: scale });
         setAdd(false);
         resetText();
     };
@@ -101,6 +108,10 @@ const Texts = () => {
                             </p>
                         </>
                     )}
+                    <p>
+                        <label htmlFor="color">Color: </label>
+                        <input type="color" id="color" name="color" onChange={handleColorChange} value={color} />
+                    </p>
                     <p>
                         Position:
                         <input type="number" id="posx" value={position.x} onChange={(event) => handlePositionChange(event, 'x')} />

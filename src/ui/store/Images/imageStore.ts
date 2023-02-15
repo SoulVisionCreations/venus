@@ -7,7 +7,6 @@ export type Image = {
     position: { x: number; y: number; z: number };
     rotation: { x: number; y: number; z: number };
     scale: { x: number; y: number; z: number };
-    // style: any;
     // animations: any;
 };
 
@@ -17,7 +16,6 @@ export type ImageActions = {
     setPosition: (value: number, pos: string) => void;
     setRotation: (value: number, pos: string) => void;
     setScale: (value: number, pos: string) => void;
-    // setStyle: (style: any) => void;
     // setAnimations: (animations: any) => void;
     resetImage: () => void;
 };
@@ -28,7 +26,6 @@ const InitialState: Image = {
     position: { x: 0, y: 0, z: 0 },
     rotation: { x: 0, y: 0, z: 0 },
     scale: { x: 1, y: 1, z: 1 },
-    // style: null,
     // animations: null,
 };
 
@@ -51,7 +48,6 @@ const useImageStore = create<Image & ImageActions>((set) => ({
         else if (pos === 'y') set((state) => ({ scale: { ...state.scale, y: value } }));
         else if (pos === 'z') set((state) => ({ scale: { ...state.scale, z: value } }));
     },
-    // setStyle: (style) => set({style}),
     // setAnimations: (animations) => set({animations}),
     resetImage: () => set(InitialState),
 }));

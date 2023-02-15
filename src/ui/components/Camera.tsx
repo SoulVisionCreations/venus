@@ -1,17 +1,19 @@
+import { CameraTypes } from '../../types/enums';
 import useCameraStore from '../store/cameraStore';
+import Select from './Select/Select';
 
 const Camera = () => {
-    const [fov, near, far, position, orthographic, setFov, setNear, setFar, setPosition, setOrthographic] = useCameraStore((s) => [
+    const [fov, near, far, position, type, setFov, setNear, setFar, setPosition, setType] = useCameraStore((s) => [
         s.fov,
         s.near,
         s.far,
         s.position,
-        s.orthographic,
+        s.type,
         s.setFov,
         s.setNear,
         s.setFar,
         s.setPosition,
-        s.setOrthographic,
+        s.setType,
     ]);
 
     const handleFovChange = (event: any) => {
@@ -30,13 +32,15 @@ const Camera = () => {
         setPosition(event.target.valueAsNumber, pos);
     };
 
-    const handleOrthographicChange = (event: any) => {
-        setOrthographic(event.target.checked);
+    const handleTypeChange = (event: any) => {
+        setType(Number(event.target.value));
     };
 
     return (
         <>
-            <p>(Persepctive Camera by default)</p>
+            <p>
+                <Select title="Camera" options={CameraTypes} defaultValue={CameraTypes[type]} onChange={handleTypeChange} />
+            </p>
             <p>
                 <label htmlFor="fov">FOV: </label>
                 <input type="number" id="fov" value={fov} onChange={handleFovChange} />
@@ -54,10 +58,6 @@ const Camera = () => {
                 <input type="number" id="posx" value={position.x} onChange={(event) => handlePositionChange(event, 'x')} />
                 <input type="number" id="posy" value={position.y} onChange={(event) => handlePositionChange(event, 'y')} />
                 <input type="number" id="posz" value={position.z} onChange={(event) => handlePositionChange(event, 'z')} />
-            </p>
-            <p>
-                <label htmlFor="orthographic">Orthographic: </label>
-                <input name="orthographic" id="orthographic" type="checkbox" checked={orthographic} onChange={handleOrthographicChange} />
             </p>
         </>
     );

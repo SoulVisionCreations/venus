@@ -5,6 +5,7 @@ import { textImageExample } from './configs/textImageExample';
 type Config = {
     config: any;
     setConfig: (config: any) => void;
+    setCamera: (camera: any) => void;
     setSceneControl: (sceneControl: any) => void;
     setEnvironment: (environment: any) => void;
     setLights: (lights: any) => void;
@@ -14,6 +15,12 @@ type Config = {
 const useConfigStore = create<Config>((set) => ({
     config: textImageExample,
     setConfig: (config) => set({ config }),
+    setCamera: (camera) =>
+        set(
+            produce((state) => {
+                state.config.children[0].camera = camera;
+            })
+        ),
     setSceneControl: (sceneControl) =>
         set(
             produce((state) => {

@@ -7,10 +7,10 @@ export type Text = {
     title?: string;
     numbered?: boolean;
     list?: string[];
+    color?: string;
     position: { x: number; y: number; z: number };
     rotation: { x: number; y: number; z: number };
     scale: { x: number; y: number; z: number };
-    // style: any;
     // animations: any;
 };
 
@@ -20,10 +20,10 @@ export type TextActions = {
     setTitle: (title: string) => void;
     setNumbered: (numbered: boolean) => void;
     setList: (list: string[]) => void;
+    setColor: (color: string) => void;
     setPosition: (value: number, pos: string) => void;
     setRotation: (value: number, pos: string) => void;
     setScale: (value: number, pos: string) => void;
-    // setStyle: (style: any) => void;
     // setAnimations: (animations: any) => void;
     resetText: () => void;
 };
@@ -33,11 +33,11 @@ const InitialState: Text = {
     text: '',
     title: '',
     numbered: false,
+    color: '#000000',
     list: [],
     position: { x: 0, y: 0, z: 0 },
     rotation: { x: 0, y: 0, z: 0 },
     scale: { x: 1, y: 1, z: 1 },
-    // style: null,
     // animations: null,
 };
 
@@ -48,6 +48,7 @@ const useTextStore = create<Text & TextActions>((set) => ({
     setTitle: (title) => set({ title }),
     setNumbered: (numbered) => set({ numbered }),
     setList: (list) => set({ list }),
+    setColor: (color) => set({ color }),
     setPosition: (value, pos) => {
         if (pos === 'x') set((state) => ({ position: { ...state.position, x: value } }));
         else if (pos === 'y') set((state) => ({ position: { ...state.position, y: value } }));
@@ -63,7 +64,6 @@ const useTextStore = create<Text & TextActions>((set) => ({
         else if (pos === 'y') set((state) => ({ scale: { ...state.scale, y: value } }));
         else if (pos === 'z') set((state) => ({ scale: { ...state.scale, z: value } }));
     },
-    // setStyle: (style) => set({style}),
     // setAnimations: (animations) => set({animations}),
     resetText: () => set(InitialState),
 }));

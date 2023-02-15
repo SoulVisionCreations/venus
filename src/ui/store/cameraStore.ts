@@ -1,16 +1,17 @@
 import { create } from 'zustand';
+import { CameraTypes } from '../../types/enums';
 
 type Camera = {
     fov: number;
     near: number;
     far: number;
     position: { x: number; y: number; z: number };
-    orthographic: boolean;
+    type: CameraTypes;
     setFov: (fov: number) => void;
     setNear: (near: number) => void;
     setFar: (far: number) => void;
     setPosition: (value: number, pos: string) => void;
-    setOrthographic: (orthographic: boolean) => void;
+    setType: (type: CameraTypes) => void;
 };
 
 const useCameraStore = create<Camera>((set) => ({
@@ -19,6 +20,7 @@ const useCameraStore = create<Camera>((set) => ({
     far: 1000,
     position: { x: 0, y: 0, z: 2 },
     orthographic: false,
+    type: CameraTypes.Perspective,
     setFov: (fov) => set({ fov }),
     setNear: (near) => set({ near }),
     setFar: (far) => set({ far }),
@@ -27,7 +29,7 @@ const useCameraStore = create<Camera>((set) => ({
         else if (pos === 'y') set((state) => ({ position: { ...state.position, y: value } }));
         else if (pos === 'z') set((state) => ({ position: { ...state.position, z: value } }));
     },
-    setOrthographic: (orthographic) => set({ orthographic }),
+    setType: (type) => set({ type }),
 }));
 
 const CameraStoreState = useCameraStore.getState;

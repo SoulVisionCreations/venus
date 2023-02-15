@@ -92,7 +92,7 @@ export enum SceneControlTypes {
     Orbit,
 }
 
-export const enum CameraTypes {
+export enum CameraTypes {
     Perspective,
     Orthographic,
 }
