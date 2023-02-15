@@ -1,45 +1,47 @@
 import { animated } from '@react-spring/three';
-import { Html } from '@react-three/drei';
+import { Text } from '@react-three/drei';
 import { TextTypes } from '../types/enums';
 import { TextProps } from '../types/types';
 import { useScrollAnimation } from '../utils/Animations/scrollAnimation';
 import { useSpringAnimation } from '../utils/Animations/springAnimations';
 import { SceneProps } from './Scene';
 
-const AnimatedHtml = animated(Html);
+const AnimatedText = animated(Text);
 
-const renderList = (list: string[]) => {
-    return list.map((item: string, i: number) => {
-        return <li key={i}>{item}</li>;
-    });
+const renderList = (list: string[], numbered?: boolean) => {
+    if (numbered) {
+        return list.map((item: string, i: number) => {
+            return '\n' + (i + 1) + '. ' + item;
+        });
+    } else {
+        return list.map((item: string) => {
+            return '\n' + '- ' + item;
+        });
+    }
 };
 
-const Text = ({ textProps, sceneProps }: { textProps: TextProps; sceneProps: SceneProps }) => {
+const TextLoader = ({ textProps, sceneProps }: { textProps: TextProps; sceneProps: SceneProps }) => {
     const [spring, api] = useSpringAnimation(textProps, sceneProps);
     useScrollAnimation(textProps, sceneProps, api);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { type, position, rotation, scale, ...props } = textProps;
+    const { type, position, rotation, scale, animations, title, list, numbered, text, ...props } = textProps;
     switch (type) {
         case TextTypes.List:
             return (
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                <AnimatedHtml transform scale={(spring as any).scale} position={(spring as any).position} rotation={(spring as any).rotation} {...props}>
-                    <b>{textProps.title}</b>
-                    {textProps.list && (textProps.numbered ? <ol> {renderList(textProps.list)} </ol> : <ul> {renderList(textProps.list)} </ul>)}
-                </AnimatedHtml>
+                <AnimatedText scale={(spring as any).scale} position={(spring as any).position} rotation={(spring as any).rotation} {...props}>
+                    {title + '\n'}
+                    {list && renderList(list, numbered)}
+                </AnimatedText>
             );
         case TextTypes.Paragraph:
             return (
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                <AnimatedHtml transform scale={(spring as any).scale} position={(spring as any).position} rotation={(spring as any).rotation} {...props}>
-                    {textProps.text}
-                </AnimatedHtml>
+                <AnimatedText scale={(spring as any).scale} position={(spring as any).position} rotation={(spring as any).rotation} {...props}>
+                    {text}
+                </AnimatedText>
             );
         default:
             return null;
     }
 };
 
-export default Text;
+export default TextLoader;

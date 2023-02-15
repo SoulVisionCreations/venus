@@ -3,10 +3,10 @@ import { Canvas } from '@react-three/fiber';
 import { useEffect, useRef, useState } from 'react';
 import { CanvasNodeProps } from '../types/types';
 import { getAssetbyId } from '../utils/download';
-import { updateCameraProps } from '../utils/utility';
 import AvataarLoader from './AvataarLoader';
 import Scene from './Scene';
 import '../static/css/style.css';
+import Camera from './Camera';
 
 export type CanvasRect = {
     top: number;
@@ -95,11 +95,9 @@ export default function CanvasNode(props: CanvasNodeProps) {
         canvasRect: canvasRect,
     };
 
-    const orthographicCamera = props.camera.orthographic == undefined ? false : props.camera.orthographic;
-
     return (
         <div ref={canvasContainerRef} className={props.className ? props.className : ''} style={props.style} id={props.id}>
-            <Canvas frameloop="demand" camera={updateCameraProps(props.camera)} orthographic={orthographicCamera}>
+            <Canvas frameloop="demand">
                 {loading ? (
                     <AvataarLoader center={true} />
                 ) : (
@@ -108,6 +106,7 @@ export default function CanvasNode(props: CanvasNodeProps) {
                         <AdaptiveDpr pixelated />
                         <Stats />
                         <PerformanceMonitor />
+                        {props.camera && <Camera {...props.camera} />}
                         <Scene objects={props.objects} sceneControl={props.sceneControl} texts={props.texts} images={props.images} lights={props.lights} sceneProps={sceneProps} />
                         {props.environment && <Environment {...props.environment} />}
                     </>

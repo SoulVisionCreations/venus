@@ -19,5 +19,5 @@ export const fonts = {
     droidSans: droidSans,
     droidSansBold: droidSansBold,
     droidSerif: droidSerif,
-    droidSerifBold: droidSerifBold
-}
+    droidSerifBold: droidSerifBold,
+};

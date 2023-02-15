@@ -1,4 +1,4 @@
-import { Alignment, AssetTypes, ComponentTypes, ImageTypes, LightTypes, MaterialTypes, SceneControlTypes, StandardGeometryTypes, TextTypes } from './enums';
+import { Alignment, AssetTypes, CameraTypes, ComponentTypes, ImageTypes, LightTypes, MaterialTypes, SceneControlTypes, StandardGeometryTypes, TextTypes } from './enums';
 import { BufferGeometry, Shape, Vector2, TextureEncoding } from 'three';
 import { Object3DProps } from './object3DTypes';
 import { Animation } from './animationTypes';
@@ -53,7 +53,11 @@ export interface ImageProps {
     rotation?: number[];
     scale?: number[];
     type?: ImageTypes;
-    style?: any;
+    zoom?: number;
+    color?: string;
+    grayscale?: number;
+    transparent?: boolean;
+    opacity?: number;
     animations?: Array<Animation>;
 }
 
@@ -88,16 +92,17 @@ export interface TextProps {
     text?: string;
     title?: string;
     type: TextTypes;
-    style?: any;
+    font?: any;
+    color?: string;
 }
 
 export type CameraProps = {
-    position?: number[];
+    type: CameraTypes;
+    position: number[];
     fov?: number;
     near?: number;
     far?: number;
-    orthographic?: boolean;
-}
+};
 
 export interface EnvironmentProps {
     files: string | string[];
@@ -110,7 +115,7 @@ export interface CanvasNodeProps {
     style?: any;
     className?: string;
     id?: string;
-    camera: CameraProps;
+    camera?: CameraProps;
     assetIds?: string[];
     objects?: Array<Object3DProps>;
     texts?: Array<TextProps>;

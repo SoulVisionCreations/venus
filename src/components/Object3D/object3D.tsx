@@ -15,9 +15,9 @@ export const renderObjectHtmls = (objectHtmls: Array<ObjectHtmlProps>) => {
 };
 
 export const Object3D = ({ objectProps, sceneProps }: { objectProps: Object3DProps; sceneProps: SceneProps }) => {
-    if(objectProps.position == undefined) objectProps.position = objectDefaults.position;
-    if(objectProps.rotation == undefined) objectProps.rotation = objectDefaults.rotation;
-    if(objectProps.scale == undefined) objectProps.scale = objectDefaults.scale;
+    if (objectProps.position == undefined) objectProps.position = objectDefaults.position;
+    if (objectProps.rotation == undefined) objectProps.rotation = objectDefaults.rotation;
+    if (objectProps.scale == undefined) objectProps.scale = objectDefaults.scale;
     switch (objectProps.type) {
         case ObjectTypes.ImplicitObject:
             return <ImplicitObject objectProps={objectProps as ImplicitObjectProps} sceneProps={sceneProps} />;

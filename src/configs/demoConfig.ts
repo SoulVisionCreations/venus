@@ -1,5 +1,5 @@
 import { stylingDefaults } from '../constants/defaults';
-import { Alignment, AnimationTrajectory, AnimationTypes, AssetTypes, ComponentTypes, ImageTypes, LightTypes, ObjectHtmlTypes, ObjectTypes, TextTypes } from '../types/enums';
+import { Alignment, AnimationTrajectory, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, ObjectHtmlTypes, ObjectTypes, TextTypes } from '../types/enums';
 import { ContainerNodeProps } from '../types/types';
 
 export const demoConfig: ContainerNodeProps = {
@@ -17,6 +17,7 @@ export const demoConfig: ContainerNodeProps = {
             style: stylingDefaults.fullWidthFullHeightCanvas,
             assetIds: ['101'],
             camera: {
+                type: CameraTypes.Perspective,
                 position: [0, 0, 2],
             },
             objects: [
@@ -24,7 +25,7 @@ export const demoConfig: ContainerNodeProps = {
                     type: ObjectTypes.ImplicitObject,
                     assetId: '101',
                     position: [0, 0, 0],
-                    rotation: [Math.PI/2, Math.PI, Math.PI/4],
+                    rotation: [Math.PI / 2, Math.PI, Math.PI / 4],
                     scale: [0.25, 0.25, 0.25],
                     objectHtmls: [
                         {
@@ -42,13 +43,13 @@ export const demoConfig: ContainerNodeProps = {
                             trajectory: AnimationTrajectory.manual,
                             stateIncrements: [
                                 {
-                                    rotation: [0, 0, Math.PI*2],
-                                    scale: [1.5, 1.5, 1.5]
-                                }
+                                    rotation: [0, 0, Math.PI * 2],
+                                    scale: [1.5, 1.5, 1.5],
+                                },
                             ],
-                            config: {duration: 2000}
-                        }
-                    ]
+                            config: { duration: 2000 },
+                        },
+                    ],
                 },
             ],
         },
@@ -56,25 +57,23 @@ export const demoConfig: ContainerNodeProps = {
             type: ComponentTypes.Container,
             alignment: Alignment.Horizontal,
             style: stylingDefaults.fullWidthFullHeightCanvas,
-            children:[
+            children: [
                 {
                     type: ComponentTypes.Canvas,
                     style: stylingDefaults.fullHeightCanvas,
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, -0.2, 3],
                     },
                     assetIds: ['105'],
                     texts: [
                         {
                             type: TextTypes.List,
-                            list: [
-                                '81% of shoppers feel more confident',
-                                'Provide customers with a sense',
-                            ],
+                            list: ['81% of shoppers feel more confident', 'Provide customers with a sense'],
                             position: [0, 0, 0],
                             scale: [0.4, 0.4, 0.4],
                             numbered: false,
-                            style: { color: 'black', alignText: 'center' },
+                            color: 'black',
                         },
                     ],
                 },
@@ -82,6 +81,7 @@ export const demoConfig: ContainerNodeProps = {
                     type: ComponentTypes.Canvas,
                     style: stylingDefaults.fullHeightCanvas,
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, 0, 3],
                     },
                     assetIds: ['106'],
@@ -101,14 +101,14 @@ export const demoConfig: ContainerNodeProps = {
                                     },
                                     rotationMetaData: {
                                         axis: [0, 0, 1],
-                                        velocity: 0.004
+                                        velocity: 0.004,
                                     },
                                     config: { mass: 4, tension: 280, friction: 90 },
                                 },
                             ],
-                        }
-                    ]
-                }
+                        },
+                    ],
+                },
             ],
         },
         {
@@ -120,6 +120,7 @@ export const demoConfig: ContainerNodeProps = {
                     className: 'canvas',
                     style: { flexGrow: 1, height: '750px' },
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, 0, 3],
                     },
                     assetIds: ['101'],
@@ -164,6 +165,7 @@ export const demoConfig: ContainerNodeProps = {
                     className: 'canvas',
                     style: { flexGrow: 1, height: '750px' },
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, 0, 3],
                     },
                     assetIds: ['101'],

@@ -59,10 +59,10 @@ export const stylingDefaults = {
     },
     fullHeightCanvas: {
         height: `${window.innerHeight}px`,
-        flexGrow: 1
+        flexGrow: 1,
     },
     mediumHeightCanvas: {
         height: '750px',
-        flexGrow: 1
-    }
+        flexGrow: 1,
+    },
 };
