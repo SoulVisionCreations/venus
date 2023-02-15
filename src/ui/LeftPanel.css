@@ -1,13 +1,14 @@
 .left-panel {
+    position: fixed;
+    left: 0;
+    height: 100%;
     width: 5%;
-    float: left;
     background-color: #1d2e39;
-    height: 100vh;
-    overflow: auto;
     color: #ffffff;
     display: flex;
     flex-direction: column;
     padding: 20px 0;
+    box-sizing: border-box;
 }
 
 .icon {

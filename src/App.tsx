@@ -8,13 +8,13 @@ import useConfigStore from './configStore';
 export default function App() {
     const [config] = useConfigStore((s) => [s.config]);
     return (
-        <div className="wrapper">
+        <>
             <Header />
             <div className="container">
                 <LeftPanel />
                 <ConfigRenderer config={config} />
                 <RightPanel />
             </div>
-        </div>
+        </>
     );
 }

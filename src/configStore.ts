@@ -8,6 +8,7 @@ type Config = {
     setSceneControl: (sceneControl: any) => void;
     setEnvironment: (environment: any) => void;
     setLights: (lights: any) => void;
+    setTexts: (texts: any) => void;
 };
 
 const useConfigStore = create<Config>((set) => ({
@@ -29,6 +30,12 @@ const useConfigStore = create<Config>((set) => ({
         set(
             produce((state) => {
                 state.config.children[0].lights = lights;
+            })
+        ),
+    setTexts: (texts) =>
+        set(
+            produce((state) => {
+                state.config.children[0].texts = texts;
             })
         ),
 }));

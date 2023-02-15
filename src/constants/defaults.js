@@ -36,7 +36,9 @@ export const stylingDefaults = {
     flexColumnContainer: {
         display: 'flex',
         flexDirection: 'column',
+        position: 'absolute',
         width: '70%',
+        left: '5%',
         height: `${window.innerHeight}px`,
         overflow: 'auto',
     },
