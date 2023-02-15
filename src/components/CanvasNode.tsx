@@ -1,11 +1,12 @@
 import { AdaptiveDpr, Environment, PerformanceMonitor, Stats } from '@react-three/drei';
-import { Canvas, useThree } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 import { useEffect, useRef, useState } from 'react';
 import { CanvasNodeProps } from '../types/types';
 import { getAssetbyId } from '../utils/download';
-import { positionTransform } from '../utils/utility';
+import { updateCameraProps } from '../utils/utility';
 import AvataarLoader from './AvataarLoader';
 import Scene from './Scene';
+import '../static/css/style.css';
 
 export type CanvasRect = {
     top: number;
@@ -35,10 +36,10 @@ function getCoords(elem: HTMLElement): CanvasRect {
 
 export default function CanvasNode(props: CanvasNodeProps) {
     const GetInfo = () => {
-        const { gl } = useThree();
-        useEffect(() => {
-            console.log(gl.info);
-        });
+        // const { gl } = useThree();
+        // useEffect(() => {
+        //     console.log(gl.info);
+        // });
         return null;
     };
 
@@ -97,8 +98,8 @@ export default function CanvasNode(props: CanvasNodeProps) {
     const orthographicCamera = props.camera.orthographic == undefined ? false : props.camera.orthographic;
 
     return (
-        <div ref={canvasContainerRef} className={props.className} style={props.style} id={props.id}>
-            <Canvas frameloop="demand" camera={positionTransform(props.camera)} orthographic={orthographicCamera}>
+        <div ref={canvasContainerRef} className={props.className ? props.className : ''} style={props.style} id={props.id}>
+            <Canvas frameloop="demand" camera={updateCameraProps(props.camera)} orthographic={orthographicCamera}>
                 {loading ? (
                     <AvataarLoader center={true} />
                 ) : (

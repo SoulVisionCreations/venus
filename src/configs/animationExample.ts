@@ -21,7 +21,7 @@ export const animationExample: ContainerNodeProps = {
                     type: ObjectTypes.ImplicitObject,
                     assetId: '101',
                     position: [0, 0, 0],
-                    rotation: [-Math.PI / 2.5, 0, Math.PI / 4],
+                    rotation: [-Math.PI / 2.5, 0, -Math.PI / 4],
                     scale: [0.15, 0.15, 0.15],
                     animations: [
                         {
@@ -95,7 +95,7 @@ export const animationExample: ContainerNodeProps = {
                     assetId: '101',
                     useInstancing: false,
                     position: [-0.5, 0, 0],
-                    rotation: [-Math.PI / 2.5, 0, Math.PI / 4],
+                    rotation: [-Math.PI / 2.5, 0, -Math.PI / 4],
                     scale: [0.2, 0.2, 0.2],
                     animations: [
                         {
@@ -139,7 +139,7 @@ export const animationExample: ContainerNodeProps = {
                     type: ObjectTypes.ImplicitObject,
                     assetId: '101',
                     position: [0.3, -0.4, 0],
-                    rotation: [-Math.PI / 2.5, 0, Math.PI / 4],
+                    rotation: [-Math.PI / 2.5, 0, -Math.PI / 4],
                     scale: [0.4, 0.4, 0.4],
                     animations: [
                         {

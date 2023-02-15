@@ -46,7 +46,7 @@ export type AnimationGeneratedTrajectoryData = {
     trajectoryMetaData: AnimationTrajectoryMetaData;
 };
 
-export type AnimationTrajectoryData = AnimationManualTrajectoryData | AnimationGeneratedTrajectoryData;
+export type AnimationTrajectoryData = object | AnimationManualTrajectoryData | AnimationGeneratedTrajectoryData;
 
 export type IntroAnimation = {
     type: AnimationTypes;
@@ -76,6 +76,7 @@ export type ScrollAnimation = {
         minScale: number[];
         maxScale: number[];
     };
+    config?: SpringConfig;
 } & AnimationTrajectoryData;
 
 export type Animation = ScrollAnimation | IntroAnimation | ChainedAnimation;

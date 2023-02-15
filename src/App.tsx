@@ -4,6 +4,7 @@ import { Alignment, ComponentTypes } from './types/enums';
 import { downloadAssets } from './utils/download';
 import { ContainerNodeProps } from './types/types';
 import CanvasNode from './components/CanvasNode';
+import './static/css/style.css';
 
 type AppProps = {
     config: ContainerNodeProps;
@@ -32,7 +33,7 @@ export default function App({ config }: AppProps) {
     const alignmentClassName: string = config.alignment == Alignment.Vertical ? 'flexColumn' : 'flexRow';
 
     return (
-        <div className={`${config.className} ${alignmentClassName}`} style={config.style}>
+        <div className={`${config.className ? config.className : ''} ${alignmentClassName}`} style={config.style}>
             {renderConfig()}
         </div>
     );

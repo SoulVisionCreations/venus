@@ -91,7 +91,7 @@ export interface TextProps {
     style?: any;
 }
 
-interface CameraProps {
+export type CameraProps = {
     position?: number[];
     fov?: number;
     near?: number;

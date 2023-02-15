@@ -38,9 +38,6 @@ export const textImageExample: ContainerNodeProps = {
                     intensity: 2,
                 },
             ],
-            sceneControl: {
-                type: SceneControlTypes.Orbit,
-            },
             objects: [
                 {
                     type: ObjectTypes.ImplicitObject,
@@ -48,7 +45,7 @@ export const textImageExample: ContainerNodeProps = {
                     useInstancing: false,
                     position: [0, 0.7, 0],
                     rotation: [2, Math.PI, 1],
-                    scale: [1.2, 1.2, 1.2],
+                    scale: [0.5, 0.5, 0.5],
                     objectHtmls: [
                         {
                             type: ObjectHtmlTypes.PriceTag,
@@ -58,6 +55,20 @@ export const textImageExample: ContainerNodeProps = {
                             scale: 1.5,
                         },
                     ],
+                    animations: [
+                        {
+                            type: AnimationTypes.intro,
+                            initialPause: 200,
+                            trajectory: AnimationTrajectory.manual,
+                            stateIncrements: [
+                                {
+                                    rotation: [0, 0, Math.PI*2],
+                                    scale: [0.5, 0.5, 0.5]
+                                }
+                            ],
+                            config: {duration: 1000}
+                        }
+                    ]
                 },
                 {
                     type: ObjectTypes.Text3D,
@@ -121,35 +132,15 @@ export const textImageExample: ContainerNodeProps = {
             ],
             images: [
                 {
-                    // type: ImageTypes.Square,
                     assetId: '1005',
                     position: [0, 0.5, 0],
                     rotation: [0, 0, 0],
                     scale: [0.1, 0.1, 0.1],
-                    animations: [
-                        {
-                            type: AnimationTypes.scroll,
-                            visibilityThreshold: {
-                                top: 0.6,
-                                bottom: -1,
-                            },
-                            trajectory: AnimationTrajectory.curveDefinedByPoints,
-                            trajectoryMetaData: {
-                                points: [
-                                    [0, 0.5, 0],
-                                    [-2, 0.5, 0],
-                                    [-4, 0.5, 0],
-                                ],
-                                speed: 0.0005,
-                            },
-                            config: { mass: 4, tension: 280, friction: 90 },
-                        },
-                    ],
                 },
                 {
                     type: ImageTypes.Icon,
                     assetId: '1006',
-                    position: [-2, -0.8, 0],
+                    position: [-1.7, -0.8, 0],
                     rotation: [0, 0, 0],
                     scale: [0.5, 0.5, 0.5],
                 },
@@ -170,7 +161,7 @@ export const textImageExample: ContainerNodeProps = {
                         'Provide customers with a sense of how products would look and fit in their environment.',
                         'Increase shopper confidence, order volume, and sales.',
                     ],
-                    position: [0, -0.8, 0],
+                    position: [0.2, -0.8, 0],
                     scale: [0.2, 0.2, 0.2],
                     numbered: false,
                     style: { color: 'black', alignText: 'center' },

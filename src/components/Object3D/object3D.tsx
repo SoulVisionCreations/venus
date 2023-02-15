@@ -6,6 +6,7 @@ import Text3DObject from './types/text3DObject';
 import ObjectHtml from '../ObjectHtml';
 import { SceneProps } from '../Scene';
 import { ObjectTypes } from '../../types/enums';
+import { objectDefaults } from '../../constants/defaults';
 
 export const renderObjectHtmls = (objectHtmls: Array<ObjectHtmlProps>) => {
     return objectHtmls.map((objectHtmlProps: ObjectHtmlProps, index: number) => {
@@ -14,6 +15,9 @@ export const renderObjectHtmls = (objectHtmls: Array<ObjectHtmlProps>) => {
 };
 
 export const Object3D = ({ objectProps, sceneProps }: { objectProps: Object3DProps; sceneProps: SceneProps }) => {
+    if(objectProps.position == undefined) objectProps.position = objectDefaults.position;
+    if(objectProps.rotation == undefined) objectProps.rotation = objectDefaults.rotation;
+    if(objectProps.scale == undefined) objectProps.scale = objectDefaults.scale;
     switch (objectProps.type) {
         case ObjectTypes.ImplicitObject:
             return <ImplicitObject objectProps={objectProps as ImplicitObjectProps} sceneProps={sceneProps} />;
