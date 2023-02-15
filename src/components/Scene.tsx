@@ -1,11 +1,11 @@
 import { applySceneControl } from '../utils/SceneControls/sceneControl';
-import Image from './Image';
-import Text from './Text';
 import Light from './Light';
 import { Object3D } from './Object3D/object3D';
 import { ImageProps, LightProps, TextProps } from '../types/types';
 import { Object3DProps } from '../types/object3DTypes';
 import { CanvasRect } from './CanvasNode';
+import TextLoader from './Text';
+import ImageLoader from './Image';
 
 export type SceneProps = {
     isSceneVisible: boolean;
@@ -36,13 +36,13 @@ const renderObjects = (objects: Array<Object3DProps>, sceneProps: SceneProps) =>
 
 const renderTexts = (texts: Array<TextProps>, sceneProps: SceneProps) => {
     return texts.map((textProps: TextProps, index: number) => {
-        return <Text textProps={textProps} sceneProps={sceneProps} key={index} />;
+        return <TextLoader textProps={textProps} sceneProps={sceneProps} key={index} />;
     });
 };
 
 const renderImages = (images: Array<ImageProps>, sceneProps: SceneProps) => {
     return images.map((imageProps: ImageProps, index: number) => {
-        return <Image imageProps={imageProps} sceneProps={sceneProps} key={index} />;
+        return <ImageLoader imageProps={imageProps} sceneProps={sceneProps} key={index} />;
     });
 };
 

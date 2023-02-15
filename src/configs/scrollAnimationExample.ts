@@ -1,5 +1,5 @@
 import { stylingDefaults } from '../constants/defaults';
-import { Alignment, AnimationTrajectory, AnimationTypes, AssetTypes, ComponentTypes, ObjectTypes } from '../types/enums';
+import { Alignment, AnimationTrajectory, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, ObjectTypes, TextTypes } from '../types/enums';
 import { ContainerNodeProps } from '../types/types';
 
 export const scrollAnimationExample: ContainerNodeProps = {
@@ -8,6 +8,7 @@ export const scrollAnimationExample: ContainerNodeProps = {
     assets: [
         { assetId: '101', assetPath: 'data', assetType: AssetTypes.Implicit },
         { assetId: '11', assetPath: './Inter_Bold.json', assetType: AssetTypes.Font },
+        { assetId: '1006', assetPath: './avataar.png', assetType: AssetTypes.Image },
     ],
     children: [
         {
@@ -15,6 +16,7 @@ export const scrollAnimationExample: ContainerNodeProps = {
             className: 'canvas',
             style: stylingDefaults.fullWidthFullHeightCanvas,
             camera: {
+                type: CameraTypes.Perspective,
                 position: [0, 0, 3],
             },
             assetIds: ['11'],
@@ -24,26 +26,117 @@ export const scrollAnimationExample: ContainerNodeProps = {
                     assetId: '11',
                     text: 'Scroll Down',
                     font: './Inter_Bold.json',
-                    position: [-0.7, 0, 0],
+                    position: [-2, 0, 0],
                     rotation: [-0.5, 0, 0],
-                    scale: [0.2, 0, 0],
+                    scale: [0.5, 0.5, 0.5],
+                    animations: [
+                        {
+                            type: AnimationTypes.intro,
+                            trajectory: AnimationTrajectory.manual,
+                            initialPause: 100,
+                            stateIncrements: [
+                                {
+                                    rotation: [2 * Math.PI, 0, 0],
+                                },
+                            ],
+                            config: { mass: 4, friction: 17 },
+                        },
+                    ],
+                },
+            ],
+            texts: [
+                {
+                    type: TextTypes.Paragraph,
+                    text: 'Trusted by everyone around the world !',
+                    position: [0, -0.5, 0],
+                    scale: [0.5, 0.5, 0.5],
+                    rotation: [0.9, 0, 0],
+                    color: '#60bcea',
+                    animations: [
+                        {
+                            type: AnimationTypes.intro,
+                            trajectory: AnimationTrajectory.manual,
+                            initialPause: 1000,
+                            stateIncrements: [
+                                {
+                                    rotation: [2 * Math.PI, 0, 0],
+                                },
+                            ],
+                            config: { mass: 4, friction: 17 },
+                        },
+                    ],
                 },
             ],
         },
         {
             type: ComponentTypes.Container,
-            className: 'rootContainer',
             alignment: Alignment.Horizontal,
-            assets: [
-                { assetId: '101', assetPath: 'data', assetType: AssetTypes.Implicit },
-                { assetId: '11', assetPath: './Inter_Bold.json', assetType: AssetTypes.Font },
+            style: stylingDefaults.fullWidthFullHeightCanvas,
+            children: [
+                {
+                    type: ComponentTypes.Canvas,
+                    style: stylingDefaults.fulllHeightCanvas,
+                    camera: {
+                        type: CameraTypes.Perspective,
+                        position: [0, 0, 3],
+                    },
+                    assetIds: ['11'],
+                    objects: [
+                        {
+                            type: ObjectTypes.Text3D,
+                            assetId: '11',
+                            text: 'Chair Demo',
+                            font: './Inter_Bold.json',
+                            position: [-1, 0, 0],
+                            rotation: [-0.1, 0, 0],
+                            scale: [0.3, 0.3, 0.3],
+                        },
+                    ],
+                },
+                {
+                    type: ComponentTypes.Canvas,
+                    style: stylingDefaults.fulllHeightCanvas,
+                    camera: {
+                        type: CameraTypes.Perspective,
+                        position: [0, 0, 3],
+                    },
+                    assetIds: ['11'],
+                    objects: [
+                        {
+                            type: ObjectTypes.ImplicitObject,
+                            assetId: '101',
+                            position: [0, 0, 0],
+                            rotation: [-Math.PI / 2.5, 0, -Math.PI / 4],
+                            scale: [1.5, 1.5, 1.5],
+                            animations: [
+                                {
+                                    type: AnimationTypes.scroll,
+                                    visibilityThreshold: {
+                                        top: 0.5,
+                                        bottom: -1,
+                                    },
+                                    rotationMetaData: {
+                                        axis: [0, 0, 1],
+                                        velocity: 0.003,
+                                    },
+                                    config: { mass: 4, tension: 280, friction: 90 },
+                                },
+                            ],
+                        },
+                    ],
+                },
             ],
+        },
+        {
+            type: ComponentTypes.Container,
+            alignment: Alignment.Horizontal,
             children: [
                 {
                     type: ComponentTypes.Canvas,
                     className: 'canvas',
                     style: { flexGrow: 1, height: '750px' },
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, 0, 3],
                     },
                     assetIds: ['101'],
@@ -52,14 +145,14 @@ export const scrollAnimationExample: ContainerNodeProps = {
                             type: ObjectTypes.ImplicitObject,
                             assetId: '101',
                             position: [0, 0, -50],
-                            rotation: [-Math.PI / 2.5, 0, Math.PI / 4],
-                            scale: [0.5, 0.5, 0.5],
+                            rotation: [-Math.PI / 2.5, 0, -Math.PI / 4],
+                            scale: [2, 2, 2],
                             animations: [
                                 {
                                     type: AnimationTypes.scroll,
                                     visibilityThreshold: {
-                                        top: 0.3,
-                                        bottom: 0.3,
+                                        top: 0,
+                                        bottom: 0,
                                     },
                                     trajectory: AnimationTrajectory.curveDefinedByPoints,
                                     trajectoryMetaData: {
@@ -88,6 +181,7 @@ export const scrollAnimationExample: ContainerNodeProps = {
                     className: 'canvas',
                     style: { flexGrow: 1, height: '750px' },
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, 0, 3],
                     },
                     assetIds: ['101'],
@@ -96,14 +190,14 @@ export const scrollAnimationExample: ContainerNodeProps = {
                             type: ObjectTypes.ImplicitObject,
                             assetId: '101',
                             position: [0, 0, -50],
-                            rotation: [-Math.PI / 2.5, 0, Math.PI / 4],
-                            scale: [0.5, 0.5, 0.5],
+                            scale: [2, 2, 2],
+                            rotation: [-Math.PI / 2.5, 0, -Math.PI / 4],
                             animations: [
                                 {
                                     type: AnimationTypes.scroll,
                                     visibilityThreshold: {
-                                        top: 0.3,
-                                        bottom: 0.3,
+                                        top: 0,
+                                        bottom: 0,
                                     },
                                     trajectory: AnimationTrajectory.curveDefinedByPoints,
                                     trajectoryMetaData: {
@@ -134,53 +228,32 @@ export const scrollAnimationExample: ContainerNodeProps = {
             className: 'canvas',
             style: stylingDefaults.fullWidthFullHeightCanvas,
             camera: {
+                type: CameraTypes.Perspective,
                 position: [0, 0, 3],
             },
-            assetIds: ['101', '11'],
+            assetIds: ['101', '1006'],
             objects: [
-                // {
-                //   type: ObjectTypes.Text3D,
-                //   assetId: '11',
-                //   text: 'Scroll Down',
-                //   font: "./Inter_Bold.json",
-                //   position: [-0.1,-0.5,-50],
-                //   rotation: [-0.5, 0, 0],
-                //   scale: 0.2,
-                //   animations: [{
-                //     type: Animation.type.scroll,
-                //     visibilityThreshold: {
-                //       top: 0.6,
-                //       bottom: -0.5
-                //     },
-                //     trajectory: Animation.trajectory.curveDefinedByPoints,
-                //     trajectoryMetaData: {
-                //       points: [[-0.1,-0.5,-50], [-0.3, -0.25, -20], [-0.7, 0, 0]],
-                //       speed: 0.0005
-                //     },
-                //     config: { mass: 4, tension: 280, friction: 90 }
-                //   }],
-                // },
                 {
                     type: ObjectTypes.ImplicitObject,
                     assetId: '101',
-                    position: [0.3, -0.4, 0],
-                    rotation: [-Math.PI / 2.5, 0, Math.PI / 4],
-                    scale: [0.4, 0.4, 0.4],
+                    position: [0.45, -0.4, 0],
+                    rotation: [-Math.PI / 2.5, 0, Math.PI / 6],
+                    scale: [0.7, 0.7, 0.7],
                     animations: [
                         {
                             type: AnimationTypes.scroll,
                             visibilityThreshold: {
-                                top: 0.6,
-                                bottom: -0.5,
+                                top: 0.8,
+                                bottom: -1,
                             },
                             trajectory: AnimationTrajectory.curveDefinedByPoints,
                             trajectoryMetaData: {
                                 points: [
-                                    [0.3, -0.4, 0],
-                                    [0.5, 1, -0.2],
-                                    [3.5, 1, -0.4],
+                                    [0.45, -0.4, 0],
+                                    [4, 8, -0.2],
+                                    [8, -5, -0.4],
                                 ],
-                                speed: 0.0005,
+                                speed: 0.001,
                             },
                             config: { mass: 4, tension: 280, friction: 90 },
                         },
@@ -189,26 +262,57 @@ export const scrollAnimationExample: ContainerNodeProps = {
                 {
                     type: ObjectTypes.ImplicitObject,
                     assetId: '101',
-                    position: [-0.3, -0.4, 0],
-                    rotation: [-Math.PI / 2.5, 0, -Math.PI / 4],
-                    scale: [0.4, 0.4, 0.4],
+                    position: [-0.45, -0.4, 0],
+                    rotation: [-Math.PI / 2.5, 0, -Math.PI / 6],
+                    scale: [0.7, 0.7, 0.7],
                     animations: [
                         {
                             type: AnimationTypes.scroll,
                             visibilityThreshold: {
-                                top: 0.6,
-                                bottom: -0.5,
+                                top: 0.8,
+                                bottom: -1,
                             },
                             trajectory: AnimationTrajectory.curveDefinedByPoints,
                             trajectoryMetaData: {
                                 points: [
-                                    [-0.3, -0.4, 0],
-                                    [-0.5, 1, -0.2],
-                                    [-3.5, 1, -0.4],
+                                    [-0.45, -0.4, 0],
+                                    [-4, 8, -0.2],
+                                    [-8, -5, -0.4],
                                 ],
-                                speed: 0.0005,
+                                speed: 0.001,
                             },
                             config: { mass: 4, tension: 280, friction: 90 },
+                        },
+                    ],
+                },
+            ],
+            images: [
+                {
+                    assetId: '1006',
+                    position: [0, 1, -200],
+                    rotation: [0, 0, 0],
+                    scale: [0.3, 0.3, 0.3],
+                    animations: [
+                        {
+                            type: AnimationTypes.scroll,
+                            trajectory: AnimationTrajectory.curveDefinedByPoints,
+                            visibilityThreshold: {
+                                top: 0.8,
+                                bottom: -1,
+                            },
+                            trajectoryMetaData: {
+                                points: [
+                                    [0, 1, -200],
+                                    [0, 0, -40],
+                                    [0, -1, -30],
+                                    [0, -2, -20],
+                                    [0, -3, -25],
+                                    [0, 0, 0],
+                                ],
+                                speed: 0.05,
+                                steps: 1000,
+                            },
+                            config: { duration: 10 },
                         },
                     ],
                 },
@@ -219,6 +323,7 @@ export const scrollAnimationExample: ContainerNodeProps = {
             className: 'canvas',
             style: stylingDefaults.fullWidthFullHeightCanvas,
             camera: {
+                type: CameraTypes.Perspective,
                 position: [0, 0, 3],
             },
         },

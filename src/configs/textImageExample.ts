@@ -1,5 +1,5 @@
 import { stylingDefaults } from '../constants/defaults';
-import { Alignment, AnimationTrajectory, AnimationTypes, AssetTypes, ComponentTypes, ImageTypes, LightTypes, ObjectHtmlTypes, ObjectTypes, SceneControlTypes, TextTypes } from '../types/enums';
+import { Alignment, AnimationTrajectory, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, ImageTypes, LightTypes, ObjectHtmlTypes, ObjectTypes, TextTypes } from '../types/enums';
 import { ContainerNodeProps } from '../types/types';
 
 export const textImageExample: ContainerNodeProps = {
@@ -26,7 +26,8 @@ export const textImageExample: ContainerNodeProps = {
             assetIds: ['100001', '1002', '1003', '1004', '101'],
             environment: { files: './puresky.hdr' },
             camera: {
-                position: [0, 0, 2],
+                type: CameraTypes.Perspective,
+                position: [0, 0, 5],
             },
             lights: [
                 {
@@ -38,9 +39,6 @@ export const textImageExample: ContainerNodeProps = {
                     intensity: 2,
                 },
             ],
-            sceneControl: {
-                type: SceneControlTypes.Orbit,
-            },
             objects: [
                 {
                     type: ObjectTypes.ImplicitObject,
@@ -48,7 +46,7 @@ export const textImageExample: ContainerNodeProps = {
                     useInstancing: false,
                     position: [0, 0.7, 0],
                     rotation: [2, Math.PI, 1],
-                    scale: [1.2, 1.2, 1.2],
+                    scale: [0.5, 0.5, 0.5],
                     objectHtmls: [
                         {
                             type: ObjectHtmlTypes.PriceTag,
@@ -56,6 +54,20 @@ export const textImageExample: ContainerNodeProps = {
                             rotation: [Math.PI / 2, (3 * Math.PI) / 4, 0],
                             position: [0.2, 0, 0.3],
                             scale: 1.5,
+                        },
+                    ],
+                    animations: [
+                        {
+                            type: AnimationTypes.intro,
+                            initialPause: 200,
+                            trajectory: AnimationTrajectory.manual,
+                            stateIncrements: [
+                                {
+                                    rotation: [0, 0, Math.PI * 2],
+                                    scale: [0.5, 0.5, 0.5],
+                                },
+                            ],
+                            config: { duration: 1000 },
                         },
                     ],
                 },
@@ -82,21 +94,21 @@ export const textImageExample: ContainerNodeProps = {
                     assetId: '1002',
                     position: [-1.5, -0.5, 0],
                     rotation: [0, 0.5, 0],
-                    scale: [0.07, 0.07, 0.07],
+                    scale: [0.7, 0.7, 0.7],
                 },
                 {
                     // type: ImageTypes.Rounded,
                     assetId: '1003',
                     position: [0, -0.5, -0.25],
                     rotation: [0, 0, 0],
-                    scale: [0.015, 0.015, 0.015],
+                    scale: [1, 1, 1],
                 },
                 {
                     // type: ImageTypes.Rounded,
                     assetId: '1004',
                     position: [1.5, -0.5, 0],
                     rotation: [0, -0.5, 0],
-                    scale: [0.07, 0.07, 0.07],
+                    scale: [0.7, 0.7, 0.7],
                 },
             ],
         },
@@ -107,7 +119,8 @@ export const textImageExample: ContainerNodeProps = {
             assetIds: ['1005', '1006'],
             environment: { files: './puresky.hdr' },
             camera: {
-                position: [0, 0, 2],
+                type: CameraTypes.Perspective,
+                position: [0, 0, 4],
             },
             lights: [
                 {
@@ -121,28 +134,22 @@ export const textImageExample: ContainerNodeProps = {
             ],
             images: [
                 {
-                    // type: ImageTypes.Square,
                     assetId: '1005',
                     position: [0, 0.5, 0],
                     rotation: [0, 0, 0],
-                    scale: [0.1, 0.1, 0.1],
+                    scale: [0.5, 0.5, 0.5],
                     animations: [
                         {
-                            type: AnimationTypes.scroll,
-                            visibilityThreshold: {
-                                top: 0.6,
-                                bottom: -1,
-                            },
-                            trajectory: AnimationTrajectory.curveDefinedByPoints,
-                            trajectoryMetaData: {
-                                points: [
-                                    [0, 0.5, 0],
-                                    [-2, 0.5, 0],
-                                    [-4, 0.5, 0],
-                                ],
-                                speed: 0.0005,
-                            },
-                            config: { mass: 4, tension: 280, friction: 90 },
+                            initialPause: 1000,
+                            type: AnimationTypes.intro,
+                            trajectory: AnimationTrajectory.manual,
+                            stateIncrements: [
+                                {
+                                    rotation: [0, 0, 2 * Math.PI],
+                                    scale: [1, 1, 1],
+                                },
+                            ],
+                            config: { mass: 4, friction: 17 },
                         },
                     ],
                 },
@@ -159,8 +166,22 @@ export const textImageExample: ContainerNodeProps = {
                     type: TextTypes.Paragraph,
                     text: 'Trusted by everyone around the world !',
                     position: [0, -1.4, 0],
-                    scale: [0.2, 0.2, 0.2],
-                    style: { color: '#60bcea' },
+                    scale: [0.5, 0.5, 0.5],
+                    color: '#60bcea',
+                    animations: [
+                        {
+                            initialPause: 1000,
+                            type: AnimationTypes.intro,
+                            trajectory: AnimationTrajectory.manual,
+                            stateIncrements: [
+                                {
+                                    rotation: [0, 0, 2 * Math.PI],
+                                    scale: [1, 1, 1],
+                                },
+                            ],
+                            config: { mass: 4, friction: 17 },
+                        },
+                    ],
                 },
                 {
                     type: TextTypes.List,
@@ -170,10 +191,10 @@ export const textImageExample: ContainerNodeProps = {
                         'Provide customers with a sense of how products would look and fit in their environment.',
                         'Increase shopper confidence, order volume, and sales.',
                     ],
-                    position: [0, -0.8, 0],
-                    scale: [0.2, 0.2, 0.2],
-                    numbered: false,
-                    style: { color: 'black', alignText: 'center' },
+                    position: [0.2, -0.8, 0],
+                    scale: [0.8, 0.8, 0.8],
+                    numbered: true,
+                    color: 'black',
                 },
             ],
         },

@@ -43,17 +43,17 @@ export const stylingDefaults = {
         overflow: 'auto',
     },
     fullWidthSmallHeightCanvas: {
-        height: '200px',
-        width: '100%',
-        boxSizing: 'content-box',
-    },
-    fullWidthMediumHeightCanvas: {
         height: '400px',
         width: '100%',
         boxSizing: 'content-box',
     },
+    fullWidthMediumHeightCanvas: {
+        height: '750px',
+        width: '100%',
+        boxSizing: 'content-box',
+    },
     fullWidthLargeHeightCanvas: {
-        height: '600px',
+        height: '900px',
         width: '100%',
         boxSizing: 'content-box',
     },
@@ -61,5 +61,13 @@ export const stylingDefaults = {
         height: `${window.innerHeight}px`,
         widht: `${window.innerWidth}px`,
         boxSizing: 'content-box',
+    },
+    fullHeightCanvas: {
+        height: `${window.innerHeight}px`,
+        flexGrow: 1,
+    },
+    mediumHeightCanvas: {
+        height: '750px',
+        flexGrow: 1,
     },
 };

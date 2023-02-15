@@ -59,7 +59,3 @@ export const getInitialialStateMatrix4 = (instance: any): Matrix4 => {
     const matrix = createMatrix4(position, rotation, scale);
     return matrix;
 };
-
-export const positionTransform = ({ position = [0, 0, 2], ...props }) => {
-    return { position: arrayToVec3(position), ...props };
-};

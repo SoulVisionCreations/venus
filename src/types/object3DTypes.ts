@@ -35,10 +35,11 @@ export type GltfObjectProps = CommonObject3DProps & {
 };
 
 export type Text3DObjectProps = CommonObject3DProps & {
-    assetId: string;
+    assetId?: string;
     text: string;
-    font: string;
-    color: string;
+    font: any;
+    color?: string;
+    size?: number;
 };
 
 export type ImplicitObjectProps = CommonObject3DProps & {
