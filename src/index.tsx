@@ -12,16 +12,17 @@
 
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import { DemoExample } from './configs/demo1';
 // import { animationExample } from './configs/animationExample';
 // import { demoConfig } from './configs/demoConfig';
 // import { scrollAnimationExample } from './configs/scrollAnimationExample';
 // import { text3DAnimationDemo } from './configs/text3DAnimationDemo';
 // import { text3DExample, text3DFontsExample } from './configs/text3DFontsExample';
-import { textImageExample } from './configs/textImageExample';
+// import { textImageExample } from './configs/textImageExample';
 // import { config2 } from './configs/example2';
 // import { scrollAnimationExample } from './configs/scrollAnimationExample';
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = ReactDOM.createRoot(document.querySelector('#root')!);
 
-root.render(<App config={textImageExample} />);
+root.render(<App config={DemoExample} />);
