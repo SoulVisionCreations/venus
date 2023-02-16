@@ -1,8 +1,6 @@
 import { create } from 'zustand';
-import { ImageTypes } from '../../../types/enums';
 
 export type Image = {
-    type: ImageTypes;
     file: any;
     position: { x: number; y: number; z: number };
     rotation: { x: number; y: number; z: number };
@@ -11,7 +9,6 @@ export type Image = {
 };
 
 export type ImageActions = {
-    setType: (type: ImageTypes) => void;
     setFile: (file: any) => void;
     setPosition: (value: number, pos: string) => void;
     setRotation: (value: number, pos: string) => void;
@@ -21,7 +18,6 @@ export type ImageActions = {
 };
 
 const InitialState: Image = {
-    type: ImageTypes.None,
     file: null,
     position: { x: 0, y: 0, z: 0 },
     rotation: { x: 0, y: 0, z: 0 },
@@ -31,7 +27,6 @@ const InitialState: Image = {
 
 const useImageStore = create<Image & ImageActions>((set) => ({
     ...InitialState,
-    setType: (type) => set({ type }),
     setFile: (file) => set({ file }),
     setPosition: (value, pos) => {
         if (pos === 'x') set((state) => ({ position: { ...state.position, x: value } }));

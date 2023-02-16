@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { invalidate } from '@react-three/fiber';
 import { Alignment, ComponentTypes } from '../types/enums';
 import { downloadAssets } from '../utils/download';
 import { ContainerNodeProps } from '../types/types';
 import CanvasNode from './CanvasNode';
+import AvataarLoader from './AvataarLoader/AvataarLoader';
 
 type ConfigProps = {
     config: ContainerNodeProps;
@@ -19,21 +20,21 @@ export default function ConfigRenderer({ config }: ConfigProps) {
         });
     };
 
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         window.addEventListener('resize', () => {
             invalidate();
         });
-        config.assets &&
-            setTimeout(() => {
-                downloadAssets(config.assets);
-            });
+        if (config.assets) downloadAssets(config.assets).then(() => setLoading(false));
+        else setLoading(false);
     }, [config]);
 
     const alignmentClassName: string = config.alignment == Alignment.Vertical ? 'flexColumn' : 'flexRow';
 
     return (
-        <div className={`${config.className} ${alignmentClassName}`} style={config.style}>
-            {renderConfig()}
+        <div className={`${config.className ? config.className : ''} ${alignmentClassName}`} style={config.style}>
+            {loading ? <AvataarLoader /> : renderConfig()}
         </div>
     );
 }
