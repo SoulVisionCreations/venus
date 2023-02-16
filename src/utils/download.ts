@@ -38,7 +38,12 @@ export async function downloadAssets(assets: AssetProps[]) {
                     case AssetTypes.Image: {
                         const imgres = await fetch(assetPath);
                         const imgblob = await imgres.blob();
-                        assetsMap[assetId] = URL.createObjectURL(imgblob);
+                        const image = new Image();
+                        image.src = URL.createObjectURL(imgblob);
+                        image.onload = function () {
+                            assetsMap[assetId] = { src: URL.createObjectURL(imgblob), aspectRatio: image.width / image.height };
+                        };
+                        image.remove();
                         break;
                     }
                     case AssetTypes.Font: {

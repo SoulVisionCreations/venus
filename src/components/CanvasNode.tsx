@@ -2,8 +2,8 @@ import { AdaptiveDpr, Environment, PerformanceMonitor } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber';
 import { useEffect, useRef, useState } from 'react';
 import { CanvasNodeProps } from '../types/types';
-import { getAssetbyId } from '../utils/download';
-import AvataarLoader from './AvataarLoader';
+// import { getAssetbyId } from '../utils/download';
+// import AvataarLoader from './AvataarLoader';
 import Scene from './Scene';
 import '../static/css/style.css';
 import Camera from './Camera';
@@ -73,21 +73,21 @@ export default function CanvasNode(props: CanvasNodeProps) {
         };
     }, [canvasContainerRef.current]);
 
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            let allDownloaded = true;
-            props.assetIds &&
-                props.assetIds.forEach((assetId) => {
-                    if (getAssetbyId(assetId) == 'downloading') allDownloaded = false;
-                });
-            if (allDownloaded) {
-                setLoading(false);
-                clearInterval(interval);
-            }
-        }, 100);
-    }, []);
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         let allDownloaded = true;
+    //         props.assetIds &&
+    //             props.assetIds.forEach((assetId) => {
+    //                 if (getAssetbyId(assetId) == 'downloading') allDownloaded = false;
+    //             });
+    //         if (allDownloaded) {
+    //             setLoading(false);
+    //             clearInterval(interval);
+    //         }
+    //     }, 100);
+    // }, []);
 
     const sceneProps = {
         isSceneVisible: isSceneVisible,
@@ -98,19 +98,12 @@ export default function CanvasNode(props: CanvasNodeProps) {
     return (
         <div ref={canvasContainerRef} className={props.className ? props.className : ''} style={props.style} id={props.id}>
             <Canvas frameloop="demand">
-                {loading ? (
-                    <AvataarLoader center={true} />
-                ) : (
-                    <>
-                        <GetInfo />
-                        <AdaptiveDpr pixelated />
-                        {/* <Stats /> */}
-                        <PerformanceMonitor />
-                        {props.camera && <Camera {...props.camera} />}
-                        <Scene objects={props.objects} sceneControl={props.sceneControl} texts={props.texts} images={props.images} lights={props.lights} sceneProps={sceneProps} />
-                        {props.environment && <Environment {...props.environment} />}
-                    </>
-                )}
+                <GetInfo />
+                <AdaptiveDpr pixelated />
+                <PerformanceMonitor />
+                {props.camera && <Camera {...props.camera} />}
+                <Scene objects={props.objects} sceneControl={props.sceneControl} texts={props.texts} images={props.images} lights={props.lights} sceneProps={sceneProps} />
+                {props.environment && <Environment {...props.environment} />}
             </Canvas>
         </div>
     );
