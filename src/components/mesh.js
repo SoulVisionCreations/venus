@@ -8,13 +8,7 @@ import { renderObjectHtmls } from './Object3D/object3D';
 
 export function Mesh({ geometry, material, gSceneParams, objectProps, sceneProps }) {
     const meshRef = useRef();
-    const [initialPosition, initialRotation, initialScale] = getInitialState(objectProps);
-    const state = useRef({
-        position: initialPosition,
-        rotation: initialRotation,
-        scale: initialScale,
-    });
-    const [spring, api] = useSpringAnimation(objectProps, sceneProps, state);
+    const [spring, api] = useSpringAnimation(objectProps, sceneProps);
     useScrollAnimation(objectProps, sceneProps, api);
 
     useFrame((state) => {

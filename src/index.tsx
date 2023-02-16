@@ -15,6 +15,7 @@ import App from './App';
 import { animationExample } from './configs/animationExample';
 import { demoConfig } from './configs/demoConfig';
 import { scrollAnimationExample } from './configs/scrollAnimationExample';
+import { text3DAnimationDemo } from './configs/text3DAnimationDemo';
 import { text3DExample, text3DFontsExample } from './configs/text3DFontsExample';
 import { textImageExample } from './configs/textImageExample';
 // import { config2 } from './configs/example2';
@@ -23,4 +24,4 @@ import { textImageExample } from './configs/textImageExample';
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = ReactDOM.createRoot(document.querySelector('#root')!);
 
-root.render(<App config={demoConfig} />);
+root.render(<App config={textImageExample} />);

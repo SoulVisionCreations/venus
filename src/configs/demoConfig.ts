@@ -1,6 +1,7 @@
 import { stylingDefaults } from '../constants/defaults';
 import { Alignment, AnimationTrajectory, AnimationTypes, AssetTypes, ComponentTypes, ImageTypes, LightTypes, ObjectHtmlTypes, ObjectTypes, TextTypes } from '../types/enums';
 import { ContainerNodeProps } from '../types/types';
+import { fonts } from '../utils/fonts';
 
 export const demoConfig: ContainerNodeProps = {
     type: ComponentTypes.Container,
@@ -9,13 +10,14 @@ export const demoConfig: ContainerNodeProps = {
         { assetId: '101', assetPath: 'data2', assetType: AssetTypes.Implicit },
         { assetId: '105', assetPath: './Inter_Bold.json', assetType: AssetTypes.Font },
         { assetId: '106', assetPath: 'data', assetType: AssetTypes.Implicit },
+        { assetId: '1002', assetPath: './impnerf.png', assetType: AssetTypes.Image }
     ],
     children: [
         {
             type: ComponentTypes.Canvas,
             className: 'canvas',
             style: stylingDefaults.fullWidthFullHeightCanvas,
-            assetIds: ['101'],
+            assetIds: ['101', '1002'],
             camera: {
                 position: [0, 0, 2],
             },
@@ -165,6 +167,7 @@ export const demoConfig: ContainerNodeProps = {
                     style: { flexGrow: 1, height: '750px' },
                     camera: {
                         position: [0, 0, 3],
+                        far: 30,
                     },
                     assetIds: ['101'],
                     objects: [
@@ -201,8 +204,39 @@ export const demoConfig: ContainerNodeProps = {
                                 },
                             ],
                         },
-                    ],
-                },
+                        {
+                            type: ObjectTypes.Text3D,
+                            text: 'Text 3D',
+                            font: fonts.droidSerif,
+                            position: [0, 5, -35],
+                            rotation: [Math.PI/2 + Math.PI/16, 0, 0],
+                            scale: [0.3, 0.3, 0.3],
+                            animations: [
+                                {
+                                    type: AnimationTypes.scroll,
+                                    initialPause: 400,
+                                    trajectory: AnimationTrajectory.curveDefinedByPoints,
+                                    visibilityThreshold: {
+                                        top: 0.5,
+                                        bottom: 0,
+                                    },
+                                    trajectoryMetaData: {
+                                        points: [
+                                            [0, 5, -35],
+                                            [0, 5, -5],
+                                            [0, 2, 0]
+                                        ],
+                                        rotationTrajectory: {
+                                            axis: [-1, 0, 0],
+                                            frequency: (Math.PI/2 + Math.PI/16)/(2*Math.PI)
+                                        }
+                                    },
+                                    config: { mass: 4, friction: 80 },
+                                }
+                            ]
+                        }
+                    ]
+                }
             ],
         },
     ],

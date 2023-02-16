@@ -77,7 +77,7 @@ export const useScrollAnimation = (objectProps: Object3DProps | ImageProps | Tex
         objectProps.animations.forEach((animation) => {
             if (animation.type == AnimationTypes.scroll) {
                 scrollAnimation.current = animation as ScrollAnimation;
-                if ((animation as ScrollAnimation).trajectory)
+                if ("trajectory" in animation)
                     scrollTrajectory.current = getTrajectory(animation as unknownObject & { trajectory: AnimationTrajectory; trajectoryMetaData: unknownObject & TrajectoryMetaData });
                 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 if ((animation as ScrollAnimation).visibilityThreshold != undefined) visibilityThreshold.current = (animation as ScrollAnimation).visibilityThreshold!;
