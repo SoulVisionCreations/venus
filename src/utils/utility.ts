@@ -1,4 +1,3 @@
-import { CameraProps } from '@react-three/fiber';
 import { Euler, Matrix4, Quaternion, Vector2, Vector3, Vector4 } from 'three';
 import { objectDefaults } from '../constants/defaults';
 
@@ -59,9 +58,4 @@ export const getInitialialStateMatrix4 = (instance: any): Matrix4 => {
     const [position, rotation, scale]: Array<Vector3> = getInitialState(instance);
     const matrix = createMatrix4(position, rotation, scale);
     return matrix;
-};
-
-export const updateCameraProps = (props: any) => {
-    const position = props.position == undefined ? [0,0,2] : props.position;
-    return { position: arrayToVec3(position), ...props };
 };

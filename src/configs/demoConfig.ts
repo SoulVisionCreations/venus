@@ -1,5 +1,5 @@
 import { stylingDefaults } from '../constants/defaults';
-import { Alignment, AnimationTrajectory, AnimationTypes, AssetTypes, ComponentTypes, ImageTypes, LightTypes, ObjectHtmlTypes, ObjectTypes, TextTypes } from '../types/enums';
+import { Alignment, AnimationTrajectory, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, ObjectHtmlTypes, ObjectTypes, TextTypes } from '../types/enums';
 import { ContainerNodeProps } from '../types/types';
 import { fonts } from '../utils/fonts';
 
@@ -10,7 +10,7 @@ export const demoConfig: ContainerNodeProps = {
         { assetId: '101', assetPath: 'data2', assetType: AssetTypes.Implicit },
         { assetId: '105', assetPath: './Inter_Bold.json', assetType: AssetTypes.Font },
         { assetId: '106', assetPath: 'data', assetType: AssetTypes.Implicit },
-        { assetId: '1002', assetPath: './impnerf.png', assetType: AssetTypes.Image }
+        { assetId: '1002', assetPath: './impnerf.png', assetType: AssetTypes.Image },
     ],
     children: [
         {
@@ -19,6 +19,7 @@ export const demoConfig: ContainerNodeProps = {
             style: stylingDefaults.fullWidthFullHeightCanvas,
             assetIds: ['101', '1002'],
             camera: {
+                type: CameraTypes.Perspective,
                 position: [0, 0, 2],
             },
             objects: [
@@ -26,7 +27,7 @@ export const demoConfig: ContainerNodeProps = {
                     type: ObjectTypes.ImplicitObject,
                     assetId: '101',
                     position: [0, 0, 0],
-                    rotation: [Math.PI/2, Math.PI, Math.PI/4],
+                    rotation: [Math.PI / 2, Math.PI, Math.PI / 4],
                     scale: [0.25, 0.25, 0.25],
                     objectHtmls: [
                         {
@@ -44,13 +45,13 @@ export const demoConfig: ContainerNodeProps = {
                             trajectory: AnimationTrajectory.manual,
                             stateIncrements: [
                                 {
-                                    rotation: [0, 0, Math.PI*2],
-                                    scale: [1.5, 1.5, 1.5]
-                                }
+                                    rotation: [0, 0, Math.PI * 2],
+                                    scale: [1.5, 1.5, 1.5],
+                                },
                             ],
-                            config: {duration: 2000}
-                        }
-                    ]
+                            config: { duration: 2000 },
+                        },
+                    ],
                 },
             ],
         },
@@ -58,25 +59,23 @@ export const demoConfig: ContainerNodeProps = {
             type: ComponentTypes.Container,
             alignment: Alignment.Horizontal,
             style: stylingDefaults.fullWidthFullHeightCanvas,
-            children:[
+            children: [
                 {
                     type: ComponentTypes.Canvas,
                     style: stylingDefaults.fullHeightCanvas,
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, -0.2, 3],
                     },
                     assetIds: ['105'],
                     texts: [
                         {
                             type: TextTypes.List,
-                            list: [
-                                '81% of shoppers feel more confident',
-                                'Provide customers with a sense',
-                            ],
+                            list: ['81% of shoppers feel more confident', 'Provide customers with a sense'],
                             position: [0, 0, 0],
                             scale: [0.4, 0.4, 0.4],
                             numbered: false,
-                            style: { color: 'black', alignText: 'center' },
+                            color: 'black',
                         },
                     ],
                 },
@@ -84,6 +83,7 @@ export const demoConfig: ContainerNodeProps = {
                     type: ComponentTypes.Canvas,
                     style: stylingDefaults.fullHeightCanvas,
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, 0, 3],
                     },
                     assetIds: ['106'],
@@ -103,14 +103,14 @@ export const demoConfig: ContainerNodeProps = {
                                     },
                                     rotationMetaData: {
                                         axis: [0, 0, 1],
-                                        velocity: 0.004
+                                        velocity: 0.004,
                                     },
                                     config: { mass: 4, tension: 280, friction: 90 },
                                 },
                             ],
-                        }
-                    ]
-                }
+                        },
+                    ],
+                },
             ],
         },
         {
@@ -122,6 +122,7 @@ export const demoConfig: ContainerNodeProps = {
                     className: 'canvas',
                     style: { flexGrow: 1, height: '750px' },
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, 0, 3],
                     },
                     assetIds: ['101'],
@@ -166,6 +167,7 @@ export const demoConfig: ContainerNodeProps = {
                     className: 'canvas',
                     style: { flexGrow: 1, height: '750px' },
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, 0, 3],
                         far: 30,
                     },
@@ -209,7 +211,7 @@ export const demoConfig: ContainerNodeProps = {
                             text: 'Text 3D',
                             font: fonts.droidSerif,
                             position: [0, 5, -35],
-                            rotation: [Math.PI/2 + Math.PI/16, 0, 0],
+                            rotation: [Math.PI / 2 + Math.PI / 16, 0, 0],
                             scale: [0.3, 0.3, 0.3],
                             animations: [
                                 {
@@ -224,19 +226,19 @@ export const demoConfig: ContainerNodeProps = {
                                         points: [
                                             [0, 5, -35],
                                             [0, 5, -5],
-                                            [0, 2, 0]
+                                            [0, 2, 0],
                                         ],
                                         rotationTrajectory: {
                                             axis: [-1, 0, 0],
-                                            frequency: (Math.PI/2 + Math.PI/16)/(2*Math.PI)
-                                        }
+                                            frequency: (Math.PI / 2 + Math.PI / 16) / (2 * Math.PI),
+                                        },
                                     },
                                     config: { mass: 4, friction: 80 },
-                                }
-                            ]
-                        }
-                    ]
-                }
+                                },
+                            ],
+                        },
+                    ],
+                },
             ],
         },
     ],

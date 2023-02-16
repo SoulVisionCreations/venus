@@ -77,7 +77,7 @@ export const useScrollAnimation = (objectProps: Object3DProps | ImageProps | Tex
         objectProps.animations.forEach((animation) => {
             if (animation.type == AnimationTypes.scroll) {
                 scrollAnimation.current = animation as ScrollAnimation;
-                if ("trajectory" in animation)
+                if ('trajectory' in animation)
                     scrollTrajectory.current = getTrajectory(animation as unknownObject & { trajectory: AnimationTrajectory; trajectoryMetaData: unknownObject & TrajectoryMetaData });
                 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 if ((animation as ScrollAnimation).visibilityThreshold != undefined) visibilityThreshold.current = (animation as ScrollAnimation).visibilityThreshold!;
@@ -129,10 +129,10 @@ export const useScrollAnimation = (objectProps: Object3DProps | ImageProps | Tex
             const velocity = scrollAnimation.current.rotationMetaData.velocity;
             state.current.rotation.add(new Vector3(axis[0] * velocity * deltaY, axis[1] * velocity * deltaY, axis[2] * velocity * deltaY));
 
-            if(deltaY > 0) {
-                state.current.rotation.x = Math.min(initialRotation.x + Math.PI*2, state.current.rotation.x);
-                state.current.rotation.y = Math.min(initialRotation.y + Math.PI*2, state.current.rotation.y);
-                state.current.rotation.z = Math.min(initialRotation.z + Math.PI*2, state.current.rotation.z);
+            if (deltaY > 0) {
+                state.current.rotation.x = Math.min(initialRotation.x + Math.PI * 2, state.current.rotation.x);
+                state.current.rotation.y = Math.min(initialRotation.y + Math.PI * 2, state.current.rotation.y);
+                state.current.rotation.z = Math.min(initialRotation.z + Math.PI * 2, state.current.rotation.z);
             } else {
                 state.current.rotation.x = Math.max(initialRotation.x, state.current.rotation.x);
                 state.current.rotation.y = Math.max(initialRotation.y, state.current.rotation.y);
@@ -192,7 +192,7 @@ export const useScrollAnimation = (objectProps: Object3DProps | ImageProps | Tex
                                 rotation: convertVec3ToArray(state.current.rotation),
                             });
                         },
-                        config: springConfigRef.current
+                        config: springConfigRef.current,
                     });
                     invalidate();
                 }

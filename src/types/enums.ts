@@ -94,7 +94,6 @@ export const enum SceneControlTypes {
 export const enum CameraTypes {
     Perspective,
     Orthographic,
-    Cube,
 }
 
 export const enum LightTypes {

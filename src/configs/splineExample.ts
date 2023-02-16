@@ -1,13 +1,11 @@
 import { stylingDefaults } from '../constants/defaults';
-import { Alignment, AnimationTrajectory, AnimationTypes, AssetTypes, ComponentTypes, ImageTypes, LightTypes, ObjectHtmlTypes, ObjectTypes, TextTypes } from '../types/enums';
+import { Alignment, AnimationTrajectory, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, ObjectHtmlTypes, ObjectTypes } from '../types/enums';
 import { ContainerNodeProps } from '../types/types';
 
 export const splineConfig: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
-    assets: [
-        { assetId: '101', assetPath: 'data2', assetType: AssetTypes.Implicit },
-    ],
+    assets: [{ assetId: '101', assetPath: 'data2', assetType: AssetTypes.Implicit }],
     children: [
         {
             type: ComponentTypes.Canvas,
@@ -15,6 +13,7 @@ export const splineConfig: ContainerNodeProps = {
             style: stylingDefaults.fullWidthFullHeightCanvas,
             assetIds: ['101'],
             camera: {
+                type: CameraTypes.Perspective,
                 position: [0, 0, 2],
             },
             objects: [
@@ -23,7 +22,7 @@ export const splineConfig: ContainerNodeProps = {
                     assetId: '101',
                     useInstancing: false,
                     position: [-10, 1, -10],
-                    rotation: [Math.PI/2, Math.PI, Math.PI/2],
+                    rotation: [Math.PI / 2, Math.PI, Math.PI / 2],
                     scale: [1.5, 1.5, 1.5],
                     objectHtmls: [
                         {
@@ -45,14 +44,14 @@ export const splineConfig: ContainerNodeProps = {
                                     [-5, 1.5, -15],
                                     [-7, -0.5, -5],
                                     [1, 0.5, 0],
-                                    [0, 0, 0]
-                                ]
+                                    [0, 0, 0],
+                                ],
                             },
-                            config: {duration: 100}
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
-}
+                            config: { duration: 100 },
+                        },
+                    ],
+                },
+            ],
+        },
+    ],
+};

@@ -1,5 +1,5 @@
 import { stylingDefaults } from '../constants/defaults';
-import { Alignment, AnimationTrajectory, AnimationTypes, ComponentTypes, ObjectTypes } from '../types/enums';
+import { Alignment, AnimationTrajectory, AnimationTypes, CameraTypes, ComponentTypes, ObjectTypes } from '../types/enums';
 import { ContainerNodeProps } from '../types/types';
 import { fonts } from '../utils/fonts';
 
@@ -11,13 +11,14 @@ export const text3DFontsExample: ContainerNodeProps = {
         {
             type: ComponentTypes.Container,
             alignment: Alignment.Horizontal,
-            style: {flexGrow: 1},
+            style: { flexGrow: 1 },
             children: [
                 {
                     type: ComponentTypes.Canvas,
                     className: 'canvas',
-                    style: {flexGrow: 2},
+                    style: { flexGrow: 2 },
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, 0, 3],
                     },
                     objects: [
@@ -36,20 +37,21 @@ export const text3DFontsExample: ContainerNodeProps = {
                                     trajectory: AnimationTrajectory.manual,
                                     stateIncrements: [
                                         {
-                                            rotation: [Math.PI*2, 0, 0]
-                                        }
+                                            rotation: [Math.PI * 2, 0, 0],
+                                        },
                                     ],
                                     config: { mass: 4, friction: 17 },
-                                }
-                            ]
-                        }
-                    ]
+                                },
+                            ],
+                        },
+                    ],
                 },
                 {
                     type: ComponentTypes.Canvas,
                     className: 'canvas',
-                    style: {flexGrow: 1},
+                    style: { flexGrow: 1 },
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, 0, 3],
                     },
                     objects: [
@@ -68,20 +70,21 @@ export const text3DFontsExample: ContainerNodeProps = {
                                     trajectory: AnimationTrajectory.manual,
                                     stateIncrements: [
                                         {
-                                            rotation: [Math.PI*2, 0, 0]
-                                        }
+                                            rotation: [Math.PI * 2, 0, 0],
+                                        },
                                     ],
                                     config: { mass: 4, friction: 17 },
-                                }
-                            ]
-                        }
-                    ]
+                                },
+                            ],
+                        },
+                    ],
                 },
                 {
                     type: ComponentTypes.Canvas,
                     className: 'canvas',
-                    style: {flexGrow: 1},
+                    style: { flexGrow: 1 },
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, 0, 3],
                     },
                     objects: [
@@ -99,26 +102,27 @@ export const text3DFontsExample: ContainerNodeProps = {
                                     trajectory: AnimationTrajectory.manual,
                                     stateIncrements: [
                                         {
-                                            rotation: [Math.PI*2, 0, 0]
-                                        }
+                                            rotation: [Math.PI * 2, 0, 0],
+                                        },
                                     ],
                                     config: { mass: 4, friction: 17 },
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
         },
         {
             type: ComponentTypes.Container,
             alignment: Alignment.Horizontal,
-            style: {flexGrow: 1},
+            style: { flexGrow: 1 },
             children: [
                 {
                     type: ComponentTypes.Canvas,
                     className: 'borderdBox',
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, 0, 3],
                     },
                     objects: [
@@ -136,19 +140,20 @@ export const text3DFontsExample: ContainerNodeProps = {
                                     trajectory: AnimationTrajectory.manual,
                                     stateIncrements: [
                                         {
-                                            rotation: [Math.PI*2, 0, 0]
-                                        }
+                                            rotation: [Math.PI * 2, 0, 0],
+                                        },
                                     ],
                                     config: { mass: 4, friction: 17 },
-                                }
-                            ]
-                        }
-                    ]
+                                },
+                            ],
+                        },
+                    ],
                 },
                 {
                     type: ComponentTypes.Canvas,
                     className: 'borderdBox',
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, 0, 3],
                     },
                     objects: [
@@ -166,19 +171,20 @@ export const text3DFontsExample: ContainerNodeProps = {
                                     trajectory: AnimationTrajectory.manual,
                                     stateIncrements: [
                                         {
-                                            rotation: [Math.PI*2, 0, 0]
-                                        }
+                                            rotation: [Math.PI * 2, 0, 0],
+                                        },
                                     ],
                                     config: { mass: 4, friction: 17 },
-                                }
-                            ]
-                        }
-                    ]
+                                },
+                            ],
+                        },
+                    ],
                 },
                 {
                     type: ComponentTypes.Canvas,
                     className: 'borderdBox',
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, 0, 3],
                     },
                     objects: [
@@ -196,19 +202,20 @@ export const text3DFontsExample: ContainerNodeProps = {
                                     trajectory: AnimationTrajectory.manual,
                                     stateIncrements: [
                                         {
-                                            rotation: [Math.PI*2, 0, 0]
-                                        }
+                                            rotation: [Math.PI * 2, 0, 0],
+                                        },
                                     ],
                                     config: { mass: 4, friction: 17 },
-                                }
-                            ]
-                        }
-                    ]
+                                },
+                            ],
+                        },
+                    ],
                 },
                 {
                     type: ComponentTypes.Canvas,
                     className: 'borderdBox',
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, 0, 3],
                     },
                     objects: [
@@ -226,26 +233,27 @@ export const text3DFontsExample: ContainerNodeProps = {
                                     trajectory: AnimationTrajectory.manual,
                                     stateIncrements: [
                                         {
-                                            rotation: [Math.PI*2, 0, 0]
-                                        }
+                                            rotation: [Math.PI * 2, 0, 0],
+                                        },
                                     ],
                                     config: { mass: 4, friction: 17 },
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
         },
         {
             type: ComponentTypes.Container,
             alignment: Alignment.Horizontal,
-            style: {flexGrow: 1},
+            style: { flexGrow: 1 },
             children: [
                 {
                     type: ComponentTypes.Canvas,
                     className: 'borderdBox',
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, 0, 3],
                     },
                     objects: [
@@ -263,19 +271,20 @@ export const text3DFontsExample: ContainerNodeProps = {
                                     trajectory: AnimationTrajectory.manual,
                                     stateIncrements: [
                                         {
-                                            rotation: [Math.PI*2, 0, 0]
-                                        }
+                                            rotation: [Math.PI * 2, 0, 0],
+                                        },
                                     ],
                                     config: { mass: 4, friction: 17 },
-                                }
-                            ]
-                        }
-                    ]
+                                },
+                            ],
+                        },
+                    ],
                 },
                 {
                     type: ComponentTypes.Canvas,
                     className: 'borderdBox',
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, 0, 3],
                     },
                     objects: [
@@ -293,19 +302,20 @@ export const text3DFontsExample: ContainerNodeProps = {
                                     trajectory: AnimationTrajectory.manual,
                                     stateIncrements: [
                                         {
-                                            rotation: [Math.PI*2, 0, 0]
-                                        }
+                                            rotation: [Math.PI * 2, 0, 0],
+                                        },
                                     ],
                                     config: { mass: 4, friction: 17 },
-                                }
-                            ]
-                        }
-                    ]
+                                },
+                            ],
+                        },
+                    ],
                 },
                 {
                     type: ComponentTypes.Canvas,
                     className: 'borderdBox',
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, 0, 3],
                     },
                     objects: [
@@ -323,19 +333,20 @@ export const text3DFontsExample: ContainerNodeProps = {
                                     trajectory: AnimationTrajectory.manual,
                                     stateIncrements: [
                                         {
-                                            rotation: [Math.PI*2, 0, 0]
-                                        }
+                                            rotation: [Math.PI * 2, 0, 0],
+                                        },
                                     ],
                                     config: { mass: 4, friction: 17 },
-                                }
-                            ]
-                        }
-                    ]
+                                },
+                            ],
+                        },
+                    ],
                 },
                 {
                     type: ComponentTypes.Canvas,
                     className: 'borderdBox',
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, 0, 3],
                     },
                     objects: [
@@ -353,16 +364,16 @@ export const text3DFontsExample: ContainerNodeProps = {
                                     trajectory: AnimationTrajectory.manual,
                                     stateIncrements: [
                                         {
-                                            rotation: [Math.PI*2, 0, 0]
-                                        }
+                                            rotation: [Math.PI * 2, 0, 0],
+                                        },
                                     ],
                                     config: { mass: 4, friction: 17 },
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
         },
-    ]
-}
+    ],
+};

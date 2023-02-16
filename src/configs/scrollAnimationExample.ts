@@ -1,5 +1,5 @@
 import { stylingDefaults } from '../constants/defaults';
-import { Alignment, AnimationTrajectory, AnimationTypes, AssetTypes, ComponentTypes, ObjectTypes, TextTypes } from '../types/enums';
+import { Alignment, AnimationTrajectory, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, ObjectTypes, TextTypes } from '../types/enums';
 import { ContainerNodeProps } from '../types/types';
 
 export const scrollAnimationExample: ContainerNodeProps = {
@@ -16,6 +16,7 @@ export const scrollAnimationExample: ContainerNodeProps = {
             className: 'canvas',
             style: stylingDefaults.fullWidthFullHeightCanvas,
             camera: {
+                type: CameraTypes.Perspective,
                 position: [0, 0, 3],
             },
             assetIds: ['11'],
@@ -35,12 +36,12 @@ export const scrollAnimationExample: ContainerNodeProps = {
                             initialPause: 100,
                             stateIncrements: [
                                 {
-                                    rotation: [2*Math.PI, 0, 0],
+                                    rotation: [2 * Math.PI, 0, 0],
                                 },
                             ],
                             config: { mass: 4, friction: 17 },
-                        }
-                    ]
+                        },
+                    ],
                 },
             ],
             texts: [
@@ -50,7 +51,7 @@ export const scrollAnimationExample: ContainerNodeProps = {
                     position: [0, -0.5, 0],
                     scale: [0.5, 0.5, 0.5],
                     rotation: [0.9, 0, 0],
-                    style: { color: '#60bcea' },
+                    color: '#60bcea',
                     animations: [
                         {
                             type: AnimationTypes.intro,
@@ -58,24 +59,25 @@ export const scrollAnimationExample: ContainerNodeProps = {
                             initialPause: 1000,
                             stateIncrements: [
                                 {
-                                    rotation: [2*Math.PI, 0, 0],
+                                    rotation: [2 * Math.PI, 0, 0],
                                 },
                             ],
                             config: { mass: 4, friction: 17 },
-                        }
-                    ]
+                        },
+                    ],
                 },
-            ]
+            ],
         },
         {
             type: ComponentTypes.Container,
             alignment: Alignment.Horizontal,
             style: stylingDefaults.fullWidthFullHeightCanvas,
-            children:[
+            children: [
                 {
                     type: ComponentTypes.Canvas,
                     style: stylingDefaults.fulllHeightCanvas,
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, 0, 3],
                     },
                     assetIds: ['11'],
@@ -88,13 +90,14 @@ export const scrollAnimationExample: ContainerNodeProps = {
                             position: [-1, 0, 0],
                             rotation: [-0.1, 0, 0],
                             scale: [0.3, 0.3, 0.3],
-                        }
-                    ]
+                        },
+                    ],
                 },
                 {
                     type: ComponentTypes.Canvas,
                     style: stylingDefaults.fulllHeightCanvas,
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, 0, 3],
                     },
                     assetIds: ['11'],
@@ -114,14 +117,14 @@ export const scrollAnimationExample: ContainerNodeProps = {
                                     },
                                     rotationMetaData: {
                                         axis: [0, 0, 1],
-                                        velocity: 0.003
+                                        velocity: 0.003,
                                     },
                                     config: { mass: 4, tension: 280, friction: 90 },
                                 },
                             ],
-                        }
-                    ]
-                }
+                        },
+                    ],
+                },
             ],
         },
         {
@@ -133,6 +136,7 @@ export const scrollAnimationExample: ContainerNodeProps = {
                     className: 'canvas',
                     style: { flexGrow: 1, height: '750px' },
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, 0, 3],
                     },
                     assetIds: ['101'],
@@ -177,6 +181,7 @@ export const scrollAnimationExample: ContainerNodeProps = {
                     className: 'canvas',
                     style: { flexGrow: 1, height: '750px' },
                     camera: {
+                        type: CameraTypes.Perspective,
                         position: [0, 0, 3],
                     },
                     assetIds: ['101'],
@@ -223,6 +228,7 @@ export const scrollAnimationExample: ContainerNodeProps = {
             className: 'canvas',
             style: stylingDefaults.fullWidthFullHeightCanvas,
             camera: {
+                type: CameraTypes.Perspective,
                 position: [0, 0, 3],
             },
             assetIds: ['101', '1006'],
@@ -304,19 +310,20 @@ export const scrollAnimationExample: ContainerNodeProps = {
                                     [0, 0, 0],
                                 ],
                                 speed: 0.05,
-                                steps: 1000
+                                steps: 1000,
                             },
                             config: { duration: 10 },
-                        }
-                    ]
+                        },
+                    ],
                 },
-            ]
+            ],
         },
         {
             type: ComponentTypes.Canvas,
             className: 'canvas',
             style: stylingDefaults.fullWidthFullHeightCanvas,
             camera: {
+                type: CameraTypes.Perspective,
                 position: [0, 0, 3],
             },
         },
