@@ -1,5 +1,5 @@
 import { stylingDefaults } from '../constants/defaults';
-import { Alignment, AssetTypes, ComponentTypes, ImageTypes, LightTypes, MaterialTypes, ObjectHtmlTypes, ObjectTypes, SceneControlTypes, StandardGeometryTypes, TextTypes } from '../types/enums';
+import { Alignment, AssetTypes, CameraTypes, ComponentTypes, LightTypes, MaterialTypes, ObjectHtmlTypes, ObjectTypes, SceneControlTypes, StandardGeometryTypes, TextTypes } from '../types/enums';
 import { ContainerNodeProps } from '../types/types';
 
 export const config2: ContainerNodeProps = {
@@ -22,6 +22,7 @@ export const config2: ContainerNodeProps = {
             assetIds: ['100001', '10001', '1001', '101'],
             environment: { files: './puresky.hdr' },
             camera: {
+                type: CameraTypes.Perspective,
                 position: [0, 0, 2],
             },
             lights: [
@@ -84,7 +85,6 @@ export const config2: ContainerNodeProps = {
             ],
             images: [
                 {
-                    type: ImageTypes.Square,
                     assetId: '1001',
                     position: [-0.5, 0, 0],
                     rotation: [0, 0, 0],
@@ -97,7 +97,7 @@ export const config2: ContainerNodeProps = {
                     text: 'Yellow velvet recliner',
                     position: [0.7, 0, 0],
                     scale: [2, 2, 2],
-                    style: { color: 'black' },
+                    color: 'black',
                 },
                 {
                     type: TextTypes.List,
@@ -106,7 +106,7 @@ export const config2: ContainerNodeProps = {
                     position: [0.7, -0.2, 0],
                     scale: [1.2, 1.2, 1.2],
                     numbered: false,
-                    style: { color: 'gray' },
+                    color: 'gray',
                 },
             ],
         },

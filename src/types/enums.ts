@@ -115,13 +115,6 @@ export const enum TextTypes {
     List,
 }
 
-export const enum ImageTypes {
-    Rounded,
-    Circle,
-    Square,
-    Icon,
-}
-
 export const enum Alignment {
     Vertical,
     Horizontal,

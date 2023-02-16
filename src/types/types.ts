@@ -1,4 +1,4 @@
-import { Alignment, AssetTypes, CameraTypes, ComponentTypes, ImageTypes, LightTypes, MaterialTypes, SceneControlTypes, StandardGeometryTypes, TextTypes } from './enums';
+import { Alignment, AssetTypes, CameraTypes, ComponentTypes, LightTypes, MaterialTypes, SceneControlTypes, StandardGeometryTypes, TextTypes } from './enums';
 import { BufferGeometry, Shape, Vector2, TextureEncoding } from 'three';
 import { Object3DProps } from './object3DTypes';
 import { Animation } from './animationTypes';
@@ -52,7 +52,6 @@ export interface ImageProps {
     position?: number[];
     rotation?: number[];
     scale?: number[];
-    type?: ImageTypes;
     zoom?: number;
     color?: string;
     grayscale?: number;
