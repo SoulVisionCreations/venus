@@ -1,5 +1,5 @@
 import { Alignment, AssetTypes, CameraTypes, ComponentTypes, LightTypes, MaterialTypes, SceneControlTypes, StandardGeometryTypes, TextTypes } from './enums';
-import { BufferGeometry, Shape, Vector2, TextureEncoding } from 'three';
+import { BufferGeometry, Shape, Vector2, TextureEncoding, Material } from 'three';
 import { Object3DProps } from './object3DTypes';
 import { Animation } from './animationTypes';
 
@@ -93,6 +93,25 @@ export interface TextProps {
     type: TextTypes;
     font?: any;
     color?: string;
+    fontSize?: number;
+    maxWidth?: number;
+    lineHeight?: number;
+    letterSpacing?: number;
+    textAlign?: 'center' | 'left' | 'right' | 'justify';
+    anchorX?: number | 'center' | 'left' | 'right';
+    anchorY?: number | 'bottom' | 'top' | 'middle' | 'top-baseline' | 'bottom-baseline';
+    depthOffset?: number;
+    overflowWrap?: 'normal' | 'break-word';
+    whiteSpace?: 'normal' | 'overflowWrap';
+    outlineWidth?: string | number;
+    outlineOffsetX?: string | number;
+    outlineOffsetY?: string | number;
+    outlineBlur?: string | number;
+    outlineColor?: string;
+    outlineOpacity?: number;
+    fillOpacity?: number;
+    curveRadius?: number;
+    material?: Material;
 }
 
 export type CameraProps = {
