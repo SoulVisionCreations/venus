@@ -28,6 +28,7 @@ export default function App({ config }: AppProps) {
             invalidate();
         });
         if (config.assets) downloadAssets(config.assets).then(() => setLoading(false));
+        else setLoading(false);
     }, [config]);
 
     const alignmentClassName: string = config.alignment == Alignment.Vertical ? 'flexColumn' : 'flexRow';
