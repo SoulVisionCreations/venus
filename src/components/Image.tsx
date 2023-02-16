@@ -15,7 +15,7 @@ export type ImageAsset = {
 
 const ImageLoader = ({ imageProps, sceneProps }: { imageProps: ImageProps; sceneProps: SceneProps }) => {
     const asset: ImageAsset = getAssetbyId(imageProps.assetId);
-    imageProps.scale = [asset.aspectRatio, 1, 1];
+    imageProps = { ...imageProps, scale: [asset.aspectRatio, 1, 1] };
     const [spring, api] = useSpringAnimation(imageProps, sceneProps);
     useScrollAnimation(imageProps, sceneProps, api);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
