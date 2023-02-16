@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { invalidate } from '@react-three/fiber';
 import { Alignment, ComponentTypes } from './types/enums';
 import { downloadAssets } from './utils/download';
 import { ContainerNodeProps } from './types/types';
 import CanvasNode from './components/CanvasNode';
+import AvataarLoader from './components/AvataarLoader/AvataarLoader';
 import './static/css/style.css';
 
 type AppProps = {
@@ -20,21 +21,20 @@ export default function App({ config }: AppProps) {
         });
     };
 
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         window.addEventListener('resize', () => {
             invalidate();
         });
-        config.assets &&
-            setTimeout(() => {
-                downloadAssets(config.assets);
-            });
+        if (config.assets) downloadAssets(config.assets).then(() => setLoading(false));
     }, [config]);
 
     const alignmentClassName: string = config.alignment == Alignment.Vertical ? 'flexColumn' : 'flexRow';
 
     return (
         <div className={`${config.className ? config.className : ''} ${alignmentClassName}`} style={config.style}>
-            {renderConfig()}
+            {loading ? <AvataarLoader /> : renderConfig()}
         </div>
     );
 }
