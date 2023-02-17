@@ -3,7 +3,7 @@ import { Text3D } from './text3DStore';
 
 interface Texts3D {
     texts3D: Text3D[];
-    addTexts3D: (text: Text3D) => void;
+    addTexts3D: (text3D: Text3D) => void;
     removeTexts3D: (id: number) => void;
 }
 

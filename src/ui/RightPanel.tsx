@@ -1,6 +1,7 @@
 import CanvasProps from './components/CanvasProps';
 import Images from './components/Images';
 import Lights from './components/Lights';
+import StandardObjects from './components/StandardObjects';
 import Texts from './components/Texts';
 import Texts3D from './components/Texts3D';
 import './RightPanel.css';
@@ -14,6 +15,7 @@ export const RightPanel = () => {
             {panel == 1 && <Lights />}
             {panel == 2 && <Texts />}
             {panel == 3 && <Images />}
+            {panel == 6 && <StandardObjects />}
             {panel == 7 && <Texts3D />}
         </div>
     );

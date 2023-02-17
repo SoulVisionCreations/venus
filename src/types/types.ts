@@ -77,9 +77,7 @@ export interface LightProps {
     width?: number;
 }
 
-export interface MaterialProps {
-    type: MaterialTypes;
-}
+export type MaterialProps = unknownObject & { type: MaterialTypes };
 
 export interface TextProps {
     list?: Array<string>;

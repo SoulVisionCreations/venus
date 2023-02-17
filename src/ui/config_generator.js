@@ -7,6 +7,7 @@ import { ConfigStoreState } from '../configStore';
 import { TextsStoreState } from './store/Texts/textsStore';
 import { objToArr } from './utils/utility';
 import { Texts3DStoreState } from './store/Texts3D/texts3DStore';
+import { StandardObjectsStoreState } from './store/StandardObjects/standardObjectsStore';
 
 function ConfigGenerator() {
     const { type, fov, near, far, position } = CameraStoreState();
@@ -20,7 +21,7 @@ function ConfigGenerator() {
     ConfigStoreState().setImages(objToArr(ImagesStoreState().images));
     ConfigStoreState().setSceneControl({ type: SceneControlStoreState().type });
     ConfigStoreState().setTexts(objToArr(TextsStoreState().texts));
-    ConfigStoreState().setTexts3D(objToArr(Texts3DStoreState().texts3D));
+    ConfigStoreState().setObjects3D([...objToArr(StandardObjectsStoreState().standardObjects), ...objToArr(Texts3DStoreState().texts3D)]);
     ConfigStoreState().setLights(objToArr(LightsStoreState().lights));
 }
 

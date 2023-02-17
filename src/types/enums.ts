@@ -5,7 +5,7 @@ export const enum ObjectTypes {
     Text3D,
 }
 
-export const enum StandardGeometryTypes {
+export enum StandardGeometryTypes {
     BoxGeometry,
     CapsuleGeometry,
     CircleGeometry,
@@ -29,7 +29,7 @@ export const enum StandardGeometryTypes {
     WireframeGeometry,
 }
 
-export const enum MaterialTypes {
+export enum MaterialTypes {
     LineBasicMaterial,
     LineDashedMaterial,
     MeshBasicMaterial,

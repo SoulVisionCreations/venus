@@ -1,6 +1,6 @@
-import { MaterialTypes, ObjectHtmlTypes, ObjectTypes } from './enums';
+import { ObjectHtmlTypes, ObjectTypes } from './enums';
 import { Animation } from './animationTypes';
-import { GeometryProps, unknownObject } from './types';
+import { GeometryProps, MaterialProps } from './types';
 
 export type ObjectHtmlProps = {
     html?: string;
@@ -19,8 +19,6 @@ export type CommonObject3DProps = {
     scale?: number[];
     type: ObjectTypes;
 };
-
-export type MaterialProps = unknownObject & { type: MaterialTypes };
 
 export type StandardObjectProps = CommonObject3DProps & {
     useInstancing?: boolean;
