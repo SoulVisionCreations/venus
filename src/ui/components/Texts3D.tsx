@@ -1,26 +1,39 @@
 import { useState } from 'react';
 import { IoMdAddCircle } from 'react-icons/io';
 import ObjectArray from './ObjectArray/ObjectArray';
-import useImagesStore from '../store/Images/imagesStore';
-import useImageStore from '../store/Images/imageStore';
+import useTexts3DStore from '../store/Texts3D/texts3DStore';
+import useText3DStore from '../store/Texts3D/text3DStore';
+import { ObjectTypes } from '../../types/enums';
 
-const Images = () => {
+const Texts3D = () => {
     const [add, setAdd] = useState(false);
-    const [images, addImages, removeImages] = useImagesStore((s) => [s.images, s.addImages, s.removeImages]);
-    const [file, position, rotation, scale, setFile, setPosition, setRotation, setScale, resetImage] = useImageStore((s) => [
+    const [texts3D, addTexts3D, removeTexts3D] = useTexts3DStore((s) => [s.texts3D, s.addTexts3D, s.removeTexts3D]);
+    const [file, text, color, position, rotation, scale, setFile, setText, setColor, setPosition, setRotation, setScale, resetText] = useText3DStore((s) => [
         s.file,
+        s.text,
+        s.color,
         s.position,
         s.rotation,
         s.scale,
         s.setFile,
+        s.setText,
+        s.setColor,
         s.setPosition,
         s.setRotation,
         s.setScale,
-        s.resetImage,
+        s.resetText,
     ]);
 
     const handleFileChange = (event: any) => {
         setFile(event.target.files);
+    };
+
+    const handleTextChange = (event: any) => {
+        setText(event.target.value);
+    };
+
+    const handleColorChange = (event: any) => {
+        setColor(event.target.value);
     };
 
     const handlePositionChange = (event: any, pos: string) => {
@@ -35,27 +48,30 @@ const Images = () => {
         setScale(event.target.valueAsNumber, pos);
     };
 
-    const addImage = async () => {
-        const image = new Image();
-        image.src = file[0].name;
-        image.onload = function () {
-            const scaleRatio = { x: (scale.x * image.width) / image.height, y: scale.y * 1, z: scale.z * 1 };
-            addImages({ file: file, position: position, rotation: rotation, scale: scaleRatio, src: file[0].name });
-            setAdd(false);
-            resetImage();
-        };
+    const addText3D = () => {
+        addTexts3D({ type: ObjectTypes.Text3D, text: text, color: color, position: position, rotation: rotation, scale: scale, file: file, font: file[0].name });
+        setAdd(false);
+        resetText();
     };
 
     return (
         <>
-            <ObjectArray array={images} title="Image" removeElement={removeImages} />
+            <ObjectArray array={texts3D} title="Text" removeElement={removeTexts3D} />
             <button className="add-more-button" onClick={() => setAdd(true)}>
                 Add More <IoMdAddCircle size={28} />
             </button>
             {add && (
                 <>
+                    <p>
+                        <label htmlFor="text">Text: </label>
+                        <textarea id="text" name="text" rows={2} onChange={handleTextChange} value={text} />
+                    </p>
+                    <p>
+                        <label htmlFor="color">Color: </label>
+                        <input type="color" id="color" name="color" onChange={handleColorChange} value={color} />
+                    </p>
                     <p className="row">
-                        <label htmlFor="file">Upload File: </label>
+                        <label htmlFor="file">Upload Font File: </label>
                         <input type="file" id="file" name="file" onChange={handleFileChange} value={file?.name} />
                     </p>
                     <p>
@@ -76,11 +92,11 @@ const Images = () => {
                         <input type="number" id="scay" value={scale.y} onChange={(event) => handleScaleChange(event, 'y')} />
                         <input type="number" id="scaz" value={scale.z} onChange={(event) => handleScaleChange(event, 'z')} />
                     </p>
-                    <button onClick={() => addImage()}>Add</button>
+                    <button onClick={() => addText3D()}>Add</button>
                 </>
             )}
         </>
     );
 };
 
-export default Images;
+export default Texts3D;

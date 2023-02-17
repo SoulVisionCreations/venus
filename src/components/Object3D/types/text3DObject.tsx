@@ -17,7 +17,7 @@ const Text3DObject = ({ objectProps, sceneProps }: { objectProps: Text3DObjectPr
 
     return (
         <AnimatedCenter scale={(spring as any).scale} position={(spring as any).position} rotation={(spring as any).rotation}>
-            <Text3D {...props} font={font}>
+            <Text3D {...props} font={objectProps.font ? objectProps.font : font}>
                 {objectProps.text}
                 <meshStandardMaterial color={objectProps.color} />
             </Text3D>

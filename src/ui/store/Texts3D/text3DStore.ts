@@ -1,35 +1,46 @@
 import { create } from 'zustand';
+import { ObjectTypes } from '../../../types/enums';
 
-export type Image = {
+export type Text3D = {
     file: any;
+    font: string;
+    text?: string;
+    color?: string;
     position: { x: number; y: number; z: number };
     rotation: { x: number; y: number; z: number };
     scale: { x: number; y: number; z: number };
-    src: string;
+    type: ObjectTypes.Text3D;
     // animations: any;
 };
 
-export type ImageActions = {
+export type Text3DActions = {
     setFile: (file: any) => void;
+    setText: (text: string) => void;
+    setColor: (color: string) => void;
     setPosition: (value: number, pos: string) => void;
     setRotation: (value: number, pos: string) => void;
     setScale: (value: number, pos: string) => void;
     // setAnimations: (animations: any) => void;
-    resetImage: () => void;
+    resetText: () => void;
 };
 
-const InitialState: Image = {
+const InitialState: Text3D = {
+    type: ObjectTypes.Text3D,
     file: null,
+    font: '',
+    text: '',
+    color: '#000000',
     position: { x: 0, y: 0, z: 0 },
     rotation: { x: 0, y: 0, z: 0 },
     scale: { x: 1, y: 1, z: 1 },
-    src: '',
     // animations: null,
 };
 
-const useImageStore = create<Image & ImageActions>((set) => ({
+const useText3DStore = create<Text3D & Text3DActions>((set) => ({
     ...InitialState,
     setFile: (file) => set({ file }),
+    setText: (text) => set({ text }),
+    setColor: (color) => set({ color }),
     setPosition: (value, pos) => {
         if (pos === 'x') set((state) => ({ position: { ...state.position, x: value } }));
         else if (pos === 'y') set((state) => ({ position: { ...state.position, y: value } }));
@@ -46,11 +57,11 @@ const useImageStore = create<Image & ImageActions>((set) => ({
         else if (pos === 'z') set((state) => ({ scale: { ...state.scale, z: value } }));
     },
     // setAnimations: (animations) => set({animations}),
-    resetImage: () => set(InitialState),
+    resetText: () => set(InitialState),
 }));
 
-const ImageStoreState = useImageStore.getState;
+const Text3DStoreState = useText3DStore.getState;
 
-export { ImageStoreState };
+export { Text3DStoreState };
 
-export default useImageStore;
+export default useText3DStore;
