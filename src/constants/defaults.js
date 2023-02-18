@@ -5,8 +5,19 @@ export const cameraDefaults = {
     makeDefault: true,
 };
 
+export const trajectoryDefaults = {
+    closed: false,
+    equiSpacedPoints: true,
+    steps: 100,
+    clockwise: true
+}
+
 export const animationDefaults = {
+    initialPause: 0,
+    interval: 0,
+    repeat: false,
     rotationArray: [0, 0, 1],
+    visibilityThreshold: { sceneTopToScreenBottomRatio: 0.5, sceneBottomToScreenTopRatio: 0.5 },
     scrollByRotationContinouslySpeed: 0.04,
     scrollByRotationOnceSpeed: 0.06,
     increment: {
@@ -14,6 +25,12 @@ export const animationDefaults = {
         rotation: [0, 0, 0],
         scale: [0, 0, 0],
     },
+    scrollAnimation: {
+        maxRotation: Math.PI*2,
+        minRotation: 0,
+        speed: 0.1,
+        springConfig: { mass: 4, tension: 280, friction: 90 }
+    }
 };
 
 export const objectDefaults = {

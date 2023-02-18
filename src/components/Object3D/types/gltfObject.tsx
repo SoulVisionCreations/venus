@@ -1,15 +1,13 @@
 import { renderObjectHtmls } from '../object3D';
 import { GltfObjectProps } from '../../../types/object3DTypes';
-import { useSpringAnimation } from '../../../utils/Animations/springAnimations';
 import { animated } from '@react-spring/three';
 import { getAssetbyId } from '../../../utils/download';
-import { useScrollAnimation } from '../../../utils/Animations/scrollAnimation';
+import { useAnimation } from '../../../utils/Animations/useAnimation';
 import { SceneProps } from '../../Scene';
 
 const GltfObject = ({ objectProps, sceneProps }: { objectProps: GltfObjectProps; sceneProps: SceneProps }) => {
     const model = getAssetbyId(objectProps.assetId);
-    const [spring, api] = useSpringAnimation(objectProps, sceneProps);
-    useScrollAnimation(objectProps, sceneProps, api);
+    const spring = useAnimation(objectProps, sceneProps);
 
     return (
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment

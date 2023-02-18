@@ -1,11 +1,10 @@
 import { animated } from '@react-spring/three';
 import { Image } from '@react-three/drei';
 import { ImageProps } from '../types/types';
+import { useAnimation } from '../utils/Animations/useAnimation';
 // import { ImageTypes } from '../types/enums';
 import { getAssetbyId } from '../utils/download';
 import './Image.css';
-import { useSpringAnimation } from '../utils/Animations/springAnimations';
-import { useScrollAnimation } from '../utils/Animations/scrollAnimation';
 import { SceneProps } from './Scene';
 
 const AnimatedImage = animated(Image);
@@ -26,8 +25,7 @@ const AnimatedImage = animated(Image);
 // };
 
 const ImageLoader = ({ imageProps, sceneProps }: { imageProps: ImageProps; sceneProps: SceneProps }) => {
-    const [spring, api] = useSpringAnimation(imageProps, sceneProps);
-    useScrollAnimation(imageProps, sceneProps, api);
+    const spring = useAnimation(imageProps, sceneProps);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { type, position, rotation, scale, animations, assetId, ...props } = imageProps;
     const src: string = getAssetbyId(assetId);

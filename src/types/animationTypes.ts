@@ -1,82 +1,86 @@
-import { AnimationTrajectory, AnimationTypes } from './enums';
+import { SpringConfig } from '@react-spring/three';
+import { AnimationTypes } from './enums';
 import { TrajectoryMetaData } from './trajectoryTypes';
 
-export type SpringConfig = {
-    mass?: number;
-    tension?: number;
-    friction?: number;
-    clamp?: boolean;
-    velocity?: number;
-    damping?: number;
-    duration?: number;
+// type rotationTrajectory = {
+//     axis: number[];
+//     frequency: number;
+// };
+
+// type scaleTrajectory = {
+//     scaleRatio: number[];
+// };
+
+// type AnimationTrajectoryMetaData = TrajectoryMetaData & {
+//     speed?: number;
+//     rotationTrajectory?: rotationTrajectory;
+//     scaleTrajectory?: scaleTrajectory;
+// };
+
+// export type AnimationManualTrajectoryData = {
+//     initialPause?: number;
+//     trajectory: AnimationTrajector;
+//     config?: SpringConfig;
+//     stateIncrements: Array<ObjectState>;
+// };
+
+// export type AnimationGeneratedTrajectoryData = {
+//     initialPause?: number;
+//     trajectory: AnimationTrajector;
+//     config?: SpringConfig;
+//     trajectoryMetaData: AnimationTrajectoryMetaData;
+// };
+
+// export type AnimationTrajectoryData = object | AnimationManualTrajectoryData | AnimationGeneratedTrajectoryData;
+
+export type AnimationTrajectory = {
+    rotation?: {
+        trajectoryMetaData: TrajectoryMetaData,
+        speed?: number;
+    };
+    position?: {
+        trajectoryMetaData: TrajectoryMetaData,
+        speed?: number;
+    }
+    scale?: {
+        trajectoryMetaData: TrajectoryMetaData,
+        speed?: number;
+    }
 };
 
-export type ObjectState = {
-    position?: number[];
-    rotation?: number[];
-    scale?: number[];
-};
-
-type rotationTrajectory = {
-    axis: number[];
-    frequency: number;
-};
-
-type scaleTrajectory = {
-    scaleRatio: number[];
-};
-
-type AnimationTrajectoryMetaData = TrajectoryMetaData & {
-    speed?: number;
-    rotationTrajectory?: rotationTrajectory;
-    scaleTrajectory?: scaleTrajectory;
-};
-
-export type AnimationManualTrajectoryData = {
-    initialPause?: number;
-    trajectory: AnimationTrajectory;
-    config?: SpringConfig;
-    stateIncrements: Array<ObjectState>;
-};
-
-export type AnimationGeneratedTrajectoryData = {
-    initialPause?: number;
-    trajectory: AnimationTrajectory;
-    config?: SpringConfig;
-    trajectoryMetaData: AnimationTrajectoryMetaData;
-};
-
-export type AnimationTrajectoryData = object | AnimationManualTrajectoryData | AnimationGeneratedTrajectoryData;
-
-export type IntroAnimation = {
-    type: AnimationTypes;
-    initialPause?: number;
-} & AnimationTrajectoryData;
+export type VisibilityThreshold = { sceneTopToScreenBottomRatio: number; sceneBottomToScreenTopRatio: number };
 
 export type ChainedAnimation = {
-    type: AnimationTypes;
     initialPause?: number;
     repeat: boolean;
     interval?: number;
-    childAnimations: Array<AnimationTrajectoryData>;
+    childAnimations: Array<{animationTrajectories: AnimationTrajectory, initialPause?: number, springConfig?: SpringConfig}>;
+    visibilityThreshold?: VisibilityThreshold;
 };
 
-export type VisibilityThreshold = { top: number; bottom: number };
+export type IntroAnimation = {
+    initialPause?: number;
+    springConfig?: SpringConfig;
+    visibilityThreshold?: VisibilityThreshold;
+    animationTrajectories?: AnimationTrajectory
+};
 
 export type ScrollAnimation = {
-    type: AnimationTypes;
     visibilityThreshold?: VisibilityThreshold;
-    rotationMetaData?: {
+    rotateOnScroll?: {
         axis: number[];
         velocity: number;
+        maxRotation?: number;
+        minRotation?: number;
     };
-    scaleMetaData?: {
+    scaleOnScroll?: {
         scaleRatio: number[];
         velocity: number;
         minScale: number[];
         maxScale: number[];
     };
-    config?: SpringConfig;
-} & AnimationTrajectoryData;
+    springConfig?: SpringConfig;
+    animationTrajectories?: AnimationTrajectory
+};
 
-export type Animation = ScrollAnimation | IntroAnimation | ChainedAnimation;
+export type Animation = { type: AnimationTypes; } & (ScrollAnimation | IntroAnimation | ChainedAnimation);

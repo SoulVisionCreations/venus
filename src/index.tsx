@@ -12,12 +12,12 @@
 
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { animationExample } from './configs/animationExample';
-import { demoConfig } from './configs/demoConfig';
-import { scrollAnimationExample } from './configs/scrollAnimationExample';
-import { text3DAnimationDemo } from './configs/text3DAnimationDemo';
-import { text3DExample, text3DFontsExample } from './configs/text3DFontsExample';
-import { textImageExample } from './configs/textImageExample';
+import { animationExample } from './configs/Random/animationExample';
+import { demoConfig } from './configs/Random/demoConfig';
+import { scrollAnimationExample } from './configs/Random/scrollAnimationExample';
+import { text3DAnimationDemo } from './configs/Random/text3DAnimationDemo';
+import { text3DExample, text3DFontsExample } from './configs/Random/text3DFontsExample';
+import { textImageExample } from './configs/Random/textImageExample';
 // import { config2 } from './configs/example2';
 // import { scrollAnimationExample } from './configs/scrollAnimationExample';
 

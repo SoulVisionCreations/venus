@@ -2,8 +2,7 @@ import { animated } from '@react-spring/three';
 import { Text } from '@react-three/drei';
 import { TextTypes } from '../types/enums';
 import { TextProps } from '../types/types';
-import { useScrollAnimation } from '../utils/Animations/scrollAnimation';
-import { useSpringAnimation } from '../utils/Animations/springAnimations';
+import { useAnimation } from '../utils/Animations/useAnimation';
 import { SceneProps } from './Scene';
 
 const AnimatedText = animated(Text);
@@ -21,8 +20,7 @@ const renderList = (list: string[], numbered?: boolean) => {
 };
 
 const TextLoader = ({ textProps, sceneProps }: { textProps: TextProps; sceneProps: SceneProps }) => {
-    const [spring, api] = useSpringAnimation(textProps, sceneProps);
-    useScrollAnimation(textProps, sceneProps, api);
+    const spring = useAnimation(textProps, sceneProps);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { type, position, rotation, scale, animations, title, list, numbered, text, ...props } = textProps;
     switch (type) {

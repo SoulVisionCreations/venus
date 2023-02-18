@@ -1,13 +1,12 @@
 import App from "../App";
-import { demoConfig } from "../configs/demoConfig";
-import { textImageExample } from "../configs/textImageExample";
+import { RotateOnScrollConfig } from "../configs/Animation/rotateOnScrollAlongFixedAxis";
 
 // eslint-disable-next-line storybook/story-exports
 export default {
-    title: "Animations",
+    title: "Scroll Based Animations",
     component: App
 }
 
-export const IntroAnimation = () => {
-    return <App config={demoConfig} />
+export const RotatingOnFixedAxisOnScroll = () => {
+    return <App config={RotateOnScrollConfig} />
 }
