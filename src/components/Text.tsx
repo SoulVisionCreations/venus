@@ -8,15 +8,21 @@ import { SceneProps } from './Scene';
 
 const AnimatedText = animated(Text);
 
-const renderList = (list: string[], numbered?: boolean) => {
-    if (numbered) {
-        return list.map((item: string, i: number) => {
-            return '\n' + (i + 1) + '. ' + item;
-        });
-    } else {
-        return list.map((item: string) => {
-            return '\n' + '- ' + item;
-        });
+const renderData = (data: string | string[], type: TextTypes, numbered?: boolean) => {
+    switch (type) {
+        case TextTypes.Paragraph:
+            return data as string;
+        case TextTypes.List: {
+            if (numbered) {
+                return (data as string[]).map((item: string, i: number) => {
+                    return i + 1 + '. ' + item + '\n';
+                });
+            } else {
+                return (data as string[]).map((item: string) => {
+                    return '- ' + item + '\n';
+                });
+            }
+        }
     }
 };
 
@@ -24,24 +30,13 @@ const TextLoader = ({ textProps, sceneProps }: { textProps: TextProps; sceneProp
     const [spring, api] = useSpringAnimation(textProps, sceneProps);
     useScrollAnimation(textProps, sceneProps, api);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { type, position, rotation, scale, animations, title, list, numbered, text, ...props } = textProps;
-    switch (type) {
-        case TextTypes.List:
-            return (
-                <AnimatedText scale={(spring as any).scale} position={(spring as any).position} rotation={(spring as any).rotation} {...props}>
-                    {title + '\n'}
-                    {list && renderList(list, numbered)}
-                </AnimatedText>
-            );
-        case TextTypes.Paragraph:
-            return (
-                <AnimatedText scale={(spring as any).scale} position={(spring as any).position} rotation={(spring as any).rotation} {...props}>
-                    {text}
-                </AnimatedText>
-            );
-        default:
-            return null;
-    }
+    const { type, position, rotation, scale, animations, title, numbered, data, ...props } = textProps;
+    return (
+        <AnimatedText scale={(spring as any).scale} position={(spring as any).position} rotation={(spring as any).rotation} {...props}>
+            {title ? title + '\n\n' : ''}
+            {renderData(data, type, numbered)}
+        </AnimatedText>
+    );
 };
 
 export default TextLoader;

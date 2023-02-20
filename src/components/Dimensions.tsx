@@ -2,16 +2,13 @@ import { Text } from '@react-three/drei';
 import { useLayoutEffect, useRef } from 'react';
 import { BufferGeometry, Vector3 } from 'three';
 import { CameraProps } from '../types/types';
-
-const degtoRad = (deg: number) => {
-    return (deg * Math.PI) / 180;
-};
+import { degToRad } from '../utils/utility';
 
 const Dimensions = ({ camera }: { camera?: CameraProps }) => {
-    const posz = camera?.position ? camera.position[2] : 2;
-    const fov = camera?.fov ? camera.fov : 50;
-    const maxh = posz * Math.tan(degtoRad(fov) / 2);
-    const maxw = (maxh * window.innerWidth) / window.innerHeight;
+    const posz: number = camera?.position ? camera.position[2] : 2;
+    const fov: number = camera?.fov ? camera.fov : 50;
+    const maxh: number = posz * Math.tan(degToRad(fov) / 2);
+    const maxw: number = (maxh * window.innerWidth) / window.innerHeight;
     const hpoints: Vector3[] = [new Vector3(0, -maxh, 0), new Vector3(0, maxh, 0)];
     const wpoints: Vector3[] = [new Vector3(-maxw, 0, 0), new Vector3(maxw, 0, 0)];
     const href = useRef<BufferGeometry>(null!);

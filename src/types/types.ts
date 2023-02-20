@@ -82,13 +82,12 @@ export interface MaterialProps {
 }
 
 export interface TextProps {
-    list?: Array<string>;
     numbered?: boolean;
     position?: number[];
     rotation?: number[];
     scale?: number[];
     animations?: Array<Animation>;
-    text?: string;
+    data: string | string[];
     title?: string;
     type: TextTypes;
     font?: any;
