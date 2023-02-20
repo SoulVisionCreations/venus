@@ -7,6 +7,7 @@ import { CanvasNodeProps } from '../types/types';
 import Scene from './Scene';
 import '../static/css/style.css';
 import Camera from './Camera';
+import Dimensions from './Dimensions';
 
 export type CanvasRect = {
     top: number;
@@ -99,6 +100,7 @@ export default function CanvasNode(props: CanvasNodeProps) {
         <div ref={canvasContainerRef} className={props.className ? props.className : ''} style={props.style} id={props.id}>
             <Canvas frameloop="demand">
                 <GetInfo />
+                {props.showDimensions && <Dimensions camera={props.camera ? props.camera : undefined} />}
                 <AdaptiveDpr pixelated />
                 <Stats />
                 <PerformanceMonitor />

@@ -134,6 +134,7 @@ export interface CanvasNodeProps {
     className?: string;
     id?: string;
     camera?: CameraProps;
+    showDimensions?: boolean;
     assetIds?: string[];
     objects?: Array<Object3DProps>;
     texts?: Array<TextProps>;
