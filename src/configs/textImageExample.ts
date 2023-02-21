@@ -10,7 +10,6 @@ export const textImageExample: ContainerNodeProps = {
     assets: [
         // 'REC-jxvfZgVpLiDq9sM/deliverables/DLV-AhYTvfCZEUcLdXeekERqrymJA/
         { assetId: '100001', assetPath: 'data2', assetType: AssetTypes.Implicit },
-        // { assetId: '1001', assetPath: './chair.png', assetType: AssetTypes.Image },
         { assetId: '1002', assetPath: './impnerf.png', assetType: AssetTypes.Image },
         { assetId: '1003', assetPath: './nrf.jpeg', assetType: AssetTypes.Image },
         { assetId: '1004', assetPath: './demo.jpeg', assetType: AssetTypes.Image },

@@ -15,12 +15,12 @@ export type ImageAsset = {
 
 const ImageLoader = ({ imageProps, sceneProps }: { imageProps: ImageProps; sceneProps: SceneProps }) => {
     const asset: ImageAsset = getAssetbyId(imageProps.assetId);
-    imageProps = { ...imageProps, scale: [asset.aspectRatio, 1, 1] };
+    if (!imageProps.src) imageProps = { ...imageProps, scale: [asset.aspectRatio, 1, 1] };
     const [spring, api] = useSpringAnimation(imageProps, sceneProps);
     useScrollAnimation(imageProps, sceneProps, api);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { position, rotation, scale, animations, assetId, ...props } = imageProps;
-    return <AnimatedImage url={asset.src} scale={(spring as any).scale} position={(spring as any).position} rotation={(spring as any).rotation} {...props} />;
+    return <AnimatedImage url={imageProps.src ? imageProps.src : asset.src} scale={(spring as any).scale} position={(spring as any).position} rotation={(spring as any).rotation} {...props} />;
 };
 
 export default ImageLoader;
