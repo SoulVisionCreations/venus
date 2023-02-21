@@ -80,13 +80,12 @@ export interface LightProps {
 export type MaterialProps = unknownObject & { type: MaterialTypes };
 
 export interface TextProps {
-    list?: Array<string>;
     numbered?: boolean;
     position?: number[];
     rotation?: number[];
     scale?: number[];
     animations?: Array<Animation>;
-    text?: string;
+    data: string | string[];
     title?: string;
     type: TextTypes;
     font?: any;
@@ -132,6 +131,7 @@ export interface CanvasNodeProps {
     className?: string;
     id?: string;
     camera?: CameraProps;
+    showDimensions?: boolean;
     assetIds?: string[];
     objects?: Array<Object3DProps>;
     texts?: Array<TextProps>;

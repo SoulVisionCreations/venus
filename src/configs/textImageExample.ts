@@ -10,7 +10,6 @@ export const textImageExample: ContainerNodeProps = {
     assets: [
         // 'REC-jxvfZgVpLiDq9sM/deliverables/DLV-AhYTvfCZEUcLdXeekERqrymJA/
         { assetId: '100001', assetPath: 'data2', assetType: AssetTypes.Implicit },
-        // { assetId: '1001', assetPath: './chair.png', assetType: AssetTypes.Image },
         { assetId: '1002', assetPath: './impnerf.png', assetType: AssetTypes.Image },
         { assetId: '1003', assetPath: './nrf.jpeg', assetType: AssetTypes.Image },
         { assetId: '1004', assetPath: './demo.jpeg', assetType: AssetTypes.Image },
@@ -160,7 +159,7 @@ export const textImageExample: ContainerNodeProps = {
             texts: [
                 {
                     type: TextTypes.Paragraph,
-                    text: 'Trusted by everyone around the world !',
+                    data: 'Trusted by everyone around the world !',
                     position: [0, -1.4, 0],
                     scale: [0.5, 0.5, 0.5],
                     color: '#60bcea',
@@ -182,7 +181,7 @@ export const textImageExample: ContainerNodeProps = {
                 {
                     type: TextTypes.List,
                     title: 'Why add 3D & AR to your store?',
-                    list: [
+                    data: [
                         '81% of shoppers feel more confident in their purchase as a result of using AR.',
                         'Provide customers with a sense of how products would look and fit in their environment.',
                         'Increase shopper confidence, order volume, and sales.',
