@@ -18,6 +18,7 @@ export const DemoExample: ContainerNodeProps = {
             className: 'canvas',
             style: stylingDefaults.fullWidthFullHeightCanvas,
             environment: { files: './puresky.hdr' },
+            showDimensions: true,
             assetIds: ['100001', '101'],
             camera: {
                 type: CameraTypes.Perspective,
@@ -117,7 +118,7 @@ export const DemoExample: ContainerNodeProps = {
             texts: [
                 {
                     type: TextTypes.Paragraph,
-                    text: 'Before they sold out salvia aesthetic, hexagon disrupts sustainable vaporware crucifix succulents kale chips. Selvage knausguard scenester.',
+                    data: 'Before they sold out salvia aesthetic, hexagon disrupts sustainable vaporware crucifix succulents kale chips. Selvage knausguard scenester.',
                     position: [0, -0.8, 1],
                     scale: [1, 1, 1],
                     maxWidth: 4,
@@ -144,7 +145,7 @@ export const DemoExample: ContainerNodeProps = {
                 },
                 {
                     type: TextTypes.Paragraph,
-                    text: 'Smooth design',
+                    data: 'Smooth design',
                     position: [0.95, -4, 0],
                     scale: [0.4, 0.4, 0.4],
                     color: 'black',
@@ -169,7 +170,7 @@ export const DemoExample: ContainerNodeProps = {
                 },
                 {
                     type: TextTypes.Paragraph,
-                    text: 'Humblebrag pickled listicle yes plz williamsburg shoreditch tumblr, put a bird on it cred knausgaard snackwave scenester. Before they sold out salvia aesthetic.',
+                    data: 'Humblebrag pickled listicle yes plz williamsburg shoreditch tumblr, put a bird on it cred knausgaard snackwave scenester. Before they sold out salvia aesthetic.',
                     position: [1.2, -4.6, 0],
                     scale: [1, 1, 1],
                     maxWidth: 1.8,
@@ -195,7 +196,7 @@ export const DemoExample: ContainerNodeProps = {
                 },
                 {
                     type: TextTypes.Paragraph,
-                    text: 'Softness of the upholstery',
+                    data: 'Softness of the upholstery',
                     position: [-0.95, -7.4, 0],
                     scale: [0.4, 0.4, 0.4],
                     color: 'black',
@@ -220,7 +221,7 @@ export const DemoExample: ContainerNodeProps = {
                 },
                 {
                     type: TextTypes.Paragraph,
-                    text: 'Humblebrag pickled listicle yes plz williamsburg shoreditch tumblr, put a bird on it cred knausgaard snackwave scenester. Before they sold out salvia aesthetic.',
+                    data: 'Humblebrag pickled listicle yes plz williamsburg shoreditch tumblr, put a bird on it cred knausgaard snackwave scenester. Before they sold out salvia aesthetic.',
                     position: [-1.2, -8, 0],
                     scale: [1, 1, 1],
                     maxWidth: 1.8,

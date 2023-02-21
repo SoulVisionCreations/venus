@@ -72,7 +72,7 @@ export const enum Trajectory {
     quadracticBezierCurve3,
     cubicBezierCurve3,
     splineCurve3,
-    multipleCurvePath
+    multipleCurvePath,
 }
 
 export const enum InstanceMeshAnimationTypes {
@@ -128,4 +128,9 @@ export const enum AssetTypes {
     Gltf,
     Image,
     Font,
+}
+
+export const enum implicitResolution {
+    low = 'low',
+    high = 'high',
 }
