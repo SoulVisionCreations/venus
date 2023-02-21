@@ -3,13 +3,15 @@ import { useEffect, useRef, useState } from 'react';
 import { Vector3 } from 'three';
 import { convertVec3ToArray, getInitialState } from '../utility';
 import { SceneProps } from '../../components/Scene';
-import { Object3DProps, strongObject3DStateOfVectors } from '../../types/object3DTypes';
+import { Object3DProps, strongObject3DStateOfArrays, strongObject3DStateOfVectors, weakObject3DStateofArrays, weakObject3DStateofVectors } from '../../types/object3DTypes';
 import { ChainedAnimation, IntroAnimation, ScrollAnimation, VisibilityThreshold } from '../../types/animationTypes';
 import { AnimationTypes } from '../../types/enums';
-import { ImageProps, TextProps } from '../../types/types';
+import { ImageProps, TextProps, unknownObject } from '../../types/types';
 import { animationDefaults, trajectoryDefaults } from '../../constants/defaults';
 import { TrajectoryMetaData } from '../../types/trajectoryTypes';
 import { config, useSpring } from '@react-spring/three';
+import { getStateTrajectoryPoints, getTrajectory } from '../Trajectories/utility';
+import { getManualStateTrajectoryPoints } from './utility';
 
 const shouldAnimate = (sceneProps: SceneProps, visibilityThreshold: VisibilityThreshold, delta?: number) => {
     const sceneTop = sceneProps.canvasRect.top;
@@ -68,7 +70,7 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
         trajectoryMetaData: TrajectoryMetaData
     }}>({});
 
-    const introAnimation = useRef<{ type: AnimationTypes } & IntroAnimation>();
+    const introAnimation = useRef<{ type: AnimationTypes } & IntroAnimation & unknownObject>();
     const [introAnimationState, updateIntroAnimationState] = useState<AnimationState>(AnimationState.NOT_STARTED);
     const chainedAnimation = useRef<{ type: AnimationTypes } & ChainedAnimation>();
     const chainedAnimationState = useRef<AnimationState>(AnimationState.NOT_STARTED);
@@ -111,8 +113,18 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
 
             if (animation.type == AnimationTypes.intro) {
                 (animation as { type: AnimationTypes } & IntroAnimation).initialPause = (animation as { type: AnimationTypes } & IntroAnimation).initialPause ?? animationDefaults.initialPause;
-                introAnimation.current = animation;
+                introAnimation.current = animation as { type: AnimationTypes } & IntroAnimation;
                 introAnimation.current.visibilityThreshold = animation.visibilityThreshold ?? animationDefaults.visibilityThreshold;
+                if('animationTrajectories' in animation) {
+                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                    const [stateVec, stateArr] = getStateTrajectoryPoints(animation.animationTrajectories!, state, (animation as any).trajectroySteps);
+                    introAnimation.current.trajectory = stateArr;
+                    introAnimation.current.trajectoryVec = stateVec;
+                } else if( 'stateIncrements' in animation) {
+                    const stateVec = getManualStateTrajectoryPoints(animation.stateIncrements, state);
+                    introAnimation.current.trajectory = animation.stateIncrements;
+                    introAnimation.current.trajectoryVec = stateVec;
+                }
                 hasSpringAnimation.current = true;
             }
             
@@ -132,39 +144,52 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
         const animation = chainedAnimation.current;
         function executeAnimation(index: number) {
             const childAnimation = animation.childAnimations[index];
-            const delay = childAnimation.initialPause == undefined ? 0 : childAnimation.initialPause;
-            // const [trajectory, trajectoryVec] = getTrajectoryPoints(childAnimation, state);
-            // const timeout = setTimeout(() => {
-            //     springApi.start({
-            //         to: async (next) => {
-            //             let t = 0;
-            //             while (t < trajectory.length) {
-            //                 if (trajectoryVec[t].position) state.current.position = trajectoryVec[t].position;
-            //                 if (trajectoryVec[t].rotation) state.current.rotation = trajectoryVec[t].rotation;
-            //                 if (trajectoryVec[t].scale) state.current.scale = trajectoryVec[t].scale;
-            //                 await next(trajectory[t]);
-            //                 t++;
-            //             }
-            //             if (index + 1 < animation.childAnimations.length) executeAnimation(index + 1);
-            //             else if (animation.repeat) {
-            //                 const interval = animation.interval ? animation.interval : 0;
-            //                 const timeout = setTimeout(() => {
-            //                     executeAnimation(0);
-            //                 }, interval);
-            //                 timeouts.current.push(timeout);
-            //             } else {
-            //                 chainedAnimationState.current = AnimationState.COMPLETED;
-            //             }
-            //         },
-            //         config: childAnimation.springConfig ?? config.default,
-            //     });
-            //     invalidate();
-            // }, delay);
-            // timeouts.current.push(timeout);
+            const delay = childAnimation.initialPause ?? 0;
+            let trajectory: Array<strongObject3DStateOfArrays>, trajectoryVec: Array<weakObject3DStateofVectors>;
+            if('animationTrajectories' in childAnimation) {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                const [stateVec, stateArr] = getStateTrajectoryPoints((childAnimation as any).animationTrajectories, state, (childAnimation as any).trajectorySteps);
+                trajectory = stateArr;
+                trajectoryVec = stateVec;
+            } else if( 'stateIncrements' in childAnimation) {
+                const stateVec = getManualStateTrajectoryPoints((childAnimation as any).stateIncrements, state);
+                trajectory = (childAnimation as any).stateIncrements;
+                trajectoryVec = stateVec;
+            }
+            const timeout = setTimeout(() => {
+                springApi.start({
+                    to: async (next) => {
+                        let t = 0;
+                        while (t < trajectory.length) {
+                            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                            if (trajectoryVec[t].position) state.current.position = trajectoryVec[t].position!;
+                            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                            if (trajectoryVec[t].rotation) state.current.rotation = trajectoryVec[t].rotation!;
+                            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                            if (trajectoryVec[t].scale) state.current.scale = trajectoryVec[t].scale!;
+                            await next(trajectory[t]);
+                            t++;
+                        }
+                        if (index + 1 < animation.childAnimations.length) executeAnimation(index + 1);
+                        else if (animation.repeat) {
+                            const interval = animation.interval ? animation.interval : 0;
+                            const timeout = setTimeout(() => {
+                                executeAnimation(0);
+                            }, interval);
+                            timeouts.current.push(timeout);
+                        } else {
+                            chainedAnimationState.current = AnimationState.COMPLETED;
+                        }
+                    },
+                    config: childAnimation.springConfig ?? animation.springConfig ?? config.default,
+                });
+                invalidate();
+            }, delay);
+            timeouts.current.push(timeout);
         }
         const timeout = setTimeout(() => {
             executeAnimation(0);
-        }, animation.initialPause);
+        }, animation.initialPause ?? 0);
         timeouts.current.push(timeout);
     }
 
@@ -184,26 +209,25 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
     const executeIntroAnimation = (e?: any) => {
         if(!shouldAnimate(sceneProps, introAnimation.current?.visibilityThreshold ?? animationDefaults.visibilityThreshold, e?.deltaY)) return;
         updateIntroAnimationState(AnimationState.IN_PROGRESS);
-        const animation = introAnimation.current;
-        // const [trajectory, trajectoryVec] = getTrajectoryPoints(animation, state);
-        // const timeout = setTimeout(() => {
-        //     springApi.start({
-        //         to: async (next) => {
-        //             let t = 0;
-        //             while (t < trajectory.length) {
-        //                 if (trajectoryVec[t].position) state.current.position = trajectoryVec[t].position;
-        //                 if (trajectoryVec[t].rotation) state.current.rotation = trajectoryVec[t].rotation;
-        //                 if (trajectoryVec[t].scale) state.current.scale = trajectoryVec[t].scale;
-        //                 await next(trajectory[t]);
-        //                 t++;
-        //             }
-        //             updateIntroAnimationState(AnimationState.COMPLETED);
-        //         },
-        //         config: animation?.springConfig ?? config.default,
-        //     });
-        //     invalidate();
-        // }, animation?.initialPause ?? 0);
-        // timeouts.current.push(timeout);
+        const [trajectory, trajectoryVec] = [introAnimation.current?.trajectory, introAnimation.current?.trajectoryVec];
+        const timeout = setTimeout(() => {
+            springApi.start({
+                to: async (next) => {
+                    let t = 0;
+                    while (t < trajectory.length) {
+                        if (trajectoryVec[t].position) state.current.position = trajectoryVec[t].position;
+                        if (trajectoryVec[t].rotation) state.current.rotation = trajectoryVec[t].rotation;
+                        if (trajectoryVec[t].scale) state.current.scale = trajectoryVec[t].scale;
+                        await next(trajectory[t]);
+                        t++;
+                    }
+                    updateIntroAnimationState(AnimationState.COMPLETED);
+                },
+                config: introAnimation.current?.springConfig ?? config.default,
+            });
+            invalidate();
+        }, introAnimation.current?.initialPause ?? 0);
+        timeouts.current.push(timeout);
     }
  
     // activating intro animation

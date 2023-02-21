@@ -1,4 +1,3 @@
-import { ObjectState } from "./animationTypes";
 import { Trajectory } from "./enums";
 
 export type EllipseMetaData = {
@@ -54,11 +53,7 @@ export type multipleCurve3MetaData = {
     curves: Array<TrajectoryMetaData & {type: Trajectory}>;
     steps?: number;
     closed?: number;
-    equiSpacedPoints?: number;
-}
-
-export type manualTrajectoryMetaData = {
-    stateIncrements: Array<ObjectState>;
+    equiSpacedPoints?: boolean;
 }
 
 export type TrajectoryMetaData = {

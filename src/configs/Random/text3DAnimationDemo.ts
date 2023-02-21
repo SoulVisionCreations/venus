@@ -13,7 +13,7 @@ export const text3DAnimationDemo: ContainerNodeProps = {
             style: stylingDefaults.fullWidthFullHeightCanvas,
             camera: {
                 position: [0, 0, 3],
-                far: 10
+                far: 10,
             },
             objects: [
                 {
@@ -21,7 +21,7 @@ export const text3DAnimationDemo: ContainerNodeProps = {
                     text: 'Text 3D',
                     font: fonts.droidSerif,
                     position: [0, 0, -15],
-                    rotation: [Math.PI/2, 0, 0],
+                    rotation: [Math.PI / 2, 0, 0],
                     scale: [0.5, 0.5, 0.5],
                     animations: [
                         {
@@ -31,18 +31,18 @@ export const text3DAnimationDemo: ContainerNodeProps = {
                             stateIncrements: [
                                 {
                                     position: [0, 0, 10],
-                                    rotation: [-Math.PI/64, 0, 0]
+                                    rotation: [-Math.PI / 64, 0, 0],
                                 },
                                 {
                                     position: [0, 0, 5],
-                                    rotation: [-Math.PI/2 + Math.PI/64, 0, 0]
-                                }
+                                    rotation: [-Math.PI / 2 + Math.PI / 64, 0, 0],
+                                },
                             ],
                             config: { duration: 1000 },
-                        }
-                    ]
-                }
-            ]
+                        },
+                    ],
+                },
+            ],
         },
         {
             type: ComponentTypes.Canvas,
@@ -50,7 +50,7 @@ export const text3DAnimationDemo: ContainerNodeProps = {
             style: stylingDefaults.fullWidthFullHeightCanvas,
             camera: {
                 position: [0, 0, 3],
-                far: 30
+                far: 30,
             },
             objects: [
                 {
@@ -58,7 +58,7 @@ export const text3DAnimationDemo: ContainerNodeProps = {
                     text: 'Text 3D',
                     font: fonts.droidSerif,
                     position: [0, 0, -35],
-                    rotation: [Math.PI/2 + Math.PI/16, 0, 0],
+                    rotation: [Math.PI / 2 + Math.PI / 16, 0, 0],
                     scale: [0.5, 0.5, 0.5],
                     animations: [
                         {
@@ -73,18 +73,18 @@ export const text3DAnimationDemo: ContainerNodeProps = {
                                 points: [
                                     [0, 0, -35],
                                     [0, 0, -5],
-                                    [0, 0, 0]
+                                    [0, 0, 0],
                                 ],
                                 rotationTrajectory: {
                                     axis: [1, 0, 0],
-                                    frequency: (Math.PI/2 + Math.PI/16)/(2*Math.PI)
-                                }
+                                    frequency: (Math.PI / 2 + Math.PI / 16) / (2 * Math.PI),
+                                },
                             },
                             config: { mass: 4, friction: 80 },
-                        }
-                    ]
-                }
-            ]
+                        },
+                    ],
+                },
+            ],
         },
-    ]
-}
+    ],
+};

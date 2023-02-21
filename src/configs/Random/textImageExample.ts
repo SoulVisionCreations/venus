@@ -1,5 +1,5 @@
 import { stylingDefaults } from '../../constants/defaults';
-import { Alignment, AnimationTrajectory, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, ImageTypes, LightTypes, ObjectHtmlTypes, ObjectTypes, TextTypes } from '../../types/enums';
+import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectHtmlTypes, ObjectTypes, TextTypes } from '../../types/enums';
 import { ContainerNodeProps } from '../../types/types';
 
 export const textImageExample: ContainerNodeProps = {
@@ -90,21 +90,18 @@ export const textImageExample: ContainerNodeProps = {
             ],
             images: [
                 {
-                    // type: ImageTypes.Rounded,
                     assetId: '1002',
                     position: [-1.5, -0.5, 0],
                     rotation: [0, 0.5, 0],
                     scale: [0.7, 0.7, 0.7],
                 },
                 {
-                    // type: ImageTypes.Rounded,
                     assetId: '1003',
                     position: [0, -0.5, -0.25],
                     rotation: [0, 0, 0],
                     scale: [1, 1, 1],
                 },
                 {
-                    // type: ImageTypes.Rounded,
                     assetId: '1004',
                     position: [1.5, -0.5, 0],
                     rotation: [0, -0.5, 0],
@@ -154,7 +151,6 @@ export const textImageExample: ContainerNodeProps = {
                     ],
                 },
                 {
-                    type: ImageTypes.Icon,
                     assetId: '1006',
                     position: [-2, -0.8, 0],
                     rotation: [0, 0, 0],

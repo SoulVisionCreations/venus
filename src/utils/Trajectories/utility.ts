@@ -1,12 +1,16 @@
+import { Vector3 } from "three";
+import { animationDefaults } from "../../constants/defaults";
+import { AnimationTrajectory } from "../../types/animationTypes";
 import { Trajectory } from "../../types/enums";
-import { weakObject3DStateofArrays, weakObject3DStateofVectors } from "../../types/object3DTypes";
+import { strongObject3DStateOfArrays, strongObject3DStateOfVectors } from "../../types/object3DTypes";
 import { CircleMetaData, CubicBezierCurve3MetaData, EllipseMetaData, lineCurve3MetaData, multipleCurve3MetaData, QuadraticBezierCurve3MetaData, SplineCurve3MetaData, TrajectoryMetaData } from "../../types/trajectoryTypes";
-import { createCubicBezierCurve3, createQuadraticBezierCurve3 } from "./BezierCurves";
-import { createCircle } from "./Circle";
-import { createEllipse } from "./Ellipse";
-import { createLineCurve3 } from "./line3";
-import { createMultipleCurvePath } from "./multipleCurvePath";
-import { createSplineCurve3 } from "./SplineCurve";
+import { convertStateVecToArr } from "../utility";
+import { createCubicBezierCurve3, createQuadraticBezierCurve3, getPointsOnCubicBezierCurve3, getPointsOnQuadraticBezierCurve3 } from "./BezierCurves";
+import { createCircle, getPointsOnCircle } from "./Circle";
+import { createEllipse, getPointsOnEllipse } from "./Ellipse";
+import { createLineCurve3, getPointsOnLineCurve3 } from "./line3";
+import { createMultipleCurvePath, getPointsOnMultipleCurvePath } from "./multipleCurvePath";
+import { createSplineCurve3, getPointsOnSplineCurve3 } from "./SplineCurve";
 
 export const getTrajectory = (trajectoryMetaData: TrajectoryMetaData) => {
     let curve;
@@ -37,61 +41,59 @@ export const getTrajectory = (trajectoryMetaData: TrajectoryMetaData) => {
     return curve;
 };
 
-const convertStateVecToArr = (stateVec: stateVec): stateArr => {
-    return {
-        position: [stateVec.position.x, stateVec.position.y, stateVec.position.z],
-        rotation: [stateVec.rotation.x, stateVec.rotation.y, stateVec.rotation.z],
-        scale: [stateVec.scale.x, stateVec.scale.y, stateVec.scale.z],
-    };
-};
-
-export const getTrajectoryPoints = (animation, state: ): [Array<weakObject3DStateofArrays>, Array<weakObject3DStateofVectors>] => {
-    const trajectory: Array<weakObject3DStateofArrays> = [];
-    const trajectoryVec: Array<weakObject3DStateofVectors> = [];
-    trajectoryVec.push(state.current);
-    trajectory.push(convertStateVecToArr(state.current));
-    if (animation.trajectory == undefined) animation.trajectory = AnimationTrajectory.manual;
-    switch (animation.trajectory) {
-        case AnimationTrajectory.manual:
-            (animation as unknownObject & AnimationManualTrajectoryData).stateIncrements.forEach((increment: ObjectState) => {
-                const currentState = trajectoryVec.slice(-1)[0];
-                increment.position && currentState.position.add(new Vector3(...increment.position));
-                increment.rotation && currentState.rotation.add(new Vector3(...increment.rotation));
-                increment.scale && currentState.scale.add(new Vector3(...increment.scale));
-                trajectoryVec.push(currentState);
-                trajectory.push(convertStateVecToArr(currentState));
-            });
+const getTrajectoryPoints = (trajectoryMetaData: TrajectoryMetaData) => {
+    const {type, ...data} = trajectoryMetaData;
+    let points: Array<Vector3> = [];
+    switch (type) {
+        case Trajectory.circle:
+            points = getPointsOnCircle(data as CircleMetaData);
             break;
-        case AnimationTrajectory.ellipse:
-            const pointsE = getPointsOnEllipse((animation as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData as unknownObject & EllipseMetaData);
-            pointsE.forEach((point) => {
-                trajectory.push({ position: convertVec3ToArray(point), rotation: trajectory[0].rotation, scale: trajectory[0].scale });
-                trajectoryVec.push({ position: point, rotation: trajectoryVec[0].rotation, scale: trajectoryVec[0].scale });
-            });
+        case Trajectory.ellipse:
+            points = getPointsOnEllipse(data as EllipseMetaData);
             break;
-        case AnimationTrajectory.circle:
-            const pointsC = getPointsOnCircle((animation as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData as unknownObject & CircleMetaData);
-            pointsC.forEach((point) => {
-                trajectory.push({ position: convertVec3ToArray(point), rotation: trajectory[0].rotation, scale: trajectory[0].scale });
-                trajectoryVec.push({ position: point, rotation: trajectoryVec[0].rotation, scale: trajectoryVec[0].scale });
-            });
+        case Trajectory.line3:
+            points = getPointsOnLineCurve3(data as lineCurve3MetaData);
             break;
-        case AnimationTrajectory.curveDefinedByPoints:
-            const curve = createCurveByPoints((animation as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData as unknownObject & CurveMetaData);
-            const pointsD = getPointsOn3DCurve(curve, (animation as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData.steps);
-            pointsD.forEach((point) => {
-                trajectory.push({ position: convertVec3ToArray(point), rotation: trajectory[0].rotation, scale: trajectory[0].scale });
-                trajectoryVec.push({ position: point, rotation: trajectoryVec[0].rotation, scale: trajectoryVec[0].scale });
-            });
+        case Trajectory.quadracticBezierCurve3:
+            points = getPointsOnQuadraticBezierCurve3(data as QuadraticBezierCurve3MetaData);
             break;
-        case AnimationTrajectory.multipleCurveDefinedByPoints:
-            const curvePath = createMultipleCurvesByPoints((animation as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData as unknownObject & MultipleCurveMetaData);
-            const pointsP = getPointsOn3DCurve(curvePath, (animation as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData.steps);
-            pointsP.forEach((point) => {
-                trajectory.push({ position: convertVec3ToArray(point), rotation: trajectory[0].rotation, scale: trajectory[0].scale });
-                trajectoryVec.push({ position: point, rotation: trajectoryVec[0].rotation, scale: trajectoryVec[0].scale });
-            });
+        case Trajectory.cubicBezierCurve3:
+            points = getPointsOnCubicBezierCurve3(data as CubicBezierCurve3MetaData);
+            break;
+        case Trajectory.splineCurve3:
+            points = getPointsOnSplineCurve3(data as SplineCurve3MetaData);
+            break;
+        case Trajectory.multipleCurvePath:
+            points = getPointsOnMultipleCurvePath(data as multipleCurve3MetaData);
             break;
     }
-    return [trajectory, trajectoryVec];
-};
+    return points;
+}
+
+export const getStateTrajectoryPoints = (animationTrajectory: AnimationTrajectory, state: {current: strongObject3DStateOfVectors}, trajectorySteps?: number): [Array<strongObject3DStateOfVectors>, Array<strongObject3DStateOfArrays>] => {
+    const stateTrajectoryVec: Array<strongObject3DStateOfVectors> = [];
+    const stateTrajectoryArr: Array<strongObject3DStateOfArrays> = [];
+    const steps = trajectorySteps ?? animationDefaults.steps;
+    let positionTrajectory, rotationTrajectory, scaleTrajectory;
+    if(animationTrajectory.position) {
+        const positionTrajectoryMetaData = {...animationTrajectory.position.trajectoryMetaData, steps: steps};
+        positionTrajectory = getTrajectoryPoints(positionTrajectoryMetaData);
+    }
+    if(animationTrajectory.rotation) {
+        const positionTrajectoryMetaData = {...animationTrajectory.rotation.trajectoryMetaData, steps: steps};
+        rotationTrajectory = getTrajectoryPoints(positionTrajectoryMetaData);
+    }
+    if(animationTrajectory.scale) {
+        const positionTrajectoryMetaData = {...animationTrajectory.scale.trajectoryMetaData, steps: steps};
+        scaleTrajectory = getTrajectoryPoints(positionTrajectoryMetaData);
+    }
+    for(let i=0; i<= steps; i++) {
+        stateTrajectoryVec.push({
+            position: positionTrajectory ? positionTrajectory[i] : state.current.position, 
+            rotation: rotationTrajectory ? rotationTrajectory[i] : state.current.rotation , 
+            scale: scaleTrajectory ? scaleTrajectory[i] : state.current.scale
+        });
+        stateTrajectoryArr.push(convertStateVecToArr(stateTrajectoryVec[i]))
+    }
+    return [stateTrajectoryVec, stateTrajectoryArr];
+}

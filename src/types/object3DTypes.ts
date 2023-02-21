@@ -41,6 +41,8 @@ export type Text3DObjectProps = CommonObject3DProps & {
     font: any;
     color?: string;
     size?: number;
+    letterSpacing?: number;
+    lineHeight?: number;
 };
 
 export type ImplicitObjectProps = CommonObject3DProps & {

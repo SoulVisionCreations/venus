@@ -1,5 +1,6 @@
 import { SpringConfig } from '@react-spring/three';
 import { AnimationTypes } from './enums';
+import { weakObject3DStateofArrays } from './object3DTypes';
 import { TrajectoryMetaData } from './trajectoryTypes';
 
 // type rotationTrajectory = {
@@ -41,11 +42,11 @@ export type AnimationTrajectory = {
     position?: {
         trajectoryMetaData: TrajectoryMetaData,
         speed?: number;
-    }
+    };
     scale?: {
         trajectoryMetaData: TrajectoryMetaData,
         speed?: number;
-    }
+    };
 };
 
 export type VisibilityThreshold = { sceneTopToScreenBottomRatio: number; sceneBottomToScreenTopRatio: number };
@@ -54,7 +55,8 @@ export type ChainedAnimation = {
     initialPause?: number;
     repeat: boolean;
     interval?: number;
-    childAnimations: Array<{animationTrajectories: AnimationTrajectory, initialPause?: number, springConfig?: SpringConfig}>;
+    springConfig?: SpringConfig;
+    childAnimations: Array<({ animationTrajectories: AnimationTrajectory, trajectorySteps?: number} | {stateIncrements: Array<weakObject3DStateofArrays>}) & {initialPause?: number, springConfig?: SpringConfig}>;
     visibilityThreshold?: VisibilityThreshold;
 };
 
@@ -62,8 +64,8 @@ export type IntroAnimation = {
     initialPause?: number;
     springConfig?: SpringConfig;
     visibilityThreshold?: VisibilityThreshold;
-    animationTrajectories?: AnimationTrajectory
-};
+} &
+({ animationTrajectories: AnimationTrajectory, trajectroySteps?: number} | {stateIncrements: Array<weakObject3DStateofArrays>});
 
 export type ScrollAnimation = {
     visibilityThreshold?: VisibilityThreshold;
@@ -80,7 +82,7 @@ export type ScrollAnimation = {
         maxScale: number[];
     };
     springConfig?: SpringConfig;
-    animationTrajectories?: AnimationTrajectory
+    animationTrajectories?: AnimationTrajectory;
 };
 
 export type Animation = { type: AnimationTypes; } & (ScrollAnimation | IntroAnimation | ChainedAnimation);

@@ -20,6 +20,7 @@ export const animationDefaults = {
     visibilityThreshold: { sceneTopToScreenBottomRatio: 0.5, sceneBottomToScreenTopRatio: 0.5 },
     scrollByRotationContinouslySpeed: 0.04,
     scrollByRotationOnceSpeed: 0.06,
+    steps: 100,
     increment: {
         position: [0, 0, 0],
         rotation: [0, 0, 0],
@@ -82,4 +83,7 @@ export const stylingDefaults = {
         height: '750px',
         flexGrow: 1,
     },
+    flexGrow1: {
+        flexGrow: 1
+    }
 };

@@ -2,6 +2,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { AssetTypes } from '../types/enums';
 import { loadImplicitData } from '../renderer/data_loader';
 import { AssetProps } from '../types/types';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 // import { getS3UrlFromRequest } from './requests'
 
 const assetsMap: { [key: string]: any } = {};
@@ -10,6 +11,11 @@ export function getAssetbyId(id: string) {
     if (id in assetsMap) return assetsMap[id];
     return 'downloading';
 }
+
+const gltfLoader = new GLTFLoader();
+const dracoLoader = new DRACOLoader();
+dracoLoader.setDecoderPath('./draco/');
+gltfLoader.setDRACOLoader(dracoLoader);
 
 export async function downloadAssets(assets: AssetProps[]) {
     try {
@@ -30,7 +36,6 @@ export async function downloadAssets(assets: AssetProps[]) {
                         break;
                     }
                     case AssetTypes.Gltf: {
-                        const gltfLoader = new GLTFLoader();
                         const gltf = await gltfLoader.loadAsync(assetPath);
                         assetsMap[assetId] = gltf;
                         break;
@@ -38,7 +43,12 @@ export async function downloadAssets(assets: AssetProps[]) {
                     case AssetTypes.Image: {
                         const imgres = await fetch(assetPath);
                         const imgblob = await imgres.blob();
-                        assetsMap[assetId] = URL.createObjectURL(imgblob);
+                        const image = new Image();
+                        image.src = URL.createObjectURL(imgblob);
+                        image.onload = function () {
+                            assetsMap[assetId] = { src: URL.createObjectURL(imgblob), aspectRatio: image.width / image.height };
+                        };
+                        image.remove();
                         break;
                     }
                     case AssetTypes.Font: {
