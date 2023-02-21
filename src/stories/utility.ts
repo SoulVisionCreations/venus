@@ -16,6 +16,7 @@ export const configObjectTypeModifier = (config: ContainerNodeProps, objectType:
                     if (newObjects[j].type == ObjectTypes.GltfObject || newObjects[j].type == ObjectTypes.ImplicitObject) {
                         newObjects[j] = { ...newObjects[j] };
                         newObjects[j].type = objectType;
+                        newObjects[j].rotation = [-Math.PI / 2.5, 0, 0];
                         (newObjects[j] as any).assetId = assetId;
                     }
                 }

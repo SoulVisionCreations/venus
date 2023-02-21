@@ -139,7 +139,7 @@ export const animationExample: ContainerNodeProps = {
                     type: ObjectTypes.ImplicitObject,
                     assetId: '101',
                     position: [0.3, -0.4, 0],
-                    rotation: [-Math.PI / 2.5, 0, -Math.PI / 4],
+                    rotation: [-Math.PI / 2.5, 0, 0],
                     scale: [0.4, 0.4, 0.4],
                     animations: [
                         {

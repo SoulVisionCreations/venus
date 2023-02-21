@@ -1,22 +1,23 @@
-import App from "../App";
-import { ellipseConfig } from "../configs/Animation/TimeBased/ellipseAnimation";
-import { ellipse2Config } from "../configs/Animation/TimeBased/ellipseAnimation2";
-import { ellipse3Config } from "../configs/Animation/TimeBased/ellipseAnimation3";
+import { ellipseConfig } from '../configs/Animation/TimeBased/ellipseAnimation';
+import { ellipse2Config } from '../configs/Animation/TimeBased/ellipseAnimation2';
+import { ellipse3Config } from '../configs/Animation/TimeBased/ellipseAnimation3';
+import { AppWrapper, argTypes, defaultArgs } from './AppWrapper';
 
 // eslint-disable-next-line storybook/story-exports
 export default {
-    title: "Trajectories/Ellipse",
-    component: App
-}
+    title: 'Trajectories/Ellipse',
+    component: AppWrapper,
+    argTypes: argTypes,
+};
 
-export const Example1 = () => {
-    return <App config={ellipseConfig} />
-}
+export const Example1 = AppWrapper.bind({});
 
-export const Example2RotatedEllipse = () => {
-    return <App config={ellipse2Config} />
-}
+Example1.args = { ...defaultArgs, storyConfig: ellipseConfig };
 
-export const Example3RotatingAndScalingObject = () => {
-    return <App config={ellipse3Config} />
-}
+export const Example2 = AppWrapper.bind({});
+
+Example2.args = { ...defaultArgs, storyConfig: ellipse2Config };
+
+export const Example3 = AppWrapper.bind({});
+
+Example3.args = { ...defaultArgs, storyConfig: ellipse3Config };
