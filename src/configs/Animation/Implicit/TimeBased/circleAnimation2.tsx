@@ -63,9 +63,9 @@ export const circleConfig2: ContainerNodeProps = {
                                             trajectoryMetaData: {
                                                 type: Trajectory.quadracticBezierCurve3,
                                                 points: [
-                                                    [Math.PI / 4, 0, 0],
+                                                    [-Math.PI / 2, 0, Math.PI],
                                                     [Math.PI / 4, Math.PI / 2, 0],
-                                                    [Math.PI / 4, 0, 0],
+                                                    [Math.PI / 2, 0, Math.PI],
                                                 ],
                                             },
                                         },

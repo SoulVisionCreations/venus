@@ -50,17 +50,17 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                                             {
                                                 type: Trajectory.quadracticBezierCurve3,
                                                 points: [
+                                                    [0, 0, Math.PI],
                                                     [-Math.PI / 2, 0, Math.PI],
-                                                    [0, 0, 0],
-                                                    [0, -Math.PI / 2, 0],
+                                                    [-Math.PI / 2, 0, (3 * Math.PI) / 2],
                                                 ],
                                             },
                                             {
                                                 type: Trajectory.quadracticBezierCurve3,
                                                 points: [
-                                                    [0, -Math.PI / 2, 0],
-                                                    [0, Math.PI / 4, 0],
-                                                    [Math.PI / 4, Math.PI / 4, 0],
+                                                    [-Math.PI / 2, 0, (3 * Math.PI) / 2],
+                                                    [-Math.PI / 2, 0, (5 * Math.PI) / 4],
+                                                    [-Math.PI / 4, 0, (5 * Math.PI) / 4],
                                                 ],
                                             },
                                         ],

@@ -27,7 +27,7 @@ export const RotateOnScrollAlongFixedAxisConfig: ContainerNodeProps = {
             assetIds: ['102'],
             objects: [
                 {
-                    type: ObjectTypes.GltfObject,
+                    type: ObjectTypes.ImplicitObject,
                     assetId: '102',
                     position: [0, 0, 0],
                     rotation: [-Math.PI / 2, 0, Math.PI],

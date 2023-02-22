@@ -30,7 +30,7 @@ export const RotationByMultipleLineTrajectoryWithScaleConfig: ContainerNodeProps
                     type: ObjectTypes.ImplicitObject,
                     assetId: '102',
                     position: [0, 0, 0],
-                    rotation: [-Math.PI / 2, 0, Math.PI],
+                    rotation: [Math.PI / 18, 0, Math.PI - Math.PI / 90],
                     scale: [1, 1, 1],
                     animations: [
                         {
@@ -46,26 +46,26 @@ export const RotationByMultipleLineTrajectoryWithScaleConfig: ContainerNodeProps
                                         curves: [
                                             {
                                                 type: Trajectory.line3,
-                                                startPoint: [Math.PI / 2, 0, 0],
-                                                endPoint: [0, 0, 0],
+                                                startPoint: [0, 0, Math.PI],
+                                                endPoint: [-Math.PI / 2, 0, Math.PI],
                                                 closed: false,
                                             },
                                             {
                                                 type: Trajectory.line3,
-                                                startPoint: [0, 0, 0],
-                                                endPoint: [0, -Math.PI / 2, 0],
+                                                startPoint: [-Math.PI / 2, 0, Math.PI],
+                                                endPoint: [-Math.PI / 2, 0, (3 * Math.PI) / 2],
                                                 closed: false,
                                             },
                                             {
                                                 type: Trajectory.line3,
-                                                startPoint: [0, -Math.PI / 2, 0],
-                                                endPoint: [0, Math.PI / 4, 0],
+                                                startPoint: [-Math.PI / 2, 0, (3 * Math.PI) / 2],
+                                                endPoint: [-Math.PI / 2, 0, (5 * Math.PI) / 4],
                                                 closed: false,
                                             },
                                             {
                                                 type: Trajectory.line3,
-                                                startPoint: [0, Math.PI / 4, 0],
-                                                endPoint: [Math.PI / 4, Math.PI / 4, 0],
+                                                startPoint: [-Math.PI / 2, 0, (5 * Math.PI) / 4],
+                                                endPoint: [-Math.PI / 4, 0, (5 * Math.PI) / 4],
                                                 closed: false,
                                             },
                                         ],

@@ -30,7 +30,7 @@ export const RotationByBezierTrajectoryWithScaleUpConfig: ContainerNodeProps = {
                     type: ObjectTypes.ImplicitObject,
                     assetId: '102',
                     position: [0, 0, 0],
-                    rotation: [-Math.PI / 2, 0, Math.PI],
+                    rotation: [0, 0, Math.PI],
                     scale: [2, 2, 2],
                     animations: [
                         {
@@ -44,9 +44,9 @@ export const RotationByBezierTrajectoryWithScaleUpConfig: ContainerNodeProps = {
                                     trajectoryMetaData: {
                                         type: Trajectory.quadracticBezierCurve3,
                                         points: [
+                                            [0, 0, Math.PI],
                                             [-Math.PI / 2, 0, Math.PI],
-                                            [0, 0, 0],
-                                            [0, Math.PI / 2, 0],
+                                            [-Math.PI / 2, 0, (3 * Math.PI) / 2],
                                         ],
                                         equiSpacedPoints: false,
                                         closed: true,

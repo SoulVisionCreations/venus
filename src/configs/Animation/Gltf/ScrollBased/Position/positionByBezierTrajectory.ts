@@ -60,7 +60,7 @@ export const PositionByBezierTrajectoryWithScaleAndRotateConfig: ContainerNodePr
                             assetId: '101',
                             position: [0, -10, -50],
                             rotation: [0, 0, 0],
-                            scale: [1.5, 1.5, 1.5],
+                            scale: [2, 2, 2],
                             animations: [
                                 {
                                     type: AnimationTypes.scroll,
@@ -119,7 +119,7 @@ export const PositionByBezierTrajectoryWithScaleAndRotateConfig: ContainerNodePr
                             assetId: '101',
                             position: [0, -10, -50],
                             rotation: [0, 0, 0],
-                            scale: [1.5, 1.5, 1.5],
+                            scale: [2, 2, 2],
                             animations: [
                                 {
                                     type: AnimationTypes.scroll,

@@ -31,7 +31,7 @@ export const RotationByLineTrajectoryConfig: ContainerNodeProps = {
                     assetId: '101',
                     position: [0, 0, 0],
                     rotation: [Math.PI / 2, 0, 0],
-                    scale: [1.5, 1.5, 1.5],
+                    scale: [2, 2, 2],
                     animations: [
                         {
                             type: AnimationTypes.scroll,

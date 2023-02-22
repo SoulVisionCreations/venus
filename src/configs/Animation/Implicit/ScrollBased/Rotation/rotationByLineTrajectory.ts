@@ -30,7 +30,7 @@ export const RotationByLineTrajectoryConfig: ContainerNodeProps = {
                     type: ObjectTypes.ImplicitObject,
                     assetId: '102',
                     position: [0, 0, 0],
-                    rotation: [-Math.PI / 2, 0, Math.PI],
+                    rotation: [0, 0, Math.PI],
                     scale: [1.5, 1.5, 1.5],
                     animations: [
                         {
@@ -43,8 +43,8 @@ export const RotationByLineTrajectoryConfig: ContainerNodeProps = {
                                 rotation: {
                                     trajectoryMetaData: {
                                         type: Trajectory.line3,
-                                        startPoint: [-Math.PI / 2, 0, Math.PI],
-                                        endPoint: [0, 0, 0],
+                                        startPoint: [0, 0, Math.PI],
+                                        endPoint: [-Math.PI / 2, 0, Math.PI],
                                         equiSpacedPoints: true,
                                     },
                                     speed: 0.00025,

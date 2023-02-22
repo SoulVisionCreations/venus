@@ -68,7 +68,7 @@ export const introSpringAnimationByRotateAndScaleConfig: ContainerNodeProps = {
                             springConfig: { mass: 4, friction: 17 },
                             stateIncrements: [
                                 {
-                                    rotation: [0, Math.PI * 2, 0],
+                                    rotation: [-Math.PI / 2, 0, Math.PI * 3],
                                     scale: [1.5, 1.5, 1.5],
                                 },
                             ],

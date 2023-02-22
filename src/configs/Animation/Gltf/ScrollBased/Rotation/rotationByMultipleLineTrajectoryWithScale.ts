@@ -31,7 +31,7 @@ export const RotationByMultipleLineTrajectoryWithScaleConfig: ContainerNodeProps
                     assetId: '101',
                     position: [0, 0, 0],
                     rotation: [Math.PI / 2, 0, 0],
-                    scale: [1, 1, 1],
+                    scale: [2, 2, 2],
                     animations: [
                         {
                             type: AnimationTypes.scroll,
@@ -77,8 +77,8 @@ export const RotationByMultipleLineTrajectoryWithScaleConfig: ContainerNodeProps
                             scaleOnScroll: {
                                 scaleRatio: [1, 1, 1],
                                 velocity: 0.00035,
-                                maxScale: [2, 2, 2],
-                                minScale: [1, 1, 1],
+                                maxScale: [3, 3, 3],
+                                minScale: [2, 2, 2],
                             },
                             springConfig: { mass: 4, tension: 280, friction: 90 },
                         },

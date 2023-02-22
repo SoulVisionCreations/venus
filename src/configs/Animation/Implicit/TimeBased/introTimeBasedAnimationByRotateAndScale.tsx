@@ -68,7 +68,7 @@ export const introTimeBasedAnimationByRotateAndScaleConfig: ContainerNodeProps =
                             springConfig: { duration: 3000 },
                             stateIncrements: [
                                 {
-                                    rotation: [0, Math.PI * 2, 0],
+                                    rotation: [-Math.PI / 2, 0, Math.PI * 3],
                                     scale: [1.5, 1.5, 1.5],
                                 },
                             ],
