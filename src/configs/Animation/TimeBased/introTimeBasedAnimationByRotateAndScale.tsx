@@ -1,8 +1,8 @@
-import { stylingDefaults } from "../../../constants/defaults";
-import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, Trajectory } from "../../../types/enums";
-import { ContainerNodeProps } from "../../../types/types";
+import { stylingDefaults } from '../../../constants/defaults';
+import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes } from '../../../types/enums';
+import { ContainerNodeProps } from '../../../types/types';
 
-export const introTimeBasedAnimationByRotateAndScaleConfig : ContainerNodeProps = {
+export const introTimeBasedAnimationByRotateAndScaleConfig: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
     assets: [
@@ -33,11 +33,11 @@ export const introTimeBasedAnimationByRotateAndScaleConfig : ContainerNodeProps 
         },
         {
             type: ComponentTypes.Canvas,
-            style: {height: '500px', flexGrow: 1},
+            style: { height: '500px', flexGrow: 1 },
             camera: {
                 type: CameraTypes.Perspective,
                 position: [0, 0, 3],
-                far: 30
+                far: 30,
             },
             lights: [
                 {
@@ -55,7 +55,7 @@ export const introTimeBasedAnimationByRotateAndScaleConfig : ContainerNodeProps 
                     type: ObjectTypes.GltfObject,
                     assetId: '101',
                     position: [0, 0, 0],
-                    rotation: [0, 0 , 0],
+                    rotation: [0, 0, 0],
                     scale: [0.25, 0.25, 0.25],
                     animations: [
                         {
@@ -65,16 +65,16 @@ export const introTimeBasedAnimationByRotateAndScaleConfig : ContainerNodeProps 
                                 sceneBottomToScreenTopRatio: 0.5,
                             },
                             initialPause: 200,
-                            springConfig: {duration: 3000},
+                            springConfig: { duration: 3000 },
                             stateIncrements: [
                                 {
-                                    rotation: [0, Math.PI*2, 0],
+                                    rotation: [0, Math.PI * 2, 0],
                                     scale: [1.5, 1.5, 1.5],
-                                }
-                            ]
+                                },
+                            ],
                         },
                     ],
-                }
+                },
             ],
         },
         {
@@ -98,5 +98,5 @@ export const introTimeBasedAnimationByRotateAndScaleConfig : ContainerNodeProps 
                 },
             ],
         },
-    ]
-}
+    ],
+};

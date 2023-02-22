@@ -1,4 +1,4 @@
-import { Trajectory } from "./enums";
+import { Trajectory } from './enums';
 
 export type EllipseMetaData = {
     clockwise?: boolean;
@@ -22,18 +22,18 @@ export type CircleMetaData = {
 };
 
 export type QuadraticBezierCurve3MetaData = {
-    points: [number[], number[], number[]],
+    points: [number[], number[], number[]];
     steps?: number;
     closed?: boolean;
     equiSpacedPoints?: boolean;
-}
+};
 
 export type CubicBezierCurve3MetaData = {
-    points: [number[], number[], number[], number[]],
+    points: [number[], number[], number[], number[]];
     steps?: number;
     closed?: boolean;
     equiSpacedPoints?: boolean;
-}
+};
 
 export type SplineCurve3MetaData = {
     points: Array<number[]>; // needs atleast 2 points
@@ -47,14 +47,14 @@ export type lineCurve3MetaData = {
     endPoint: number[];
     steps?: number;
     equiSpacedPoints?: boolean;
-}
+};
 
 export type multipleCurve3MetaData = {
-    curves: Array<TrajectoryMetaData & {type: Trajectory}>;
+    curves: Array<TrajectoryMetaData & { type: Trajectory }>;
     steps?: number;
     closed?: number;
     equiSpacedPoints?: boolean;
-}
+};
 
 export type TrajectoryMetaData = {
     type: Trajectory;

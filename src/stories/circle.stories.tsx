@@ -1,17 +1,18 @@
-import App from "../App";
-import { circleConfig1 } from "../configs/Animation/TimeBased/circleAnimation1";
-import { circleConfig2 } from "../configs/Animation/TimeBased/circleAnimation2";
+import { circleConfig1 } from '../configs/Animation/TimeBased/circleAnimation1';
+import { circleConfig2 } from '../configs/Animation/TimeBased/circleAnimation2';
+import { AppWrapper, argTypes, defaultArgs } from './AppWrapper';
 
 // eslint-disable-next-line storybook/story-exports
 export default {
-    title: "Trajectories/Circle",
-    component: App
-}
+    title: 'Trajectories/Circle',
+    component: AppWrapper,
+    argTypes: argTypes,
+};
 
-export const Example1 = () => {
-    return <App config={circleConfig1} />
-}
+export const Example1 = AppWrapper.bind({});
 
-export const Example2 = () => {
-    return <App config={circleConfig2} />
-}
+Example1.args = { ...defaultArgs, storyConfig: circleConfig1 };
+
+export const Example2 = AppWrapper.bind({});
+
+Example2.args = { ...defaultArgs, storyConfig: circleConfig2 };

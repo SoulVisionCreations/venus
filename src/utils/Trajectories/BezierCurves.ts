@@ -1,6 +1,6 @@
-import { CubicBezierCurve3, CurvePath, QuadraticBezierCurve3, Vector3 } from "three";
-import { trajectoryDefaults } from "../../constants/defaults";
-import { CubicBezierCurve3MetaData, QuadraticBezierCurve3MetaData } from "../../types/trajectoryTypes";
+import { CubicBezierCurve3, CurvePath, QuadraticBezierCurve3, Vector3 } from 'three';
+import { trajectoryDefaults } from '../../constants/defaults';
+import { CubicBezierCurve3MetaData, QuadraticBezierCurve3MetaData } from '../../types/trajectoryTypes';
 
 export const createQuadraticBezierCurve3 = (data: QuadraticBezierCurve3MetaData) => {
     const point1Vec = new Vector3(...data.points[0]);
@@ -42,4 +42,3 @@ export const getPointsOnCubicBezierCurve3 = (data: CubicBezierCurve3MetaData) =>
     const points3D = equiSpacedPoints ? curve.getSpacedPoints(steps) : curve.getPoints(steps);
     return points3D as Array<Vector3>;
 };
-

@@ -1,6 +1,6 @@
-import { EllipseCurve, Vector3 } from "three";
-import { trajectoryDefaults } from "../../constants/defaults";
-import { CircleMetaData } from "../../types/trajectoryTypes";
+import { EllipseCurve, Vector3 } from 'three';
+import { trajectoryDefaults } from '../../constants/defaults';
+import { CircleMetaData } from '../../types/trajectoryTypes';
 
 export const createCircle = (data: CircleMetaData) => {
     const clockwise = data.clockwise == undefined ? trajectoryDefaults.clockwise : data.clockwise;

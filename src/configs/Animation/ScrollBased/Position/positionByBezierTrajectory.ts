@@ -1,8 +1,8 @@
-import { stylingDefaults } from "../../../../constants/defaults";
-import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, Trajectory } from "../../../../types/enums";
-import { ContainerNodeProps } from "../../../../types/types";
+import { stylingDefaults } from '../../../../constants/defaults';
+import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, Trajectory } from '../../../../types/enums';
+import { ContainerNodeProps } from '../../../../types/types';
 
-export const PositionByBezierTrajectoryWithScaleAndRotateConfig : ContainerNodeProps = {
+export const PositionByBezierTrajectoryWithScaleAndRotateConfig: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
     assets: [
@@ -32,18 +32,17 @@ export const PositionByBezierTrajectoryWithScaleAndRotateConfig : ContainerNodeP
                 },
             ],
         },
-        {   
+        {
             type: ComponentTypes.Container,
             alignment: Alignment.Horizontal,
-            children:
-            [
+            children: [
                 {
                     type: ComponentTypes.Canvas,
-                    style: {height: '500px', flexGrow: 1},
+                    style: { height: '500px', flexGrow: 1 },
                     camera: {
                         type: CameraTypes.Perspective,
                         position: [0, 0, 3],
-                        far: 30
+                        far: 30,
                     },
                     assetIds: ['102'],
                     objects: [
@@ -51,7 +50,7 @@ export const PositionByBezierTrajectoryWithScaleAndRotateConfig : ContainerNodeP
                             type: ObjectTypes.ImplicitObject,
                             assetId: '102',
                             position: [0, -10, -40],
-                            rotation: [-Math.PI/2, 0 , 0],
+                            rotation: [-Math.PI / 2, 0, 0],
                             scale: [1, 1, 1],
                             animations: [
                                 {
@@ -69,30 +68,30 @@ export const PositionByBezierTrajectoryWithScaleAndRotateConfig : ContainerNodeP
                                                     [0, 0.5, -5],
                                                     [0, -0.5, 0],
                                                 ],
-                                                equiSpacedPoints: false
+                                                equiSpacedPoints: false,
                                             },
-                                            speed: 0.005
+                                            speed: 0.005,
                                         },
                                     },
                                     rotateOnScroll: {
                                         axis: [0, 0, 1],
                                         velocity: 0.01,
-                                        maxRotation: Math.PI*2,
-                                        minRotation: 0
+                                        maxRotation: Math.PI * 2,
+                                        minRotation: 0,
                                     },
                                     springConfig: { mass: 4, tension: 280, friction: 90 },
                                 },
                             ],
-                        }
+                        },
                     ],
                 },
                 {
                     type: ComponentTypes.Canvas,
-                    style: {height: '500px', flexGrow: 1},
+                    style: { height: '500px', flexGrow: 1 },
                     camera: {
                         type: CameraTypes.Perspective,
                         position: [0, 0, 3],
-                        far: 30
+                        far: 30,
                     },
                     lights: [
                         {
@@ -110,7 +109,7 @@ export const PositionByBezierTrajectoryWithScaleAndRotateConfig : ContainerNodeP
                             type: ObjectTypes.GltfObject,
                             assetId: '101',
                             position: [0, -10, -50],
-                            rotation: [0, 0 , 0],
+                            rotation: [0, 0, 0],
                             scale: [1.5, 1.5, 1.5],
                             animations: [
                                 {
@@ -128,24 +127,24 @@ export const PositionByBezierTrajectoryWithScaleAndRotateConfig : ContainerNodeP
                                                     [0, 0.5, -10],
                                                     [0, -0.5, 0],
                                                 ],
-                                                equiSpacedPoints: false
+                                                equiSpacedPoints: false,
                                             },
-                                            speed: 0.005
+                                            speed: 0.005,
                                         },
                                     },
                                     rotateOnScroll: {
                                         axis: [0, 1, 0],
                                         velocity: 0.01,
-                                        maxRotation: Math.PI*2,
-                                        minRotation: 0
+                                        maxRotation: Math.PI * 2,
+                                        minRotation: 0,
                                     },
                                     springConfig: { mass: 4, tension: 280, friction: 90 },
                                 },
                             ],
-                        }
+                        },
                     ],
-                }
-            ]
+                },
+            ],
         },
         {
             type: ComponentTypes.Canvas,
@@ -168,5 +167,5 @@ export const PositionByBezierTrajectoryWithScaleAndRotateConfig : ContainerNodeP
                 },
             ],
         },
-    ]
-}
+    ],
+};

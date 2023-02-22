@@ -1,5 +1,5 @@
-import { EllipseCurve, Vector3 } from "three";
-import { EllipseMetaData } from "../../types/trajectoryTypes";
+import { EllipseCurve, Vector3 } from 'three';
+import { EllipseMetaData } from '../../types/trajectoryTypes';
 
 export const createEllipse = (data: EllipseMetaData) => {
     const clockwise = data.clockwise == undefined ? false : data.clockwise;

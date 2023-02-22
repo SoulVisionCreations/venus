@@ -36,15 +36,15 @@ import { TrajectoryMetaData } from './trajectoryTypes';
 
 export type AnimationTrajectory = {
     rotation?: {
-        trajectoryMetaData: TrajectoryMetaData,
+        trajectoryMetaData: TrajectoryMetaData;
         speed?: number;
     };
     position?: {
-        trajectoryMetaData: TrajectoryMetaData,
+        trajectoryMetaData: TrajectoryMetaData;
         speed?: number;
     };
     scale?: {
-        trajectoryMetaData: TrajectoryMetaData,
+        trajectoryMetaData: TrajectoryMetaData;
         speed?: number;
     };
 };
@@ -56,7 +56,9 @@ export type ChainedAnimation = {
     repeat: boolean;
     interval?: number;
     springConfig?: SpringConfig;
-    childAnimations: Array<({ animationTrajectories: AnimationTrajectory, trajectorySteps?: number} | {stateIncrements: Array<weakObject3DStateofArrays>}) & {initialPause?: number, springConfig?: SpringConfig}>;
+    childAnimations: Array<
+        ({ animationTrajectories: AnimationTrajectory; trajectorySteps?: number } | { stateIncrements: Array<weakObject3DStateofArrays> }) & { initialPause?: number; springConfig?: SpringConfig }
+    >;
     visibilityThreshold?: VisibilityThreshold;
 };
 
@@ -64,8 +66,7 @@ export type IntroAnimation = {
     initialPause?: number;
     springConfig?: SpringConfig;
     visibilityThreshold?: VisibilityThreshold;
-} &
-({ animationTrajectories: AnimationTrajectory, trajectroySteps?: number} | {stateIncrements: Array<weakObject3DStateofArrays>});
+} & ({ animationTrajectories: AnimationTrajectory; trajectroySteps?: number } | { stateIncrements: Array<weakObject3DStateofArrays> });
 
 export type ScrollAnimation = {
     visibilityThreshold?: VisibilityThreshold;
@@ -85,4 +86,4 @@ export type ScrollAnimation = {
     animationTrajectories?: AnimationTrajectory;
 };
 
-export type Animation = { type: AnimationTypes; } & (ScrollAnimation | IntroAnimation | ChainedAnimation);
+export type Animation = { type: AnimationTypes } & (ScrollAnimation | IntroAnimation | ChainedAnimation);

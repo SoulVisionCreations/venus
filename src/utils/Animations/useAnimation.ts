@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Vector3 } from 'three';
 import { convertVec3ToArray, getInitialState } from '../utility';
 import { SceneProps } from '../../components/Scene';
-import { Object3DProps, strongObject3DStateOfArrays, strongObject3DStateOfVectors, weakObject3DStateofArrays, weakObject3DStateofVectors } from '../../types/object3DTypes';
+import { Object3DProps, strongObject3DStateOfArrays, strongObject3DStateOfVectors, weakObject3DStateofVectors } from '../../types/object3DTypes';
 import { ChainedAnimation, IntroAnimation, ScrollAnimation, VisibilityThreshold } from '../../types/animationTypes';
 import { AnimationTypes } from '../../types/enums';
 import { ImageProps, TextProps, unknownObject } from '../../types/types';
@@ -23,25 +23,25 @@ const shouldAnimate = (sceneProps: SceneProps, visibilityThreshold: VisibilityTh
     const sceneBottomToScreenTopDist = sceneBottom - scrolledHeight;
     const sceneTopToScreenTopDist = sceneTop - scrolledHeight;
     const sceneBottomToScreenBottomDist = sceneBottom - (scrolledHeight + screenHeight);
-    const sceneTopAboveVisibilityThreshold = ((-1*sceneTopToScreenBottomDist) / sceneHeight) >= visibilityThreshold.sceneTopToScreenBottomRatio;
-    const sceneBottomAboveVisibilityThreshold = (sceneBottomToScreenTopDist / sceneHeight) >= visibilityThreshold.sceneBottomToScreenTopRatio;
-    if(sceneTopToScreenBottomDist > 0 || sceneBottomToScreenTopDist < 0) return false;
-    if(delta == undefined) {
-        if(sceneTopToScreenTopDist >= 0 && sceneTopToScreenBottomDist <= 0 && sceneTopAboveVisibilityThreshold) return true;
-        if(sceneBottomToScreenBottomDist <= 0 && sceneBottomToScreenTopDist >= 0 && sceneBottomAboveVisibilityThreshold) return true;
-        if(sceneTopToScreenTopDist < 0 && sceneBottomToScreenBottomDist > 0 && (sceneTopAboveVisibilityThreshold || sceneBottomAboveVisibilityThreshold)) return true;
+    const sceneTopAboveVisibilityThreshold = (-1 * sceneTopToScreenBottomDist) / sceneHeight >= visibilityThreshold.sceneTopToScreenBottomRatio;
+    const sceneBottomAboveVisibilityThreshold = sceneBottomToScreenTopDist / sceneHeight >= visibilityThreshold.sceneBottomToScreenTopRatio;
+    if (sceneTopToScreenBottomDist > 0 || sceneBottomToScreenTopDist < 0) return false;
+    if (delta == undefined) {
+        if (sceneTopToScreenTopDist >= 0 && sceneTopToScreenBottomDist <= 0 && sceneTopAboveVisibilityThreshold) return true;
+        if (sceneBottomToScreenBottomDist <= 0 && sceneBottomToScreenTopDist >= 0 && sceneBottomAboveVisibilityThreshold) return true;
+        if (sceneTopToScreenTopDist < 0 && sceneBottomToScreenBottomDist > 0 && (sceneTopAboveVisibilityThreshold || sceneBottomAboveVisibilityThreshold)) return true;
         return false;
     }
-    if(delta > 0) {
-        if(sceneTopToScreenTopDist >= 0 && sceneTopToScreenBottomDist <= 0 && sceneTopAboveVisibilityThreshold) return true;
-        if(sceneTopToScreenTopDist <= 0 && sceneBottomToScreenBottomDist <= 0) return true;
-        if(sceneTopToScreenTopDist <= 0 && sceneBottomToScreenBottomDist >= 0 && sceneTopAboveVisibilityThreshold) return true;
+    if (delta > 0) {
+        if (sceneTopToScreenTopDist >= 0 && sceneTopToScreenBottomDist <= 0 && sceneTopAboveVisibilityThreshold) return true;
+        if (sceneTopToScreenTopDist <= 0 && sceneBottomToScreenBottomDist <= 0) return true;
+        if (sceneTopToScreenTopDist <= 0 && sceneBottomToScreenBottomDist >= 0 && sceneTopAboveVisibilityThreshold) return true;
         return false;
     }
-    if(delta < 0) {
-        if(sceneBottomToScreenBottomDist <= 0 && sceneBottomToScreenTopDist >= 0 && sceneBottomAboveVisibilityThreshold) return true;
-        if(sceneBottomToScreenBottomDist >= 0 && sceneTopToScreenTopDist >= 0) return true;
-        if(sceneTopToScreenTopDist <= 0 && sceneBottomToScreenBottomDist >= 0 && sceneBottomAboveVisibilityThreshold) return true;
+    if (delta < 0) {
+        if (sceneBottomToScreenBottomDist <= 0 && sceneBottomToScreenTopDist >= 0 && sceneBottomAboveVisibilityThreshold) return true;
+        if (sceneBottomToScreenBottomDist >= 0 && sceneTopToScreenTopDist >= 0) return true;
+        if (sceneTopToScreenTopDist <= 0 && sceneBottomToScreenBottomDist >= 0 && sceneBottomAboveVisibilityThreshold) return true;
         return false;
     }
     return false;
@@ -50,25 +50,27 @@ const shouldAnimate = (sceneProps: SceneProps, visibilityThreshold: VisibilityTh
 enum AnimationState {
     NOT_STARTED,
     COMPLETED,
-    IN_PROGRESS
+    IN_PROGRESS,
 }
 
 export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps, sceneProps: SceneProps) => {
-    const [initialPosition, initialRotation, initialScale] = getInitialState(objectProps)
-    const initialStateRef = useRef<strongObject3DStateOfVectors>({position: initialPosition, rotation: initialRotation, scale: initialScale});
+    const [initialPosition, initialRotation, initialScale] = getInitialState(objectProps);
+    const initialStateRef = useRef<strongObject3DStateOfVectors>({ position: initialPosition, rotation: initialRotation, scale: initialScale });
     const state = useRef<strongObject3DStateOfVectors>({
-        position : initialStateRef.current.position.clone(),
+        position: initialStateRef.current.position.clone(),
         rotation: initialStateRef.current.rotation.clone(),
         scale: initialStateRef.current.scale.clone(),
     });
 
     const scrollAnimation = useRef<{ type: AnimationTypes } & ScrollAnimation>();
-    const scrollTrajectory = useRef<{[key: string | number | symbol]: {
-        trajectory: any;
-        speed: number;
-        state: number;
-        trajectoryMetaData: TrajectoryMetaData
-    }}>({});
+    const scrollTrajectory = useRef<{
+        [key: string | number | symbol]: {
+            trajectory: any;
+            speed: number;
+            state: number;
+            trajectoryMetaData: TrajectoryMetaData;
+        };
+    }>({});
 
     const introAnimation = useRef<{ type: AnimationTypes } & IntroAnimation & unknownObject>();
     const [introAnimationState, updateIntroAnimationState] = useState<AnimationState>(AnimationState.NOT_STARTED);
@@ -77,7 +79,7 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
     const hasSpringAnimation = useRef(false);
     const timeouts = useRef<Array<NodeJS.Timeout>>([]);
 
-    const [spring ,springApi] = useSpring(
+    const [spring, springApi] = useSpring(
         () => ({
             from: {
                 rotation: convertVec3ToArray(state.current.rotation),
@@ -93,17 +95,16 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
     useEffect(() => {
         if (!objectProps.animations) return;
         objectProps.animations.forEach((animation) => {
-
             if (animation.type == AnimationTypes.scroll) {
                 scrollAnimation.current = animation;
-                if((animation as { type: AnimationTypes } & ScrollAnimation).animationTrajectories !== undefined) {
+                if ((animation as { type: AnimationTypes } & ScrollAnimation).animationTrajectories !== undefined) {
                     const trajectories = (animation as { type: AnimationTypes } & ScrollAnimation).animationTrajectories;
-                    if(trajectories != undefined) {
-                        for(const [key, value] of Object.entries(trajectories)) {
-                            if(value == undefined) continue;
+                    if (trajectories != undefined) {
+                        for (const [key, value] of Object.entries(trajectories)) {
+                            if (value == undefined) continue;
                             const trajectory = getTrajectory(value.trajectoryMetaData);
                             const speed = value.speed == undefined ? animationDefaults.scrollAnimation.speed : value.speed;
-                            scrollTrajectory.current[key] = {trajectory: trajectory, speed: speed, state: 0, trajectoryMetaData: value.trajectoryMetaData};
+                            scrollTrajectory.current[key] = { trajectory: trajectory, speed: speed, state: 0, trajectoryMetaData: value.trajectoryMetaData };
                         }
                     }
                 }
@@ -115,19 +116,19 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
                 (animation as { type: AnimationTypes } & IntroAnimation).initialPause = (animation as { type: AnimationTypes } & IntroAnimation).initialPause ?? animationDefaults.initialPause;
                 introAnimation.current = animation as { type: AnimationTypes } & IntroAnimation;
                 introAnimation.current.visibilityThreshold = animation.visibilityThreshold ?? animationDefaults.visibilityThreshold;
-                if('animationTrajectories' in animation) {
+                if ('animationTrajectories' in animation) {
                     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                     const [stateVec, stateArr] = getStateTrajectoryPoints(animation.animationTrajectories!, state, (animation as any).trajectroySteps);
                     introAnimation.current.trajectory = stateArr;
                     introAnimation.current.trajectoryVec = stateVec;
-                } else if( 'stateIncrements' in animation) {
+                } else if ('stateIncrements' in animation) {
                     const stateVec = getManualStateTrajectoryPoints(animation.stateIncrements, state);
                     introAnimation.current.trajectory = animation.stateIncrements;
                     introAnimation.current.trajectoryVec = stateVec;
                 }
                 hasSpringAnimation.current = true;
             }
-            
+
             if (animation.type == AnimationTypes.chained) {
                 (animation as { type: AnimationTypes } & ChainedAnimation).initialPause = (animation as { type: AnimationTypes } & ChainedAnimation).initialPause ?? animationDefaults.initialPause;
                 chainedAnimation.current = animation as { type: AnimationTypes } & ChainedAnimation;
@@ -138,20 +139,20 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
     }, []);
 
     const executeChainedAnimation = (e?: any) => {
-        if(!shouldAnimate(sceneProps, chainedAnimation.current?.visibilityThreshold ?? animationDefaults.visibilityThreshold, e?.deltaY)) return;
-        if(chainedAnimation.current == undefined) return;
+        if (!shouldAnimate(sceneProps, chainedAnimation.current?.visibilityThreshold ?? animationDefaults.visibilityThreshold, e?.deltaY)) return;
+        if (chainedAnimation.current == undefined) return;
         chainedAnimationState.current = AnimationState.IN_PROGRESS;
         const animation = chainedAnimation.current;
         function executeAnimation(index: number) {
             const childAnimation = animation.childAnimations[index];
             const delay = childAnimation.initialPause ?? 0;
             let trajectory: Array<strongObject3DStateOfArrays>, trajectoryVec: Array<weakObject3DStateofVectors>;
-            if('animationTrajectories' in childAnimation) {
+            if ('animationTrajectories' in childAnimation) {
                 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 const [stateVec, stateArr] = getStateTrajectoryPoints((childAnimation as any).animationTrajectories, state, (childAnimation as any).trajectorySteps);
                 trajectory = stateArr;
                 trajectoryVec = stateVec;
-            } else if( 'stateIncrements' in childAnimation) {
+            } else if ('stateIncrements' in childAnimation) {
                 const stateVec = getManualStateTrajectoryPoints((childAnimation as any).stateIncrements, state);
                 trajectory = (childAnimation as any).stateIncrements;
                 trajectoryVec = stateVec;
@@ -191,15 +192,22 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
             executeAnimation(0);
         }, animation.initialPause ?? 0);
         timeouts.current.push(timeout);
-    }
+    };
 
     // activating chained animation
     useEffect(() => {
-        if (!chainedAnimation.current || introAnimationState != AnimationState.COMPLETED || !sceneProps.isSceneVisible || chainedAnimationState.current == AnimationState.IN_PROGRESS || chainedAnimationState.current == AnimationState.COMPLETED) return;
-        if(shouldAnimate(sceneProps, chainedAnimation.current?.visibilityThreshold ?? animationDefaults.visibilityThreshold)) {
+        if (
+            !chainedAnimation.current ||
+            introAnimationState != AnimationState.COMPLETED ||
+            !sceneProps.isSceneVisible ||
+            chainedAnimationState.current == AnimationState.IN_PROGRESS ||
+            chainedAnimationState.current == AnimationState.COMPLETED
+        )
+            return;
+        if (shouldAnimate(sceneProps, chainedAnimation.current?.visibilityThreshold ?? animationDefaults.visibilityThreshold)) {
             executeChainedAnimation();
         } else {
-            window.addEventListener('wheel', executeChainedAnimation, {passive: true});
+            window.addEventListener('wheel', executeChainedAnimation, { passive: true });
         }
         return () => {
             window.removeEventListener('wheel', executeChainedAnimation);
@@ -207,7 +215,7 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
     }, [sceneProps.isSceneVisible, introAnimationState, chainedAnimationState.current]);
 
     const executeIntroAnimation = (e?: any) => {
-        if(!shouldAnimate(sceneProps, introAnimation.current?.visibilityThreshold ?? animationDefaults.visibilityThreshold, e?.deltaY)) return;
+        if (!shouldAnimate(sceneProps, introAnimation.current?.visibilityThreshold ?? animationDefaults.visibilityThreshold, e?.deltaY)) return;
         updateIntroAnimationState(AnimationState.IN_PROGRESS);
         const [trajectory, trajectoryVec] = [introAnimation.current?.trajectory, introAnimation.current?.trajectoryVec];
         const timeout = setTimeout(() => {
@@ -228,19 +236,19 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
             invalidate();
         }, introAnimation.current?.initialPause ?? 0);
         timeouts.current.push(timeout);
-    }
- 
+    };
+
     // activating intro animation
     useEffect(() => {
         if (sceneProps.isSceneVisible && introAnimationState == AnimationState.NOT_STARTED && !introAnimation.current) {
             updateIntroAnimationState(AnimationState.COMPLETED);
             return;
         }
-        if(introAnimationState == AnimationState.COMPLETED || introAnimationState == AnimationState.IN_PROGRESS || !sceneProps.isSceneVisible) return;
-        if(shouldAnimate(sceneProps, introAnimation.current?.visibilityThreshold ?? animationDefaults.visibilityThreshold)) {
+        if (introAnimationState == AnimationState.COMPLETED || introAnimationState == AnimationState.IN_PROGRESS || !sceneProps.isSceneVisible) return;
+        if (shouldAnimate(sceneProps, introAnimation.current?.visibilityThreshold ?? animationDefaults.visibilityThreshold)) {
             executeIntroAnimation();
         } else {
-            window.addEventListener('wheel', executeIntroAnimation, {passive: true});
+            window.addEventListener('wheel', executeIntroAnimation, { passive: true });
         }
         return () => {
             window.removeEventListener('wheel', executeIntroAnimation);
@@ -250,12 +258,12 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
     // updating state as per scroll delta for scroll animation
     const updateStateByDelta = (deltaY: number) => {
         Object.entries(scrollTrajectory.current).forEach(([key, value]) => {
-            value.state += value.speed*deltaY;
-            if(value.state < 0) value.state = 0;
-            if(value.state > 1) value.state = 1;
+            value.state += value.speed * deltaY;
+            if (value.state < 0) value.state = 0;
+            if (value.state > 1) value.state = 1;
             const equiSpacedPoints = value.trajectoryMetaData.equiSpacedPoints ?? trajectoryDefaults.equiSpacedPoints;
             state.current[key as keyof strongObject3DStateOfVectors] = equiSpacedPoints ? value.trajectory.getPointAt(value.state) : value.trajectory.getPoint(value.state);
-        })
+        });
         if (scrollAnimation.current?.rotateOnScroll) {
             const axis = scrollAnimation.current.rotateOnScroll.axis;
             const velocity = scrollAnimation.current.rotateOnScroll.velocity;
@@ -299,7 +307,7 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
                 await next({
                     position: convertVec3ToArray(state.current.position),
                     rotation: convertVec3ToArray(state.current.rotation),
-                    scale: convertVec3ToArray(state.current.scale)
+                    scale: convertVec3ToArray(state.current.scale),
                 });
             },
             config: scrollAnimation.current?.springConfig ?? animationDefaults.scrollAnimation.springConfig,
@@ -326,10 +334,10 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
                             await next({
                                 position: convertVec3ToArray(state.current.position),
                                 rotation: convertVec3ToArray(state.current.rotation),
-                                scale: convertVec3ToArray(state.current.scale)
+                                scale: convertVec3ToArray(state.current.scale),
                             });
                         },
-                        config: scrollAnimation.current?.springConfig ?? animationDefaults.scrollAnimation.springConfig
+                        config: scrollAnimation.current?.springConfig ?? animationDefaults.scrollAnimation.springConfig,
                     });
                     invalidate();
                 }
@@ -346,7 +354,7 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
             updateIntroAnimationState(AnimationState.NOT_STARTED);
             chainedAnimationState.current = AnimationState.NOT_STARTED;
             state.current = {
-                position : initialStateRef.current.position.clone(),
+                position: initialStateRef.current.position.clone(),
                 rotation: initialStateRef.current.rotation.clone(),
                 scale: initialStateRef.current.scale.clone(),
             };
@@ -360,38 +368,38 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
         }
     }, [sceneProps.isSceneVisible]);
 
-    return spring
+    return spring;
 };
 
 // if (scrollTrajectory.current) {
-        //     trajectoryState.current += trajectorySpeed.current * deltaY;
-        //     if (trajectoryState.current > 1) trajectoryState.current = 1;
-        //     if (trajectoryState.current < 0) trajectoryState.current = 0;
-        //     state.current.position = scrollTrajectory.current.getPoint(trajectoryState.current) as Vector3;
+//     trajectoryState.current += trajectorySpeed.current * deltaY;
+//     if (trajectoryState.current > 1) trajectoryState.current = 1;
+//     if (trajectoryState.current < 0) trajectoryState.current = 0;
+//     state.current.position = scrollTrajectory.current.getPoint(trajectoryState.current) as Vector3;
 
-        //     if ((scrollAnimation.current as unknownObject & AnimationGeneratedTrajectoryData)?.trajectoryMetaData?.rotationTrajectory) {
-        //         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        //         const rotationTrajectory = (scrollAnimation.current as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData.rotationTrajectory!;
-        //         const maxRotation = Math.PI * 2 * rotationTrajectory.frequency;
-        //         const axis = rotationTrajectory.axis;
-        //         state.current.rotation = new Vector3(
-        //             initialRotation.x + axis[0] * maxRotation * trajectoryState.current,
-        //             initialRotation.y + axis[1] * maxRotation * trajectoryState.current,
-        //             initialRotation.z + axis[2] * maxRotation * trajectoryState.current
-        //         );
-        //     }
+//     if ((scrollAnimation.current as unknownObject & AnimationGeneratedTrajectoryData)?.trajectoryMetaData?.rotationTrajectory) {
+//         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+//         const rotationTrajectory = (scrollAnimation.current as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData.rotationTrajectory!;
+//         const maxRotation = Math.PI * 2 * rotationTrajectory.frequency;
+//         const axis = rotationTrajectory.axis;
+//         state.current.rotation = new Vector3(
+//             initialRotation.x + axis[0] * maxRotation * trajectoryState.current,
+//             initialRotation.y + axis[1] * maxRotation * trajectoryState.current,
+//             initialRotation.z + axis[2] * maxRotation * trajectoryState.current
+//         );
+//     }
 
-        //     if ((scrollAnimation.current as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData.scaleTrajectory) {
-        //         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        //         const scaleTrajectory = (scrollAnimation.current as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData.scaleTrajectory!;
-        //         const scaleRatio = scaleTrajectory.scaleRatio;
-        //         state.current.scale = new Vector3(
-        //             initialScale.x + trajectoryState.current * scaleRatio[0],
-        //             initialScale.y + trajectoryState.current * scaleRatio[1],
-        //             initialScale.z + trajectoryState.current * scaleRatio[2]
-        //         );
-        //     }
-        // }
+//     if ((scrollAnimation.current as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData.scaleTrajectory) {
+//         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+//         const scaleTrajectory = (scrollAnimation.current as unknownObject & AnimationGeneratedTrajectoryData).trajectoryMetaData.scaleTrajectory!;
+//         const scaleRatio = scaleTrajectory.scaleRatio;
+//         state.current.scale = new Vector3(
+//             initialScale.x + trajectoryState.current * scaleRatio[0],
+//             initialScale.y + trajectoryState.current * scaleRatio[1],
+//             initialScale.z + trajectoryState.current * scaleRatio[2]
+//         );
+//     }
+// }
 
 // const getVisibleSceneHeight = (sceneProps) => {
 //   const sceneTop = sceneProps.canvasRect.top

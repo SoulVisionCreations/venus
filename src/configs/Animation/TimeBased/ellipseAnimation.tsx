@@ -1,20 +1,18 @@
-import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, Trajectory } from "../../../types/enums";
-import { ContainerNodeProps } from "../../../types/types";
+import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, Trajectory } from '../../../types/enums';
+import { ContainerNodeProps } from '../../../types/types';
 
-export const ellipseConfig : ContainerNodeProps = {
+export const ellipseConfig: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
-    assets: [
-        { assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Gltf },
-    ],
+    assets: [{ assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Gltf }],
     children: [
         {
             type: ComponentTypes.Canvas,
-            style: {height: '500px', flexGrow: 1},
+            style: { height: '500px', flexGrow: 1 },
             camera: {
                 type: CameraTypes.Perspective,
                 position: [0, 0, 3],
-                far: 30
+                far: 30,
             },
             lights: [
                 {
@@ -32,7 +30,7 @@ export const ellipseConfig : ContainerNodeProps = {
                     type: ObjectTypes.GltfObject,
                     assetId: '101',
                     position: [0, 0.75, 0],
-                    rotation: [0, 0 , 0],
+                    rotation: [0, 0, 0],
                     scale: [0.4, 0.4, 0.4],
                     animations: [
                         {
@@ -54,15 +52,15 @@ export const ellipseConfig : ContainerNodeProps = {
                                                 center: [0, 0, 0],
                                                 height: 0.75,
                                                 width: 2.5,
-                                            }
-                                        }
-                                    }
-                                }
-                            ]
+                                            },
+                                        },
+                                    },
+                                },
+                            ],
                         },
                     ],
-                }
+                },
             ],
-        }
-    ]
-}
+        },
+    ],
+};

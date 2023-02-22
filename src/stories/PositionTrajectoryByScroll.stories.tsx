@@ -1,12 +1,13 @@
-import App from "../App";
-import { PositionByBezierTrajectoryWithScaleAndRotateConfig } from "../configs/Animation/ScrollBased/Position/positionByBezierTrajectory";
+import { PositionByBezierTrajectoryWithScaleAndRotateConfig } from '../configs/Animation/ScrollBased/Position/positionByBezierTrajectory';
+import { AppWrapper, argTypes, defaultArgs } from './AppWrapper';
 
 // eslint-disable-next-line storybook/story-exports
 export default {
-    title: "Animations/Scroll based/Position by defined trajectory",
-    component: App
-}
+    title: 'Animations/Scroll based/Position by defined trajectory',
+    component: AppWrapper,
+    argTypes: argTypes,
+};
 
-export const Example1BezierTrajectoryWithRotationAndScale = () => {
-    return <App config={PositionByBezierTrajectoryWithScaleAndRotateConfig} />
-}
+export const Example1BezierTrajectoryWithRotationAndScale = AppWrapper.bind({});
+
+Example1BezierTrajectoryWithRotationAndScale.args = { ...defaultArgs, storyConfig: PositionByBezierTrajectoryWithScaleAndRotateConfig };

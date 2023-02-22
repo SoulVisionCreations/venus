@@ -1,8 +1,8 @@
-import { stylingDefaults } from "../../../../constants/defaults";
-import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, TextTypes, Trajectory } from "../../../../types/enums";
-import { ContainerNodeProps } from "../../../../types/types";
+import { stylingDefaults } from '../../../../constants/defaults';
+import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, TextTypes, Trajectory } from '../../../../types/enums';
+import { ContainerNodeProps } from '../../../../types/types';
 
-export const RotationByMultipleBezierTrajectoryWithScaleConfig : ContainerNodeProps = {
+export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
     assets: [
@@ -12,7 +12,7 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig : ContainerNodePr
     children: [
         {
             type: ComponentTypes.Canvas,
-            style: {...stylingDefaults.fullWidthFullHeightCanvas, height: '600px'},
+            style: { ...stylingDefaults.fullWidthFullHeightCanvas, height: '600px' },
             camera: {
                 type: CameraTypes.Perspective,
                 position: [0, 0, 3],
@@ -33,7 +33,7 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig : ContainerNodePr
                     type: ObjectTypes.GltfObject,
                     assetId: '101',
                     position: [0, 0, 0],
-                    rotation: [Math.PI/2, 0 , 0],
+                    rotation: [Math.PI / 2, 0, 0],
                     scale: [2, 2, 2],
                     animations: [
                         {
@@ -49,23 +49,31 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig : ContainerNodePr
                                         curves: [
                                             {
                                                 type: Trajectory.quadracticBezierCurve3,
-                                                points: [[Math.PI/2, 0 , 0], [0, 0, 0], [0, Math.PI/2, 0]],
+                                                points: [
+                                                    [Math.PI / 2, 0, 0],
+                                                    [0, 0, 0],
+                                                    [0, Math.PI / 2, 0],
+                                                ],
                                             },
                                             {
                                                 type: Trajectory.quadracticBezierCurve3,
-                                                points: [[0, Math.PI/2, 0], [0, Math.PI/4, 0], [Math.PI/4, Math.PI/4, 0]],
+                                                points: [
+                                                    [0, Math.PI / 2, 0],
+                                                    [0, Math.PI / 4, 0],
+                                                    [Math.PI / 4, Math.PI / 4, 0],
+                                                ],
                                             },
                                         ],
-                                        equiSpacedPoints: true
+                                        equiSpacedPoints: true,
                                     },
-                                    speed: 0.00025
+                                    speed: 0.00025,
                                 },
                             },
                             scaleOnScroll: {
                                 scaleRatio: [1, 1, 1],
                                 velocity: 0.00025,
                                 maxScale: [3, 3, 3],
-                                minScale: [2, 2, 2]
+                                minScale: [2, 2, 2],
                             },
                             springConfig: { mass: 4, tension: 280, friction: 90 },
                         },
@@ -101,13 +109,13 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig : ContainerNodePr
                                     trajectoryMetaData: {
                                         type: Trajectory.line3,
                                         startPoint: [0, 0.15, 1],
-                                        endPoint: [0, 10, 1]
+                                        endPoint: [0, 10, 1],
                                     },
-                                    speed: 0.00025
+                                    speed: 0.00025,
                                 },
-                            }
-                        }
-                    ]
+                            },
+                        },
+                    ],
                 },
                 {
                     type: TextTypes.Paragraph,
@@ -131,13 +139,13 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig : ContainerNodePr
                                     trajectoryMetaData: {
                                         type: Trajectory.line3,
                                         startPoint: [0, -0.15, 1],
-                                        endPoint: [0, 10, 1]
+                                        endPoint: [0, 10, 1],
                                     },
-                                    speed: 0.00025
+                                    speed: 0.00025,
                                 },
-                            }
-                        }
-                    ]
+                            },
+                        },
+                    ],
                 },
                 {
                     type: TextTypes.Paragraph,
@@ -159,13 +167,13 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig : ContainerNodePr
                                     trajectoryMetaData: {
                                         type: Trajectory.line3,
                                         startPoint: [0.82, -1, 1],
-                                        endPoint: [0.82, 3, 1]
+                                        endPoint: [0.82, 3, 1],
                                     },
-                                    speed: 0.00025
+                                    speed: 0.00025,
                                 },
-                            }
-                        }
-                    ]
+                            },
+                        },
+                    ],
                 },
                 {
                     type: TextTypes.Paragraph,
@@ -188,13 +196,13 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig : ContainerNodePr
                                     trajectoryMetaData: {
                                         type: Trajectory.line3,
                                         startPoint: [1, -1.3, 1],
-                                        endPoint: [1, 2.8, 1]
+                                        endPoint: [1, 2.8, 1],
                                     },
-                                    speed: 0.00025
+                                    speed: 0.00025,
                                 },
-                            }
-                        }
-                    ]
+                            },
+                        },
+                    ],
                 },
                 {
                     type: TextTypes.Paragraph,
@@ -216,13 +224,13 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig : ContainerNodePr
                                     trajectoryMetaData: {
                                         type: Trajectory.line3,
                                         startPoint: [-1.125, -4.2, 1],
-                                        endPoint: [-1.125, 2.75, 1]
+                                        endPoint: [-1.125, 2.75, 1],
                                     },
-                                    speed: 0.0002
+                                    speed: 0.0002,
                                 },
-                            }
-                        }
-                    ]
+                            },
+                        },
+                    ],
                 },
                 {
                     type: TextTypes.Paragraph,
@@ -245,15 +253,15 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig : ContainerNodePr
                                     trajectoryMetaData: {
                                         type: Trajectory.line3,
                                         startPoint: [-1.2, -4.5, 1],
-                                        endPoint: [-1.2, 2.5, 1]
+                                        endPoint: [-1.2, 2.5, 1],
                                     },
-                                    speed: 0.0002
+                                    speed: 0.0002,
                                 },
-                            }
-                        }
-                    ]
+                            },
+                        },
+                    ],
                 },
             ],
         },
-    ]
-}
+    ],
+};

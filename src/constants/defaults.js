@@ -9,8 +9,8 @@ export const trajectoryDefaults = {
     closed: false,
     equiSpacedPoints: true,
     steps: 100,
-    clockwise: true
-}
+    clockwise: true,
+};
 
 export const animationDefaults = {
     initialPause: 0,
@@ -27,11 +27,11 @@ export const animationDefaults = {
         scale: [0, 0, 0],
     },
     scrollAnimation: {
-        maxRotation: Math.PI*2,
+        maxRotation: Math.PI * 2,
         minRotation: 0,
         speed: 0.1,
-        springConfig: { mass: 4, tension: 280, friction: 90 }
-    }
+        springConfig: { mass: 4, tension: 280, friction: 90 },
+    },
 };
 
 export const objectDefaults = {
@@ -84,6 +84,6 @@ export const stylingDefaults = {
         flexGrow: 1,
     },
     flexGrow1: {
-        flexGrow: 1
-    }
+        flexGrow: 1,
+    },
 };

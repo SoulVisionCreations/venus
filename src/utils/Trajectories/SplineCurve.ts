@@ -1,6 +1,6 @@
-import { CatmullRomCurve3, CurvePath, Vector3 } from "three";
-import { trajectoryDefaults } from "../../constants/defaults";
-import { SplineCurve3MetaData } from "../../types/trajectoryTypes";
+import { CatmullRomCurve3, CurvePath, Vector3 } from 'three';
+import { trajectoryDefaults } from '../../constants/defaults';
+import { SplineCurve3MetaData } from '../../types/trajectoryTypes';
 
 // Create a smooth 3d spline curve from a series of points using the Catmull-Rom algorithm.
 export const createSplineCurve3 = (data: SplineCurve3MetaData) => {

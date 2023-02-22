@@ -1,7 +1,7 @@
-import { Vector3 } from "three";
-import { strongObject3DStateOfVectors, weakObject3DStateofArrays } from "../../types/object3DTypes";
+import { Vector3 } from 'three';
+import { strongObject3DStateOfVectors, weakObject3DStateofArrays } from '../../types/object3DTypes';
 
-export const getManualStateTrajectoryPoints = (stateIncrements: Array<weakObject3DStateofArrays>, state: {current: strongObject3DStateOfVectors}) => {
+export const getManualStateTrajectoryPoints = (stateIncrements: Array<weakObject3DStateofArrays>, state: { current: strongObject3DStateOfVectors }) => {
     const stateTrajectoryVec: Array<strongObject3DStateOfVectors> = [];
     stateIncrements.forEach((nextState) => {
         stateTrajectoryVec.push({
@@ -11,4 +11,4 @@ export const getManualStateTrajectoryPoints = (stateIncrements: Array<weakObject
         });
     });
     return stateTrajectoryVec;
-}
+};
