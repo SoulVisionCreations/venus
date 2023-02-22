@@ -27,8 +27,10 @@ export default function App({ config }: AppProps) {
         window.addEventListener('resize', () => {
             invalidate();
         });
-        if (config.assets) downloadAssets(config.assets).then(() => setLoading(false));
-        else setLoading(false);
+        if (config.assets) {
+            setLoading(true);
+            downloadAssets(config.assets).then(() => setLoading(false));
+        } else setLoading(false);
     }, [config]);
 
     const alignmentClassName: string = config.alignment == Alignment.Vertical ? 'flexColumn' : 'flexRow';

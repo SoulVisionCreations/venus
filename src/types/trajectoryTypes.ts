@@ -1,4 +1,4 @@
-import { CatmullRomCurve3, CubicBezierCurve, QuadraticBezierCurve, SplineCurve } from 'three';
+import { Trajectory } from "./enums";
 
 export type EllipseMetaData = {
     clockwise?: boolean;
@@ -8,6 +8,7 @@ export type EllipseMetaData = {
     height: number;
     steps?: number;
     rotateCurve?: Array<{ axis: number[]; angle: number }>;
+    equiSpacedPoints?: boolean;
 };
 
 export type CircleMetaData = {
@@ -17,20 +18,44 @@ export type CircleMetaData = {
     radius: number;
     steps?: number;
     rotateCurve?: Array<{ axis: number[]; angle: number }>;
+    equiSpacedPoints?: boolean;
 };
 
-export type CurveMetaData = {
-    points: Array<number[]>;
+export type QuadraticBezierCurve3MetaData = {
+    points: [number[], number[], number[]],
     steps?: number;
     closed?: boolean;
-};
+    equiSpacedPoints?: boolean;
+}
 
-export type MultipleCurveMetaData = {
-    curves: Array<{ points: Array<number[]> }>;
-    closed?: boolean;
+export type CubicBezierCurve3MetaData = {
+    points: [number[], number[], number[], number[]],
     steps?: number;
+    closed?: boolean;
+    equiSpacedPoints?: boolean;
+}
+
+export type SplineCurve3MetaData = {
+    points: Array<number[]>; // needs atleast 2 points
+    steps?: number;
+    closed?: boolean;
+    equiSpacedPoints?: boolean;
 };
 
-export type TrajectoryMetaData = EllipseMetaData | CircleMetaData | CurveMetaData | MultipleCurveMetaData;
+export type lineCurve3MetaData = {
+    startPoint: number[];
+    endPoint: number[];
+    steps?: number;
+    equiSpacedPoints?: boolean;
+}
 
-export type CurveType = QuadraticBezierCurve | CubicBezierCurve | SplineCurve | CatmullRomCurve3;
+export type multipleCurve3MetaData = {
+    curves: Array<TrajectoryMetaData & {type: Trajectory}>;
+    steps?: number;
+    closed?: number;
+    equiSpacedPoints?: boolean;
+}
+
+export type TrajectoryMetaData = {
+    type: Trajectory;
+} & (EllipseMetaData | CircleMetaData | QuadraticBezierCurve3MetaData | CubicBezierCurve3MetaData | SplineCurve3MetaData | lineCurve3MetaData | multipleCurve3MetaData);

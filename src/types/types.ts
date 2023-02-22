@@ -153,7 +153,7 @@ export interface ContainerNodeProps {
 }
 
 export interface AssetProps {
-    assetId: string;
+    assetId: string | symbol;
     assetPath: string;
     assetType: AssetTypes;
 }
