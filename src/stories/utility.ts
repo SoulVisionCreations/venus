@@ -16,7 +16,6 @@ export const configObjectTypeModifier = (config: ContainerNodeProps, objectType:
                     if (newObjects[j].type == ObjectTypes.GltfObject || newObjects[j].type == ObjectTypes.ImplicitObject) {
                         newObjects[j] = { ...newObjects[j] };
                         newObjects[j].type = objectType;
-                        newObjects[j].rotation = [-Math.PI / 2.5, 0, 0];
                         (newObjects[j] as any).assetId = assetId;
                     }
                 }
@@ -47,21 +46,23 @@ export const getEnvFileUrl = (files: string | string[]) => {
     return url;
 };
 
-export const skuMap = new Map<string, string>();
-skuMap.set('shoe', 'sku_2022-12-07_14-17-28');
-skuMap.set('flower', 'sku_2023-01-14_20-02-25');
-skuMap.set('toy-tractor', 'sku_2022-10-31_13-04-44');
-skuMap.set('toy-barbie', 'sku_2022-10-31_13-28-56');
-skuMap.set('cap', 'sku_2022-11-02_13-04-30');
-skuMap.set('couch-chair', 'sku_2022-11-02_19-20-58');
-skuMap.set('bag', 'sku_2022-11-03_13-18-46');
-skuMap.set('plant', 'sku_2022-11-03_14-17-25');
-skuMap.set('handbag', 'sku_2022-11-03_16-03-29');
-skuMap.set('recliner', 'sku_2022-11-03_18-31-37');
-skuMap.set('sofa', 'sku_2022-11-04_12-24-43');
-skuMap.set('couch', 'sku_2022-11-04_13-14-22');
-skuMap.set('volleyball', 'sku_2022-11-07_16-02-43');
-skuMap.set('football', 'sku_2022-11-07_15-54-41');
-skuMap.set('food', 'sku_2022-11-14_07-00-23');
-skuMap.set('chair', 'sku_2022-11-16_14-10-04');
-skuMap.set('glb-chair', 'scene.glb');
+export const skuImplicitMap = new Map<string, string>();
+skuImplicitMap.set('shoe', 'sku_2022-12-07_14-17-28');
+skuImplicitMap.set('flower', 'sku_2023-01-14_20-02-25');
+skuImplicitMap.set('toy-tractor', 'sku_2022-10-31_13-04-44');
+skuImplicitMap.set('toy-barbie', 'sku_2022-10-31_13-28-56');
+skuImplicitMap.set('cap', 'sku_2022-11-02_13-04-30');
+skuImplicitMap.set('couch-chair', 'sku_2022-11-02_19-20-58');
+skuImplicitMap.set('bag', 'sku_2022-11-03_13-18-46');
+skuImplicitMap.set('plant', 'sku_2022-11-03_14-17-25');
+skuImplicitMap.set('handbag', 'sku_2022-11-03_16-03-29');
+skuImplicitMap.set('recliner', 'sku_2022-11-03_18-31-37');
+skuImplicitMap.set('sofa', 'sku_2022-11-04_12-24-43');
+skuImplicitMap.set('couch', 'sku_2022-11-04_13-14-22');
+skuImplicitMap.set('volleyball', 'sku_2022-11-07_16-02-43');
+skuImplicitMap.set('football', 'sku_2022-11-07_15-54-41');
+skuImplicitMap.set('food', 'sku_2022-11-14_07-00-23');
+skuImplicitMap.set('chair', 'sku_2022-11-16_14-10-04');
+
+export const skuGltfMap = new Map<string, string>();
+skuGltfMap.set('chair', 'scene.glb');

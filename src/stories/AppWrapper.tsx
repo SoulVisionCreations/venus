@@ -2,27 +2,20 @@ import { Story } from '@storybook/react';
 import App from '../App';
 import { AssetTypes, implicitResolution, ObjectTypes } from '../types/enums';
 import { ContainerNodeProps } from '../types/types';
-import { configAssetModifier, getEnvFileUrl, getImplicitUrl, skuMap } from './utility';
+import { configAssetModifier, getEnvFileUrl, getImplicitUrl, skuImplicitMap } from './utility';
 
-const assetMap = new Map<string, symbol>();
+const assetImplicitMap = new Map<string, symbol>();
 
 export const AppWrapper: Story<{ skuId: string; resolution: implicitResolution; storyConfig: ContainerNodeProps; envFiles: string | string[]; background: boolean }> = ({ ...args }) => {
-    let url = '';
-    let config;
     let assetId;
-    if (assetMap.has(args.skuId)) assetId = assetMap.get(args.skuId);
+    if (assetImplicitMap.has(args.skuId)) assetId = assetImplicitMap.get(args.skuId);
     else {
         assetId = Symbol();
-        assetMap.set(args.skuId, assetId);
+        assetImplicitMap.set(args.skuId + args.resolution, assetId);
     }
     const envFile = args.envFiles ? getEnvFileUrl(args.envFiles) : '';
-    if (args.skuId.includes('glb')) {
-        url = skuMap.get(args.skuId) as string;
-        config = configAssetModifier(url, args.storyConfig, AssetTypes.Gltf, ObjectTypes.GltfObject, assetId as symbol, { files: envFile, background: args.background });
-    } else {
-        url = getImplicitUrl(skuMap.get(args.skuId) as string, args.resolution);
-        config = configAssetModifier(url, args.storyConfig, AssetTypes.Implicit, ObjectTypes.ImplicitObject, assetId as symbol, { files: envFile, background: args.background });
-    }
+    const url = getImplicitUrl(skuImplicitMap.get(args.skuId) as string, args.resolution);
+    const config = configAssetModifier(url, args.storyConfig, AssetTypes.Implicit, ObjectTypes.ImplicitObject, assetId as symbol, { files: envFile, background: args.background });
     return <App config={config} />;
 };
 
@@ -33,7 +26,7 @@ export const argTypes = {
     },
     skuId: {
         control: 'radio',
-        options: Array.from(skuMap.keys()),
+        options: Array.from(skuImplicitMap.keys()),
     },
     envFiles: {
         control: 'radio',
@@ -46,7 +39,7 @@ export const argTypes = {
 
 export const defaultArgs = {
     skuId: 'flower',
-    resolution: implicitResolution.high,
+    resolution: implicitResolution.low,
     envFiles: 'neutral.hdr',
     background: false,
 };

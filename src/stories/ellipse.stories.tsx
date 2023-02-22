@@ -1,11 +1,11 @@
-import { ellipseConfig } from '../configs/Animation/TimeBased/ellipseAnimation';
-import { ellipse2Config } from '../configs/Animation/TimeBased/ellipseAnimation2';
-import { ellipse3Config } from '../configs/Animation/TimeBased/ellipseAnimation3';
+import { ellipseConfig } from '../configs/Animation/Implicit/TimeBased/ellipseAnimation';
+import { ellipse2Config } from '../configs/Animation/Implicit/TimeBased/ellipseAnimation2';
+import { ellipse3Config } from '../configs/Animation/Implicit/TimeBased/ellipseAnimation3';
 import { AppWrapper, argTypes, defaultArgs } from './AppWrapper';
 
 // eslint-disable-next-line storybook/story-exports
 export default {
-    title: 'Trajectories/Ellipse',
+    title: 'Trajectories/Ellipse/Implicit',
     component: AppWrapper,
     argTypes: argTypes,
 };

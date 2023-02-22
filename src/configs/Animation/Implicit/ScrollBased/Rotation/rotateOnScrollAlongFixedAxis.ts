@@ -1,11 +1,11 @@
-import { stylingDefaults } from '../../../../constants/defaults';
-import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes } from '../../../../types/enums';
-import { ContainerNodeProps } from '../../../../types/types';
+import { stylingDefaults } from '../../../../../constants/defaults';
+import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes } from '../../../../../types/enums';
+import { ContainerNodeProps } from '../../../../../types/types';
 
 export const RotateOnScrollAlongFixedAxisConfig: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
-    assets: [{ assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Gltf }],
+    assets: [{ assetId: '102', assetPath: 'data2', assetType: AssetTypes.Implicit }],
     children: [
         {
             type: ComponentTypes.Canvas,
@@ -24,13 +24,13 @@ export const RotateOnScrollAlongFixedAxisConfig: ContainerNodeProps = {
                     intensity: 2,
                 },
             ],
-            assetIds: ['101'],
+            assetIds: ['102'],
             objects: [
                 {
                     type: ObjectTypes.GltfObject,
-                    assetId: '101',
+                    assetId: '102',
                     position: [0, 0, 0],
-                    rotation: [Math.PI / 16, 0, 0],
+                    rotation: [-Math.PI / 2, 0, Math.PI],
                     scale: [1.5, 1.5, 1.5],
                     animations: [
                         {
@@ -40,7 +40,7 @@ export const RotateOnScrollAlongFixedAxisConfig: ContainerNodeProps = {
                                 sceneBottomToScreenTopRatio: 0.5,
                             },
                             rotateOnScroll: {
-                                axis: [0, 1, 0],
+                                axis: [0, 0, 1],
                                 velocity: 0.01,
                                 maxRotation: Math.PI * 10,
                                 minRotation: -Math.PI * 10,

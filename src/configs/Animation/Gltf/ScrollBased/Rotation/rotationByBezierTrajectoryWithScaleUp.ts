@@ -1,6 +1,6 @@
-import { stylingDefaults } from '../../../../constants/defaults';
-import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, Trajectory } from '../../../../types/enums';
-import { ContainerNodeProps } from '../../../../types/types';
+import { stylingDefaults } from '../../../../../constants/defaults';
+import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, Trajectory } from '../../../../../types/enums';
+import { ContainerNodeProps } from '../../../../../types/types';
 
 export const RotationByBezierTrajectoryWithScaleUpConfig: ContainerNodeProps = {
     type: ComponentTypes.Container,

@@ -1,7 +1,7 @@
-import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, Trajectory } from '../../../types/enums';
-import { ContainerNodeProps } from '../../../types/types';
+import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, Trajectory } from '../../../../types/enums';
+import { ContainerNodeProps } from '../../../../types/types';
 
-export const ellipseConfig: ContainerNodeProps = {
+export const ellipse2Config: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
     assets: [{ assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Gltf }],
@@ -29,7 +29,7 @@ export const ellipseConfig: ContainerNodeProps = {
                 {
                     type: ObjectTypes.GltfObject,
                     assetId: '101',
-                    position: [0, 0.75, 0],
+                    position: [0, 0, 0],
                     rotation: [0, 0, 0],
                     scale: [0.4, 0.4, 0.4],
                     animations: [
@@ -52,6 +52,12 @@ export const ellipseConfig: ContainerNodeProps = {
                                                 center: [0, 0, 0],
                                                 height: 0.75,
                                                 width: 2.5,
+                                                rotateCurve: [
+                                                    {
+                                                        axis: [1, 0, 0],
+                                                        angle: -Math.PI / 2 + Math.PI / 8,
+                                                    },
+                                                ],
                                             },
                                         },
                                     },

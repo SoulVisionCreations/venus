@@ -5,7 +5,7 @@ import { TextProps } from '../types/types';
 
 // eslint-disable-next-line storybook/story-exports
 export default {
-    title: 'Texts',
+    title: '2D Components/Texts',
     component: StoryBookApp,
     argTypes: {
         title: {

@@ -1,9 +1,9 @@
-import { RotateOnScrollAlongFixedAxisConfig } from '../configs/Animation/ScrollBased/Rotation/rotateOnScrollAlongFixedAxis';
+import { RotateOnScrollAlongFixedAxisConfig } from '../configs/Animation/Implicit/ScrollBased/Rotation/rotateOnScrollAlongFixedAxis';
 import { AppWrapper, argTypes, defaultArgs } from './AppWrapper';
 
 // eslint-disable-next-line storybook/story-exports
 export default {
-    title: 'Animations/Scroll based/Rotating on fixed axis',
+    title: 'Animations/Scroll based/Rotating on fixed axis/Implicit',
     component: AppWrapper,
     argTypes: argTypes,
 };

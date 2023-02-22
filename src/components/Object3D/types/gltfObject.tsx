@@ -12,7 +12,7 @@ const GltfObject = ({ objectProps, sceneProps }: { objectProps: GltfObjectProps;
     return (
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        <animated.primitive object={model.scene} {...objectProps} position={spring.position} rotation={spring.rotation} scale={spring.scale}>
+        <animated.primitive object={model.scene.clone()} {...objectProps} position={spring.position} rotation={spring.rotation} scale={spring.scale}>
             {objectProps.objectHtmls && renderObjectHtmls(objectProps.objectHtmls)}
         </animated.primitive>
     );

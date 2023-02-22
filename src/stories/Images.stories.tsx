@@ -4,7 +4,7 @@ import { ImageProps } from '../types/types';
 
 // eslint-disable-next-line storybook/story-exports
 export default {
-    title: 'Images',
+    title: '2D Components/Images',
     component: StoryBookApp,
     argTypes: {
         position: {

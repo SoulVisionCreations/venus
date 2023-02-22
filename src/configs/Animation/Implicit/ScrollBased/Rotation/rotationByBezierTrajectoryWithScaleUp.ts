@@ -1,17 +1,11 @@
-import { stylingDefaults } from '../../../../constants/defaults';
-import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, Trajectory } from '../../../../types/enums';
-import { ContainerNodeProps } from '../../../../types/types';
+import { stylingDefaults } from '../../../../../constants/defaults';
+import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, Trajectory } from '../../../../../types/enums';
+import { ContainerNodeProps } from '../../../../../types/types';
 
-export const RotationByLineTrajectoryConfig: ContainerNodeProps = {
+export const RotationByBezierTrajectoryWithScaleUpConfig: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
-    assets: [
-        {
-            assetId: '101',
-            assetPath: 'https://d2vy8yj9b7o26m.cloudfront.net/RnD_Datasets/ObjCap_out/prod_dev/avataar/sku_2022-12-07_14-17-28/implicit/sku_2022-12-07_14-17-28/base_high',
-            assetType: AssetTypes.Implicit,
-        },
-    ],
+    assets: [{ assetId: '102', assetPath: 'data2', assetType: AssetTypes.Implicit }],
     children: [
         {
             type: ComponentTypes.Canvas,
@@ -30,14 +24,14 @@ export const RotationByLineTrajectoryConfig: ContainerNodeProps = {
                     intensity: 2,
                 },
             ],
-            assetIds: ['101'],
+            assetIds: ['102'],
             objects: [
                 {
                     type: ObjectTypes.ImplicitObject,
-                    assetId: '101',
+                    assetId: '102',
                     position: [0, 0, 0],
-                    rotation: [Math.PI / 2, 0, 0],
-                    scale: [1.5, 1.5, 1.5],
+                    rotation: [-Math.PI / 2, 0, Math.PI],
+                    scale: [2, 2, 2],
                     animations: [
                         {
                             type: AnimationTypes.scroll,
@@ -48,13 +42,23 @@ export const RotationByLineTrajectoryConfig: ContainerNodeProps = {
                             animationTrajectories: {
                                 rotation: {
                                     trajectoryMetaData: {
-                                        type: Trajectory.line3,
-                                        startPoint: [Math.PI / 2, 0, 0],
-                                        endPoint: [0, 0, 0],
-                                        equiSpacedPoints: true,
+                                        type: Trajectory.quadracticBezierCurve3,
+                                        points: [
+                                            [-Math.PI / 2, 0, Math.PI],
+                                            [0, 0, 0],
+                                            [0, Math.PI / 2, 0],
+                                        ],
+                                        equiSpacedPoints: false,
+                                        closed: true,
                                     },
                                     speed: 0.00025,
                                 },
+                            },
+                            scaleOnScroll: {
+                                scaleRatio: [1, 1, 1],
+                                velocity: 0.00025,
+                                maxScale: [3, 3, 3],
+                                minScale: [2, 2, 2],
                             },
                             springConfig: { mass: 4, tension: 280, friction: 90 },
                         },

@@ -1,7 +1,7 @@
-import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, Trajectory } from '../../../types/enums';
-import { ContainerNodeProps } from '../../../types/types';
+import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, Trajectory } from '../../../../types/enums';
+import { ContainerNodeProps } from '../../../../types/types';
 
-export const circleConfig1: ContainerNodeProps = {
+export const ellipse3Config: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
     assets: [{ assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Gltf }],
@@ -29,7 +29,7 @@ export const circleConfig1: ContainerNodeProps = {
                 {
                     type: ObjectTypes.GltfObject,
                     assetId: '101',
-                    position: [0, 2, 0],
+                    position: [0, 0, 0],
                     rotation: [Math.PI / 4, 0, 0],
                     scale: [0.4, 0.4, 0.4],
                     animations: [
@@ -42,20 +42,42 @@ export const circleConfig1: ContainerNodeProps = {
                             initialPause: 0,
                             repeat: true,
                             interval: 0,
-                            springConfig: { duration: 50 },
+                            springConfig: { duration: 75 },
                             childAnimations: [
                                 {
                                     animationTrajectories: {
                                         position: {
                                             trajectoryMetaData: {
-                                                type: Trajectory.circle,
+                                                type: Trajectory.ellipse,
                                                 center: [0, 0, 0],
-                                                radius: 1,
+                                                height: 1,
+                                                width: 2.5,
+                                                clockwise: true,
                                                 rotateCurve: [
                                                     {
                                                         axis: [1, 0, 0],
-                                                        angle: 0,
+                                                        angle: Math.PI / 4 + Math.PI / 8,
                                                     },
+                                                ],
+                                            },
+                                        },
+                                        rotation: {
+                                            trajectoryMetaData: {
+                                                type: Trajectory.quadracticBezierCurve3,
+                                                points: [
+                                                    [Math.PI / 4, 0, 0],
+                                                    [Math.PI / 2, 2 * Math.PI, 0],
+                                                    [Math.PI / 4, 0, 0],
+                                                ],
+                                            },
+                                        },
+                                        scale: {
+                                            trajectoryMetaData: {
+                                                type: Trajectory.quadracticBezierCurve3,
+                                                points: [
+                                                    [0.4, 0.4, 0.4],
+                                                    [1, 1, 1],
+                                                    [0.4, 0.4, 0.4],
                                                 ],
                                             },
                                         },

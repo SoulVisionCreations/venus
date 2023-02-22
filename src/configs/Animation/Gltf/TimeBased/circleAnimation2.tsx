@@ -1,7 +1,7 @@
-import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, Trajectory } from '../../../types/enums';
-import { ContainerNodeProps } from '../../../types/types';
+import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, Trajectory } from '../../../../types/enums';
+import { ContainerNodeProps } from '../../../../types/types';
 
-export const ellipse3Config: ContainerNodeProps = {
+export const circleConfig2: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
     assets: [{ assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Gltf }],
@@ -29,7 +29,7 @@ export const ellipse3Config: ContainerNodeProps = {
                 {
                     type: ObjectTypes.GltfObject,
                     assetId: '101',
-                    position: [0, 0, 0],
+                    position: [0, 2, 0],
                     rotation: [Math.PI / 4, 0, 0],
                     scale: [0.4, 0.4, 0.4],
                     animations: [
@@ -42,21 +42,19 @@ export const ellipse3Config: ContainerNodeProps = {
                             initialPause: 0,
                             repeat: true,
                             interval: 0,
-                            springConfig: { duration: 75 },
+                            springConfig: { duration: 50 },
                             childAnimations: [
                                 {
                                     animationTrajectories: {
                                         position: {
                                             trajectoryMetaData: {
-                                                type: Trajectory.ellipse,
+                                                type: Trajectory.circle,
                                                 center: [0, 0, 0],
-                                                height: 1,
-                                                width: 2.5,
-                                                clockwise: true,
+                                                radius: 1,
                                                 rotateCurve: [
                                                     {
                                                         axis: [1, 0, 0],
-                                                        angle: Math.PI / 4 + Math.PI / 8,
+                                                        angle: -Math.PI / 4,
                                                     },
                                                 ],
                                             },
@@ -66,7 +64,7 @@ export const ellipse3Config: ContainerNodeProps = {
                                                 type: Trajectory.quadracticBezierCurve3,
                                                 points: [
                                                     [Math.PI / 4, 0, 0],
-                                                    [Math.PI / 2, 2 * Math.PI, 0],
+                                                    [Math.PI / 4, Math.PI / 2, 0],
                                                     [Math.PI / 4, 0, 0],
                                                 ],
                                             },

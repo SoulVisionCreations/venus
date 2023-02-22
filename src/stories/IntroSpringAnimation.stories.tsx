@@ -1,9 +1,9 @@
-import { introSpringAnimationByRotateAndScaleConfig } from '../configs/Animation/SpringBased/introSpringAnimationByRotateAndScale';
+import { introSpringAnimationByRotateAndScaleConfig } from '../configs/Animation/Implicit/SpringBased/introSpringAnimationByRotateAndScale';
 import { AppWrapper, argTypes, defaultArgs } from './AppWrapper';
 
 // eslint-disable-next-line storybook/story-exports
 export default {
-    title: 'Animations/Spring based',
+    title: 'Animations/Spring based/Implicit',
     component: AppWrapper,
     argTypes: argTypes,
 };

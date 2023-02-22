@@ -1,7 +1,7 @@
-import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, Trajectory } from '../../../types/enums';
-import { ContainerNodeProps } from '../../../types/types';
+import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, Trajectory } from '../../../../types/enums';
+import { ContainerNodeProps } from '../../../../types/types';
 
-export const circleConfig2: ContainerNodeProps = {
+export const circleConfig1: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
     assets: [{ assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Gltf }],
@@ -54,28 +54,8 @@ export const circleConfig2: ContainerNodeProps = {
                                                 rotateCurve: [
                                                     {
                                                         axis: [1, 0, 0],
-                                                        angle: -Math.PI / 4,
+                                                        angle: 0,
                                                     },
-                                                ],
-                                            },
-                                        },
-                                        rotation: {
-                                            trajectoryMetaData: {
-                                                type: Trajectory.quadracticBezierCurve3,
-                                                points: [
-                                                    [Math.PI / 4, 0, 0],
-                                                    [Math.PI / 4, Math.PI / 2, 0],
-                                                    [Math.PI / 4, 0, 0],
-                                                ],
-                                            },
-                                        },
-                                        scale: {
-                                            trajectoryMetaData: {
-                                                type: Trajectory.quadracticBezierCurve3,
-                                                points: [
-                                                    [0.4, 0.4, 0.4],
-                                                    [1, 1, 1],
-                                                    [0.4, 0.4, 0.4],
                                                 ],
                                             },
                                         },

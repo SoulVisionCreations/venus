@@ -1,13 +1,13 @@
-import { stylingDefaults } from '../../../../constants/defaults';
-import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, TextTypes, Trajectory } from '../../../../types/enums';
-import { ContainerNodeProps } from '../../../../types/types';
+import { stylingDefaults } from '../../../../../constants/defaults';
+import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, TextTypes, Trajectory } from '../../../../../types/enums';
+import { ContainerNodeProps } from '../../../../../types/types';
 
 export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
     assets: [
         { assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Gltf },
-        { assetId: '11', assetPath: './Inter_Bold.json', assetType: AssetTypes.Font },
+        // { assetId: '11', assetPath: './Inter_Bold.json', assetType: AssetTypes.Font },
     ],
     children: [
         {
@@ -27,14 +27,14 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                     intensity: 2,
                 },
             ],
-            assetIds: ['101', '102'],
+            assetIds: ['101'],
             objects: [
                 {
                     type: ObjectTypes.GltfObject,
                     assetId: '101',
                     position: [0, 0, 0],
                     rotation: [Math.PI / 2, 0, 0],
-                    scale: [2, 2, 2],
+                    scale: [1, 1, 1],
                     animations: [
                         {
                             type: AnimationTypes.scroll,
@@ -72,8 +72,8 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                             scaleOnScroll: {
                                 scaleRatio: [1, 1, 1],
                                 velocity: 0.00025,
-                                maxScale: [3, 3, 3],
-                                minScale: [2, 2, 2],
+                                maxScale: [2, 2, 2],
+                                minScale: [1, 1, 1],
                             },
                             springConfig: { mass: 4, tension: 280, friction: 90 },
                         },
@@ -93,9 +93,9 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
             texts: [
                 {
                     type: TextTypes.Paragraph,
-                    text: 'Doris Armchair',
-                    position: [0, 0.15, 1],
-                    scale: [3, 3, 3],
+                    data: 'Doris Armchair',
+                    position: [0, 0.075, 2],
+                    scale: [1.5, 1.5, 1.5],
                     color: 'black',
                     animations: [
                         {
@@ -108,8 +108,8 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                                 position: {
                                     trajectoryMetaData: {
                                         type: Trajectory.line3,
-                                        startPoint: [0, 0.15, 1],
-                                        endPoint: [0, 10, 1],
+                                        startPoint: [0, 0.075, 2],
+                                        endPoint: [0, 10, 2],
                                     },
                                     speed: 0.00025,
                                 },
@@ -119,9 +119,9 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                 },
                 {
                     type: TextTypes.Paragraph,
-                    text: 'Before they sold out salvia aesthetic, hexagon disrupts sustainable vaporware crucifix succulents kale chips. Selvage knausguard scenester.',
-                    position: [0, -0.15, 1],
-                    scale: [0.5, 0.5, 0.5],
+                    data: 'Before they sold out salvia aesthetic, hexagon disrupts sustainable vaporware crucifix succulents kale chips. Selvage knausguard scenester.',
+                    position: [0, -0.075, 2],
+                    scale: [0.25, 0.25, 0.25],
                     maxWidth: 4.25,
                     textAlign: 'center',
                     numbered: true,
@@ -138,8 +138,8 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                                 position: {
                                     trajectoryMetaData: {
                                         type: Trajectory.line3,
-                                        startPoint: [0, -0.15, 1],
-                                        endPoint: [0, 10, 1],
+                                        startPoint: [0, -0.075, 2],
+                                        endPoint: [0, 10, 2],
                                     },
                                     speed: 0.00025,
                                 },
@@ -149,9 +149,9 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                 },
                 {
                     type: TextTypes.Paragraph,
-                    text: 'Smooth design',
-                    position: [0.82, -1, 1],
-                    scale: [0.2, 0.2, 0.2],
+                    data: 'Smooth design',
+                    position: [0.415, -0.5, 2],
+                    scale: [0.1, 0.1, 0.1],
                     color: 'black',
                     textAlign: 'left',
                     fontSize: 0.5,
@@ -166,8 +166,8 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                                 position: {
                                     trajectoryMetaData: {
                                         type: Trajectory.line3,
-                                        startPoint: [0.82, -1, 1],
-                                        endPoint: [0.82, 3, 1],
+                                        startPoint: [0.415, -0.5, 2],
+                                        endPoint: [0.415, 1.5, 2],
                                     },
                                     speed: 0.00025,
                                 },
@@ -177,9 +177,9 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                 },
                 {
                     type: TextTypes.Paragraph,
-                    text: 'Humblebrag pickled listicle yes plz williamsburg shoreditch tumblr, put a bird on it cred knausgaard snackwave scenester. Before they sold out salvia aesthetic.',
-                    position: [1, -1.2, 1],
-                    scale: [0.2, 0.2, 0.2],
+                    data: 'Humblebrag pickled listicle yes plz williamsburg shoreditch tumblr, put a bird on it cred knausgaard snackwave scenester. Before they sold out salvia aesthetic.',
+                    position: [0.5, -0.6, 2],
+                    scale: [0.1, 0.1, 0.1],
                     maxWidth: 5,
                     textAlign: 'left',
                     fontSize: 0.3,
@@ -195,8 +195,8 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                                 position: {
                                     trajectoryMetaData: {
                                         type: Trajectory.line3,
-                                        startPoint: [1, -1.3, 1],
-                                        endPoint: [1, 2.8, 1],
+                                        startPoint: [0.5, -0.65, 2],
+                                        endPoint: [0.5, 1.4, 2],
                                     },
                                     speed: 0.00025,
                                 },
@@ -206,9 +206,9 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                 },
                 {
                     type: TextTypes.Paragraph,
-                    text: 'Softness of the upholstery',
-                    position: [-1.125, -4.2, 1],
-                    scale: [0.2, 0.2, 0.2],
+                    data: 'Softness of the upholstery',
+                    position: [-0.555, -2.1, 2],
+                    scale: [0.1, 0.1, 0.1],
                     color: 'black',
                     textAlign: 'left',
                     fontSize: 0.5,
@@ -223,8 +223,8 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                                 position: {
                                     trajectoryMetaData: {
                                         type: Trajectory.line3,
-                                        startPoint: [-1.125, -4.2, 1],
-                                        endPoint: [-1.125, 2.75, 1],
+                                        startPoint: [-0.555, -2.1, 2],
+                                        endPoint: [-0.555, 1.375, 2],
                                     },
                                     speed: 0.0002,
                                 },
@@ -234,9 +234,9 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                 },
                 {
                     type: TextTypes.Paragraph,
-                    text: 'Humblebrag pickled listicle yes plz williamsburg shoreditch tumblr, put a bird on it cred knausgaard snackwave scenester. Before they sold out salvia aesthetic.',
-                    position: [-1.2, -4.5, 0],
-                    scale: [0.2, 0.2, 0.2],
+                    data: 'Humblebrag pickled listicle yes plz williamsburg shoreditch tumblr, put a bird on it cred knausgaard snackwave scenester. Before they sold out salvia aesthetic.',
+                    position: [-0.6, -2.25, 2],
+                    scale: [0.1, 0.1, 0.1],
                     maxWidth: 5,
                     textAlign: 'left',
                     fontSize: 0.3,
@@ -252,8 +252,8 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                                 position: {
                                     trajectoryMetaData: {
                                         type: Trajectory.line3,
-                                        startPoint: [-1.2, -4.5, 1],
-                                        endPoint: [-1.2, 2.5, 1],
+                                        startPoint: [-0.6, -2.25, 2],
+                                        endPoint: [-0.6, 1.25, 2],
                                     },
                                     speed: 0.0002,
                                 },
