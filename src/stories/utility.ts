@@ -14,9 +14,11 @@ export const configObjectTypeModifier = (config: ContainerNodeProps, objectType:
                 const newObjects = [...(newConfig.children[i] as CanvasNodeProps).objects!];
                 for (let j = 0; j < newObjects.length; j++) {
                     if (newObjects[j].type == ObjectTypes.GltfObject || newObjects[j].type == ObjectTypes.ImplicitObject) {
-                        newObjects[j] = { ...newObjects[j] };
-                        newObjects[j].type = objectType;
-                        (newObjects[j] as any).assetId = assetId;
+                        if ((newObjects[j] as any).assetId != '1122') {
+                            newObjects[j] = { ...newObjects[j] };
+                            newObjects[j].type = objectType;
+                            (newObjects[j] as any).assetId = assetId;
+                        }
                     }
                 }
                 (newConfig.children[i] as CanvasNodeProps).objects = newObjects;

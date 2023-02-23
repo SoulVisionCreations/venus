@@ -118,6 +118,10 @@ export const enum TextTypes {
     List,
 }
 
+export const enum HtmlTemplateTypes {
+    ParagraphBox,
+}
+
 export const enum Alignment {
     Vertical,
     Horizontal,
