@@ -18,15 +18,6 @@ export default {
                 disable: true,
             },
         },
-        background: {
-            control: { type: 'color' },
-        },
-        borderRadius: {
-            control: { type: 'number', step: 1 },
-        },
-        width: {
-            control: { type: 'number', step: 50 },
-        },
         position: {
             control: 'object',
         },
@@ -36,11 +27,14 @@ export default {
         scale: {
             control: { type: 'number', step: 1 },
         },
-        color: {
-            control: { type: 'color' },
+        divStyle: {
+            control: 'object',
         },
-        padding: {
-            control: { type: 'number', step: 1 },
+        titleStyle: {
+            control: 'object',
+        },
+        dataStyle: {
+            control: 'object',
         },
         type: {
             table: {
@@ -69,13 +63,10 @@ TextBox.args = {
     type: HtmlTemplateTypes.ParagraphBox,
     title: 'Benefits of using AR',
     data: '81% of shoppers feel more confident in their purchase as a result of using AR. Provide customers with a sense of how products would look and fit in their environment. Increase shopper confidence, order volume, and sales.',
-    background: 'white',
+    divStyle: { background: 'white', width: '500px', borderRadius: '10px', border: '3px solid black', padding: '20px' },
+    titleStyle: { fontSize: '36px', color: 'black', padding: '2px', margin: '0px', marginBottom: '20px' },
+    dataStyle: { fontSize: '18px', padding: '2px', margin: '0px' },
     position: [0, 0, 0],
     rotation: [0, 0, 0],
     scale: 1,
-    width: '500px',
-    color: 'black',
-    padding: '10px 20px',
-    borderRadius: 0,
-    border: '3px solid black',
 };
