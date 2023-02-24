@@ -7,7 +7,7 @@ export const ImplicitinRoomConfig: ContainerNodeProps = {
     alignment: Alignment.Vertical,
     assets: [
         { assetId: '102', assetPath: 'data2', assetType: AssetTypes.Implicit },
-        { assetId: '1122', assetPath: './room.glb', assetType: AssetTypes.Gltf },
+        { assetId: '1122', assetPath: './room.glb', assetType: AssetTypes.Mesh },
     ],
     children: [
         {
@@ -57,7 +57,7 @@ export const ImplicitinRoomConfig: ContainerNodeProps = {
                     ],
                 },
                 {
-                    type: ObjectTypes.GltfObject,
+                    type: ObjectTypes.MeshObject,
                     assetId: '1122',
                     position: [0, 0, 0],
                     rotation: [Math.PI / 15, Math.PI / 4, 0],

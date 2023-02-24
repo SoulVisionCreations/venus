@@ -6,8 +6,8 @@ export const GltfinRoomConfig: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
     assets: [
-        { assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Gltf },
-        { assetId: '1122', assetPath: './room.glb', assetType: AssetTypes.Gltf },
+        { assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Mesh },
+        { assetId: '1122', assetPath: './room.glb', assetType: AssetTypes.Mesh },
     ],
     children: [
         {
@@ -34,7 +34,7 @@ export const GltfinRoomConfig: ContainerNodeProps = {
             assetIds: ['101'],
             objects: [
                 {
-                    type: ObjectTypes.GltfObject,
+                    type: ObjectTypes.MeshObject,
                     assetId: '101',
                     position: [0, 0.9, 0],
                     rotation: [Math.PI / 15, 0, 0],
@@ -58,7 +58,7 @@ export const GltfinRoomConfig: ContainerNodeProps = {
                     ],
                 },
                 {
-                    type: ObjectTypes.GltfObject,
+                    type: ObjectTypes.MeshObject,
                     assetId: '1122',
                     position: [0, 0, 0],
                     rotation: [Math.PI / 15, Math.PI / 4, 0],

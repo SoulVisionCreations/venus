@@ -195,7 +195,7 @@ export const config1 = {
         //   ],
         //   objects: [
         //     {
-        //       type: ObjectTypes.GltfObject,
+        //       type: ObjectTypes.MeshObject,
         //       url: "./model.glb",
         //       scale: 5,
         //       position: [0,0,0],

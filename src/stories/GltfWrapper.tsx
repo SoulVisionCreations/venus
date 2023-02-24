@@ -15,7 +15,7 @@ export const GltfWrapper: Story<{ skuId: string; storyConfig: ContainerNodeProps
     }
     const envFile = args.envFiles ? getEnvFileUrl(args.envFiles) : '';
     const url = skuGltfMap.get(args.skuId) as string;
-    const config = configAssetModifier(url, args.storyConfig, AssetTypes.Gltf, ObjectTypes.GltfObject, assetId as symbol, { files: envFile, background: args.background });
+    const config = configAssetModifier(url, args.storyConfig, AssetTypes.Mesh, ObjectTypes.MeshObject, assetId as symbol, { files: envFile, background: args.background });
     return <App config={config} />;
 };
 

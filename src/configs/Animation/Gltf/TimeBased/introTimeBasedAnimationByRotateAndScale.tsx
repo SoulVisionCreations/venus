@@ -7,7 +7,7 @@ export const introTimeBasedAnimationByRotateAndScaleConfig: ContainerNodeProps =
     alignment: Alignment.Vertical,
     assets: [
         { assetId: '11', assetPath: './Inter_Bold.json', assetType: AssetTypes.Font },
-        { assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Gltf },
+        { assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Mesh },
     ],
     children: [
         {
@@ -52,7 +52,7 @@ export const introTimeBasedAnimationByRotateAndScaleConfig: ContainerNodeProps =
             assetIds: ['101'],
             objects: [
                 {
-                    type: ObjectTypes.GltfObject,
+                    type: ObjectTypes.MeshObject,
                     assetId: '101',
                     position: [0, 0, 0],
                     rotation: [0, 0, 0],

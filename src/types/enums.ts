@@ -1,6 +1,6 @@
 export const enum ObjectTypes {
     ImplicitObject,
-    GltfObject,
+    MeshObject,
     StandardObject,
     Text3D,
 }
@@ -129,7 +129,7 @@ export const enum Alignment {
 
 export const enum AssetTypes {
     Implicit,
-    Gltf,
+    Mesh,
     Image,
     Font,
 }

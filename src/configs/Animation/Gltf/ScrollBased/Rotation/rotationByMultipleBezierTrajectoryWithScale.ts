@@ -6,7 +6,7 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
     assets: [
-        { assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Gltf },
+        { assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Mesh },
         // { assetId: '11', assetPath: './Inter_Bold.json', assetType: AssetTypes.Font },
     ],
     children: [
@@ -30,7 +30,7 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
             assetIds: ['101'],
             objects: [
                 {
-                    type: ObjectTypes.GltfObject,
+                    type: ObjectTypes.MeshObject,
                     assetId: '101',
                     position: [0, 0, 0],
                     rotation: [Math.PI / 2, 0, 0],

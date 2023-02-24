@@ -9,7 +9,7 @@ export const DemoExample: ContainerNodeProps = {
     style: stylingDefaults.flexColumnContainer,
     assets: [
         // 'REC-jxvfZgVpLiDq9sM/deliverables/DLV-AhYTvfCZEUcLdXeekERqrymJA/
-        { assetId: '100001', assetPath: './scene.glb', assetType: AssetTypes.Gltf },
+        { assetId: '100001', assetPath: './scene.glb', assetType: AssetTypes.Mesh },
         { assetId: '101', assetPath: './Inter_Bold.json', assetType: AssetTypes.Font },
     ],
     children: [
@@ -36,7 +36,7 @@ export const DemoExample: ContainerNodeProps = {
             ],
             objects: [
                 {
-                    type: ObjectTypes.GltfObject,
+                    type: ObjectTypes.MeshObject,
                     assetId: '100001',
                     position: [0, 0, 0],
                     rotation: [Math.PI / 2, 0, 0],

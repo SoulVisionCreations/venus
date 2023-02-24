@@ -13,7 +13,7 @@ export const configObjectTypeModifier = (config: ContainerNodeProps, objectType:
                 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 const newObjects = [...(newConfig.children[i] as CanvasNodeProps).objects!];
                 for (let j = 0; j < newObjects.length; j++) {
-                    if (newObjects[j].type == ObjectTypes.GltfObject || newObjects[j].type == ObjectTypes.ImplicitObject) {
+                    if (newObjects[j].type == ObjectTypes.MeshObject || newObjects[j].type == ObjectTypes.ImplicitObject) {
                         if ((newObjects[j] as any).assetId != '1122') {
                             newObjects[j] = { ...newObjects[j] };
                             newObjects[j].type = objectType;

@@ -99,7 +99,6 @@ export interface TextProps {
     textAlign?: 'center' | 'left' | 'right' | 'justify';
     anchorX?: number | 'center' | 'left' | 'right';
     anchorY?: number | 'bottom' | 'top' | 'middle' | 'top-baseline' | 'bottom-baseline';
-    depthOffset?: number;
     overflowWrap?: 'normal' | 'break-word';
     whiteSpace?: 'normal' | 'overflowWrap';
     outlineWidth?: string | number;

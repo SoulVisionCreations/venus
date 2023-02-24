@@ -5,7 +5,7 @@ import { ContainerNodeProps } from '../../../../../types/types';
 export const RotateOnScrollAlongFixedAxisConfig: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
-    assets: [{ assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Gltf }],
+    assets: [{ assetId: '101', assetPath: './objexp/', assetType: AssetTypes.Mesh }],
     children: [
         {
             type: ComponentTypes.Canvas,
@@ -27,7 +27,7 @@ export const RotateOnScrollAlongFixedAxisConfig: ContainerNodeProps = {
             assetIds: ['101'],
             objects: [
                 {
-                    type: ObjectTypes.GltfObject,
+                    type: ObjectTypes.MeshObject,
                     assetId: '101',
                     position: [0, 0, 0],
                     rotation: [Math.PI / 16, 0, 0],
