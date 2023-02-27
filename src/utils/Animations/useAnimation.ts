@@ -1,7 +1,7 @@
 import { invalidate } from '@react-three/fiber';
 import { useEffect, useRef, useState } from 'react';
 import { Vector3 } from 'three';
-import { convertVec3ToArray, getInitialState } from '../utility';
+import { areEqualVectors, convertVec3ToArray, getInitialState } from '../utility';
 import { SceneProps } from '../../components/Scene';
 import { Object3DProps, strongObject3DStateOfArrays, strongObject3DStateOfVectors, weakObject3DStateofVectors } from '../../types/object3DTypes';
 import { ChainedAnimation, IntroAnimation, ScrollAnimation, VisibilityThreshold } from '../../types/animationTypes';
@@ -12,6 +12,17 @@ import { TrajectoryMetaData } from '../../types/trajectoryTypes';
 import { config, useSpring } from '@react-spring/three';
 import { getStateTrajectoryPoints, getTrajectory } from '../Trajectories/utility';
 import { getManualStateTrajectoryPoints } from './utility';
+
+const isSceneInMiddleOfScreen = (sceneProps: SceneProps, precision: number) => {
+    const sceneTop = sceneProps.canvasRect.top;
+    const sceneBottom = sceneProps.canvasRect.bottom;
+    const scrolledHeight = window.pageYOffset;
+    const screenHeight = window.innerHeight;
+    const sceneTopToScreenTopDist = sceneTop - scrolledHeight;
+    const sceneBottomToScreenBottomDist = sceneBottom - (scrolledHeight + screenHeight);
+    const delta = Math.abs(sceneBottomToScreenBottomDist - sceneTopToScreenTopDist);
+    return delta <= precision;
+}
 
 const shouldAnimate = (sceneProps: SceneProps, visibilityThreshold: VisibilityThreshold, delta?: number) => {
     const sceneTop = sceneProps.canvasRect.top;
@@ -207,10 +218,10 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
         if (shouldAnimate(sceneProps, chainedAnimation.current?.visibilityThreshold ?? animationDefaults.visibilityThreshold)) {
             executeChainedAnimation();
         } else {
-            window.addEventListener('wheel', executeChainedAnimation, { passive: true });
+            window.addEventListener('scroll', executeChainedAnimation, { passive: true });
         }
         return () => {
-            window.removeEventListener('wheel', executeChainedAnimation);
+            window.removeEventListener('scroll', executeChainedAnimation);
         };
     }, [sceneProps.isSceneVisible, introAnimationState, chainedAnimationState.current]);
 
@@ -257,10 +268,13 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
 
     // updating state as per scroll delta for scroll animation
     const updateStateByDelta = (deltaY: number) => {
+        let animationCompleted = true;
         Object.entries(scrollTrajectory.current).forEach(([key, value]) => {
-            value.state += value.speed * deltaY;
-            if (value.state < 0) value.state = 0;
-            if (value.state > 1) value.state = 1;
+            value.state += value.speed*deltaY;
+            if(value.state < 0) value.state = 0;
+            if(value.state > 1) value.state = 1;
+            // if(deltaY > 0 && value.state < 0.999) animationCompleted = false;
+            // if(deltaY < 0 && value.state > 0.001) animationCompleted = false;
             const equiSpacedPoints = value.trajectoryMetaData.equiSpacedPoints ?? trajectoryDefaults.equiSpacedPoints;
             state.current[key as keyof strongObject3DStateOfVectors] = equiSpacedPoints ? value.trajectory.getPointAt(value.state) : value.trajectory.getPoint(value.state);
         });
@@ -271,11 +285,16 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
             const maxRotation = scrollAnimation.current.rotateOnScroll.maxRotation ?? animationDefaults.scrollAnimation.maxRotation;
             const minRotation = scrollAnimation.current.rotateOnScroll.minRotation ?? animationDefaults.scrollAnimation.minRotation;
             if (deltaY > 0) {
-                console.log(maxRotation, initialRotation.z, initialStateRef.current.rotation.z);
+                // const initialRotation = initialStateRef.current.rotation.clone();
+                // initialRotation.add(new Vector3(maxRotation, maxRotation, maxRotation));
+                // if(!areEqualVectors(initialRotation, state.current.rotation, 0.01)) animationCompleted = false;
                 state.current.rotation.x = Math.min(initialStateRef.current.rotation.x + maxRotation, state.current.rotation.x);
                 state.current.rotation.y = Math.min(initialStateRef.current.rotation.y + maxRotation, state.current.rotation.y);
                 state.current.rotation.z = Math.min(initialStateRef.current.rotation.z + maxRotation, state.current.rotation.z);
             } else {
+                // const initialRotation = initialStateRef.current.rotation.clone();
+                // initialRotation.add(new Vector3(minRotation, minRotation, minRotation));
+                if(!areEqualVectors(initialRotation, state.current.rotation, 0.01)) animationCompleted = false;
                 state.current.rotation.x = Math.max(initialStateRef.current.rotation.x + minRotation, state.current.rotation.x);
                 state.current.rotation.y = Math.max(initialStateRef.current.rotation.y + minRotation, state.current.rotation.y);
                 state.current.rotation.z = Math.max(initialStateRef.current.rotation.z + minRotation, state.current.rotation.z);
@@ -285,23 +304,33 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
             const scaleRatio = scrollAnimation.current.scaleOnScroll.scaleRatio;
             const velocity = scrollAnimation.current.scaleOnScroll.velocity;
             state.current.scale.add(new Vector3(scaleRatio[0] * velocity * deltaY, scaleRatio[1] * velocity * deltaY, scaleRatio[2] * velocity * deltaY));
-            if (deltaY > 0) {
+            if ((deltaY > 0 && velocity > 0) || (deltaY < 0 && velocity < 0)) {
                 const maxScale = scrollAnimation.current.scaleOnScroll.maxScale;
+                // const maxScaleVec = new Vector3(...maxScale);
+                // if(!areEqualVectors(maxScaleVec, state.current.scale, 0.01)) animationCompleted = false;
                 state.current.scale.x = Math.min(maxScale[0], state.current.scale.x);
                 state.current.scale.y = Math.min(maxScale[1], state.current.scale.y);
                 state.current.scale.z = Math.min(maxScale[2], state.current.scale.z);
             } else {
                 const minScale = scrollAnimation.current.scaleOnScroll.minScale;
+                // const minScaleVec = new Vector3(...minScale);
+                // if(!areEqualVectors(minScaleVec, state.current.scale, 0.01)) animationCompleted = false;
                 state.current.scale.x = Math.max(minScale[0], state.current.scale.x);
                 state.current.scale.y = Math.max(minScale[1], state.current.scale.y);
                 state.current.scale.z = Math.max(minScale[2], state.current.scale.z);
             }
         }
+        return animationCompleted;
     };
 
     const executeScrollAnimation = (e: any) => {
         if (!shouldAnimate(sceneProps, scrollAnimation.current?.visibilityThreshold ?? animationDefaults.visibilityThreshold, e.deltaY)) return;
-        updateStateByDelta(e.deltaY);
+        const animationCompleted = updateStateByDelta(e.deltaY);
+        // if(scrollAnimation.current?.disableScroll) {
+        //     const isInMiddleOfScreen = isSceneInMiddleOfScreen(sceneProps, 0.1);
+        //     if(isInMiddleOfScreen && !animationCompleted) document.body.style.overflow = 'hidden';
+        //     if(animationCompleted) document.body.style.overflow = 'auto'
+        // }
         springApi.start({
             to: async (next: any) => {
                 await next({
@@ -367,6 +396,7 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
             timeouts.current.forEach((t) => clearTimeout(t));
         }
     }, [sceneProps.isSceneVisible]);
+
 
     return spring;
 };

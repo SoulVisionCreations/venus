@@ -1,6 +1,6 @@
 export const enum ObjectTypes {
     ImplicitObject,
-    GltfObject,
+    MeshObject,
     StandardObject,
     Text3D,
 }
@@ -27,6 +27,7 @@ export const enum StandardGeometryTypes {
     TorusKnotGeometry,
     TubeGeometry,
     WireframeGeometry,
+    PointGeometry
 }
 
 export const enum MaterialTypes {
@@ -111,6 +112,7 @@ export const enum LightTypes {
 export const enum ComponentTypes {
     Container,
     Canvas,
+    Video
 }
 
 export const enum TextTypes {
@@ -129,7 +131,7 @@ export const enum Alignment {
 
 export const enum AssetTypes {
     Implicit,
-    Gltf,
+    Mesh,
     Image,
     Font,
 }

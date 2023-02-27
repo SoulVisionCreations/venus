@@ -10,7 +10,7 @@ export const config2: ContainerNodeProps = {
     assets: [
         // 'REC-jxvfZgVpLiDq9sM/deliverables/DLV-AhYTvfCZEUcLdXeekERqrymJA/
         { assetId: '100001', assetPath: 'data', assetType: AssetTypes.Implicit },
-        { assetId: '10001', assetPath: './1863416.glb', assetType: AssetTypes.Gltf },
+        { assetId: '10001', assetPath: './1863416.glb', assetType: AssetTypes.Mesh },
         { assetId: '1001', assetPath: './chair.png', assetType: AssetTypes.Image },
         { assetId: '101', assetPath: './Inter_Bold.json', assetType: AssetTypes.Font },
     ],
@@ -56,7 +56,7 @@ export const config2: ContainerNodeProps = {
                     ],
                 },
                 {
-                    type: ObjectTypes.GltfObject,
+                    type: ObjectTypes.MeshObject,
                     assetId: '10001',
                     scale: [1, 1, 1],
                     position: [0, 0, 0],

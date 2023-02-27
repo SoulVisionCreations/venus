@@ -1,6 +1,6 @@
-import { GltfObjectProps, ImplicitObjectProps, Object3DProps, ObjectHtmlProps, StandardObjectProps, Text3DObjectProps } from '../../types/object3DTypes';
+import { ImplicitObjectProps, MeshObjectProps, Object3DProps, ObjectHtmlProps, StandardObjectProps, Text3DObjectProps } from '../../types/object3DTypes';
 import ImplicitObject from './types/implicitObject';
-import GltfObject from './types/gltfObject';
+import GltfObject from './types/MeshObject';
 import StandardObject from './types/standardObject';
 import Text3DObject from './types/text3DObject';
 import ObjectHtml from '../ObjectHtml';
@@ -21,8 +21,8 @@ export const Object3D = ({ objectProps, sceneProps }: { objectProps: Object3DPro
     switch (objectProps.type) {
         case ObjectTypes.ImplicitObject:
             return <ImplicitObject objectProps={objectProps as ImplicitObjectProps} sceneProps={sceneProps} />;
-        case ObjectTypes.GltfObject:
-            return <GltfObject objectProps={objectProps as GltfObjectProps} sceneProps={sceneProps} />;
+        case ObjectTypes.MeshObject:
+            return <GltfObject objectProps={objectProps as MeshObjectProps} sceneProps={sceneProps} />;
         case ObjectTypes.StandardObject:
             return <StandardObject objectProps={objectProps as StandardObjectProps} sceneProps={sceneProps} />;
         case ObjectTypes.Text3D:

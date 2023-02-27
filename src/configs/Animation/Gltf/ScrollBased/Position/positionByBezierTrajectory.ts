@@ -7,7 +7,7 @@ export const PositionByBezierTrajectoryWithScaleAndRotateConfig: ContainerNodePr
     alignment: Alignment.Vertical,
     assets: [
         { assetId: '11', assetPath: './Inter_Bold.json', assetType: AssetTypes.Font },
-        { assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Gltf },
+        { assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Mesh },
     ],
     children: [
         {
@@ -56,7 +56,7 @@ export const PositionByBezierTrajectoryWithScaleAndRotateConfig: ContainerNodePr
                     assetIds: ['101'],
                     objects: [
                         {
-                            type: ObjectTypes.GltfObject,
+                            type: ObjectTypes.MeshObject,
                             assetId: '101',
                             position: [0, -10, -50],
                             rotation: [0, 0, 0],
@@ -115,7 +115,7 @@ export const PositionByBezierTrajectoryWithScaleAndRotateConfig: ContainerNodePr
                     assetIds: ['101'],
                     objects: [
                         {
-                            type: ObjectTypes.GltfObject,
+                            type: ObjectTypes.MeshObject,
                             assetId: '101',
                             position: [0, -10, -50],
                             rotation: [0, 0, 0],

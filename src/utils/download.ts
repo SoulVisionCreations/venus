@@ -1,17 +1,21 @@
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
+import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js';
 import { AssetTypes } from '../types/enums';
 import { loadImplicitData } from '../renderer/data_loader';
 import { AssetProps } from '../types/types';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 // import { getS3UrlFromRequest } from './requests'
 
-const assetsMap: { [key: string]: any } = {};
+const assetsMap: { [key: string | symbol]: any } = {};
 
-export function getAssetbyId(id: string) {
+export function getAssetbyId(id: string | symbol) {
     if (id in assetsMap) return assetsMap[id];
     return 'downloading';
 }
 
+const objLoader = new OBJLoader();
+const mtlLoader = new MTLLoader();
 const gltfLoader = new GLTFLoader();
 const dracoLoader = new DRACOLoader();
 dracoLoader.setDecoderPath('./draco/');
@@ -35,9 +39,19 @@ export async function downloadAssets(assets: AssetProps[]) {
                         };
                         break;
                     }
-                    case AssetTypes.Gltf: {
-                        const gltf = await gltfLoader.loadAsync(assetPath);
-                        assetsMap[assetId] = gltf;
+                    case AssetTypes.Mesh: {
+                        if (assetPath.includes('glb')) {
+                            const gltf = await gltfLoader.loadAsync(assetPath);
+                            assetsMap[assetId] = gltf;
+                        } else {
+                            mtlLoader.load(`${assetPath}material_0.mtl`, (materials) => {
+                                materials.preload();
+                                objLoader.setMaterials(materials);
+                                objLoader.load(`${assetPath}latest.obj`, (object) => {
+                                    assetsMap[assetId] = object;
+                                });
+                            });
+                        }
                         break;
                     }
                     case AssetTypes.Image: {

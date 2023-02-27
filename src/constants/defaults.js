@@ -27,7 +27,8 @@ export const animationDefaults = {
         scale: [0, 0, 0],
     },
     scrollAnimation: {
-        maxRotation: Math.PI * 2,
+        disableScroll: false,
+        maxRotation: Math.PI*2,
         minRotation: 0,
         speed: 0.1,
         springConfig: { mass: 4, tension: 280, friction: 90 },
@@ -47,6 +48,10 @@ export const htmlDefaults = {
 };
 
 export const stylingDefaults = {
+    square500Box: {
+        height: '500px',
+        width: '500px',
+    },
     flexRowContainer: {
         display: 'flex',
         flexDirection: 'row',
@@ -58,22 +63,22 @@ export const stylingDefaults = {
     fullWidthSmallHeightCanvas: {
         height: '400px',
         width: '100%',
-        boxSizing: 'content-box',
     },
     fullWidthMediumHeightCanvas: {
         height: '750px',
         width: '100%',
-        boxSizing: 'content-box',
     },
     fullWidthLargeHeightCanvas: {
         height: '900px',
         width: '100%',
-        boxSizing: 'content-box',
     },
     fullWidthFullHeightCanvas: {
         height: `${window.innerHeight}px`,
         widht: `${window.innerWidth}px`,
-        boxSizing: 'content-box',
+    },
+    fullWidthFullHeightVideo: {
+        height: `${window.innerHeight}px`,
+        widht: `${window.innerWidth}px`,
     },
     fullHeightCanvas: {
         height: `${window.innerHeight}px`,

@@ -70,6 +70,7 @@ export type IntroAnimation = {
 
 export type ScrollAnimation = {
     visibilityThreshold?: VisibilityThreshold;
+    disableScroll?: boolean;
     rotateOnScroll?: {
         axis: number[];
         velocity: number;

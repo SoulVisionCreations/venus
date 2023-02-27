@@ -5,7 +5,7 @@ import { ContainerNodeProps } from '../../../../../types/types';
 export const RotationByBezierTrajectoryWithScaleUpConfig: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
-    assets: [{ assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Gltf }],
+    assets: [{ assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Mesh }],
     children: [
         {
             type: ComponentTypes.Canvas,
@@ -27,7 +27,7 @@ export const RotationByBezierTrajectoryWithScaleUpConfig: ContainerNodeProps = {
             assetIds: ['101'],
             objects: [
                 {
-                    type: ObjectTypes.GltfObject,
+                    type: ObjectTypes.MeshObject,
                     assetId: '101',
                     position: [0, 0, 0],
                     rotation: [Math.PI / 2, 0, 0],

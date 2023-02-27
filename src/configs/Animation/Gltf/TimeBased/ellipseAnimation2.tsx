@@ -4,7 +4,7 @@ import { ContainerNodeProps } from '../../../../types/types';
 export const ellipse2Config: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
-    assets: [{ assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Gltf }],
+    assets: [{ assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Mesh }],
     children: [
         {
             type: ComponentTypes.Canvas,
@@ -27,7 +27,7 @@ export const ellipse2Config: ContainerNodeProps = {
             assetIds: ['101'],
             objects: [
                 {
-                    type: ObjectTypes.GltfObject,
+                    type: ObjectTypes.MeshObject,
                     assetId: '101',
                     position: [0, 0, 0],
                     rotation: [0, 0, 0],

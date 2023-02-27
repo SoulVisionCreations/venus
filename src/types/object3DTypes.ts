@@ -30,7 +30,7 @@ export type StandardObjectProps = CommonObject3DProps & {
     objectHtmls?: ObjectHtmlProps[];
 };
 
-export type GltfObjectProps = CommonObject3DProps & {
+export type MeshObjectProps = CommonObject3DProps & {
     assetId: string;
     objectHtmls?: ObjectHtmlProps[];
 };
@@ -51,7 +51,7 @@ export type ImplicitObjectProps = CommonObject3DProps & {
     objectHtmls?: ObjectHtmlProps[];
 };
 
-export type Object3DProps = ImplicitObjectProps | Text3DObjectProps | GltfObjectProps | StandardObjectProps;
+export type Object3DProps = ImplicitObjectProps | Text3DObjectProps | MeshObjectProps | StandardObjectProps;
 
 export type strongObject3DStateOfArrays = {
     position: number[];

@@ -99,7 +99,6 @@ export interface TextProps {
     textAlign?: 'center' | 'left' | 'right' | 'justify';
     anchorX?: number | 'center' | 'left' | 'right';
     anchorY?: number | 'bottom' | 'top' | 'middle' | 'top-baseline' | 'bottom-baseline';
-    depthOffset?: number;
     overflowWrap?: 'normal' | 'break-word';
     whiteSpace?: 'normal' | 'overflowWrap';
     outlineWidth?: string | number;
@@ -152,13 +151,19 @@ export interface CanvasNodeProps {
     environment?: EnvironmentProps;
 }
 
+export interface VideoNodeProps {
+    type: ComponentTypes;
+    style?: any;
+    src: string;
+}
+
 export interface ContainerNodeProps {
     type: ComponentTypes;
     alignment?: Alignment;
     assets?: any;
     style?: any;
     className?: string;
-    children: Array<ContainerNodeProps | CanvasNodeProps>;
+    children: Array<ContainerNodeProps | CanvasNodeProps | VideoNodeProps>;
 }
 
 export interface AssetProps {
