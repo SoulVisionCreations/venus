@@ -1,5 +1,5 @@
 import { stylingDefaults } from '../constants/defaults';
-import { Alignment, AnimationTrajectory, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectHtmlTypes, ObjectTypes, TextTypes } from '../types/enums';
+import { Alignment, Trajectory, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectHtmlTypes, ObjectTypes, TextTypes } from '../types/enums';
 import { ContainerNodeProps } from '../types/types';
 
 export const DemoExample: ContainerNodeProps = {
@@ -9,7 +9,7 @@ export const DemoExample: ContainerNodeProps = {
     style: stylingDefaults.flexColumnContainer,
     assets: [
         // 'REC-jxvfZgVpLiDq9sM/deliverables/DLV-AhYTvfCZEUcLdXeekERqrymJA/
-        { assetId: '100001', assetPath: './scene.glb', assetType: AssetTypes.Gltf },
+        { assetId: '100001', assetPath: './scene.glb', assetType: AssetTypes.Mesh },
         { assetId: '101', assetPath: './Inter_Bold.json', assetType: AssetTypes.Font },
     ],
     children: [
@@ -36,7 +36,7 @@ export const DemoExample: ContainerNodeProps = {
             ],
             objects: [
                 {
-                    type: ObjectTypes.GltfObject,
+                    type: ObjectTypes.MeshObject,
                     assetId: '100001',
                     position: [0, 0, 0],
                     rotation: [Math.PI / 2, 0, 0],
@@ -54,7 +54,7 @@ export const DemoExample: ContainerNodeProps = {
                         {
                             initialPause: 500,
                             type: AnimationTypes.intro,
-                            trajectory: AnimationTrajectory.manual,
+                            trajectory: Trajectory.manual,
                             stateIncrements: [
                                 {
                                     scale: [1, 1, 1],
@@ -65,7 +65,7 @@ export const DemoExample: ContainerNodeProps = {
                         {
                             initialPause: 500,
                             type: AnimationTypes.scroll,
-                            trajectory: AnimationTrajectory.curveDefinedByPoints,
+                            trajectory: Trajectory.curveDefinedByPoints,
                             trajectoryMetaData: {
                                 points: [
                                     [0, 0, 0],
@@ -89,7 +89,7 @@ export const DemoExample: ContainerNodeProps = {
                         {
                             initialPause: 500,
                             type: AnimationTypes.intro,
-                            trajectory: AnimationTrajectory.manual,
+                            trajectory: Trajectory.manual,
                             stateIncrements: [
                                 {
                                     position: [0, 0, 1],
@@ -101,7 +101,7 @@ export const DemoExample: ContainerNodeProps = {
                         {
                             initialPause: 500,
                             type: AnimationTypes.scroll,
-                            trajectory: AnimationTrajectory.curveDefinedByPoints,
+                            trajectory: Trajectory.curveDefinedByPoints,
                             trajectoryMetaData: {
                                 points: [
                                     [0, 0, 1],
@@ -130,7 +130,7 @@ export const DemoExample: ContainerNodeProps = {
                         {
                             initialPause: 500,
                             type: AnimationTypes.scroll,
-                            trajectory: AnimationTrajectory.curveDefinedByPoints,
+                            trajectory: Trajectory.curveDefinedByPoints,
                             trajectoryMetaData: {
                                 points: [
                                     [0, -0.8, 1],
@@ -155,7 +155,7 @@ export const DemoExample: ContainerNodeProps = {
                         {
                             initialPause: 500,
                             type: AnimationTypes.scroll,
-                            trajectory: AnimationTrajectory.curveDefinedByPoints,
+                            trajectory: Trajectory.curveDefinedByPoints,
                             trajectoryMetaData: {
                                 points: [
                                     [0.95, -4, 1],
@@ -181,7 +181,7 @@ export const DemoExample: ContainerNodeProps = {
                         {
                             initialPause: 500,
                             type: AnimationTypes.scroll,
-                            trajectory: AnimationTrajectory.curveDefinedByPoints,
+                            trajectory: Trajectory.curveDefinedByPoints,
                             trajectoryMetaData: {
                                 points: [
                                     [1.2, -4.6, 1],
@@ -206,7 +206,7 @@ export const DemoExample: ContainerNodeProps = {
                         {
                             initialPause: 500,
                             type: AnimationTypes.scroll,
-                            trajectory: AnimationTrajectory.curveDefinedByPoints,
+                            trajectory: Trajectory.curveDefinedByPoints,
                             trajectoryMetaData: {
                                 points: [
                                     [-0.95, -7.4, 1],
@@ -232,7 +232,7 @@ export const DemoExample: ContainerNodeProps = {
                         {
                             initialPause: 500,
                             type: AnimationTypes.scroll,
-                            trajectory: AnimationTrajectory.curveDefinedByPoints,
+                            trajectory: Trajectory.curveDefinedByPoints,
                             trajectoryMetaData: {
                                 points: [
                                     [-1.2, -8, 1],

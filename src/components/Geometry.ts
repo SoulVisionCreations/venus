@@ -119,6 +119,8 @@ const Geometry = (props: GeometryProps): BufferGeometry | null => {
             return new TubeGeometry(...params);
         case StandardGeometryTypes.WireframeGeometry:
             return new WireframeGeometry(...params);
+        case StandardGeometryTypes.PointGeometry:
+            return new BufferGeometry();
         default:
             return null;
     }

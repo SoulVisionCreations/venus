@@ -1,4 +1,4 @@
-import { Alignment, AssetTypes, CameraTypes, ComponentTypes, LightTypes, MaterialTypes, SceneControlTypes, StandardGeometryTypes, TextTypes } from './enums';
+import { Alignment, AssetTypes, CameraTypes, ComponentTypes, HtmlTemplateTypes, LightTypes, MaterialTypes, SceneControlTypes, StandardGeometryTypes, TextTypes } from './enums';
 import { BufferGeometry, Shape, Vector2, TextureEncoding, Material } from 'three';
 import { Object3DProps } from './object3DTypes';
 import { Animation } from './animationTypes';
@@ -97,7 +97,6 @@ export interface TextProps {
     textAlign?: 'center' | 'left' | 'right' | 'justify';
     anchorX?: number | 'center' | 'left' | 'right';
     anchorY?: number | 'bottom' | 'top' | 'middle' | 'top-baseline' | 'bottom-baseline';
-    depthOffset?: number;
     overflowWrap?: 'normal' | 'break-word';
     whiteSpace?: 'normal' | 'overflowWrap';
     outlineWidth?: string | number;
@@ -111,9 +110,17 @@ export interface TextProps {
     material?: Material;
 }
 
+export type HtmlTemplateProps = unknownObject & {
+    type: HtmlTemplateTypes;
+    position?: number[];
+    rotation?: number[];
+    scale?: number;
+};
+
 export type CameraProps = {
     type: CameraTypes;
     position: number[];
+    rotation?: number[];
     fov?: number;
     near?: number;
     far?: number;
@@ -137,8 +144,15 @@ export interface CanvasNodeProps {
     texts?: Array<TextProps>;
     lights?: Array<LightProps>;
     images?: Array<ImageProps>;
+    htmlTemplates?: Array<HtmlTemplateProps>;
     sceneControl?: { type: SceneControlTypes };
     environment?: EnvironmentProps;
+}
+
+export interface VideoNodeProps {
+    type: ComponentTypes;
+    style?: any;
+    src: string;
 }
 
 export interface ContainerNodeProps {
@@ -147,11 +161,11 @@ export interface ContainerNodeProps {
     assets?: any;
     style?: any;
     className?: string;
-    children: Array<ContainerNodeProps | CanvasNodeProps>;
+    children: Array<ContainerNodeProps | CanvasNodeProps | VideoNodeProps>;
 }
 
 export interface AssetProps {
-    assetId: string;
+    assetId: string | symbol;
     assetPath: string;
     assetType: AssetTypes;
 }

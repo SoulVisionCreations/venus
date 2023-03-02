@@ -1,6 +1,6 @@
 export const enum ObjectTypes {
     ImplicitObject,
-    GltfObject,
+    MeshObject,
     StandardObject,
     Text3D,
 }
@@ -27,6 +27,7 @@ export enum StandardGeometryTypes {
     TorusKnotGeometry,
     TubeGeometry,
     WireframeGeometry,
+    PointGeometry
 }
 
 export enum MaterialTypes {
@@ -64,12 +65,15 @@ export const enum AnimationTypes {
     scroll,
 }
 
-export const enum AnimationTrajectory {
+export const enum Trajectory {
     manual,
     ellipse,
     circle,
-    curveDefinedByPoints,
-    multipleCurveDefinedByPoints,
+    line3,
+    quadracticBezierCurve3,
+    cubicBezierCurve3,
+    splineCurve3,
+    multipleCurvePath,
 }
 
 export const enum InstanceMeshAnimationTypes {
@@ -109,11 +113,16 @@ export enum LightTypes {
 export const enum ComponentTypes {
     Container,
     Canvas,
+    Video
 }
 
 export enum TextTypes {
     Paragraph,
     List,
+}
+
+export const enum HtmlTemplateTypes {
+    ParagraphBox,
 }
 
 export const enum Alignment {
@@ -123,7 +132,12 @@ export const enum Alignment {
 
 export const enum AssetTypes {
     Implicit,
-    Gltf,
+    Mesh,
     Image,
     Font,
+}
+
+export const enum implicitResolution {
+    low = 'low',
+    high = 'high',
 }

@@ -1,6 +1,7 @@
 import { ObjectHtmlTypes, ObjectTypes } from './enums';
 import { Animation } from './animationTypes';
 import { GeometryProps, MaterialProps } from './types';
+import { Vector3 } from 'three';
 
 export type ObjectHtmlProps = {
     html?: string;
@@ -27,7 +28,7 @@ export type StandardObjectProps = CommonObject3DProps & {
     objectHtmls?: ObjectHtmlProps[];
 };
 
-export type GltfObjectProps = CommonObject3DProps & {
+export type MeshObjectProps = CommonObject3DProps & {
     assetId: string;
     objectHtmls?: ObjectHtmlProps[];
 };
@@ -48,4 +49,28 @@ export type ImplicitObjectProps = CommonObject3DProps & {
     objectHtmls?: ObjectHtmlProps[];
 };
 
-export type Object3DProps = ImplicitObjectProps | Text3DObjectProps | GltfObjectProps | StandardObjectProps;
+export type Object3DProps = ImplicitObjectProps | Text3DObjectProps | MeshObjectProps | StandardObjectProps;
+
+export type strongObject3DStateOfArrays = {
+    position: number[];
+    rotation: number[];
+    scale: number[];
+};
+
+export type weakObject3DStateofArrays = {
+    position?: number[];
+    rotation?: number[];
+    scale?: number[];
+};
+
+export type strongObject3DStateOfVectors = {
+    position: Vector3;
+    rotation: Vector3;
+    scale: Vector3;
+};
+
+export type weakObject3DStateofVectors = {
+    position?: Vector3;
+    rotation?: Vector3;
+    scale?: Vector3;
+};

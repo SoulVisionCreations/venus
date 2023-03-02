@@ -1,11 +1,12 @@
 import { applySceneControl } from '../utils/SceneControls/sceneControl';
 import Light from './Light';
 import { Object3D } from './Object3D/object3D';
-import { ImageProps, LightProps, TextProps } from '../types/types';
+import { HtmlTemplateProps, ImageProps, LightProps, TextProps } from '../types/types';
 import { Object3DProps } from '../types/object3DTypes';
 import { CanvasRect } from './CanvasNode';
 import TextLoader from './Text';
 import ImageLoader from './Image';
+import HtmlTemplateLoader from './HtmlTemplate';
 
 export type SceneProps = {
     isSceneVisible: boolean;
@@ -20,6 +21,7 @@ type Props = {
     texts?: Array<TextProps> | undefined;
     images?: Array<ImageProps> | undefined;
     sceneProps: SceneProps;
+    htmlTemplates?: Array<HtmlTemplateProps> | undefined;
 };
 
 const addLights = (lights: Array<LightProps>) => {
@@ -40,6 +42,12 @@ const renderTexts = (texts: Array<TextProps>, sceneProps: SceneProps) => {
     });
 };
 
+const renderHtmlTemplates = (htmlTemplates: Array<HtmlTemplateProps>) => {
+    return htmlTemplates.map((htmlTemplateProps: HtmlTemplateProps, index: number) => {
+        return <HtmlTemplateLoader {...htmlTemplateProps} key={index} />;
+    });
+};
+
 const renderImages = (images: Array<ImageProps>, sceneProps: SceneProps) => {
     return images.map((imageProps: ImageProps, index: number) => {
         return <ImageLoader imageProps={imageProps} sceneProps={sceneProps} key={index} />;
@@ -54,6 +62,7 @@ export default function Scene(props: Props) {
             {props.objects && props.objects.length > 0 ? renderObjects(props.objects, props.sceneProps) : null}
             {props.texts && props.texts.length > 0 ? renderTexts(props.texts, props.sceneProps) : null}
             {props.images && props.images.length > 0 ? renderImages(props.images, props.sceneProps) : null}
+            {props.htmlTemplates && props.htmlTemplates.length > 0 ? renderHtmlTemplates(props.htmlTemplates) : null}
         </>
     );
 }

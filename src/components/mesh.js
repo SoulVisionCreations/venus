@@ -1,15 +1,13 @@
 import { animated } from '@react-spring/three';
-import { useSpringAnimation } from '../utils/Animations/springAnimations';
 import { useEffect, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { ObjectControls } from '../utils/ObjectControls/objectControls';
-import { useScrollAnimation } from '../utils/Animations/scrollAnimation';
+import { useAnimation } from '../utils/Animations/useAnimation';
 import { renderObjectHtmls } from './Object3D/object3D';
 
 export function Mesh({ geometry, material, gSceneParams, objectProps, sceneProps }) {
     const meshRef = useRef();
-    const [spring, api] = useSpringAnimation(objectProps, sceneProps);
-    useScrollAnimation(objectProps, sceneProps, api);
+    const spring = useAnimation(objectProps, sceneProps);
 
     useFrame((state) => {
         if (!meshRef.current) return;

@@ -5,14 +5,33 @@ export const cameraDefaults = {
     makeDefault: true,
 };
 
+export const trajectoryDefaults = {
+    closed: false,
+    equiSpacedPoints: true,
+    steps: 100,
+    clockwise: true,
+};
+
 export const animationDefaults = {
+    initialPause: 0,
+    interval: 0,
+    repeat: false,
     rotationArray: [0, 0, 1],
+    visibilityThreshold: { sceneTopToScreenBottomRatio: 0.5, sceneBottomToScreenTopRatio: 0.5 },
     scrollByRotationContinouslySpeed: 0.04,
     scrollByRotationOnceSpeed: 0.06,
+    steps: 100,
     increment: {
         position: [0, 0, 0],
         rotation: [0, 0, 0],
         scale: [0, 0, 0],
+    },
+    scrollAnimation: {
+        disableScroll: false,
+        maxRotation: Math.PI*2,
+        minRotation: 0,
+        speed: 0.1,
+        springConfig: { mass: 4, tension: 280, friction: 90 },
     },
 };
 
@@ -29,6 +48,10 @@ export const htmlDefaults = {
 };
 
 export const stylingDefaults = {
+    square500Box: {
+        height: '500px',
+        width: '500px',
+    },
     flexRowContainer: {
         display: 'flex',
         flexDirection: 'row',
@@ -45,22 +68,22 @@ export const stylingDefaults = {
     fullWidthSmallHeightCanvas: {
         height: '400px',
         width: '100%',
-        boxSizing: 'content-box',
     },
     fullWidthMediumHeightCanvas: {
         height: '750px',
         width: '100%',
-        boxSizing: 'content-box',
     },
     fullWidthLargeHeightCanvas: {
         height: '900px',
         width: '100%',
-        boxSizing: 'content-box',
     },
     fullWidthFullHeightCanvas: {
         height: `${window.innerHeight}px`,
         widht: `${window.innerWidth}px`,
-        boxSizing: 'content-box',
+    },
+    fullWidthFullHeightVideo: {
+        height: `${window.innerHeight}px`,
+        widht: `${window.innerWidth}px`,
     },
     fullHeightCanvas: {
         height: `${window.innerHeight}px`,
@@ -68,6 +91,9 @@ export const stylingDefaults = {
     },
     mediumHeightCanvas: {
         height: '750px',
+        flexGrow: 1,
+    },
+    flexGrow1: {
         flexGrow: 1,
     },
 };

@@ -1,11 +1,12 @@
 import { Canvas, useThree } from '@react-three/fiber';
 import TextLoader from './Text';
-import { ImageProps, TextProps } from '../types/types';
-import Orbit from '../utils/SceneControls/Orbit';
+import { HtmlTemplateProps, ImageProps, TextProps } from '../types/types';
+// import Orbit from '../utils/SceneControls/Orbit';
 import ImageLoader from './Image';
 import { useEffect } from 'react';
+import HtmlTemplateLoader from './HtmlTemplate';
 
-export default function StoryBookApp({ config, componentType }: { config: TextProps | ImageProps; componentType: string }) {
+export default function StoryBookApp({ config, componentType }: { config: TextProps | ImageProps | HtmlTemplateProps; componentType: string }) {
     const sceneProps = {
         isSceneVisible: true,
         isSceneCompletelyVisible: true,
@@ -26,9 +27,10 @@ export default function StoryBookApp({ config, componentType }: { config: TextPr
         <div style={{ width: '100vw', height: '100vh' }}>
             <Canvas camera={{ position: [0, 0, 2] }}>
                 <GetInfo />
-                <Orbit />
+                {/* <Orbit /> */}
                 {componentType == 'text' && <TextLoader textProps={config as TextProps} sceneProps={sceneProps} />}
                 {componentType == 'image' && <ImageLoader imageProps={config as ImageProps} sceneProps={sceneProps} />}
+                {componentType == 'htmltemplate' && <HtmlTemplateLoader {...(config as HtmlTemplateProps)} />}
             </Canvas>
         </div>
     );

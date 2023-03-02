@@ -1,5 +1,6 @@
 import { Euler, Matrix4, Quaternion, Vector2, Vector3, Vector4 } from 'three';
 import { objectDefaults } from '../constants/defaults';
+import { strongObject3DStateOfArrays, strongObject3DStateOfVectors } from '../types/object3DTypes';
 
 export function degToRad(deg: number): number {
     return deg * (Math.PI / 180);
@@ -59,3 +60,16 @@ export const getInitialialStateMatrix4 = (instance: any): Matrix4 => {
     const matrix = createMatrix4(position, rotation, scale);
     return matrix;
 };
+
+export const convertStateVecToArr = (stateVec: strongObject3DStateOfVectors): strongObject3DStateOfArrays => {
+    return {
+        position: [stateVec.position.x, stateVec.position.y, stateVec.position.z],
+        rotation: [stateVec.rotation.x, stateVec.rotation.y, stateVec.rotation.z],
+        scale: [stateVec.scale.x, stateVec.scale.y, stateVec.scale.z],
+    };
+};
+
+
+export const areEqualVectors = (vector1: Vector3, vector2: Vector3, precision: number) => {
+    return ( ( Math.abs( vector1.x - vector2.x ) < precision ) && ( Math.abs( vector1.y - vector2.y ) < precision ) && ( Math.abs( vector1.z - vector2.z ) < precision ) );
+}
