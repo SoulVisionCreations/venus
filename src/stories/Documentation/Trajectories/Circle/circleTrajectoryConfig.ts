@@ -1,8 +1,8 @@
-import { stylingDefaults } from "../../../../constants/defaults";
-import { Alignment, AnimationTypes, CameraTypes, ComponentTypes, LightTypes, MaterialTypes, ObjectTypes, StandardGeometryTypes, Trajectory } from "../../../../types/enums";
-import { ContainerNodeProps } from "../../../../types/types";
+import { stylingDefaults } from '../../../../constants/defaults';
+import { Alignment, AnimationTypes, CameraTypes, ComponentTypes, LightTypes, MaterialTypes, ObjectTypes, StandardGeometryTypes, Trajectory } from '../../../../types/enums';
+import { CircleMetaData } from '../../../../types/trajectoryTypes';
 
-export const getCircleTrajectoryConfig = (clockwise: boolean, center: number[]): ContainerNodeProps => {
+export const getCircleTrajectoryConfig = ({ clockwise, center, radius, rotateCurve }: CircleMetaData) => {
     return {
         type: ComponentTypes.Container,
         alignment: Alignment.Vertical,
@@ -28,8 +28,8 @@ export const getCircleTrajectoryConfig = (clockwise: boolean, center: number[]):
                 objects: [
                     {
                         type: ObjectTypes.StandardObject,
-                        geometry: { type: StandardGeometryTypes.SphereGeometry, radius: 0.2},
-                        material: { type: MaterialTypes.MeshStandardMaterial},
+                        geometry: { type: StandardGeometryTypes.SphereGeometry, radius: 0.2 },
+                        material: { type: MaterialTypes.MeshStandardMaterial },
                         position: [0, 0.5, 0],
                         rotation: [0, 0, 0],
                         scale: [0.4, 0.4, 0.4],
@@ -50,15 +50,10 @@ export const getCircleTrajectoryConfig = (clockwise: boolean, center: number[]):
                                             position: {
                                                 trajectoryMetaData: {
                                                     type: Trajectory.circle,
-                                                    center: center,
-                                                    clockwise: clockwise,
-                                                    radius: 0.5,
-                                                    rotateCurve: [
-                                                        {
-                                                            axis: [1, 0, 0],
-                                                            angle: 0,
-                                                        },
-                                                    ],
+                                                    center,
+                                                    clockwise,
+                                                    radius,
+                                                    rotateCurve,
                                                 },
                                             },
                                         },
@@ -71,4 +66,4 @@ export const getCircleTrajectoryConfig = (clockwise: boolean, center: number[]):
             },
         ],
     };
-}
+};

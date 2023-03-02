@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
-import { VideoNodeProps } from "../types/types";
+import { useEffect, useRef } from 'react';
+import { VideoNodeProps } from '../types/types';
 
 export const VideoNode = (props: VideoNodeProps) => {
     const canvasRef = useRef<any>();
@@ -9,8 +9,8 @@ export const VideoNode = (props: VideoNodeProps) => {
     const animationFrameCallback = useRef<any>();
 
     async function getVideoTrack() {
-        const video = document.createElement("video");
-        video.crossOrigin = "anonymous";
+        const video = document.createElement('video');
+        video.crossOrigin = 'anonymous';
         video.src = props.src;
         video.muted = true;
         await video.play();
@@ -22,17 +22,17 @@ export const VideoNode = (props: VideoNodeProps) => {
     const renderFrame = () => {
         const frame = frames.current[activeFrameIndex.current];
         ctx.current.drawImage(frame, 0, 0);
-    }
+    };
 
     const handleScroll = (e: any) => {
         console.log('something');
-        if(e.deltaY > 0) {
+        if (e.deltaY > 0) {
             activeFrameIndex.current = Math.min(frames.current.length - 1, activeFrameIndex.current + 1);
-        } else if(e.deltaY < 0) {
+        } else if (e.deltaY < 0) {
             activeFrameIndex.current = Math.max(0, activeFrameIndex.current - 1);
         }
         animationFrameCallback.current = requestAnimationFrame(renderFrame);
-    }
+    };
 
     const renderFirstFrame = () => {
         const frame = frames.current[0];
@@ -43,11 +43,11 @@ export const VideoNode = (props: VideoNodeProps) => {
     };
 
     function readChunk(reader) {
-        reader.read().then(async({ done, value }) => {
+        reader.read().then(async ({ done, value }) => {
             if (value) {
-                const bitmap = await createImageBitmap(value, {resizeHeight: window.innerHeight, resizeWidth: window.innerWidth, resizeQuality: 'high'});
+                const bitmap = await createImageBitmap(value, { resizeHeight: window.innerHeight, resizeWidth: window.innerWidth, resizeQuality: 'high' });
                 frames.current.push(bitmap);
-                if(activeFrameIndex.current == -1) {
+                if (activeFrameIndex.current == -1) {
                     renderFirstFrame();
                     window.addEventListener('wheel', handleScroll);
                 }
@@ -69,20 +69,17 @@ export const VideoNode = (props: VideoNodeProps) => {
             console.error("your browser doesn't support this API yet");
         }
     };
-      
+
     useEffect(() => {
         setTimeout(() => {
             createFrames();
             console.log(canvasRef.current);
-            ctx.current = canvasRef.current.getContext("2d");
-        }, 0)
+            ctx.current = canvasRef.current.getContext('2d');
+        }, 0);
     }, []);
 
-    return (
-        <canvas ref={canvasRef}></canvas>
-    )
-}
-
+    return <canvas ref={canvasRef}></canvas>;
+};
 
 // export const VideoNode = (props) => {
 //     //const [count, setCount] = useState(0);
@@ -91,12 +88,12 @@ export const VideoNode = (props: VideoNodeProps) => {
 //     //const frameNumber = 0; // start video at frame 0
 //     // lower numbers = faster playback
 //     // const playbackConst = 1000;
-//     // const scrollPlay = useCallback(() => {  
+//     // const scrollPlay = useCallback(() => {
 //     //     const frameNumber  = window.pageYOffset/playbackConst;
 //     //     videoRef.current.currentTime  = frameNumber;
 //     //     window.requestAnimationFrame(scrollPlay);
 //     // }, []);
-      
+
 //     useEffect(() => {
 //         document.body.style.overflow = 'hidden';
 //         let forwardTimer: any = null;

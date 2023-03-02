@@ -1,12 +1,13 @@
 import { Story } from '@storybook/react';
-import StoryBookApp from '../../components/StoryBookApp';
-import { TextTypes } from '../../types/enums';
-import { TextProps } from '../../types/types';
+import App from '../../../../App';
+import { TextTypes } from '../../../../types/enums';
+import { TextProps } from '../../../../types/types';
+import { getTextsConfig } from './textsConfig';
 
 // eslint-disable-next-line storybook/story-exports
 export default {
-    title: '2D Components/Texts',
-    component: StoryBookApp,
+    title: 'Documentation/2D Components/Texts',
+    component: App,
     argTypes: {
         title: {
             table: {
@@ -201,10 +202,19 @@ export default {
             },
         },
     },
+    parameters: {
+        previewTabs: {
+            canvas: {
+                hidden: true,
+            },
+        },
+        viewMode: 'docs',
+    },
 };
 
 const Text: Story<TextProps> = ({ ...args }) => {
-    return <StoryBookApp config={{ ...args }} componentType="text" />;
+    const config = getTextsConfig(args);
+    return <App config={{ ...config }} />;
 };
 
 export const TextParagraph = Text.bind({});

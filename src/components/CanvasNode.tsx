@@ -105,7 +105,15 @@ export default function CanvasNode(props: CanvasNodeProps) {
                 <Stats />
                 <PerformanceMonitor />
                 {props.camera && <Camera {...props.camera} />}
-                <Scene objects={props.objects} sceneControl={props.sceneControl} texts={props.texts} images={props.images} lights={props.lights} sceneProps={sceneProps} />
+                <Scene
+                    objects={props.objects}
+                    sceneControl={props.sceneControl}
+                    texts={props.texts}
+                    images={props.images}
+                    lights={props.lights}
+                    htmlTemplates={props.htmlTemplates}
+                    sceneProps={sceneProps}
+                />
                 {props.environment && props.environment.files.length > 0 && <Environment {...props.environment} />}
             </Canvas>
         </div>

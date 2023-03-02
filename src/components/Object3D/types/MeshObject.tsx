@@ -5,11 +5,11 @@ import { getAssetbyId } from '../../../utils/download';
 import { useAnimation } from '../../../utils/Animations/useAnimation';
 import { SceneProps } from '../../Scene';
 
-const MeshObject = ({ objectProps, sceneProps }: { objectProps: MeshObjectProps; sceneProps: SceneProps }) => {
+const MeshObject = ({ objectProps, sceneProps}: { objectProps: MeshObjectProps; sceneProps: SceneProps }) => {
     const model = getAssetbyId(objectProps.assetId);
+    console.log(model, objectProps.assetId);
     const object = model.scene ? model.scene.clone() : model.clone();
     const spring = useAnimation(objectProps, sceneProps);
-    console.log(model);
     return (
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore

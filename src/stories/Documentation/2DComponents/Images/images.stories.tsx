@@ -1,11 +1,12 @@
 import { Story } from '@storybook/react';
-import StoryBookApp from '../../components/StoryBookApp';
-import { ImageProps } from '../../types/types';
+import App from '../../../../App';
+import { ImageProps } from '../../../../types/types';
+import { getImagesConfig } from './imagesConfig';
 
 // eslint-disable-next-line storybook/story-exports
 export default {
-    title: '2D Components/Images',
-    component: StoryBookApp,
+    title: 'Documentation/2D Components/Images',
+    component: App,
     argTypes: {
         position: {
             control: 'object',
@@ -82,14 +83,23 @@ export default {
             },
         },
     },
+    parameters: {
+        previewTabs: {
+            canvas: {
+                hidden: true,
+            },
+        },
+        viewMode: 'docs',
+    },
 };
 
 const Image: Story<ImageProps> = ({ ...args }) => {
-    return <StoryBookApp config={{ ...args }} componentType="image" />;
+    const config = getImagesConfig(args);
+    return <App config={{ ...config }} />;
 };
 
-export const ImageStory = Image.bind({});
-ImageStory.args = {
+export const ImageExample = Image.bind({});
+ImageExample.args = {
     src: './storyimage.jpeg',
     position: [0, 0, 0],
     rotation: [0, 0, 0],
