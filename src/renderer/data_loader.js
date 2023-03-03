@@ -315,7 +315,7 @@ const CreateImplicitObj = (atlasIndexImage, rgb_data, alpha_data) => {
     var cropMin = gSceneParams['cropMin'] ? new THREE.Vector3().fromArray(gSceneParams['cropMin']) : new THREE.Vector3(-0.55, -0.55, -0.55);
     var cropMax = gSceneParams['cropMax'] ? new THREE.Vector3().fromArray(gSceneParams['cropMax']) : new THREE.Vector3(0.55, 0.55, 0.55);
     var sqrSelectedRegions = gSceneParams['sqrSelectedregions'] ? gSceneParams['sqrSelectedregions'] : [0];
-    var noise = gSceneParams['noise'] ? gSceneParams['noise'] : 1;
+    var noise = gSceneParams['noise'] ? gSceneParams['noise'] : 0.7;
     let options = {
         contrast: 1.046,
         gamma: 1.078,
