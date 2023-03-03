@@ -1,12 +1,12 @@
 import { AssetTypes, ComponentTypes, implicitResolution, ObjectTypes } from '../types/enums';
 import { CanvasNodeProps, ContainerNodeProps, EnvironmentProps } from '../types/types';
 
-export const configObjectTypeModifier = (config: ContainerNodeProps, objectType: ObjectTypes, assetId: symbol, environment: EnvironmentProps) => {
+export const configObjectTypeModifier = (config: ContainerNodeProps, objectType: ObjectTypes, assetId: symbol, envFile: string | string[]) => {
     const newConfig = { ...config };
     newConfig.children = [...newConfig.children];
     for (let i = 0; i < newConfig.children.length; i++) {
         if (newConfig.children[i].type == ComponentTypes.Container) {
-            newConfig.children[i] = configObjectTypeModifier(newConfig.children[i] as ContainerNodeProps, objectType, assetId, environment);
+            newConfig.children[i] = configObjectTypeModifier(newConfig.children[i] as ContainerNodeProps, objectType, assetId, envFile);
         } else {
             newConfig.children[i] = { ...newConfig.children[i] };
             if ('objects' in newConfig.children[i]) {
@@ -14,25 +14,23 @@ export const configObjectTypeModifier = (config: ContainerNodeProps, objectType:
                 const newObjects = [...(newConfig.children[i] as CanvasNodeProps).objects!];
                 for (let j = 0; j < newObjects.length; j++) {
                     if (newObjects[j].type == ObjectTypes.MeshObject || newObjects[j].type == ObjectTypes.ImplicitObject) {
-                        if ((newObjects[j] as any).assetId != '1122') {
-                            newObjects[j] = { ...newObjects[j] };
-                            newObjects[j].type = objectType;
-                            (newObjects[j] as any).assetId = assetId;
-                        }
+                        newObjects[j] = { ...newObjects[j] };
+                        newObjects[j].type = objectType;
+                        (newObjects[j] as any).assetId = assetId;
                     }
                 }
                 (newConfig.children[i] as CanvasNodeProps).objects = newObjects;
             }
-            (newConfig.children[i] as CanvasNodeProps).environment = { ...environment };
+            if ((newConfig.children[i] as CanvasNodeProps).environment) ((newConfig.children[i] as CanvasNodeProps).environment as EnvironmentProps).files = envFile;
         }
     }
     return newConfig;
 };
 
-export const configAssetModifier = (path: string, config: ContainerNodeProps, assetType: AssetTypes, objectType: ObjectTypes, assetId: symbol, environment: EnvironmentProps) => {
+export const configAssetModifier = (path: string, config: ContainerNodeProps, assetType: AssetTypes, objectType: ObjectTypes, assetId: symbol, envFile: string | string[]) => {
     let newConfig: ContainerNodeProps = { ...config, assets: [...config.assets] };
     newConfig.assets.push({ assetId: assetId, assetPath: path, assetType: assetType });
-    newConfig = configObjectTypeModifier(newConfig, objectType, assetId, environment);
+    newConfig = configObjectTypeModifier(newConfig, objectType, assetId, envFile);
     return newConfig;
 };
 

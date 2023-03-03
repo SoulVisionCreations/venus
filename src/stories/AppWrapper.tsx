@@ -2,7 +2,7 @@ import { Story } from '@storybook/react';
 import App from '../App';
 import { AssetTypes, implicitResolution, ObjectTypes } from '../types/enums';
 import { ContainerNodeProps } from '../types/types';
-import { configAssetModifier, getEnvFileUrl, getImplicitUrl, skuImplicitMap } from './utility';
+import { configAssetModifier, getImplicitUrl, skuImplicitMap } from './utility';
 
 const assetImplicitMap = new Map<string, symbol>();
 
@@ -13,9 +13,9 @@ export const AppWrapper: Story<{ skuId: string; resolution: implicitResolution; 
         assetId = Symbol();
         assetImplicitMap.set(args.skuId + args.resolution, assetId);
     }
-    const envFile = args.envFiles ? getEnvFileUrl(args.envFiles) : '';
+    // const envFile = args.envFiles ? getEnvFileUrl(args.envFiles) : '';
     const url = getImplicitUrl(skuImplicitMap.get(args.skuId) as string, args.resolution);
-    const config = configAssetModifier(url, args.storyConfig, AssetTypes.Implicit, ObjectTypes.ImplicitObject, assetId as symbol, { files: envFile, background: args.background });
+    const config = configAssetModifier(url, args.storyConfig, AssetTypes.Implicit, ObjectTypes.ImplicitObject, assetId as symbol, args.envFiles);
     return <App config={config} />;
 };
 
@@ -30,16 +30,17 @@ export const argTypes = {
     },
     envFiles: {
         control: 'radio',
-        options: ['neutral.hdr', 'photo_studio_01_4k_jun.hdr', 'photo_studio_broadway_hall_1k.hdr', 'AVTR_HDRI_08.hdr', 'AVTR_HDRI_07.hdr', 'AVTR_HDRI_06.hdr'],
+        // options: ['neutral.hdr', 'photo_studio_01_4k_jun.hdr', 'photo_studio_broadway_hall_1k.hdr', 'AVTR_HDRI_08.hdr', 'AVTR_HDRI_07.hdr', 'AVTR_HDRI_06.hdr', 'brown_photostudio_02_2k.hdr'],
+        options: ['', 'brown_photostudio_02_2k.hdr', 'old_depot_2k.hdr'],
     },
-    background: {
-        control: 'boolean',
-    },
+    // background: {
+    //     control: 'boolean',
+    // },
 };
 
 export const defaultArgs = {
     skuId: 'flower',
     resolution: implicitResolution.low,
-    envFiles: 'neutral.hdr',
-    background: false,
+    envFiles: '',
+    // background: false,
 };
