@@ -27,7 +27,7 @@ export enum StandardGeometryTypes {
     TorusKnotGeometry,
     TubeGeometry,
     WireframeGeometry,
-    PointGeometry
+    PointGeometry,
 }
 
 export enum MaterialTypes {
@@ -113,7 +113,7 @@ export enum LightTypes {
 export const enum ComponentTypes {
     Container,
     Canvas,
-    Video
+    Video,
 }
 
 export enum TextTypes {

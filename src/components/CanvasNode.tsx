@@ -104,8 +104,16 @@ export default function CanvasNode(props: CanvasNodeProps) {
                 <AdaptiveDpr pixelated />
                 <PerformanceMonitor />
                 {props.camera && <Camera {...props.camera} />}
-                <Scene objects={props.objects} sceneControl={props.sceneControl} texts={props.texts} images={props.images} lights={props.lights} sceneProps={sceneProps} />
-                <Environment files={'old_depot_2k.hdr'} ground={{ height: 8, radius: 130 }} />
+                <Scene
+                    objects={props.objects}
+                    sceneControl={props.sceneControl}
+                    texts={props.texts}
+                    images={props.images}
+                    lights={props.lights}
+                    htmlTemplates={props.htmlTemplates}
+                    sceneProps={sceneProps}
+                />
+                {props.environment && props.environment.files.length > 0 && <Environment {...props.environment} />}
             </Canvas>
         </div>
     );

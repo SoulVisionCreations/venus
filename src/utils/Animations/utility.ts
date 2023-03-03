@@ -3,11 +3,13 @@ import { strongObject3DStateOfVectors, weakObject3DStateofArrays } from '../../t
 
 export const getManualStateTrajectoryPoints = (stateIncrements: Array<weakObject3DStateofArrays>, state: { current: strongObject3DStateOfVectors }) => {
     const stateTrajectoryVec: Array<strongObject3DStateOfVectors> = [];
-    const initialState = {current: {
-        position: state.current.position.clone(),
-        rotation: state.current.rotation.clone(),
-        scale: state.current.scale.clone(),
-    }};
+    const initialState = {
+        current: {
+            position: state.current.position.clone(),
+            rotation: state.current.rotation.clone(),
+            scale: state.current.scale.clone(),
+        },
+    };
     stateIncrements.forEach((nextState) => {
         stateTrajectoryVec.push({
             position: nextState.position ? state.current.position.add(new Vector3(...nextState.position)) : state.current.position,

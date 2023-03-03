@@ -1,14 +1,11 @@
 // import { stylingDefaults } from '../../constants/defaults';
-import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, SceneControlTypes } from '../../types/enums';
+import { Alignment, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, SceneControlTypes } from '../../types/enums';
 import { ContainerNodeProps } from '../../types/types';
 
 export const ImplicitinRoomConfig: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
-    assets: [
-        { assetId: '102', assetPath: 'data2', assetType: AssetTypes.Implicit },
-        { assetId: '1122', assetPath: './room.glb', assetType: AssetTypes.Mesh },
-    ],
+    assets: [{ assetId: '102', assetPath: 'data2', assetType: AssetTypes.Implicit }],
     children: [
         {
             type: ComponentTypes.Canvas,
@@ -18,8 +15,19 @@ export const ImplicitinRoomConfig: ContainerNodeProps = {
                 type: CameraTypes.Perspective,
                 position: [0, 1, 8],
             },
+            environment: {
+                files: 'brown_photostudio_02_2k.hdr',
+                ground: {
+                    height: 32,
+                    radius: 120,
+                },
+            },
             sceneControl: {
                 type: SceneControlTypes.Orbit,
+                minPolarAngle: 0,
+                maxPolarAngle: Math.PI / 2.15,
+                autoRotate: true,
+                autoRotateSpeed: 0.5,
             },
             lights: [
                 {
@@ -36,34 +44,10 @@ export const ImplicitinRoomConfig: ContainerNodeProps = {
                 {
                     type: ObjectTypes.ImplicitObject,
                     assetId: '102',
-                    position: [0, 0.8, 0],
-                    rotation: [(-13 * Math.PI) / 30, 0, Math.PI],
-                    scale: [1.5, 1.5, 1.5],
-                    animations: [
-                        {
-                            type: AnimationTypes.intro,
-                            visibilityThreshold: {
-                                sceneTopToScreenBottomRatio: 0.5,
-                                sceneBottomToScreenTopRatio: 0.5,
-                            },
-                            initialPause: 200,
-                            springConfig: { duration: 3000 },
-                            stateIncrements: [
-                                {
-                                    rotation: [(-13 * Math.PI) / 30, 0, Math.PI * 3],
-                                    scale: [2.5, 2.5, 2.5],
-                                },
-                            ],
-                        },
-                    ],
+                    position: [0, 0, 0],
+                    rotation: [-Math.PI / 2, 0, Math.PI],
+                    scale: [5, 5, 5],
                 },
-                // {
-                //     type: ObjectTypes.MeshObject,
-                //     assetId: '1122',
-                //     position: [0, 0, 0],
-                //     rotation: [Math.PI / 15, Math.PI / 4, 0],
-                //     scale: [2, 2, 2],
-                // },
             ],
         },
     ],

@@ -28,7 +28,7 @@ export const animationDefaults = {
     },
     scrollAnimation: {
         disableScroll: false,
-        maxRotation: Math.PI*2,
+        maxRotation: Math.PI * 2,
         minRotation: 0,
         speed: 0.1,
         springConfig: { mass: 4, tension: 280, friction: 90 },

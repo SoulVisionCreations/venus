@@ -69,7 +69,6 @@ export const convertStateVecToArr = (stateVec: strongObject3DStateOfVectors): st
     };
 };
 
-
 export const areEqualVectors = (vector1: Vector3, vector2: Vector3, precision: number) => {
-    return ( ( Math.abs( vector1.x - vector2.x ) < precision ) && ( Math.abs( vector1.y - vector2.y ) < precision ) && ( Math.abs( vector1.z - vector2.z ) < precision ) );
-}
+    return Math.abs(vector1.x - vector2.x) < precision && Math.abs(vector1.y - vector2.y) < precision && Math.abs(vector1.z - vector2.z) < precision;
+};

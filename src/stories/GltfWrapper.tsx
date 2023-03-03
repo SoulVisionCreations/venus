@@ -2,7 +2,7 @@ import { Story } from '@storybook/react';
 import App from '../App';
 import { AssetTypes, ObjectTypes } from '../types/enums';
 import { ContainerNodeProps } from '../types/types';
-import { configAssetModifier, getEnvFileUrl, skuGltfMap } from './utility';
+import { configAssetModifier, skuGltfMap } from './utility';
 
 const assetGltfMap = new Map<string, symbol>();
 
@@ -13,9 +13,8 @@ export const GltfWrapper: Story<{ skuId: string; storyConfig: ContainerNodeProps
         assetId = Symbol();
         assetGltfMap.set(args.skuId, assetId);
     }
-    const envFile = args.envFiles ? getEnvFileUrl(args.envFiles) : '';
     const url = skuGltfMap.get(args.skuId) as string;
-    const config = configAssetModifier(url, args.storyConfig, AssetTypes.Mesh, ObjectTypes.MeshObject, assetId as symbol, { files: envFile, background: args.background });
+    const config = configAssetModifier(url, args.storyConfig, AssetTypes.Mesh, ObjectTypes.MeshObject, assetId as symbol, args.envFiles);
     return <App config={config} />;
 };
 
@@ -26,15 +25,15 @@ export const argTypes = {
     },
     envFiles: {
         control: 'radio',
-        options: ['neutral.hdr', 'photo_studio_01_4k_jun.hdr', 'photo_studio_broadway_hall_1k.hdr', 'AVTR_HDRI_08.hdr', 'AVTR_HDRI_07.hdr', 'AVTR_HDRI_06.hdr'],
+        options: ['', 'brown_photostudio_02_2k.hdr', 'old_depot_2k.hdr'],
     },
-    background: {
-        control: 'boolean',
-    },
+    // background: {
+    //     control: 'boolean',
+    // },
 };
 
 export const defaultArgs = {
     skuId: 'chair',
-    envFiles: 'neutral.hdr',
-    background: false,
+    envFiles: '',
+    // background: false,
 };

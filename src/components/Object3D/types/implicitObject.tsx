@@ -11,8 +11,8 @@ export interface ImplicitAssetProps {
     material: Material;
 }
 
-const ImplicitObject = ({ objectProps, sceneProps }: { objectProps: ImplicitObjectProps; sceneProps: SceneProps }) => {
-    const asset: ImplicitAssetProps = getAssetbyId(objectProps.assetId);
+const ImplicitObject = ({ objectProps, sceneProps, assetObject = null }: { objectProps: ImplicitObjectProps; sceneProps: SceneProps; assetObject: any }) => {
+    const asset: ImplicitAssetProps = assetObject ? assetObject : getAssetbyId(objectProps.assetId);
     const useInstancing: boolean = !(objectProps.useInstancing == undefined) && objectProps.useInstancing;
 
     return useInstancing ? (

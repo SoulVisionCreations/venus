@@ -1,13 +1,14 @@
-import { Story } from '@storybook/react';
-import StoryBookApp from '../../components/StoryBookApp';
-import { HtmlTemplateTypes } from '../../types/enums';
-import { HtmlTemplateProps } from '../../types/types';
+import { Story as StoryType } from '@storybook/react';
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import App from '../../../../App';
+import { HtmlTemplateTypes } from '../../../../types/enums';
+import { HtmlTemplateProps } from '../../../../types/types';
+import { getHtmlTemplatesConfig } from './htmlTemplatesConfig';
 
-// eslint-disable-next-line storybook/story-exports
-export default {
-    title: '2D Components/HtmlTemplates',
-    component: StoryBookApp,
-    argTypes: {
+<Meta
+    title="Documentation/2D Components/HtmlTemplates"
+    component={App}
+    argTypes={{
         title: {
             table: {
                 disable: true,
@@ -78,22 +79,36 @@ export default {
                 disable: true,
             },
         },
-    },
+    }}
+/>
+
+export const HtmlTemplate = ({ ...args }) => {
+    const config = getHtmlTemplatesConfig(args);
+    return <App config={{ ...config }} />;
 };
 
-const HtmlTemplate: Story<HtmlTemplateProps> = ({ ...args }) => {
-    return <StoryBookApp config={{ ...args }} componentType="htmltemplate" />;
-};
+# TextBox
 
-export const TextBox = HtmlTemplate.bind({});
-TextBox.args = {
-    type: HtmlTemplateTypes.ParagraphBox,
-    title: 'Benefits of using AR',
-    data: '81% of shoppers feel more confident in their purchase as a result of using AR. Provide customers with a sense of how products would look and fit in their environment. Increase shopper confidence, order volume, and sales.',
-    position: [0, 0, 0],
-    rotation: [0, 0, 0],
-    scale: 1,
-    divStyle: { background: 'white', width: '500px', borderRadius: '10px', border: '3px solid black', padding: '20px' },
-    titleStyle: { fontSize: '36px', color: 'black', padding: '2px', margin: '0px', marginBottom: '20px' },
-    dataStyle: { fontSize: '18px', padding: '2px', margin: '0px' },
-};
+With `MDX` we can define a story for `Checkbox` right in the middle of our
+markdown documentation.
+
+<Canvas>
+    <Story
+        name="TextBox"
+        args={{
+            type: HtmlTemplateTypes.ParagraphBox,
+            title: 'Benefits of using AR',
+            data: '81% of shoppers feel more confident in their purchase as a result of using AR. Provide customers with a sense of how products would look and fit in their environment. Increase shopper confidence, order volume, and sales.',
+            position: [0, 0, 0],
+            rotation: [0, 0, 0],
+            scale: 1,
+            divStyle: { background: 'white', width: '500px', borderRadius: '10px', border: '3px solid black', padding: '20px' },
+            titleStyle: { fontSize: '36px', color: 'black', padding: '2px', margin: '0px', marginBottom: '20px' },
+            dataStyle: { fontSize: '18px', padding: '2px', margin: '0px' },
+        }}
+    >
+        {HtmlTemplate.bind({})}
+    </Story>
+</Canvas>
+
+<ArgsTable story="TextBox" />
