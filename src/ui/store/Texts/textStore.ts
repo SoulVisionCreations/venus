@@ -9,6 +9,7 @@ export type Text = {
     list?: string[];
     color?: string;
     position: { x: number; y: number; z: number };
+    // position: number[];
     rotation: { x: number; y: number; z: number };
     scale: { x: number; y: number; z: number };
     // animations: any;
@@ -36,6 +37,7 @@ const InitialState: Text = {
     color: '#000000',
     list: [],
     position: { x: 0, y: 0, z: 0 },
+    // position: [0, 0, 0],
     rotation: { x: 0, y: 0, z: 0 },
     scale: { x: 1, y: 1, z: 1 },
     // animations: null,
@@ -54,6 +56,11 @@ const useTextStore = create<Text & TextActions>((set) => ({
         else if (pos === 'y') set((state) => ({ position: { ...state.position, y: value } }));
         else if (pos === 'z') set((state) => ({ position: { ...state.position, z: value } }));
     },
+    // setPosition: (value, pos) => {
+    //     if (pos === 'x') set((state) => ({ position: [value, (state.position as any)[1], (state.position as any)[2]] }));
+    //     else if (pos === 'y') set((state) => ({ position: [(state.position as any)[0], value, (state.position as any)[2]] }));
+    //     else if (pos === 'z') set((state) => ({ position: [(state.position as any)[0], (state.position as any)[1]], value }));
+    // },
     setRotation: (value, pos) => {
         if (pos === 'x') set((state) => ({ rotation: { ...state.rotation, x: value } }));
         else if (pos === 'y') set((state) => ({ rotation: { ...state.rotation, y: value } }));

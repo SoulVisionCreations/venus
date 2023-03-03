@@ -118,12 +118,6 @@ const Texts = () => {
                         <input type="number" id="posy" value={position.y} onChange={(event) => handlePositionChange(event, 'y')} />
                         <input type="number" id="posz" value={position.z} onChange={(event) => handlePositionChange(event, 'z')} />
                     </p>
-                    {/* <p>
-                        Position:
-                        <input type="number" id="posx" value={position[0]} onChange={(event) => handlePositionChange(event, 'x')} />
-                        <input type="number" id="posy" value={position[1]} onChange={(event) => handlePositionChange(event, 'y')} />
-                        <input type="number" id="posz" value={position[2]} onChange={(event) => handlePositionChange(event, 'z')} />
-                    </p> */}
                     <p>
                         Rotation:
                         <input type="number" id="roty" value={rotation.y} onChange={(event) => handleRotationChange(event, 'y')} />

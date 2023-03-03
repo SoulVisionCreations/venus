@@ -37,6 +37,7 @@ const renderObjects = (objects: Array<Object3DProps>, sceneProps: SceneProps) =>
 };
 
 const renderTexts = (texts: Array<TextProps>, sceneProps: SceneProps) => {
+    console.log(texts);
     return texts.map((textProps: TextProps, index: number) => {
         return <TextLoader textProps={textProps} sceneProps={sceneProps} key={index} />;
     });

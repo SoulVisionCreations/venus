@@ -1,5 +1,5 @@
 import { AdaptiveDpr, Environment, PerformanceMonitor } from '@react-three/drei';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useThree } from '@react-three/fiber';
 import { useEffect, useRef, useState } from 'react';
 import { CanvasNodeProps } from '../types/types';
 // import { getAssetbyId } from '../utils/download';
@@ -37,10 +37,10 @@ function getCoords(elem: HTMLElement): CanvasRect {
 
 export default function CanvasNode(props: CanvasNodeProps) {
     const GetInfo = () => {
-        // const { gl } = useThree();
-        // useEffect(() => {
-        //     console.log(gl.info);
-        // });
+        const { scene } = useThree();
+        useEffect(() => {
+            console.log(scene);
+        });
         return null;
     };
 
@@ -105,7 +105,7 @@ export default function CanvasNode(props: CanvasNodeProps) {
                 <PerformanceMonitor />
                 {props.camera && <Camera {...props.camera} />}
                 <Scene objects={props.objects} sceneControl={props.sceneControl} texts={props.texts} images={props.images} lights={props.lights} sceneProps={sceneProps} />
-                {props.environment && props.environment.files.length > 0 && <Environment {...props.environment} />}
+                <Environment files={'old_depot_2k.hdr'} ground={{ height: 8, radius: 130 }} />
             </Canvas>
         </div>
     );

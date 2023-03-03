@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Text } from './textStore';
+import { Text } from './htmlTemplateStore';
 
 interface Texts {
     texts: Text[];
@@ -15,11 +15,8 @@ const useTextsStore = create<Texts>((set, get) => ({
         })),
     removeTexts: (id) => {
         const { texts } = get();
-        // const clone = (items) => items.map(item => Array.isArray(item) ? clone(item) : item);
-
         texts.splice(id, 1);
-        const newTexts = [...texts];
-        set({ texts: newTexts });
+        set({ texts });
     },
 }));
 

@@ -1,4 +1,4 @@
-import { stylingDefaults } from '../../constants/defaults';
+// import { stylingDefaults } from '../../constants/defaults';
 import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, SceneControlTypes } from '../../types/enums';
 import { ContainerNodeProps } from '../../types/types';
 
@@ -12,10 +12,11 @@ export const ImplicitinRoomConfig: ContainerNodeProps = {
     children: [
         {
             type: ComponentTypes.Canvas,
-            style: stylingDefaults.fullWidthFullHeightCanvas,
+            // style: stylingDefaults.fullWidthFullHeightCanvas,
+            style: { width: '70%', height: '100%', position: 'fixed', left: '5%' },
             camera: {
                 type: CameraTypes.Perspective,
-                position: [0, 0, 8],
+                position: [0, 1, 8],
             },
             sceneControl: {
                 type: SceneControlTypes.Orbit,
@@ -56,13 +57,13 @@ export const ImplicitinRoomConfig: ContainerNodeProps = {
                         },
                     ],
                 },
-                {
-                    type: ObjectTypes.MeshObject,
-                    assetId: '1122',
-                    position: [0, 0, 0],
-                    rotation: [Math.PI / 15, Math.PI / 4, 0],
-                    scale: [2, 2, 2],
-                },
+                // {
+                //     type: ObjectTypes.MeshObject,
+                //     assetId: '1122',
+                //     position: [0, 0, 0],
+                //     rotation: [Math.PI / 15, Math.PI / 4, 0],
+                //     scale: [2, 2, 2],
+                // },
             ],
         },
     ],

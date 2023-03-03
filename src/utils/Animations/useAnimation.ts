@@ -22,7 +22,7 @@ const isSceneInMiddleOfScreen = (sceneProps: SceneProps, precision: number) => {
     const sceneBottomToScreenBottomDist = sceneBottom - (scrolledHeight + screenHeight);
     const delta = Math.abs(sceneBottomToScreenBottomDist - sceneTopToScreenTopDist);
     return delta <= precision;
-}
+};
 
 const shouldAnimate = (sceneProps: SceneProps, visibilityThreshold: VisibilityThreshold, delta?: number) => {
     const sceneTop = sceneProps.canvasRect.top;
@@ -64,9 +64,14 @@ enum AnimationState {
     IN_PROGRESS,
 }
 
-export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps, sceneProps: SceneProps) => {
+const getInitialStateObj = (objectProps: Object3DProps | ImageProps | TextProps) => {
+    // debugger;
     const [initialPosition, initialRotation, initialScale] = getInitialState(objectProps);
-    const initialStateRef = useRef<strongObject3DStateOfVectors>({ position: initialPosition, rotation: initialRotation, scale: initialScale });
+    return { position: initialPosition, rotation: initialRotation, scale: initialScale };
+};
+
+export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps, sceneProps: SceneProps) => {
+    const initialStateRef = useRef<strongObject3DStateOfVectors>(getInitialStateObj(objectProps));
     const state = useRef<strongObject3DStateOfVectors>({
         position: initialStateRef.current.position.clone(),
         rotation: initialStateRef.current.rotation.clone(),
@@ -270,9 +275,9 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
     const updateStateByDelta = (deltaY: number) => {
         let animationCompleted = true;
         Object.entries(scrollTrajectory.current).forEach(([key, value]) => {
-            value.state += value.speed*deltaY;
-            if(value.state < 0) value.state = 0;
-            if(value.state > 1) value.state = 1;
+            value.state += value.speed * deltaY;
+            if (value.state < 0) value.state = 0;
+            if (value.state > 1) value.state = 1;
             // if(deltaY > 0 && value.state < 0.999) animationCompleted = false;
             // if(deltaY < 0 && value.state > 0.001) animationCompleted = false;
             const equiSpacedPoints = value.trajectoryMetaData.equiSpacedPoints ?? trajectoryDefaults.equiSpacedPoints;
@@ -294,7 +299,7 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
             } else {
                 // const initialRotation = initialStateRef.current.rotation.clone();
                 // initialRotation.add(new Vector3(minRotation, minRotation, minRotation));
-                if(!areEqualVectors(initialRotation, state.current.rotation, 0.01)) animationCompleted = false;
+                if (!areEqualVectors(initialRotation, state.current.rotation, 0.01)) animationCompleted = false;
                 state.current.rotation.x = Math.max(initialStateRef.current.rotation.x + minRotation, state.current.rotation.x);
                 state.current.rotation.y = Math.max(initialStateRef.current.rotation.y + minRotation, state.current.rotation.y);
                 state.current.rotation.z = Math.max(initialStateRef.current.rotation.z + minRotation, state.current.rotation.z);
@@ -396,7 +401,6 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
             timeouts.current.forEach((t) => clearTimeout(t));
         }
     }, [sceneProps.isSceneVisible]);
-
 
     return spring;
 };

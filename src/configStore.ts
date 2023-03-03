@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import produce from 'immer';
-import { textImageExample } from './configs/textImageExample';
+import { ImplicitinRoomConfig } from './configs/Object/ImplicitinRoomConfig';
 
 type Config = {
     config: any;
@@ -15,7 +15,7 @@ type Config = {
 };
 
 const useConfigStore = create<Config>((set) => ({
-    config: textImageExample,
+    config: ImplicitinRoomConfig,
     setConfig: (config) => set({ config }),
     setCamera: (camera) =>
         set(
@@ -44,7 +44,11 @@ const useConfigStore = create<Config>((set) => ({
     setTexts: (texts) =>
         set(
             produce((state) => {
-                state.config.children[0].texts = texts;
+                // const newTexts = texts.map((text: any) => {
+                //     console.log(text);
+                //     return { ...text };
+                // });
+                state.config.children[0].texts = [...texts]; //[...newTexts];
             })
         ),
     setImages: (images) =>
