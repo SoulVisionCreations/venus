@@ -80,7 +80,7 @@ export const Text3DObjectExample = Text3DObject.bind({});
 Text3DObjectExample.args = {
     text: 'Avataar',
     position: [0, 0, 0],
-    rotation: [Math.PI/10, Math.PI/10, 0],
+    rotation: [Math.PI / 10, Math.PI / 10, 0],
     scale: [0.5, 0.5, 0.5],
     color: 'white',
 };

@@ -1,18 +1,18 @@
 import { Story } from '@storybook/react';
 import App from '../../../../App';
-import { CircleMetaData } from '../../../../types/trajectoryTypes';
-import { getCircleTrajectoryConfig } from './circleTrajectoryConfig';
+import { EllipseMetaData } from '../../../../types/trajectoryTypes';
+import { getEllipseTrajectoryConfig } from './ellipseTrajectoryConfig';
 
 // eslint-disable-next-line storybook/story-exports
-const circleTrajectoryAppWrapper: Story<CircleMetaData> = (args) => {
-    const config = getCircleTrajectoryConfig(args);
+const ellipseTrajectoryAppWrapper: Story<EllipseMetaData> = (args) => {
+    const config = getEllipseTrajectoryConfig(args);
     return <App config={{ ...config }} />;
 };
 
 // eslint-disable-next-line storybook/story-exports
 export default {
-    title: 'Documentation/Trajectories/Circle',
-    component: circleTrajectoryAppWrapper,
+    title: 'Documentation/Trajectories/Ellipse',
+    component: ellipseTrajectoryAppWrapper,
     argTypes: {
         clockwise: {
             control: { type: 'boolean' },
@@ -24,7 +24,7 @@ export default {
         },
         center: {
             control: { type: 'object' },
-            description: 'Sets center of the circle',
+            description: 'Sets center of the ellipse',
             table: {
                 type: { summary: '[number, number, number]' },
                 defaultValue: { summary: '[0, 0, 0]' },
@@ -41,17 +41,18 @@ export default {
     },
 };
 
-export const Example = circleTrajectoryAppWrapper.bind({});
+export const Example = ellipseTrajectoryAppWrapper.bind({});
 Example.args = {
     clockwise: true,
     center: [0, 0, 0],
-    radius: 0.5,
     rotateCurve: [
         {
             axis: [1, 0, 0],
             angle: 0,
         },
     ],
+    height: 0.75,
+    width: 2,
     // rotationZ?: number;
     // steps?: number;
     // equiSpacedPoints?: boolean;

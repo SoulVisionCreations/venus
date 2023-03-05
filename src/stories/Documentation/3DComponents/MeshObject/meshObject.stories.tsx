@@ -56,7 +56,7 @@ export default {
 const MeshObject: Story<MeshObjectProps> = ({ ...args }) => {
     const config = getMeshObjectConfig(args);
     return <App config={{ ...config }} />;
-}
+};
 
 export const GltfMeshObject = MeshObject.bind({});
 GltfMeshObject.args = {

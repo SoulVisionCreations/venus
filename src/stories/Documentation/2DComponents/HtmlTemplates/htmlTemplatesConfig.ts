@@ -1,8 +1,8 @@
 import { stylingDefaults } from '../../../../constants/defaults';
-import { Alignment, CameraTypes, ComponentTypes, HtmlTemplateTypes } from '../../../../types/enums';
+import { Alignment, CameraTypes, ComponentTypes } from '../../../../types/enums';
 import { HtmlTemplateProps } from '../../../../types/types';
 
-export const getHtmlTemplatesConfig = ({ title, data, position, rotation, scale, divStyle, titleStyle, dataStyle }: HtmlTemplateProps) => {
+export const getHtmlTemplatesConfig = ({ type, title, data, position, rotation, scale, boxStyle, titleStyle, dataStyle }: HtmlTemplateProps) => {
     return {
         type: ComponentTypes.Container,
         alignment: Alignment.Vertical,
@@ -17,13 +17,13 @@ export const getHtmlTemplatesConfig = ({ title, data, position, rotation, scale,
                 },
                 htmlTemplates: [
                     {
-                        type: HtmlTemplateTypes.ParagraphBox,
+                        type,
                         title,
                         data,
                         position,
                         rotation,
                         scale,
-                        divStyle,
+                        boxStyle,
                         titleStyle,
                         dataStyle,
                     },

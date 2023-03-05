@@ -1,12 +1,12 @@
 import { AssetTypes, ComponentTypes, implicitResolution, ObjectTypes } from '../types/enums';
-import { CanvasNodeProps, ContainerNodeProps, EnvironmentProps } from '../types/types';
+import { CanvasNodeProps, ContainerNodeProps } from '../types/types';
 
-export const configObjectTypeModifier = (config: ContainerNodeProps, objectType: ObjectTypes, assetId: symbol, envFile: string | string[]) => {
+export const configObjectTypeModifier = (config: ContainerNodeProps, objectType: ObjectTypes, assetId: symbol) => {
     const newConfig = { ...config };
     newConfig.children = [...newConfig.children];
     for (let i = 0; i < newConfig.children.length; i++) {
         if (newConfig.children[i].type == ComponentTypes.Container) {
-            newConfig.children[i] = configObjectTypeModifier(newConfig.children[i] as ContainerNodeProps, objectType, assetId, envFile);
+            newConfig.children[i] = configObjectTypeModifier(newConfig.children[i] as ContainerNodeProps, objectType, assetId);
         } else {
             newConfig.children[i] = { ...newConfig.children[i] };
             if ('objects' in newConfig.children[i]) {
@@ -21,16 +21,15 @@ export const configObjectTypeModifier = (config: ContainerNodeProps, objectType:
                 }
                 (newConfig.children[i] as CanvasNodeProps).objects = newObjects;
             }
-            if ((newConfig.children[i] as CanvasNodeProps).environment) ((newConfig.children[i] as CanvasNodeProps).environment as EnvironmentProps).files = envFile;
         }
     }
     return newConfig;
 };
 
-export const configAssetModifier = (path: string, config: ContainerNodeProps, assetType: AssetTypes, objectType: ObjectTypes, assetId: symbol, envFile: string | string[]) => {
+export const configAssetModifier = (path: string, config: ContainerNodeProps, assetType: AssetTypes, objectType: ObjectTypes, assetId: symbol) => {
     let newConfig: ContainerNodeProps = { ...config, assets: [...config.assets] };
     newConfig.assets.push({ assetId: assetId, assetPath: path, assetType: assetType });
-    newConfig = configObjectTypeModifier(newConfig, objectType, assetId, envFile);
+    newConfig = configObjectTypeModifier(newConfig, objectType, assetId);
     return newConfig;
 };
 
@@ -38,11 +37,6 @@ export const implicitBaseUrl = 'https://d2vy8yj9b7o26m.cloudfront.net/RnD_Datase
 
 export const getImplicitUrl = (skuId: string, resolution: implicitResolution) => {
     const url = implicitBaseUrl + skuId + '/implicit/' + skuId + (resolution == implicitResolution.low ? '/base_low' : '/base_high');
-    return url;
-};
-
-export const getEnvFileUrl = (files: string | string[]) => {
-    const url = 'https://d1gw7r4f155zge.cloudfront.net/cubemap/' + files;
     return url;
 };
 

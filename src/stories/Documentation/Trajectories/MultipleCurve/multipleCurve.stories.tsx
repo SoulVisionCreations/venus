@@ -1,18 +1,18 @@
 import { Story } from '@storybook/react';
 import App from '../../../../App';
-import { CircleMetaData } from '../../../../types/trajectoryTypes';
-import { getCircleTrajectoryConfig } from './circleTrajectoryConfig';
+import { SplineCurve3MetaData } from '../../../../types/trajectoryTypes';
+import { getSplineCurveTrajectoryConfig } from './multipleCurveTrajectoryConfig';
 
 // eslint-disable-next-line storybook/story-exports
-const circleTrajectoryAppWrapper: Story<CircleMetaData> = (args) => {
-    const config = getCircleTrajectoryConfig(args);
+const multipleCurveTrajectoryAppWrapper: Story<SplineCurve3MetaData> = (args) => {
+    const config = getSplineCurveTrajectoryConfig(args);
     return <App config={{ ...config }} />;
 };
 
 // eslint-disable-next-line storybook/story-exports
 export default {
-    title: 'Documentation/Trajectories/Circle',
-    component: circleTrajectoryAppWrapper,
+    title: 'Documentation/Trajectories/MultipleCurve',
+    component: multipleCurveTrajectoryAppWrapper,
     argTypes: {
         clockwise: {
             control: { type: 'boolean' },
@@ -41,18 +41,14 @@ export default {
     },
 };
 
-export const Example = circleTrajectoryAppWrapper.bind({});
+export const Example = multipleCurveTrajectoryAppWrapper.bind({});
 Example.args = {
-    clockwise: true,
-    center: [0, 0, 0],
-    radius: 0.5,
-    rotateCurve: [
-        {
-            axis: [1, 0, 0],
-            angle: 0,
-        },
+    points: [
+        [-1, -0.5, 0],
+        [1, -0.5, 0],
+        [1, 0.5, 0],
     ],
-    // rotationZ?: number;
     // steps?: number;
-    // equiSpacedPoints?: boolean;
+    closed: false,
+    equiSpacedPoints: false,
 };

@@ -1,18 +1,18 @@
 import { Story } from '@storybook/react';
 import App from '../../../../App';
-import { CircleMetaData } from '../../../../types/trajectoryTypes';
-import { getCircleTrajectoryConfig } from './circleTrajectoryConfig';
+import { lineCurve3MetaData } from '../../../../types/trajectoryTypes';
+import { getStraightLineTrajectoryConfig } from './straightLineTrajectoryConfig';
 
 // eslint-disable-next-line storybook/story-exports
-const circleTrajectoryAppWrapper: Story<CircleMetaData> = (args) => {
-    const config = getCircleTrajectoryConfig(args);
+const straightLineTrajectoryAppWrapper: Story<lineCurve3MetaData> = (args) => {
+    const config = getStraightLineTrajectoryConfig(args);
     return <App config={{ ...config }} />;
 };
 
 // eslint-disable-next-line storybook/story-exports
 export default {
-    title: 'Documentation/Trajectories/Circle',
-    component: circleTrajectoryAppWrapper,
+    title: 'Documentation/Trajectories/StraightLine',
+    component: straightLineTrajectoryAppWrapper,
     argTypes: {
         clockwise: {
             control: { type: 'boolean' },
@@ -41,18 +41,10 @@ export default {
     },
 };
 
-export const Example = circleTrajectoryAppWrapper.bind({});
+export const Example = straightLineTrajectoryAppWrapper.bind({});
 Example.args = {
-    clockwise: true,
-    center: [0, 0, 0],
-    radius: 0.5,
-    rotateCurve: [
-        {
-            axis: [1, 0, 0],
-            angle: 0,
-        },
-    ],
-    // rotationZ?: number;
+    startPoint: [-1, 0, 0],
+    endPoint: [1, 0, 0],
     // steps?: number;
     // equiSpacedPoints?: boolean;
 };

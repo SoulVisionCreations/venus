@@ -86,13 +86,13 @@ const StandardObject: Story<StandardObjectProps> = ({ ...args }) => {
 export const StandardObjectExample = StandardObject.bind({});
 StandardObjectExample.args = {
     position: [0, 0, 0],
-    rotation: [Math.PI/5, Math.PI/5, 0],
+    rotation: [Math.PI / 5, Math.PI / 5, 0],
     scale: [1, 1, 1],
     geometry: {
-        type: StandardGeometryTypes.BoxGeometry
+        type: StandardGeometryTypes.BoxGeometry,
     },
     material: {
         type: MaterialTypes.MeshStandardMaterial,
         color: 'pink',
-    }
+    },
 };

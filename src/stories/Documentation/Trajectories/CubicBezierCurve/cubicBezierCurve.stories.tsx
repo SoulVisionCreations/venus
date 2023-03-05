@@ -1,18 +1,18 @@
 import { Story } from '@storybook/react';
 import App from '../../../../App';
-import { CircleMetaData } from '../../../../types/trajectoryTypes';
-import { getCircleTrajectoryConfig } from './circleTrajectoryConfig';
+import { CubicBezierCurve3MetaData } from '../../../../types/trajectoryTypes';
+import { getCubicBezierCurveTrajectoryConfig } from './cubicBezierCurveTrajectoryConfig';
 
 // eslint-disable-next-line storybook/story-exports
-const circleTrajectoryAppWrapper: Story<CircleMetaData> = (args) => {
-    const config = getCircleTrajectoryConfig(args);
+const cubicBezierCurveTrajectoryAppWrapper: Story<CubicBezierCurve3MetaData> = (args) => {
+    const config = getCubicBezierCurveTrajectoryConfig(args);
     return <App config={{ ...config }} />;
 };
 
 // eslint-disable-next-line storybook/story-exports
 export default {
-    title: 'Documentation/Trajectories/Circle',
-    component: circleTrajectoryAppWrapper,
+    title: 'Documentation/Trajectories/CubicBezierCurve',
+    component: cubicBezierCurveTrajectoryAppWrapper,
     argTypes: {
         clockwise: {
             control: { type: 'boolean' },
@@ -41,18 +41,15 @@ export default {
     },
 };
 
-export const Example = circleTrajectoryAppWrapper.bind({});
+export const Example = cubicBezierCurveTrajectoryAppWrapper.bind({});
 Example.args = {
-    clockwise: true,
-    center: [0, 0, 0],
-    radius: 0.5,
-    rotateCurve: [
-        {
-            axis: [1, 0, 0],
-            angle: 0,
-        },
+    points: [
+        [-1, -0.5, 0],
+        [1, -0.5, 0],
+        [1, 0.5, 0],
+        [-1, 0.5, 0],
     ],
-    // rotationZ?: number;
     // steps?: number;
-    // equiSpacedPoints?: boolean;
+    closed: false,
+    equiSpacedPoints: false,
 };

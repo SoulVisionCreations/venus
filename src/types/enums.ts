@@ -122,6 +122,8 @@ export const enum TextTypes {
 
 export const enum HtmlTemplateTypes {
     ParagraphBox,
+    NumberedListBox,
+    BulletedListBox,
 }
 
 export const enum Alignment {

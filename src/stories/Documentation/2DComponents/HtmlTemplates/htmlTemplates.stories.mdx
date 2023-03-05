@@ -43,7 +43,7 @@ import { getHtmlTemplatesConfig } from './htmlTemplatesConfig';
                 defaultValue: { summary: 1 },
             },
         },
-        divStyle: {
+        boxStyle: {
             control: 'object',
             description: 'Sets style for the outer div element of the HTML template. All CSS properties for &lt;div&gt; element are supported.',
             table: {
@@ -80,6 +80,13 @@ import { getHtmlTemplatesConfig } from './htmlTemplatesConfig';
             },
         },
     }}
+    parameters={{
+        previewTabs: {
+            canvas: {
+                hidden: true,
+            },
+        },
+    }}
 />
 
 export const HtmlTemplate = ({ ...args }) => {
@@ -94,7 +101,7 @@ markdown documentation.
 
 <Canvas>
     <Story
-        name="TextBox"
+        name="ParagraphBox"
         args={{
             type: HtmlTemplateTypes.ParagraphBox,
             title: 'Benefits of using AR',
@@ -102,7 +109,47 @@ markdown documentation.
             position: [0, 0, 0],
             rotation: [0, 0, 0],
             scale: 1,
-            divStyle: { background: 'white', width: '500px', borderRadius: '10px', border: '3px solid black', padding: '20px' },
+            boxStyle: { background: 'white', width: '500px', borderRadius: '10px', border: '3px solid black', padding: '20px' },
+            titleStyle: { fontSize: '36px', color: 'black', padding: '2px', margin: '0px', marginBottom: '20px' },
+            dataStyle: { fontSize: '18px', padding: '2px', margin: '0px' },
+        }}
+    >
+        {HtmlTemplate.bind({})}
+    </Story>
+    <Story
+        name="NumberedListBox"
+        args={{
+            type: HtmlTemplateTypes.NumberedListBox,
+            title: 'Benefits of using AR',
+            data: [
+                '81% of shoppers feel more confident in their purchase as a result of using AR.',
+                'Provide customers with a sense of how products would look and fit in their environment.',
+                'Increase shopper confidence, order volume, and sales.',
+            ],
+            position: [0, 0, 0],
+            rotation: [0, 0, 0],
+            scale: 1,
+            boxStyle: { background: 'white', width: '500px', borderRadius: '10px', border: '3px solid black', padding: '20px' },
+            titleStyle: { fontSize: '36px', color: 'black', padding: '2px', margin: '0px', marginBottom: '20px' },
+            dataStyle: { fontSize: '18px', padding: '2px', margin: '0px' },
+        }}
+    >
+        {HtmlTemplate.bind({})}
+    </Story>
+    <Story
+        name="BulletedListBox"
+        args={{
+            type: HtmlTemplateTypes.BulletedListBox,
+            title: 'Benefits of using AR',
+            data: [
+                '81% of shoppers feel more confident in their purchase as a result of using AR.',
+                'Provide customers with a sense of how products would look and fit in their environment.',
+                'Increase shopper confidence, order volume, and sales.',
+            ],
+            position: [0, 0, 0],
+            rotation: [0, 0, 0],
+            scale: 1,
+            boxStyle: { background: 'white', width: '500px', borderRadius: '10px', border: '3px solid black', padding: '20px' },
             titleStyle: { fontSize: '36px', color: 'black', padding: '2px', margin: '0px', marginBottom: '20px' },
             dataStyle: { fontSize: '18px', padding: '2px', margin: '0px' },
         }}
