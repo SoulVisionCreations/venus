@@ -1,5 +1,5 @@
-import { RotateOnScrollAlongFixedAxisConfig } from '../configs/Animation/Gltf/ScrollBased/Rotation/rotateOnScrollAlongFixedAxis';
-import { GltfWrapper, argTypes, defaultArgs } from './GltfWrapper';
+import { RotateOnScrollAlongFixedAxisConfig } from '../../configs/Animation/Gltf/ScrollBased/Rotation/rotateOnScrollAlongFixedAxis';
+import { GltfWrapper, argTypes, defaultArgs } from './utils/GltfWrapper';
 
 // eslint-disable-next-line storybook/story-exports
 export default {

@@ -1,5 +1,5 @@
-import { AssetTypes, ComponentTypes, implicitResolution, ObjectTypes } from '../types/enums';
-import { CanvasNodeProps, ContainerNodeProps } from '../types/types';
+import { AssetTypes, ComponentTypes, implicitResolution, ObjectTypes } from '../../../types/enums';
+import { CanvasNodeProps, ContainerNodeProps } from '../../../types/types';
 
 export const configObjectTypeModifier = (config: ContainerNodeProps, objectType: ObjectTypes, assetId: symbol) => {
     const newConfig = { ...config };

@@ -30,6 +30,20 @@ export default {
                 defaultValue: { summary: '[0, 0, 0]' },
             },
         },
+        radius: {
+            control: { type: 'number' },
+            description: 'Sets radius of the circle',
+            table: {
+                type: { summary: 'number' },
+            },
+        },
+        rotateCurve: {
+            control: { type: 'object' },
+            description: 'Sets the axis and angle around which the circle trajectory be created',
+            table: {
+                type: { summary: 'object' },
+            },
+        },
     },
     parameters: {
         previewTabs: {

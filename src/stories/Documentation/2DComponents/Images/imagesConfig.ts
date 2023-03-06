@@ -1,11 +1,12 @@
 import { stylingDefaults } from '../../../../constants/defaults';
-import { Alignment, CameraTypes, ComponentTypes } from '../../../../types/enums';
+import { Alignment, AssetTypes, CameraTypes, ComponentTypes } from '../../../../types/enums';
 import { ImageProps } from '../../../../types/types';
 
-export const getImagesConfig = ({ src, position, rotation, scale, zoom, color, grayscale, transparent, opacity }: ImageProps) => {
+export const getImagesConfig = ({ position, rotation, scale, zoom, color, grayscale, transparent, opacity }: ImageProps) => {
     return {
         type: ComponentTypes.Container,
         alignment: Alignment.Vertical,
+        assets: [{ assetId: '1001', assetPath: 'storyimage.jpeg', assetType: AssetTypes.Image }],
         children: [
             {
                 type: ComponentTypes.Canvas,
@@ -15,10 +16,10 @@ export const getImagesConfig = ({ src, position, rotation, scale, zoom, color, g
                     position: [0, 0, 3],
                     far: 30,
                 },
+                assetIds: ['1001'],
                 images: [
                     {
-                        assetId: '',
-                        src,
+                        assetId: '1001',
                         position,
                         rotation,
                         scale,

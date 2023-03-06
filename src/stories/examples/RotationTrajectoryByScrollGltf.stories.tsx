@@ -1,9 +1,9 @@
-import { RotationByBezierTrajectoryWithScaleUpConfig } from '../configs/Animation/Gltf/ScrollBased/Rotation/rotationByBezierTrajectoryWithScaleUp';
-import { RotationByLineTrajectoryConfig } from '../configs/Animation/Gltf/ScrollBased/Rotation/rotationByLineTrajectory';
-import { RotationByMultipleBezierTrajectoryWithScaleConfig } from '../configs/Animation/Gltf/ScrollBased/Rotation/rotationByMultipleBezierTrajectoryWithScale';
-import { RotationByMultipleLineTrajectoryConfig } from '../configs/Animation/Gltf/ScrollBased/Rotation/rotationByMultipleLineTrajectory';
-import { RotationByMultipleLineTrajectoryWithScaleConfig } from '../configs/Animation/Gltf/ScrollBased/Rotation/rotationByMultipleLineTrajectoryWithScale';
-import { argTypes, defaultArgs, GltfWrapper } from './GltfWrapper';
+import { RotationByBezierTrajectoryWithScaleUpConfig } from '../../configs/Animation/Gltf/ScrollBased/Rotation/rotationByBezierTrajectoryWithScaleUp';
+import { RotationByLineTrajectoryConfig } from '../../configs/Animation/Gltf/ScrollBased/Rotation/rotationByLineTrajectory';
+import { RotationByMultipleBezierTrajectoryWithScaleConfig } from '../../configs/Animation/Gltf/ScrollBased/Rotation/rotationByMultipleBezierTrajectoryWithScale';
+import { RotationByMultipleLineTrajectoryConfig } from '../../configs/Animation/Gltf/ScrollBased/Rotation/rotationByMultipleLineTrajectory';
+import { RotationByMultipleLineTrajectoryWithScaleConfig } from '../../configs/Animation/Gltf/ScrollBased/Rotation/rotationByMultipleLineTrajectoryWithScale';
+import { argTypes, defaultArgs, GltfWrapper } from './utils/GltfWrapper';
 
 // eslint-disable-next-line storybook/story-exports
 export default {

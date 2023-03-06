@@ -1,7 +1,7 @@
 import { Story } from '@storybook/react';
-import App from '../App';
-import { AssetTypes, ObjectTypes } from '../types/enums';
-import { ContainerNodeProps } from '../types/types';
+import App from '../../../App';
+import { AssetTypes, ObjectTypes } from '../../../types/enums';
+import { ContainerNodeProps } from '../../../types/types';
 import { configAssetModifier, skuGltfMap } from './utility';
 
 const assetGltfMap = new Map<string, symbol>();

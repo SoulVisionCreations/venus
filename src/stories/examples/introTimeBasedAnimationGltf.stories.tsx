@@ -1,5 +1,5 @@
-import { introTimeBasedAnimationByRotateAndScaleConfig } from '../configs/Animation/Gltf/TimeBased/introTimeBasedAnimationByRotateAndScale';
-import { argTypes, defaultArgs, GltfWrapper } from './GltfWrapper';
+import { introTimeBasedAnimationByRotateAndScaleConfig } from '../../configs/Animation/Gltf/TimeBased/introTimeBasedAnimationByRotateAndScale';
+import { argTypes, defaultArgs, GltfWrapper } from './utils/GltfWrapper';
 
 // eslint-disable-next-line storybook/story-exports
 export default {

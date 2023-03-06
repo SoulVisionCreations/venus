@@ -1,7 +1,7 @@
 import { Story } from '@storybook/react';
-import App from '../App';
-import { AssetTypes, implicitResolution, ObjectTypes } from '../types/enums';
-import { ContainerNodeProps } from '../types/types';
+import App from '../../../App';
+import { AssetTypes, implicitResolution, ObjectTypes } from '../../../types/enums';
+import { ContainerNodeProps } from '../../../types/types';
 import { configAssetModifier, getImplicitUrl, skuImplicitMap } from './utility';
 
 const assetImplicitMap = new Map<string, symbol>();

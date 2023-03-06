@@ -14,20 +14,18 @@ export default {
     title: 'Documentation/Trajectories/StraightLine',
     component: straightLineTrajectoryAppWrapper,
     argTypes: {
-        clockwise: {
-            control: { type: 'boolean' },
-            description: 'Decides direction of generated points to be clockwise/anti-clockwise',
-            table: {
-                type: { summary: 'boolean' },
-                defaultValue: { summary: 'true' },
-            },
-        },
-        center: {
+        startPoint: {
             control: { type: 'object' },
-            description: 'Sets center of the circle',
+            description: 'Sets start point of the straight line',
             table: {
                 type: { summary: '[number, number, number]' },
-                defaultValue: { summary: '[0, 0, 0]' },
+            },
+        },
+        endPoint: {
+            control: { type: 'object' },
+            description: 'Sets end point of the straight line',
+            table: {
+                type: { summary: '[number, number, number]' },
             },
         },
     },

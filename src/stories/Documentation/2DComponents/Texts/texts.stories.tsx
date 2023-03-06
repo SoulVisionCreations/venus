@@ -208,6 +208,12 @@ export default {
                 hidden: true,
             },
         },
+        docs: {
+            description: {
+                component:
+                    'This component is used to add texts to your experience. Custom fonts can also be provided for rendering texts. Currently, there are four types of text templates supported: Paragraph, Paragraph with Title, Numbered List with Title, and Bulleted List with Title.',
+            },
+        },
         viewMode: 'docs',
     },
 };

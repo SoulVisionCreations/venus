@@ -30,6 +30,28 @@ export default {
                 defaultValue: { summary: '[0, 0, 0]' },
             },
         },
+        height: {
+            control: { type: 'number' },
+            description: 'Sets the height of the ellipse',
+            table: {
+                type: { summary: 'number' },
+            },
+        },
+        width: {
+            control: { type: 'number' },
+            description: 'Sets the width of the ellipse',
+            table: {
+                type: { summary: 'number' },
+            },
+        },
+        rotateCurve: {
+            control: { type: 'object' },
+            description: 'Sets the axis and angle around which the ellipse trajectory be created',
+            table: {
+                type: { summary: 'object' },
+                defaultValue: { summary: '{ axis: [1,0,0], angle: 0 }' },
+            },
+        },
     },
     parameters: {
         previewTabs: {

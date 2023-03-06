@@ -35,9 +35,9 @@ export const getEnvironmentConfig = ({ files, background, ground }: EnvironmentP
                     {
                         type: ObjectTypes.ImplicitObject,
                         assetId: '102',
-                        position: [0, 11.1, 0],
+                        position: [0, 16.65, 0],
                         rotation: [-Math.PI / 2, 0, Math.PI],
-                        scale: [20, 20, 20],
+                        scale: [30, 30, 30],
                     },
                 ],
             },

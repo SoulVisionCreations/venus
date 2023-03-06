@@ -14,20 +14,27 @@ export default {
     title: 'Documentation/Trajectories/SplineCurve',
     component: splineCurveTrajectoryAppWrapper,
     argTypes: {
-        clockwise: {
-            control: { type: 'boolean' },
-            description: 'Decides direction of generated points to be clockwise/anti-clockwise',
+        points: {
+            control: { type: 'object' },
+            description: 'Sets the three points to create the spline curve',
             table: {
-                type: { summary: 'boolean' },
-                defaultValue: { summary: 'true' },
+                type: { summary: '[[number, number, number], [number, number, number], [number, number, number]]' },
             },
         },
-        center: {
-            control: { type: 'object' },
-            description: 'Sets center of the circle',
+        closed: {
+            control: { type: 'boolean' },
+            description: 'Sets whether the trajectory points form a closed loop(start Point = end Point)',
             table: {
-                type: { summary: '[number, number, number]' },
-                defaultValue: { summary: '[0, 0, 0]' },
+                type: { summary: 'boolean' },
+                defaultValue: { summary: false },
+            },
+        },
+        equiSpacedPoints: {
+            control: { type: 'boolean' },
+            description: 'Sets whether the trajectory points should be equidistant',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: false },
             },
         },
     },
