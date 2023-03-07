@@ -107,7 +107,7 @@ export interface TextProps {
     outlineBlur?: string | number;
     outlineColor?: string;
     outlineOpacity?: number;
-    fillOpacity?: number;
+    opacity?: number;
     curveRadius?: number;
     material?: Material;
 }
@@ -135,6 +135,8 @@ export interface EnvironmentProps {
 }
 
 export interface CanvasNodeProps {
+    sceneId?: number;
+    disablePageScrollForScrollAnimation?: boolean;
     type: ComponentTypes;
     style?: any;
     className?: string;

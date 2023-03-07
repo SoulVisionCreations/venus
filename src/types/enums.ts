@@ -70,6 +70,7 @@ export const enum Trajectory {
     ellipse,
     circle,
     line3,
+    line1D,
     quadracticBezierCurve3,
     cubicBezierCurve3,
     splineCurve3,

@@ -9,7 +9,6 @@ const MeshObject = ({ objectProps, sceneProps }: { objectProps: MeshObjectProps;
     const model = getAssetbyId(objectProps.assetId);
     const object = model.scene ? model.scene.clone() : model.clone();
     const spring = useAnimation(objectProps, sceneProps);
-    console.log(model);
     return (
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore

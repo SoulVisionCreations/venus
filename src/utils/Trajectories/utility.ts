@@ -7,6 +7,7 @@ import {
     CircleMetaData,
     CubicBezierCurve3MetaData,
     EllipseMetaData,
+    line1DMetaData,
     lineCurve3MetaData,
     multipleCurve3MetaData,
     QuadraticBezierCurve3MetaData,
@@ -17,7 +18,8 @@ import { convertStateVecToArr } from '../utility';
 import { createCubicBezierCurve3, createQuadraticBezierCurve3, getPointsOnCubicBezierCurve3, getPointsOnQuadraticBezierCurve3 } from './BezierCurves';
 import { createCircle, getPointsOnCircle } from './Circle';
 import { createEllipse, getPointsOnEllipse } from './Ellipse';
-import { createLineCurve3, getPointsOnLineCurve3 } from './line3';
+import { getPointsOnLine1D } from './line1D';
+import { createLineCurve3, getPointsOnLineCurve3 } from './line3D';
 import { createMultipleCurvePath, getPointsOnMultipleCurvePath } from './multipleCurvePath';
 import { createSplineCurve3, getPointsOnSplineCurve3 } from './SplineCurve';
 
@@ -46,13 +48,15 @@ export const getTrajectory = (trajectoryMetaData: TrajectoryMetaData) => {
         case Trajectory.multipleCurvePath:
             curve = createMultipleCurvePath(data as multipleCurve3MetaData);
             break;
+        case Trajectory.line1D:
+            curve = data;
     }
     return curve;
 };
 
 const getTrajectoryPoints = (trajectoryMetaData: TrajectoryMetaData) => {
     const { type, ...data } = trajectoryMetaData;
-    let points: Array<Vector3> = [];
+    let points: Array<Vector3 | number> = [];
     switch (type) {
         case Trajectory.circle:
             points = getPointsOnCircle(data as CircleMetaData);
@@ -75,6 +79,9 @@ const getTrajectoryPoints = (trajectoryMetaData: TrajectoryMetaData) => {
         case Trajectory.multipleCurvePath:
             points = getPointsOnMultipleCurvePath(data as multipleCurve3MetaData);
             break;
+        case Trajectory.line1D:
+            points = getPointsOnLine1D(data as line1DMetaData);
+            break;
     }
     return points;
 };
@@ -87,24 +94,29 @@ export const getStateTrajectoryPoints = (
     const stateTrajectoryVec: Array<strongObject3DStateOfVectors> = [];
     const stateTrajectoryArr: Array<strongObject3DStateOfArrays> = [];
     const steps = trajectorySteps ?? animationDefaults.steps;
-    let positionTrajectory, rotationTrajectory, scaleTrajectory;
+    let positionTrajectory, rotationTrajectory, scaleTrajectory, opacityTrajectory;
     if (animationTrajectory.position) {
         const positionTrajectoryMetaData = { ...animationTrajectory.position.trajectoryMetaData, steps: steps };
         positionTrajectory = getTrajectoryPoints(positionTrajectoryMetaData);
     }
     if (animationTrajectory.rotation) {
-        const positionTrajectoryMetaData = { ...animationTrajectory.rotation.trajectoryMetaData, steps: steps };
-        rotationTrajectory = getTrajectoryPoints(positionTrajectoryMetaData);
+        const rotationTrajectoryMetaData = { ...animationTrajectory.rotation.trajectoryMetaData, steps: steps };
+        rotationTrajectory = getTrajectoryPoints(rotationTrajectoryMetaData);
     }
     if (animationTrajectory.scale) {
-        const positionTrajectoryMetaData = { ...animationTrajectory.scale.trajectoryMetaData, steps: steps };
-        scaleTrajectory = getTrajectoryPoints(positionTrajectoryMetaData);
+        const scaleTrajectoryMetaData = { ...animationTrajectory.scale.trajectoryMetaData, steps: steps };
+        scaleTrajectory = getTrajectoryPoints(scaleTrajectoryMetaData);
+    }
+    if (animationTrajectory.opacity) {
+        const opacityTrajectoryMetaData = {...animationTrajectory.opacity.trajectoryMetaData, steps: steps};
+        opacityTrajectory = getTrajectoryPoints(opacityTrajectoryMetaData);
     }
     for (let i = 0; i <= steps; i++) {
         stateTrajectoryVec.push({
-            position: positionTrajectory ? positionTrajectory[i] : state.current.position,
-            rotation: rotationTrajectory ? rotationTrajectory[i] : state.current.rotation,
-            scale: scaleTrajectory ? scaleTrajectory[i] : state.current.scale,
+            position: (positionTrajectory ? positionTrajectory[i] : state.current.position) as Vector3,
+            rotation: (rotationTrajectory ? rotationTrajectory[i] : state.current.rotation) as Vector3,
+            scale: (scaleTrajectory ? scaleTrajectory[i] : state.current.scale) as Vector3,
+            opacity: (opacityTrajectory ? opacityTrajectory[i] : state.current.opacity) as number
         });
         stateTrajectoryArr.push(convertStateVecToArr(stateTrajectoryVec[i]));
     }

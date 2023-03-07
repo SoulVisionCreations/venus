@@ -4,7 +4,7 @@ import { Text } from '@react-three/drei';
 import { TextTypes } from '../types/enums';
 import { TextProps } from '../types/types';
 import { useAnimation } from '../utils/Animations/useAnimation';
-import { SceneProps } from './Scene';
+import { SceneProps } from './CanvasNode';
 
 // const AnimatedFlex = animated(Flex);
 // const AnimatedBox = animated(Box);
@@ -31,7 +31,7 @@ const renderData = (data: string | string[], type: TextTypes, numbered?: boolean
 const TextLoader = ({ textProps, sceneProps }: { textProps: TextProps; sceneProps: SceneProps }) => {
     const spring = useAnimation(textProps, sceneProps);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { type, position, rotation, scale, animations, title, numbered, data, ...props } = textProps;
+    const { type, position, rotation, scale, animations, title, numbered, data, opacity, ...props } = textProps;
     // return (
     //         <AnimatedFlex flexDirection="row" flexWrap={'wrap'} scale={(spring as any).scale} position={(spring as any).position} rotation={(spring as any).rotation}>
     //             {title && <Box alignSelf={'flex-start'}>
@@ -47,7 +47,7 @@ const TextLoader = ({ textProps, sceneProps }: { textProps: TextProps; sceneProp
     //         </AnimatedFlex>
     // );
     return (
-        <AnimatedText scale={(spring as any).scale} position={(spring as any).position} rotation={(spring as any).rotation} {...props}>
+        <AnimatedText scale={(spring as any).scale} position={(spring as any).position} rotation={(spring as any).rotation} fillOpacity={spring.opacity} {...props}>
             {title ? title + '\n\n' : ''}
             {renderData(data, type, numbered)}
         </AnimatedText>

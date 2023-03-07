@@ -6,7 +6,7 @@ import { configAssetModifier, getEnvFileUrl, getImplicitUrl, skuImplicitMap } fr
 
 const assetImplicitMap = new Map<string, symbol>();
 
-export const AppWrapper: Story<{ skuId: string; resolution: implicitResolution; storyConfig: ContainerNodeProps; envFiles: string | string[]; background: boolean }> = ({ ...args }) => {
+export const AppWrapper: Story<{ skuId: string; resolution: implicitResolution; storyConfig: ContainerNodeProps; envFiles: string | string[]; background: boolean}> = ({ ...args }) => {
     let assetId;
     if (assetImplicitMap.has(args.skuId)) assetId = assetImplicitMap.get(args.skuId);
     else {

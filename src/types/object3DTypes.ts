@@ -57,22 +57,26 @@ export type strongObject3DStateOfArrays = {
     position: number[];
     rotation: number[];
     scale: number[];
+    opacity: number;
 };
 
 export type weakObject3DStateofArrays = {
     position?: number[];
     rotation?: number[];
     scale?: number[];
+    opacity?: number;
 };
 
 export type strongObject3DStateOfVectors = {
     position: Vector3;
     rotation: Vector3;
     scale: Vector3;
+    opacity: number;
 };
 
 export type weakObject3DStateofVectors = {
     position?: Vector3;
     rotation?: Vector3;
     scale?: Vector3;
+    opacity?: number;
 };

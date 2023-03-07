@@ -169,7 +169,7 @@ export default {
                 defaultValue: { summary: 1 },
             },
         },
-        fillOpacity: {
+        opacity: {
             control: { type: 'number', step: 0.1 },
             description: 'Sets the fill opacity of the text',
             table: {
@@ -231,7 +231,7 @@ TextParagraph.args = {
     outlineBlur: 0,
     outlineColor: 'black',
     outlineOpacity: 0,
-    fillOpacity: 1,
+    opacity: 1,
     curveRadius: 0,
     // material?: Material;
 };

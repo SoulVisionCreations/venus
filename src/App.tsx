@@ -40,7 +40,7 @@ export default function App({ config }: AppProps) {
     const alignmentClassName: string = config.alignment == Alignment.Vertical ? 'flexColumn' : 'flexRow';
 
     return (
-        <div className={`${config.className ? config.className : ''} ${alignmentClassName}`} style={config.style}>
+        <div className={`${config.className ? config.className : ''}${alignmentClassName}`} style={config.style}>
             {loading ? <AvataarLoader /> : renderConfig()}
         </div>
     );

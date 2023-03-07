@@ -12,7 +12,9 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
     children: [
         {
             type: ComponentTypes.Canvas,
-            style: { ...stylingDefaults.fullWidthFullHeightCanvas, height: '600px' },
+            style: stylingDefaults.fullWidthFullHeightCanvas,
+            disablePageScrollForScrollAnimation: true,
+            sceneId: 2,
             camera: {
                 type: CameraTypes.Perspective,
                 position: [0, 0, 3],
@@ -42,6 +44,7 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                                 sceneTopToScreenBottomRatio: 0.5,
                                 sceneBottomToScreenTopRatio: 0.5,
                             },
+                            disablePageScroll: true,
                             animationTrajectories: {
                                 rotation: {
                                     trajectoryMetaData: {
@@ -68,12 +71,14 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                                     },
                                     speed: 0.00025,
                                 },
-                            },
-                            scaleOnScroll: {
-                                scaleRatio: [1, 1, 1],
-                                velocity: 0.00025,
-                                maxScale: [3, 3, 3],
-                                minScale: [2, 2, 2],
+                                scale: {
+                                    trajectoryMetaData: {
+                                        type: Trajectory.line3,
+                                        startPoint: [2, 2, 2],
+                                        endPoint: [2.5, 2.5, 2.5]
+                                    },
+                                    speed: 0.00025,
+                                }
                             },
                             springConfig: { mass: 4, tension: 280, friction: 90 },
                         },
@@ -109,10 +114,18 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                                     trajectoryMetaData: {
                                         type: Trajectory.line3,
                                         startPoint: [0, 0.075, 2],
-                                        endPoint: [0, 10, 2],
+                                        endPoint: [0, 2, 2],
                                     },
                                     speed: 0.00025,
                                 },
+                                opacity: {
+                                    trajectoryMetaData: {
+                                        type: Trajectory.line1D,
+                                        startPoint: 1,
+                                        endPoint: 0,
+                                    },
+                                    speed: 0.0025
+                                }
                             },
                         },
                     ],
@@ -139,7 +152,7 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                                     trajectoryMetaData: {
                                         type: Trajectory.line3,
                                         startPoint: [0, -0.075, 2],
-                                        endPoint: [0, 10, 2],
+                                        endPoint: [0, 1.85, 2],
                                     },
                                     speed: 0.00025,
                                 },
@@ -262,6 +275,14 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                     ],
                 },
             ],
+        },
+        {
+            type: ComponentTypes.Canvas,
+            style: { ...stylingDefaults.fullWidthFullHeightCanvas},
+            camera: {
+                type: CameraTypes.Perspective,
+                position: [0, 0, 3],
+            },
         },
     ],
 };

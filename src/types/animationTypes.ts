@@ -47,6 +47,10 @@ export type AnimationTrajectory = {
         trajectoryMetaData: TrajectoryMetaData;
         speed?: number;
     };
+    opacity?: {
+        trajectoryMetaData: TrajectoryMetaData;
+        speed?: number;
+    }
 };
 
 export type VisibilityThreshold = { sceneTopToScreenBottomRatio: number; sceneBottomToScreenTopRatio: number };
@@ -66,11 +70,11 @@ export type IntroAnimation = {
     initialPause?: number;
     springConfig?: SpringConfig;
     visibilityThreshold?: VisibilityThreshold;
-} & ({ animationTrajectories: AnimationTrajectory; trajectroySteps?: number } | { stateIncrements: Array<weakObject3DStateofArrays> });
+} & ({ animationTrajectories: AnimationTrajectory; trajectorySteps?: number } | { stateIncrements: Array<weakObject3DStateofArrays> });
 
 export type ScrollAnimation = {
     visibilityThreshold?: VisibilityThreshold;
-    disableScroll?: boolean;
+    disablePageScroll?: boolean;
     rotateOnScroll?: {
         axis: number[];
         velocity: number;

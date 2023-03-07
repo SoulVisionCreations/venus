@@ -38,11 +38,12 @@ export const getInitialStateArr = (instance: any): Array<number[]> => {
     return [position, rotation, scale];
 };
 
-export const getInitialState = (instance: any): Array<Vector3> => {
+export const getInitialState = (instance: any): Array<Vector3 | number> => {
     const position = instance.position ? new Vector3(...instance.position) : new Vector3(...objectDefaults.position);
     const rotation = instance.rotation ? new Vector3(...instance.rotation) : new Vector3(...objectDefaults.rotation);
     const scale = instance.scale ? new Vector3(...instance.scale) : new Vector3(...objectDefaults.scale);
-    return [position, rotation, scale];
+    const opacity = instance.opacity == undefined ? 1 : instance.opacity;
+    return [position, rotation, scale, opacity];
 };
 
 export const createMatrix4 = (position: Vector3, rotation: Vector3, scale: Vector3): Matrix4 => {
@@ -56,8 +57,8 @@ export const createMatrix4 = (position: Vector3, rotation: Vector3, scale: Vecto
 };
 
 export const getInitialialStateMatrix4 = (instance: any): Matrix4 => {
-    const [position, rotation, scale]: Array<Vector3> = getInitialState(instance);
-    const matrix = createMatrix4(position, rotation, scale);
+    const [position, rotation, scale, opacity]: Array<Vector3 | number> = getInitialState(instance);
+    const matrix = createMatrix4(position as Vector3, rotation as Vector3, scale as Vector3);
     return matrix;
 };
 
@@ -66,6 +67,7 @@ export const convertStateVecToArr = (stateVec: strongObject3DStateOfVectors): st
         position: [stateVec.position.x, stateVec.position.y, stateVec.position.z],
         rotation: [stateVec.rotation.x, stateVec.rotation.y, stateVec.rotation.z],
         scale: [stateVec.scale.x, stateVec.scale.y, stateVec.scale.z],
+        opacity: stateVec.opacity
     };
 };
 

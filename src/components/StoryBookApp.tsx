@@ -9,7 +9,6 @@ import HtmlTemplateLoader from './HtmlTemplate';
 export default function StoryBookApp({ config, componentType }: { config: TextProps | ImageProps | HtmlTemplateProps; componentType: string }) {
     const sceneProps = {
         isSceneVisible: true,
-        isSceneCompletelyVisible: true,
         canvasRect: {
             top: 0,
             bottom: 0,
@@ -19,7 +18,7 @@ export default function StoryBookApp({ config, componentType }: { config: TextPr
     const GetInfo = () => {
         const { scene } = useThree();
         useEffect(() => {
-            console.log(scene);
+            //console.log(scene);
         });
         return null;
     };
