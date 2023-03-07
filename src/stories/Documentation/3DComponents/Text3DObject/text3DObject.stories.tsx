@@ -3,10 +3,15 @@ import App from '../../../../App';
 import { Text3DObjectProps } from '../../../../types/object3DTypes';
 import { getText3DObjectConfig } from './text3DObjectConfig';
 
+const Text3DObject: Story<Text3DObjectProps> = (args) => {
+    const config = getText3DObjectConfig(args);
+    return <App config={{ ...config }} />;
+};
+
 // eslint-disable-next-line storybook/story-exports
 export default {
     title: 'Documentation/3D Components/Text3DObject',
-    component: App,
+    component: Text3DObject,
     argTypes: {
         position: {
             control: 'object',
@@ -69,16 +74,12 @@ export default {
         },
         docs: {
             description: {
-                component: 'This component is used to add 3D Text objects to your experience. Custom fonts can also be provided for rendering 3D texts.',
+                component:
+                    'This component is used to add 3D Text objects to your experience. Custom fonts can also be provided for rendering 3D texts. **Animations can be applied to 3D Text objects.**',
             },
         },
         viewMode: 'docs',
     },
-};
-
-const Text3DObject: Story<Text3DObjectProps> = ({ ...args }) => {
-    const config = getText3DObjectConfig(args);
-    return <App config={{ ...config }} />;
 };
 
 export const Text3DObjectExample = Text3DObject.bind({});

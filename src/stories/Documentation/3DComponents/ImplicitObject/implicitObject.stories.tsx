@@ -3,10 +3,15 @@ import App from '../../../../App';
 import { ImplicitObjectProps } from '../../../../types/object3DTypes';
 import { getImplicitObjectConfig } from './imlicitObjectConfig';
 
+const ImplicitObject: Story<ImplicitObjectProps> = (args) => {
+    const config = getImplicitObjectConfig(args);
+    return <App config={{ ...config }} />;
+};
+
 // eslint-disable-next-line storybook/story-exports
 export default {
     title: 'Documentation/3D Components/ImplicitObject',
-    component: App,
+    component: ImplicitObject,
     argTypes: {
         position: {
             control: 'object',
@@ -46,17 +51,11 @@ export default {
         },
         docs: {
             description: {
-                component:
-                    'This component is used to add implicit objects to your experience. Implicit objects can either be uploaded, provided a link to or selected from existing implicit options on the config generator UI',
+                component: 'This component is used to add implicit objects to your experience. **Animations can be applied to Implicit Objects**',
             },
         },
         viewMode: 'docs',
     },
-};
-
-const ImplicitObject: Story<ImplicitObjectProps> = ({ ...args }) => {
-    const config = getImplicitObjectConfig(args);
-    return <App config={{ ...config }} />;
 };
 
 export const ImplicitObjectExample = ImplicitObject.bind({});

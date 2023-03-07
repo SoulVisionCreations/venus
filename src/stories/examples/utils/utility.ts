@@ -59,4 +59,4 @@ skuImplicitMap.set('food', 'sku_2022-11-14_07-00-23');
 skuImplicitMap.set('chair', 'sku_2022-11-16_14-10-04');
 
 export const skuGltfMap = new Map<string, string>();
-skuGltfMap.set('chair', 'scene.glb');
+skuGltfMap.set('chair', './assets/glb/scene.glb');

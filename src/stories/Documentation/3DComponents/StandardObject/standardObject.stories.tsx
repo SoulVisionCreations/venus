@@ -4,10 +4,15 @@ import { MaterialTypes, StandardGeometryTypes } from '../../../../types/enums';
 import { StandardObjectProps } from '../../../../types/object3DTypes';
 import { getStandardObjectConfig } from './standardObjectConfig';
 
+const StandardObject: Story<StandardObjectProps> = (args) => {
+    const config = getStandardObjectConfig(args);
+    return <App config={{ ...config }} />;
+};
+
 // eslint-disable-next-line storybook/story-exports
 export default {
     title: 'Documentation/3D Components/Standard Object',
-    component: App,
+    component: StandardObject,
     argTypes: {
         position: {
             control: 'object',
@@ -37,14 +42,14 @@ export default {
             control: 'object',
             descrption: 'Sets the geometry of the standard object',
             table: {
-                type: { summary: '{type, otherGeometryProps}' },
+                type: { summary: '{type, otherGeometryProps(refer to THREE)}' },
             },
         },
         material: {
             control: 'object',
             descrption: 'Sets the material of the standard object',
             table: {
-                type: { summary: '{type, otherMaterialProps}' },
+                type: { summary: '{type, otherMaterialProps(refer to THREE)}' },
             },
         },
         type: {
@@ -76,16 +81,12 @@ export default {
         },
         docs: {
             description: {
-                component: 'This component is used to add standard THREE objects to your experience. The geometry and material can be selected from already existing THREE geometries and materials.',
+                component:
+                    'This component is used to add standard THREE objects to your experience. The geometry and material can be selected from already existing THREE geometries and materials. **Animations can be applied to Standard Objects**',
             },
         },
         viewMode: 'docs',
     },
-};
-
-const StandardObject: Story<StandardObjectProps> = ({ ...args }) => {
-    const config = getStandardObjectConfig(args);
-    return <App config={{ ...config }} />;
 };
 
 export const StandardObjectExample = StandardObject.bind({});

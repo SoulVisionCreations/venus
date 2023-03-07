@@ -6,7 +6,7 @@ export const getImagesConfig = ({ position, rotation, scale, zoom, color, graysc
     return {
         type: ComponentTypes.Container,
         alignment: Alignment.Vertical,
-        assets: [{ assetId: '1001', assetPath: 'storyimage.jpeg', assetType: AssetTypes.Image }],
+        assets: [{ assetId: '1001', assetPath: './assets/image/storyimage.jpeg', assetType: AssetTypes.Image }],
         children: [
             {
                 type: ComponentTypes.Canvas,

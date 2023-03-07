@@ -6,8 +6,8 @@ export const PositionByBezierTrajectoryWithScaleAndRotateConfig: ContainerNodePr
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
     assets: [
-        { assetId: '11', assetPath: './Inter_Bold.json', assetType: AssetTypes.Font },
-        { assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Mesh },
+        { assetId: '11', assetPath: './assets/font/Inter_Bold.json', assetType: AssetTypes.Font },
+        { assetId: '101', assetPath: './assets/glb/scene.glb', assetType: AssetTypes.Mesh },
     ],
     children: [
         {
@@ -24,7 +24,7 @@ export const PositionByBezierTrajectoryWithScaleAndRotateConfig: ContainerNodePr
                     type: ObjectTypes.Text3D,
                     assetId: '11',
                     text: 'Scroll Down',
-                    font: './Inter_Bold.json',
+                    font: './assets/font/Inter_Bold.json',
                     position: [0, 0, 0],
                     rotation: [-0.5, 0, 0],
                     scale: [0.2, 0.2, 0.2],
@@ -169,7 +169,7 @@ export const PositionByBezierTrajectoryWithScaleAndRotateConfig: ContainerNodePr
                     type: ObjectTypes.Text3D,
                     assetId: '11',
                     text: 'Scroll up',
-                    font: './Inter_Bold.json',
+                    font: './assets/font/Inter_Bold.json',
                     position: [0, 0, 0],
                     rotation: [-0.5, 0, 0],
                     scale: [0.2, 0.2, 0.2],

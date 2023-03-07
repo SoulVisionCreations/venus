@@ -6,9 +6,8 @@ export const scrollAnimationExample: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
     assets: [
-        { assetId: '101', assetPath: 'data', assetType: AssetTypes.Implicit },
-        { assetId: '11', assetPath: './Inter_Bold.json', assetType: AssetTypes.Font },
-        { assetId: '1006', assetPath: './avataar.png', assetType: AssetTypes.Image },
+        { assetId: '101', assetPath: './assets/implicit/data', assetType: AssetTypes.Implicit },
+        { assetId: '11', assetPath: './assets/font/Inter_Bold.json', assetType: AssetTypes.Font },
     ],
     children: [
         {
@@ -25,7 +24,7 @@ export const scrollAnimationExample: ContainerNodeProps = {
                     type: ObjectTypes.Text3D,
                     assetId: '11',
                     text: 'Scroll Down',
-                    font: './Inter_Bold.json',
+                    font: './assets/font/Inter_Bold.json',
                     position: [-2, 0, 0],
                     rotation: [-0.5, 0, 0],
                     scale: [0.5, 0.5, 0.5],
@@ -60,7 +59,7 @@ export const scrollAnimationExample: ContainerNodeProps = {
                             type: ObjectTypes.Text3D,
                             assetId: '11',
                             text: 'Chair Demo',
-                            font: './Inter_Bold.json',
+                            font: './assets/font/Inter_Bold.json',
                             position: [-1, 0, 0],
                             rotation: [-0.1, 0, 0],
                             scale: [0.3, 0.3, 0.3],
@@ -128,11 +127,6 @@ export const scrollAnimationExample: ContainerNodeProps = {
                                         sceneTopToScreenBottomRatio: 0,
                                         sceneBottomToScreenTopRatio: 0,
                                     },
-                                    animationTrajectories: {
-                                        rotation: {
-                                            
-                                        }
-                                    }
                                     trajectory: AnimationTrajectory.curveDefinedByPoints,
                                     trajectoryMetaData: {
                                         points: [
@@ -210,7 +204,7 @@ export const scrollAnimationExample: ContainerNodeProps = {
                 type: CameraTypes.Perspective,
                 position: [0, 0, 3],
             },
-            assetIds: ['101', '1006'],
+            assetIds: ['101'],
             objects: [
                 {
                     type: ObjectTypes.ImplicitObject,
@@ -261,37 +255,6 @@ export const scrollAnimationExample: ContainerNodeProps = {
                                 speed: 0.001,
                             },
                             config: { mass: 4, tension: 280, friction: 90 },
-                        },
-                    ],
-                },
-            ],
-            images: [
-                {
-                    assetId: '1006',
-                    position: [0, 1, -200],
-                    rotation: [0, 0, 0],
-                    scale: [0.3, 0.3, 0.3],
-                    animations: [
-                        {
-                            type: AnimationTypes.scroll,
-                            trajectory: AnimationTrajectory.curveDefinedByPoints,
-                            visibilityThreshold: {
-                                top: 0.8,
-                                bottom: -1,
-                            },
-                            trajectoryMetaData: {
-                                points: [
-                                    [0, 1, -200],
-                                    [0, 0, -40],
-                                    [0, -1, -30],
-                                    [0, -2, -20],
-                                    [0, -3, -25],
-                                    [0, 0, 0],
-                                ],
-                                speed: 0.05,
-                                steps: 1000,
-                            },
-                            config: { duration: 10 },
                         },
                     ],
                 },
