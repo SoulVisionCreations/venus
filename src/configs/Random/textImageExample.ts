@@ -19,7 +19,7 @@ export const textImageExample: ContainerNodeProps = {
             className: 'canvas',
             style: stylingDefaults.fullWidthLargeHeightCanvas,
             assetIds: ['100001', '101'],
-            environment: { files: './puresky.hdr' },
+            environment: { files: './assets/hdri/puresky.hdr' },
             camera: {
                 type: CameraTypes.Perspective,
                 position: [0, 0, 5],
@@ -89,7 +89,7 @@ export const textImageExample: ContainerNodeProps = {
             className: 'canvas',
             style: stylingDefaults.fullWidthFullHeightCanvas,
             assetIds: ['1005'],
-            environment: { files: './puresky.hdr' },
+            environment: { files: './assets/hdri/puresky.hdr' },
             camera: {
                 type: CameraTypes.Perspective,
                 position: [0, 0, 4],

@@ -20,7 +20,7 @@ export const config2: ContainerNodeProps = {
             className: 'canvas',
             style: stylingDefaults.fullWidthFullHeightCanvas,
             assetIds: ['100001', '10001', '1001', '101'],
-            environment: { files: './puresky.hdr' },
+            environment: { files: './assets/hdri/puresky.hdr' },
             camera: {
                 type: CameraTypes.Perspective,
                 position: [0, 0, 2],

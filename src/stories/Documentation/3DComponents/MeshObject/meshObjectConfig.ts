@@ -30,7 +30,7 @@ export const getMeshObjectConfig = ({ assetId, position, rotation, scale }: Mesh
                     },
                 ],
                 environment: {
-                    files: 'puresky.hdr',
+                    files: './assets/hdri/puresky.hdr',
                 },
                 assetIds: ['101', '103'],
                 objects: [
