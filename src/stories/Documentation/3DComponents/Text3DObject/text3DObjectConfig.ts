@@ -27,7 +27,7 @@ export const getText3DObjectConfig = ({ text, position, rotation, scale, color }
                     },
                 ],
                 environment: {
-                    files: 'puresky.hdr',
+                    files: './assets/hdri/puresky.hdr',
                 },
                 assetIds: ['104'],
                 objects: [

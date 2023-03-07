@@ -17,7 +17,7 @@ export const DemoExample: ContainerNodeProps = {
             type: ComponentTypes.Canvas,
             className: 'canvas',
             style: stylingDefaults.fullWidthFullHeightCanvas,
-            environment: { files: './puresky.hdr' },
+            environment: { files: './assets/hdri/puresky.hdr' },
             showDimensions: true,
             assetIds: ['100001', '101'],
             camera: {

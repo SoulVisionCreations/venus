@@ -9,7 +9,7 @@ export const demoConfig: ContainerNodeProps = {
     assets: [
         { assetId: '101', assetPath: './assets/implicit/data2', assetType: AssetTypes.Implicit },
         { assetId: '105', assetPath: './assets/font/Inter_Bold.json', assetType: AssetTypes.Font },
-        { assetId: '106', assetPath: './assets/implicit/data', assetType: AssetTypes.Implicit },
+        { assetId: '106', assetPath: './assets/implicit/data2', assetType: AssetTypes.Implicit },
         { assetId: '1002', assetPath: './assets/image/storyimage.jpeg', assetType: AssetTypes.Image },
     ],
     children: [

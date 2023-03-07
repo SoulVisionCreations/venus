@@ -6,7 +6,7 @@ export const scrollAnimationExample: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
     assets: [
-        { assetId: '101', assetPath: './assets/implicit/data', assetType: AssetTypes.Implicit },
+        { assetId: '101', assetPath: './assets/implicit/data2', assetType: AssetTypes.Implicit },
         { assetId: '11', assetPath: './assets/font/Inter_Bold.json', assetType: AssetTypes.Font },
     ],
     children: [
