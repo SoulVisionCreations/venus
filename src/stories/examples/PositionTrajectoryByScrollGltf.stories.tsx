@@ -1,5 +1,5 @@
-import { PositionByBezierTrajectoryWithScaleAndRotateConfig } from '../configs/Animation/Gltf/ScrollBased/Position/positionByBezierTrajectory';
-import { argTypes, defaultArgs, GltfWrapper } from './GltfWrapper';
+import { PositionByBezierTrajectoryWithScaleAndRotateConfig } from '../../configs/Animation/Gltf/ScrollBased/Position/positionByBezierTrajectory';
+import { argTypes, defaultArgs, GltfWrapper } from './utils/GltfWrapper';
 
 // eslint-disable-next-line storybook/story-exports
 export default {

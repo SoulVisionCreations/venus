@@ -1,9 +1,9 @@
-import { RotationByBezierTrajectoryWithScaleUpConfig } from '../configs/Animation/Implicit/ScrollBased/Rotation/rotationByBezierTrajectoryWithScaleUp';
-import { RotationByLineTrajectoryConfig } from '../configs/Animation/Implicit/ScrollBased/Rotation/rotationByLineTrajectory';
-import { RotationByMultipleBezierTrajectoryWithScaleConfig } from '../configs/Animation/Implicit/ScrollBased/Rotation/rotationByMultipleBezierTrajectoryWithScale';
-import { RotationByMultipleLineTrajectoryConfig } from '../configs/Animation/Implicit/ScrollBased/Rotation/rotationByMultipleLineTrajectory';
-import { RotationByMultipleLineTrajectoryWithScaleConfig } from '../configs/Animation/Implicit/ScrollBased/Rotation/rotationByMultipleLineTrajectoryWithScale';
-import { AppWrapper, argTypes, defaultArgs } from './AppWrapper';
+import { RotationByBezierTrajectoryWithScaleUpConfig } from '../../configs/Animation/Implicit/ScrollBased/Rotation/rotationByBezierTrajectoryWithScaleUp';
+import { RotationByLineTrajectoryConfig } from '../../configs/Animation/Implicit/ScrollBased/Rotation/rotationByLineTrajectory';
+import { RotationByMultipleBezierTrajectoryWithScaleConfig } from '../../configs/Animation/Implicit/ScrollBased/Rotation/rotationByMultipleBezierTrajectoryWithScale';
+import { RotationByMultipleLineTrajectoryConfig } from '../../configs/Animation/Implicit/ScrollBased/Rotation/rotationByMultipleLineTrajectory';
+import { RotationByMultipleLineTrajectoryWithScaleConfig } from '../../configs/Animation/Implicit/ScrollBased/Rotation/rotationByMultipleLineTrajectoryWithScale';
+import { AppWrapper, argTypes, defaultArgs } from './utils/AppWrapper';
 
 // eslint-disable-next-line storybook/story-exports
 export default {

@@ -1,5 +1,5 @@
-import { PositionByBezierTrajectoryWithScaleAndRotateConfig } from '../configs/Animation/Implicit/ScrollBased/Position/positionByBezierTrajectory';
-import { AppWrapper, argTypes, defaultArgs } from './AppWrapper';
+import { PositionByBezierTrajectoryWithScaleAndRotateConfig } from '../../configs/Animation/Implicit/ScrollBased/Position/positionByBezierTrajectory';
+import { AppWrapper, argTypes, defaultArgs } from './utils/AppWrapper';
 
 // eslint-disable-next-line storybook/story-exports
 export default {

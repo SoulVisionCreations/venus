@@ -67,6 +67,11 @@ export default {
                 hidden: true,
             },
         },
+        docs: {
+            description: {
+                component: 'This component is used to add 3D Text objects to your experience. Custom fonts can also be provided for rendering 3D texts.',
+            },
+        },
         viewMode: 'docs',
     },
 };

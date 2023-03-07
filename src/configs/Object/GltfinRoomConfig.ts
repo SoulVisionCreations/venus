@@ -12,14 +12,14 @@ export const GltfinRoomConfig: ContainerNodeProps = {
             style: stylingDefaults.fullWidthFullHeightCanvas,
             camera: {
                 type: CameraTypes.Perspective,
-                position: [0, 0, 8],
-                rotation: [0, 0, 0],
+                position: [0, 10, 130],
+                fov: 35,
             },
             environment: {
                 files: 'brown_photostudio_02_2k.hdr',
                 ground: {
                     height: 32,
-                    radius: 120,
+                    radius: 130,
                 },
             },
             sceneControl: {
@@ -28,6 +28,8 @@ export const GltfinRoomConfig: ContainerNodeProps = {
                 maxPolarAngle: Math.PI / 2.15,
                 autoRotate: true,
                 autoRotateSpeed: 0.5,
+                enableZoom: false,
+                enablePan: false,
             },
             lights: [
                 {
@@ -44,9 +46,9 @@ export const GltfinRoomConfig: ContainerNodeProps = {
                 {
                     type: ObjectTypes.MeshObject,
                     assetId: '101',
-                    position: [0, 0.9, 0],
+                    position: [0, 10, 0],
                     rotation: [Math.PI / 15, 0, 0],
-                    scale: [4, 4, 4],
+                    scale: [20, 20, 20],
                 },
             ],
         },

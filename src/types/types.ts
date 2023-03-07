@@ -142,6 +142,8 @@ export interface SceneControlProps {
     autoRotateSpeed?: number;
     minPolarAngle?: number;
     maxPolarAngle?: number;
+    enableZoom?: boolean;
+    enablePan?: boolean;
 }
 
 export interface CanvasNodeProps {

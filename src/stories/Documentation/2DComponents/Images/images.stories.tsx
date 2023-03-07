@@ -29,7 +29,7 @@ export default {
             description: 'Sets scale of the image',
             table: {
                 type: { summary: '[number, number]' },
-                defaultValue: { summary: '[1, 1]' },
+                defaultValue: { summary: 'Default resolution of the image, for example, here scale is [1.6, 1]' },
             },
         },
         zoom: {
@@ -89,6 +89,11 @@ export default {
                 hidden: true,
             },
         },
+        docs: {
+            description: {
+                component: 'This component is used to add images to your experience. Images can either be uploaded on the experience config generator UI or the source path must be provided.',
+            },
+        },
         viewMode: 'docs',
     },
 };
@@ -100,10 +105,9 @@ const Image: Story<ImageProps> = ({ ...args }) => {
 
 export const ImageExample = Image.bind({});
 ImageExample.args = {
-    src: './storyimage.jpeg',
     position: [0, 0, 0],
     rotation: [0, 0, 0],
-    scale: [1, 1],
+    scale: [1.6, 1],
     zoom: 1,
     color: 'white',
     grayscale: 0,

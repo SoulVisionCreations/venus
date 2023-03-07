@@ -13,13 +13,14 @@ export const ImplicitinRoomConfig: ContainerNodeProps = {
             style: { width: '70%', height: '100%', position: 'fixed', left: '5%' },
             camera: {
                 type: CameraTypes.Perspective,
-                position: [0, 1, 8],
+                position: [0, 10, 130],
+                fov: 35,
             },
             environment: {
-                files: 'brown_photostudio_02_2k.hdr',
+                files: 'old_depot_2k.hdr',
                 ground: {
-                    height: 32,
-                    radius: 120,
+                    height: 50,
+                    radius: 130,
                 },
             },
             sceneControl: {
@@ -28,6 +29,8 @@ export const ImplicitinRoomConfig: ContainerNodeProps = {
                 maxPolarAngle: Math.PI / 2.15,
                 autoRotate: true,
                 autoRotateSpeed: 0.5,
+                enableZoom: false,
+                enablePan: false,
             },
             lights: [
                 {
@@ -44,9 +47,9 @@ export const ImplicitinRoomConfig: ContainerNodeProps = {
                 {
                     type: ObjectTypes.ImplicitObject,
                     assetId: '102',
-                    position: [0, 0, 0],
+                    position: [0, 11.1, 0],
                     rotation: [-Math.PI / 2, 0, Math.PI],
-                    scale: [5, 5, 5],
+                    scale: [20, 20, 20],
                 },
             ],
         },

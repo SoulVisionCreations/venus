@@ -1,5 +1,5 @@
-import { introSpringAnimationByRotateAndScaleConfig } from '../configs/Animation/Gltf/SpringBased/introSpringAnimationByRotateAndScale';
-import { argTypes, defaultArgs, GltfWrapper } from './GltfWrapper';
+import { introSpringAnimationByRotateAndScaleConfig } from '../../configs/Animation/Gltf/SpringBased/introSpringAnimationByRotateAndScale';
+import { argTypes, defaultArgs, GltfWrapper } from './utils/GltfWrapper';
 
 // eslint-disable-next-line storybook/story-exports
 export default {

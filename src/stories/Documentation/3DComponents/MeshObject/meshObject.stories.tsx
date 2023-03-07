@@ -49,6 +49,12 @@ export default {
                 hidden: true,
             },
         },
+        docs: {
+            description: {
+                component:
+                    'This component is used to add mesh(gltf, glb, obj) objects to your experience. Mesh objects can either be uploaded, provided a link to or selected from existing mesh options on the config generator UI',
+            },
+        },
         viewMode: 'docs',
     },
 };

@@ -1,5 +1,5 @@
-import { introTimeBasedAnimationByRotateAndScaleConfig } from '../configs/Animation/Implicit/TimeBased/introTimeBasedAnimationByRotateAndScale';
-import { AppWrapper, argTypes, defaultArgs } from './AppWrapper';
+import { introTimeBasedAnimationByRotateAndScaleConfig } from '../../configs/Animation/Implicit/TimeBased/introTimeBasedAnimationByRotateAndScale';
+import { AppWrapper, argTypes, defaultArgs } from './utils/AppWrapper';
 
 // eslint-disable-next-line storybook/story-exports
 export default {

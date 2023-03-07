@@ -74,6 +74,11 @@ export default {
                 hidden: true,
             },
         },
+        docs: {
+            description: {
+                component: 'This component is used to add standard THREE objects to your experience. The geometry and material can be selected from already existing THREE geometries and materials.',
+            },
+        },
         viewMode: 'docs',
     },
 };

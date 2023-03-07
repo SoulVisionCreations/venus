@@ -44,6 +44,12 @@ export default {
                 hidden: true,
             },
         },
+        docs: {
+            description: {
+                component:
+                    'This component is used to add implicit objects to your experience. Implicit objects can either be uploaded, provided a link to or selected from existing implicit options on the config generator UI',
+            },
+        },
         viewMode: 'docs',
     },
 };
