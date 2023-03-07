@@ -4,7 +4,7 @@ import { ContainerNodeProps } from '../../../../types/types';
 export const ellipseConfig: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
-    assets: [{ assetId: '102', assetPath: 'data2', assetType: AssetTypes.Implicit }],
+    assets: [{ assetId: '102', assetPath: './assets/implicit/data2', assetType: AssetTypes.Implicit }],
     children: [
         {
             type: ComponentTypes.Canvas,

@@ -1,6 +1,6 @@
-import { stylingDefaults } from "../../constants/defaults";
-import { Alignment, ComponentTypes } from "../../types/enums";
-import { ContainerNodeProps } from "../../types/types";
+import { stylingDefaults } from '../../constants/defaults';
+import { Alignment, ComponentTypes } from '../../types/enums';
+import { ContainerNodeProps } from '../../types/types';
 
 export const videoConfig1: ContainerNodeProps = {
     type: ComponentTypes.Container,

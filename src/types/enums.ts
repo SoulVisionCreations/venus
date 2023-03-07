@@ -27,7 +27,7 @@ export const enum StandardGeometryTypes {
     TorusKnotGeometry,
     TubeGeometry,
     WireframeGeometry,
-    PointGeometry
+    PointGeometry,
 }
 
 export const enum MaterialTypes {
@@ -113,7 +113,7 @@ export const enum LightTypes {
 export const enum ComponentTypes {
     Container,
     Canvas,
-    Video
+    Video,
 }
 
 export const enum TextTypes {
@@ -123,6 +123,8 @@ export const enum TextTypes {
 
 export const enum HtmlTemplateTypes {
     ParagraphBox,
+    NumberedListBox,
+    BulletedListBox,
 }
 
 export const enum Alignment {

@@ -32,6 +32,7 @@ export type StandardObjectProps = CommonObject3DProps & {
 
 export type MeshObjectProps = CommonObject3DProps & {
     assetId: string;
+    assetPath?: string;
     objectHtmls?: ObjectHtmlProps[];
 };
 
@@ -47,6 +48,7 @@ export type Text3DObjectProps = CommonObject3DProps & {
 
 export type ImplicitObjectProps = CommonObject3DProps & {
     assetId: string;
+    assetPath?: string;
     useInstancing?: boolean;
     objectHtmls?: ObjectHtmlProps[];
 };

@@ -5,7 +5,7 @@ import { ContainerNodeProps } from '../../types/types';
 export const splineConfig: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
-    assets: [{ assetId: '101', assetPath: 'data2', assetType: AssetTypes.Implicit }],
+    assets: [{ assetId: '101', assetPath: './assets/implicit/data2', assetType: AssetTypes.Implicit }],
     children: [
         {
             type: ComponentTypes.Canvas,

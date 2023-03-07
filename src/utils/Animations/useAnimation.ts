@@ -23,11 +23,11 @@ export const checkIsSceneInMiddleOfScreen = (sceneProps: SceneProps) => {
     const sceneTopToScreenTopDist = sceneTop - scrolledHeight;
     const sceneBottomToScreenBottomDist = sceneBottom - (scrolledHeight + screenHeight);
     const delta = Math.abs(sceneBottomToScreenBottomDist + sceneTopToScreenTopDist);
-    const areOppositeSignedNumbers = (sceneBottomToScreenBottomDist <=0 && sceneTopToScreenTopDist >= 0) || (sceneBottomToScreenBottomDist >=0 && sceneTopToScreenTopDist <= 0);
+    const areOppositeSignedNumbers = (sceneBottomToScreenBottomDist <= 0 && sceneTopToScreenTopDist >= 0) || (sceneBottomToScreenBottomDist >= 0 && sceneTopToScreenTopDist <= 0);
     const bothSceneEdgesAreCloseToScreenEdges = Math.abs(sceneBottomToScreenBottomDist) <= percision && Math.abs(sceneTopToScreenTopDist) <= percision;
     const isSceneInMiddleOfScreen = bothSceneEdgesAreCloseToScreenEdges || (areOppositeSignedNumbers && delta <= percision);
     return isSceneInMiddleOfScreen;
-}
+};
 
 const shouldAnimate = (sceneProps: SceneProps, visibilityThreshold: VisibilityThreshold, delta?: number) => {
     const sceneTop = sceneProps.canvasRect.top;
@@ -72,17 +72,22 @@ enum AnimationState {
 enum ScrollAnimationStates {
     AT_START,
     IN_MIDDLE,
-    AT_END
+    AT_END,
 }
 
 export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps, sceneProps: SceneProps) => {
     const [initialPosition, initialRotation, initialScale, opacity] = getInitialState(objectProps);
-    const initialStateRef = useRef<strongObject3DStateOfVectors>({ position: initialPosition as Vector3, rotation: initialRotation as Vector3, scale: initialScale as Vector3, opacity: opacity as number });
+    const initialStateRef = useRef<strongObject3DStateOfVectors>({
+        position: initialPosition as Vector3,
+        rotation: initialRotation as Vector3,
+        scale: initialScale as Vector3,
+        opacity: opacity as number,
+    });
     const state = useRef<strongObject3DStateOfVectors>({
         position: initialStateRef.current.position.clone(),
         rotation: initialStateRef.current.rotation.clone(),
         scale: initialStateRef.current.scale.clone(),
-        opacity: initialStateRef.current.opacity
+        opacity: initialStateRef.current.opacity,
     });
 
     const scrollAnimation = useRef<{ type: AnimationTypes } & ScrollAnimation>();
@@ -108,7 +113,7 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
                 rotation: convertVec3ToArray(state.current.rotation),
                 position: convertVec3ToArray(state.current.position),
                 scale: convertVec3ToArray(state.current.scale),
-                opacity: state.current.opacity
+                opacity: state.current.opacity,
             },
             config: config.default,
             onChange: () => invalidate(),
@@ -134,12 +139,12 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
                 }
                 scrollAnimation.current.visibilityThreshold = animation.visibilityThreshold ?? animationDefaults.visibilityThreshold;
                 scrollAnimation.current.springConfig = (animation as ScrollAnimation).springConfig ?? animationDefaults.scrollAnimation.springConfig;
-                if(sceneProps.disablePageScrollForScrollAnimation) {
+                if (sceneProps.disablePageScrollForScrollAnimation) {
                     scrollAnimation.current.disablePageScroll = scrollAnimation.current.disablePageScroll ?? animationDefaults.scrollAnimation.disablePageScroll;
-                    if(scrollAnimation.current.disablePageScroll) {
+                    if (scrollAnimation.current.disablePageScroll) {
                         sceneProps.updateScrollAnimationCount((count: number) => count + 1);
                         sceneProps.udpateCompletedBackwardScrollAnimationCount((count: number) => count + 1);
-                    }    
+                    }
                 }
             }
 
@@ -152,13 +157,13 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
                     const [stateVec, stateArr] = getStateTrajectoryPoints(animation.animationTrajectories!, state, (animation as any).trajectorySteps);
                     introAnimation.current.trajectory = stateArr;
                     introAnimation.current.trajectoryVec = stateVec;
-                    if(!introAnimation.current.springConfig) introAnimation.current.springConfig = animationDefaults.introAnimation.byTrajectory.springConfig;
+                    if (!introAnimation.current.springConfig) introAnimation.current.springConfig = animationDefaults.introAnimation.byTrajectory.springConfig;
                 } else if ('stateIncrements' in animation) {
                     const [stateVec, stateArr] = getManualStateTrajectoryPoints(animation.stateIncrements, state);
                     console.log(stateArr, stateVec);
                     introAnimation.current.trajectory = stateArr;
                     introAnimation.current.trajectoryVec = stateVec;
-                    if(!introAnimation.current.springConfig) introAnimation.current.springConfig = animationDefaults.introAnimation.byStateIncrements.springConfig;
+                    if (!introAnimation.current.springConfig) introAnimation.current.springConfig = animationDefaults.introAnimation.byStateIncrements.springConfig;
                 }
                 hasSpringAnimation.current = true;
             }
@@ -260,7 +265,7 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
                         if (trajectoryVec[t].position) state.current.position = trajectoryVec[t].position;
                         if (trajectoryVec[t].rotation) state.current.rotation = trajectoryVec[t].rotation;
                         if (trajectoryVec[t].scale) state.current.scale = trajectoryVec[t].scale;
-                        if(trajectoryVec[t].opacity) state.current.opacity = trajectoryVec[t].opacity;
+                        if (trajectoryVec[t].opacity) state.current.opacity = trajectoryVec[t].opacity;
                         await next(trajectory[t]);
                         t++;
                     }
@@ -294,12 +299,12 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
     const updateStateByDelta = (deltaY: number, forceState?: ScrollAnimationStates) => {
         let animationState = deltaY > 0 ? ScrollAnimationStates.AT_END : ScrollAnimationStates.AT_START;
         Object.entries(scrollTrajectory.current).forEach(([key, value]) => {
-            value.state += value.speed*deltaY;
-            if(value.state < 0) value.state = 0;
-            if(value.state > 1) value.state = 1;
-            if(deltaY > 0 && value.state < 0.975) animationState = ScrollAnimationStates.IN_MIDDLE;
-            if(deltaY < 0 && value.state > 0.025) animationState = ScrollAnimationStates.IN_MIDDLE;
-            if(forceState == ScrollAnimationStates.AT_END) {
+            value.state += value.speed * deltaY;
+            if (value.state < 0) value.state = 0;
+            if (value.state > 1) value.state = 1;
+            if (deltaY > 0 && value.state < 0.975) animationState = ScrollAnimationStates.IN_MIDDLE;
+            if (deltaY < 0 && value.state > 0.025) animationState = ScrollAnimationStates.IN_MIDDLE;
+            if (forceState == ScrollAnimationStates.AT_END) {
                 value.state = 1;
                 animationState = forceState;
             } else if (forceState == ScrollAnimationStates.AT_START) {
@@ -307,8 +312,8 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
                 animationState = forceState;
             }
             const equiSpacedPoints = (value.trajectoryMetaData as any).equiSpacedPoints ?? trajectoryDefaults.equiSpacedPoints;
-            if(key == 'opacity') {
-                state.current[key as keyof strongObject3DStateOfVectors] = getPointAtLine1D(value.trajectoryMetaData as line1DMetaData & {type: Trajectory}, value.state);
+            if (key == 'opacity') {
+                state.current[key as keyof strongObject3DStateOfVectors] = getPointAtLine1D(value.trajectoryMetaData as line1DMetaData & { type: Trajectory }, value.state);
             } else {
                 state.current[key as keyof strongObject3DStateOfVectors] = equiSpacedPoints ? value.trajectory.getPointAt(value.state) : value.trajectory.getPoint(value.state);
             }
@@ -325,7 +330,7 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
                 state.current.rotation.x = Math.min(initialStateRef.current.rotation.x + maxRotation, state.current.rotation.x);
                 state.current.rotation.y = Math.min(initialStateRef.current.rotation.y + maxRotation, state.current.rotation.y);
                 state.current.rotation.z = Math.min(initialStateRef.current.rotation.z + maxRotation, state.current.rotation.z);
-                if(!areEqualVectors(initialRotation, state.current.rotation, 0.01)) {
+                if (!areEqualVectors(initialRotation, state.current.rotation, 0.01)) {
                     animationState = ScrollAnimationStates.IN_MIDDLE;
                 }
             } else {
@@ -334,7 +339,7 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
                 state.current.rotation.x = Math.max(initialStateRef.current.rotation.x + minRotation, state.current.rotation.x);
                 state.current.rotation.y = Math.max(initialStateRef.current.rotation.y + minRotation, state.current.rotation.y);
                 state.current.rotation.z = Math.max(initialStateRef.current.rotation.z + minRotation, state.current.rotation.z);
-                if(!areEqualVectors(initialRotation, state.current.rotation, 0.01)) {
+                if (!areEqualVectors(initialRotation, state.current.rotation, 0.01)) {
                     animationState = ScrollAnimationStates.IN_MIDDLE;
                 }
             }
@@ -347,19 +352,18 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
         if (!hasDisablePageScrollBasedScrollAnimation && !shouldAnimate(sceneProps, scrollAnimation.current?.visibilityThreshold ?? animationDefaults.visibilityThreshold, e.deltaY)) return;
         let animationState = ScrollAnimationStates.IN_MIDDLE;
         let isSceneInMiddleOfScreen = false;
-        if(hasDisablePageScrollBasedScrollAnimation) {
+        if (hasDisablePageScrollBasedScrollAnimation) {
             isSceneInMiddleOfScreen = checkIsSceneInMiddleOfScreen(sceneProps);
-            if(isSceneInMiddleOfScreen) {
+            if (isSceneInMiddleOfScreen) {
                 animationState = updateStateByDelta(e.deltaY);
-                if(animationState == ScrollAnimationStates.IN_MIDDLE) {
-                    if(scrollAnimationState != ScrollAnimationStates.IN_MIDDLE) {
+                if (animationState == ScrollAnimationStates.IN_MIDDLE) {
+                    if (scrollAnimationState != ScrollAnimationStates.IN_MIDDLE) {
                         updateScrollAnimationState(ScrollAnimationStates.IN_MIDDLE);
                         sceneProps.udpateCompletedForwardScrollAnimationCount(0);
                         sceneProps.udpateCompletedBackwardScrollAnimationCount(0);
                     }
                 }
-            }
-            else return;
+            } else return;
         } else {
             updateStateByDelta(e.deltaY);
         }
@@ -369,19 +373,19 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
                     position: convertVec3ToArray(state.current.position),
                     rotation: convertVec3ToArray(state.current.rotation),
                     scale: convertVec3ToArray(state.current.scale),
-                    opacity: state.current.opacity
+                    opacity: state.current.opacity,
                 });
             },
             config: scrollAnimation.current?.springConfig ?? animationDefaults.scrollAnimation.springConfig,
         });
         invalidate();
-        if(hasDisablePageScrollBasedScrollAnimation) {
-            if(e.deltaY > 0 && animationState == ScrollAnimationStates.AT_END && scrollAnimationState != ScrollAnimationStates.AT_END) {
-                sceneProps.udpateCompletedForwardScrollAnimationCount((count: number) => count+1);
+        if (hasDisablePageScrollBasedScrollAnimation) {
+            if (e.deltaY > 0 && animationState == ScrollAnimationStates.AT_END && scrollAnimationState != ScrollAnimationStates.AT_END) {
+                sceneProps.udpateCompletedForwardScrollAnimationCount((count: number) => count + 1);
                 updateScrollAnimationState(animationState);
             }
-            if(e.deltaY < 0 && animationState == ScrollAnimationStates.AT_START && scrollAnimationState != ScrollAnimationStates.AT_START) {
-                sceneProps.udpateCompletedBackwardScrollAnimationCount((count: number) => count+1);
+            if (e.deltaY < 0 && animationState == ScrollAnimationStates.AT_START && scrollAnimationState != ScrollAnimationStates.AT_START) {
+                sceneProps.udpateCompletedBackwardScrollAnimationCount((count: number) => count + 1);
                 updateScrollAnimationState(animationState);
             }
         }
@@ -418,7 +422,7 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
                                 position: convertVec3ToArray(state.current.position),
                                 rotation: convertVec3ToArray(state.current.rotation),
                                 scale: convertVec3ToArray(state.current.scale),
-                                opacity: state.current.opacity
+                                opacity: state.current.opacity,
                             });
                         },
                         config: scrollAnimation.current?.springConfig ?? animationDefaults.scrollAnimation.springConfig,
@@ -427,7 +431,7 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
                 }
             }
         }
-        if(scrollAnimation.current && hasDisablePageScrollBasedScrollAnimation) {
+        if (scrollAnimation.current && hasDisablePageScrollBasedScrollAnimation) {
             const sceneTop = sceneProps.canvasRect.top;
             const sceneBottom = sceneProps.canvasRect.bottom;
             const scrolledHeight = window.pageYOffset;
@@ -436,7 +440,7 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
             const sceneBottomToScreenTopDist = sceneBottom - scrolledHeight;
             const sceneTopToScreenTopDist = sceneTop - scrolledHeight;
             const sceneBottomToScreenBottomDist = sceneBottom - (scrolledHeight + screenHeight);
-            if(sceneBottomToScreenTopDist >= 0 && sceneTopToScreenTopDist < 0 && scrollAnimationState != ScrollAnimationStates.AT_END) {
+            if (sceneBottomToScreenTopDist >= 0 && sceneTopToScreenTopDist < 0 && scrollAnimationState != ScrollAnimationStates.AT_END) {
                 updateStateByDelta(0, ScrollAnimationStates.AT_END);
                 springApi.start({
                     to: async (next: any) => {
@@ -444,13 +448,13 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
                             position: convertVec3ToArray(state.current.position),
                             rotation: convertVec3ToArray(state.current.rotation),
                             scale: convertVec3ToArray(state.current.scale),
-                            opacity: state.current.opacity
+                            opacity: state.current.opacity,
                         });
                     },
-                    config: {duration: 0},
+                    config: { duration: 0 },
                 });
                 invalidate();
-                sceneProps.udpateCompletedForwardScrollAnimationCount((count: number) => count+1);
+                sceneProps.udpateCompletedForwardScrollAnimationCount((count: number) => count + 1);
                 sceneProps.udpateCompletedBackwardScrollAnimationCount(0);
                 updateScrollAnimationState(ScrollAnimationStates.AT_END);
             } else if (sceneTopToScreenBottomDist <= 0 && sceneBottomToScreenBottomDist > 0 && scrollAnimationState != ScrollAnimationStates.AT_START) {
@@ -461,13 +465,13 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
                             position: convertVec3ToArray(state.current.position),
                             rotation: convertVec3ToArray(state.current.rotation),
                             scale: convertVec3ToArray(state.current.scale),
-                            opacity: state.current.opacity
+                            opacity: state.current.opacity,
                         });
                     },
-                    config: {duration: 0},
+                    config: { duration: 0 },
                 });
                 invalidate();
-                sceneProps.udpateCompletedBackwardScrollAnimationCount((count: number) => count+1);
+                sceneProps.udpateCompletedBackwardScrollAnimationCount((count: number) => count + 1);
                 sceneProps.udpateCompletedForwardScrollAnimationCount(0);
                 updateScrollAnimationState(ScrollAnimationStates.AT_START);
             }
@@ -483,19 +487,18 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
                 position: initialStateRef.current.position.clone(),
                 rotation: initialStateRef.current.rotation.clone(),
                 scale: initialStateRef.current.scale.clone(),
-                opacity: initialStateRef.current.opacity
+                opacity: initialStateRef.current.opacity,
             };
             springApi.stop();
             springApi.set({
                 position: convertVec3ToArray(initialStateRef.current.position),
                 rotation: convertVec3ToArray(initialStateRef.current.rotation),
                 scale: convertVec3ToArray(initialStateRef.current.scale),
-                opacity: initialStateRef.current.opacity
+                opacity: initialStateRef.current.opacity,
             });
             timeouts.current.forEach((t) => clearTimeout(t));
         }
     }, [sceneProps.isSceneVisible]);
-
 
     return spring;
 };

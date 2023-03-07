@@ -132,6 +132,20 @@ export interface EnvironmentProps {
     files: string | string[];
     background?: boolean;
     encoding?: TextureEncoding;
+    ground?: {
+        height: number;
+        radius: number;
+    };
+}
+
+export interface SceneControlProps {
+    type: SceneControlTypes;
+    autoRotate?: boolean;
+    autoRotateSpeed?: number;
+    minPolarAngle?: number;
+    maxPolarAngle?: number;
+    enableZoom?: boolean;
+    enablePan?: boolean;
 }
 
 export interface CanvasNodeProps {
@@ -149,7 +163,7 @@ export interface CanvasNodeProps {
     lights?: Array<LightProps>;
     images?: Array<ImageProps>;
     htmlTemplates?: Array<HtmlTemplateProps>;
-    sceneControl?: { type: SceneControlTypes };
+    sceneControl?: SceneControlProps;
     environment?: EnvironmentProps;
 }
 

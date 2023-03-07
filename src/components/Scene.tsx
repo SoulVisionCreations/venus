@@ -1,7 +1,7 @@
 import { applySceneControl } from '../utils/SceneControls/sceneControl';
 import Light from './Light';
 import { Object3D } from './Object3D/object3D';
-import { HtmlTemplateProps, ImageProps, LightProps, TextProps } from '../types/types';
+import { HtmlTemplateProps, ImageProps, LightProps, SceneControlProps, TextProps } from '../types/types';
 import { Object3DProps } from '../types/object3DTypes';
 import TextLoader from './Text';
 import ImageLoader from './Image';
@@ -11,7 +11,7 @@ import { SceneProps } from './CanvasNode';
 type Props = {
     lights?: Array<LightProps> | undefined;
     objects?: Array<Object3DProps> | undefined;
-    sceneControl?: object | undefined;
+    sceneControl?: SceneControlProps | undefined;
     texts?: Array<TextProps> | undefined;
     images?: Array<ImageProps> | undefined;
     sceneProps: SceneProps;

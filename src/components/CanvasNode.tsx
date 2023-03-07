@@ -70,35 +70,34 @@ export default function CanvasNode(props: CanvasNodeProps) {
         updateScrollAnimationCount: updateScrollAnimationCount,
         udpateCompletedForwardScrollAnimationCount: udpateCompletedForwardScrollAnimationCount,
         udpateCompletedBackwardScrollAnimationCount: udpateCompletedBackwardScrollAnimationCount,
-        disablePageScrollForScrollAnimation: props.disablePageScrollForScrollAnimation ?? false
+        disablePageScrollForScrollAnimation: props.disablePageScrollForScrollAnimation ?? false,
     };
 
     const handlePageScrollDisablingForScrollAnimation = (e: any) => {
-        if(checkIsSceneInMiddleOfScreen(sceneProps)) {
+        if (checkIsSceneInMiddleOfScreen(sceneProps)) {
             const forwardAnimationCompleted = e.deltaY > 0 && completedForwardScrollAnimationCount >= scrollAnimationCount;
             const backwardAnimationCompleted = e.deltaY < 0 && completedBackwardScrollAnimationCount >= scrollAnimationCount;
             const animationCompleted = forwardAnimationCompleted || backwardAnimationCompleted;
-            if(animationCompleted) document.body.style.overflow = 'auto';
+            if (animationCompleted) document.body.style.overflow = 'auto';
             else {
-                const sceneHeight = canvasRect.bottom-canvasRect.top;
-                const scrollDistToPositionSceneInMiddleOfScreen = canvasRect.top - (window.innerHeight/2 - sceneHeight/2);
-                if(window.pageYOffset != scrollDistToPositionSceneInMiddleOfScreen) window.scrollTo({top: scrollDistToPositionSceneInMiddleOfScreen});
+                const sceneHeight = canvasRect.bottom - canvasRect.top;
+                const scrollDistToPositionSceneInMiddleOfScreen = canvasRect.top - (window.innerHeight / 2 - sceneHeight / 2);
+                if (window.pageYOffset != scrollDistToPositionSceneInMiddleOfScreen) window.scrollTo({ top: scrollDistToPositionSceneInMiddleOfScreen });
                 document.body.style.overflow = 'hidden';
             }
         } else {
             document.body.style.overflow = 'auto';
         }
-    }
+    };
 
     useEffect(() => {
-        if(isSceneVisible && props.disablePageScrollForScrollAnimation && canvasContainerRef.current) {
+        if (isSceneVisible && props.disablePageScrollForScrollAnimation && canvasContainerRef.current) {
             window.addEventListener('wheel', handlePageScrollDisablingForScrollAnimation);
         }
         return () => {
             window.removeEventListener('wheel', handlePageScrollDisablingForScrollAnimation);
         };
-    }, [canvasContainerRef.current, completedForwardScrollAnimationCount, completedBackwardScrollAnimationCount, scrollAnimationCount, isSceneVisible, canvasRect])
-
+    }, [canvasContainerRef.current, completedForwardScrollAnimationCount, completedBackwardScrollAnimationCount, scrollAnimationCount, isSceneVisible, canvasRect]);
 
     useEffect(() => {
         const intersectionCallback = (entries: Array<any>) => {
@@ -128,7 +127,15 @@ export default function CanvasNode(props: CanvasNodeProps) {
                 <Stats />
                 <PerformanceMonitor />
                 {props.camera && <Camera {...props.camera} />}
-                <Scene objects={props.objects} sceneControl={props.sceneControl} texts={props.texts} images={props.images} lights={props.lights} sceneProps={sceneProps} />
+                <Scene
+                    objects={props.objects}
+                    sceneControl={props.sceneControl}
+                    texts={props.texts}
+                    images={props.images}
+                    lights={props.lights}
+                    htmlTemplates={props.htmlTemplates}
+                    sceneProps={sceneProps}
+                />
                 {props.environment && props.environment.files.length > 0 && <Environment {...props.environment} />}
             </Canvas>
         </div>
@@ -137,16 +144,16 @@ export default function CanvasNode(props: CanvasNodeProps) {
 
 // const [loading, setLoading] = useState(true);
 
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         let allDownloaded = true;
-    //         props.assetIds &&
-    //             props.assetIds.forEach((assetId) => {
-    //                 if (getAssetbyId(assetId) == 'downloading') allDownloaded = false;
-    //             });
-    //         if (allDownloaded) {
-    //             setLoading(false);
-    //             clearInterval(interval);
-    //         }
-    //     }, 100);
-    // }, []);
+// useEffect(() => {
+//     const interval = setInterval(() => {
+//         let allDownloaded = true;
+//         props.assetIds &&
+//             props.assetIds.forEach((assetId) => {
+//                 if (getAssetbyId(assetId) == 'downloading') allDownloaded = false;
+//             });
+//         if (allDownloaded) {
+//             setLoading(false);
+//             clearInterval(interval);
+//         }
+//     }, 100);
+// }, []);

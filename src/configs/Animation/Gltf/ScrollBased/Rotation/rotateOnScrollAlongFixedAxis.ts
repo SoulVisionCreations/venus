@@ -5,7 +5,7 @@ import { ContainerNodeProps } from '../../../../../types/types';
 export const RotateOnScrollAlongFixedAxisConfig: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
-    assets: [{ assetId: '101', assetPath: './objexp/', assetType: AssetTypes.Mesh }],
+    assets: [{ assetId: '101', assetPath: './assets/obj/objexp/', assetType: AssetTypes.Mesh }],
     children: [
         {
             type: ComponentTypes.Canvas,

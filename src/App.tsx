@@ -17,8 +17,8 @@ export default function App({ config }: AppProps) {
         return config.children.map((child: any, index: number) => {
             if (child.type == ComponentTypes.Container) {
                 return <App config={child} key={index} />;
-            } else if (child.type == ComponentTypes.Video){
-                return <VideoNode {...child} key={index} />
+            } else if (child.type == ComponentTypes.Video) {
+                return <VideoNode {...child} key={index} />;
             } else {
                 return <CanvasNode {...child} key={index} />;
             }

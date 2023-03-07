@@ -14,7 +14,7 @@ export type ImageAsset = {
 
 const ImageLoader = ({ imageProps, sceneProps }: { imageProps: ImageProps; sceneProps: SceneProps }) => {
     const asset: ImageAsset = getAssetbyId(imageProps.assetId);
-    if (!imageProps.src) imageProps = { ...imageProps, scale: [asset.aspectRatio, 1, 1] };
+    if (!imageProps.scale) imageProps = { ...imageProps, scale: [asset.aspectRatio, 1, 1] };
     const spring = useAnimation(imageProps, sceneProps);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { position, rotation, scale, animations, assetId, ...props } = imageProps;
