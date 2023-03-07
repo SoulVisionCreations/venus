@@ -9,7 +9,7 @@ export const config2: ContainerNodeProps = {
     style: stylingDefaults.flexColumnContainer,
     assets: [
         // 'REC-jxvfZgVpLiDq9sM/deliverables/DLV-AhYTvfCZEUcLdXeekERqrymJA/
-        { assetId: '100001', assetPath: './assets/implicit/data', assetType: AssetTypes.Implicit },
+        { assetId: '100001', assetPath: './assets/implicit/data2', assetType: AssetTypes.Implicit },
         { assetId: '10001', assetPath: './1863416.glb', assetType: AssetTypes.Mesh },
         { assetId: '1001', assetPath: './chair.png', assetType: AssetTypes.Image },
         { assetId: '101', assetPath: './assets/font/Inter_Bold.json', assetType: AssetTypes.Font },

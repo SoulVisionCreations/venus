@@ -6,7 +6,7 @@ export const animationExample: ContainerNodeProps = {
     type: ComponentTypes.Container,
     className: 'rootContainer',
     alignment: Alignment.Vertical,
-    assets: [{ assetId: '101', assetPath: './assets/implicit/data', assetType: AssetTypes.Implicit }],
+    assets: [{ assetId: '101', assetPath: './assets/implicit/data2', assetType: AssetTypes.Implicit }],
     children: [
         {
             type: ComponentTypes.Canvas,
