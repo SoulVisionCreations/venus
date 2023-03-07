@@ -84,6 +84,11 @@ export default {
             },
         },
         viewMode: 'docs',
+        docs: {
+            description: {
+                component: 'This is used to apply ellipse trajectory animation to any object.',
+            },
+        },
     },
 };
 

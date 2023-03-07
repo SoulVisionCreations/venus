@@ -42,14 +42,14 @@ export default {
             control: 'object',
             descrption: 'Sets the geometry of the standard object',
             table: {
-                type: { summary: '{type, otherGeometryProps(refer to THREE)}' },
+                type: { summary: '{type, otherGeometryProps(refer to https://threejs.org))}' },
             },
         },
         material: {
             control: 'object',
             descrption: 'Sets the material of the standard object',
             table: {
-                type: { summary: '{type, otherMaterialProps(refer to THREE)}' },
+                type: { summary: '{type, otherMaterialProps(refer to https://threejs.org)}' },
             },
         },
         type: {
@@ -82,7 +82,7 @@ export default {
         docs: {
             description: {
                 component:
-                    'This component is used to add standard THREE objects to your experience. The geometry and material can be selected from already existing THREE geometries and materials. **Animations can be applied to Standard Objects**',
+                    'This component is used to add standard THREE objects to your experience. The geometry and material can be selected from already existing THREE geometries and materials. Specific properties and their default values for each geometry and material can be found on [three.js docs](https://threejs.org/docs/). **Animations can be applied to Standard Objects**',
             },
         },
         viewMode: 'docs',

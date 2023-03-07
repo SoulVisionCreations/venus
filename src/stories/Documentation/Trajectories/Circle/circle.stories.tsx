@@ -75,6 +75,11 @@ export default {
                 hidden: true,
             },
         },
+        docs: {
+            description: {
+                component: 'This is used to apply circle trajectory animation to any object.',
+            },
+        },
         viewMode: 'docs',
     },
 };

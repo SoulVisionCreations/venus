@@ -16,9 +16,9 @@ export default {
     argTypes: {
         points: {
             control: { type: 'object' },
-            description: 'Sets the three points to create the spline curve',
+            description: 'Sets the points to create the spline curve',
             table: {
-                type: { summary: '[[number, number, number], [number, number, number], [number, number, number]]' },
+                type: { summary: '[[number, number, number], [number, number, number], ..]' },
             },
         },
         closed: {
@@ -27,6 +27,14 @@ export default {
             table: {
                 type: { summary: 'boolean' },
                 defaultValue: { summary: false },
+            },
+        },
+        steps: {
+            control: { type: 'number' },
+            description: 'Sets the number of steps taken to complete the spline curve trajectory',
+            table: {
+                type: { summary: 'number' },
+                defaultValue: { summary: 100 },
             },
         },
         equiSpacedPoints: {
@@ -45,6 +53,12 @@ export default {
             },
         },
         viewMode: 'docs',
+        docs: {
+            description: {
+                component:
+                    'This is used to apply spline curve trajectory animation to any object. For spline curve, refer to [this](https://en.wikipedia.org/wiki/Spline_%28mathematics%29#/media/File:Parametic_Cubic_Spline.svg).',
+            },
+        },
     },
 };
 
@@ -52,10 +66,11 @@ export const Example = splineCurveTrajectoryAppWrapper.bind({});
 Example.args = {
     points: [
         [-1, -0.5, 0],
-        [1, -0.5, 0],
+        [0, -0.5, 0],
+        [1, 0, 0],
         [1, 0.5, 0],
     ],
-    // steps?: number;
+    steps: 100,
     closed: false,
     equiSpacedPoints: false,
 };

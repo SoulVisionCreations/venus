@@ -52,6 +52,11 @@ export default {
             },
         },
         viewMode: 'docs',
+        docs: {
+            description: {
+                component: 'This is used to apply straight line trajectory animation to any object.',
+            },
+        },
     },
 };
 
