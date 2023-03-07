@@ -29,6 +29,14 @@ export default {
                 defaultValue: { summary: false },
             },
         },
+        steps: {
+            control: { type: 'number' },
+            description: 'Sets the number of steps taken to complete the cubic bezier curve trajectory',
+            table: {
+                type: { summary: 'number' },
+                defaultValue: { summary: 100 },
+            },
+        },
         equiSpacedPoints: {
             control: { type: 'boolean' },
             description: 'Sets whether the trajectory points should be equidistant',
@@ -45,6 +53,12 @@ export default {
             },
         },
         viewMode: 'docs',
+        docs: {
+            description: {
+                component:
+                    'This is used to apply cubic bezier curve trajectory animation to any object. For cubic bezier curve, refer to [this](https://en.wikipedia.org/wiki/B%C3%A9zier_curve#mediaviewer/File:Bezier_curve.svg).',
+            },
+        },
     },
 };
 
@@ -56,7 +70,7 @@ Example.args = {
         [1, 0.5, 0],
         [-1, 0.5, 0],
     ],
-    // steps?: number;
-    closed: false,
+    steps: 100,
+    closed: true,
     equiSpacedPoints: false,
 };

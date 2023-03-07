@@ -52,7 +52,7 @@ export type lineCurve3MetaData = {
 export type multipleCurve3MetaData = {
     curves: Array<TrajectoryMetaData & { type: Trajectory }>;
     steps?: number;
-    closed?: number;
+    closed?: boolean;
     equiSpacedPoints?: boolean;
 };
 
