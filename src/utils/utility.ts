@@ -57,7 +57,7 @@ export const createMatrix4 = (position: Vector3, rotation: Vector3, scale: Vecto
 };
 
 export const getInitialialStateMatrix4 = (instance: any): Matrix4 => {
-    const [position, rotation, scale, opacity]: Array<Vector3 | number> = getInitialState(instance);
+    const [position, rotation, scale]: Array<Vector3 | number> = getInitialState(instance);
     const matrix = createMatrix4(position as Vector3, rotation as Vector3, scale as Vector3);
     return matrix;
 };
@@ -67,11 +67,10 @@ export const convertStateVecToArr = (stateVec: strongObject3DStateOfVectors): st
         position: [stateVec.position.x, stateVec.position.y, stateVec.position.z],
         rotation: [stateVec.rotation.x, stateVec.rotation.y, stateVec.rotation.z],
         scale: [stateVec.scale.x, stateVec.scale.y, stateVec.scale.z],
-        opacity: stateVec.opacity
+        opacity: stateVec.opacity,
     };
 };
 
-
 export const areEqualVectors = (vector1: Vector3, vector2: Vector3, precision: number) => {
-    return ( ( Math.abs( vector1.x - vector2.x ) < precision ) && ( Math.abs( vector1.y - vector2.y ) < precision ) && ( Math.abs( vector1.z - vector2.z ) < precision ) );
-}
+    return Math.abs(vector1.x - vector2.x) < precision && Math.abs(vector1.y - vector2.y) < precision && Math.abs(vector1.z - vector2.z) < precision;
+};
