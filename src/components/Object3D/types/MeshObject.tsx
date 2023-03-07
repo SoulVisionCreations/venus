@@ -3,11 +3,10 @@ import { MeshObjectProps } from '../../../types/object3DTypes';
 import { animated } from '@react-spring/three';
 import { getAssetbyId } from '../../../utils/download';
 import { useAnimation } from '../../../utils/Animations/useAnimation';
-import { SceneProps } from '../../Scene';
+import { SceneProps } from '../../CanvasNode';
 
 const MeshObject = ({ objectProps, sceneProps }: { objectProps: MeshObjectProps; sceneProps: SceneProps }) => {
     const model = getAssetbyId(objectProps.assetId);
-    console.log(model, objectProps.assetId);
     const object = model.scene ? model.scene.clone() : model.clone();
     const spring = useAnimation(objectProps, sceneProps);
     return (

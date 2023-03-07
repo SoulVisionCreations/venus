@@ -18,7 +18,7 @@ export const getManualStateTrajectoryPoints = (stateIncrements: Array<weakObject
             rotation: state.current.rotation.clone(),
             scale: state.current.scale.clone(),
         }};
-        currentOpacity = nextState.opacity == undefined ? currentOpacity : currentOpacity + nextState.opacity; 
+        currentOpacity = nextState.opacity == undefined ? currentOpacity : currentOpacity + nextState.opacity;
         stateTrajectoryVec.push({
             position: nextState.position ? state.current.position.add(new Vector3(...nextState.position)) : state.current.position,
             rotation: nextState.rotation ? state.current.rotation.add(new Vector3(...nextState.rotation)) : state.current.rotation,

@@ -4,9 +4,9 @@ import GltfObject from './types/MeshObject';
 import StandardObject from './types/standardObject';
 import Text3DObject from './types/text3DObject';
 import ObjectHtml from '../ObjectHtml';
-import { SceneProps } from '../Scene';
 import { ObjectTypes } from '../../types/enums';
 import { objectDefaults } from '../../constants/defaults';
+import { SceneProps } from '../CanvasNode';
 
 export const renderObjectHtmls = (objectHtmls: Array<ObjectHtmlProps>) => {
     return objectHtmls.map((objectHtmlProps: ObjectHtmlProps, index: number) => {

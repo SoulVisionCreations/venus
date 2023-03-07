@@ -1,9 +1,9 @@
 import InstanceMesh from '../../InstanceMesh';
 import { getAssetbyId } from '../../../utils/download';
-import { SceneProps } from '../../Scene';
 import { ImplicitObjectProps } from '../../../types/object3DTypes';
 import { BufferGeometry, Material } from 'three';
 import { Mesh } from '../../Mesh';
+import { SceneProps } from '../../CanvasNode';
 
 export interface ImplicitAssetProps {
     geometry: BufferGeometry;

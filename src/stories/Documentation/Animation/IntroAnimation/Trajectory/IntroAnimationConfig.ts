@@ -15,7 +15,7 @@ export const getIntroAnimationConfig = (props: {
         alignment: Alignment.Vertical,
         style: {justifyContent: 'center', alignItems: 'center'},
         assets: [
-            { assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Mesh },
+            { assetId: '101', assetPath: './assets/glb/scene.glb', assetType: AssetTypes.Mesh },
         ],
         children: [
             {

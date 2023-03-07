@@ -7,7 +7,7 @@ export const getChainedAnimationConfig = (props: ChainedAnimation): ContainerNod
         type: ComponentTypes.Container,
         alignment: Alignment.Vertical,
         assets: [
-            { assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Mesh },
+            { assetId: '101', assetPath: './assets/glb/scene.glb', assetType: AssetTypes.Mesh },
         ],
         children: [
             {

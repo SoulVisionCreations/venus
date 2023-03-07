@@ -14,7 +14,7 @@ export const getIntroAnimationConfig = (props: {
         type: ComponentTypes.Container,
         alignment: Alignment.Vertical,
         assets: [
-            { assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Mesh },
+            { assetId: '101', assetPath: './assets/glb/scene.glb', assetType: AssetTypes.Mesh },
         ],
         children: [
             {
@@ -57,31 +57,6 @@ export const getIntroAnimationConfig = (props: {
                         ],
                     },
                 ],
-                texts: [
-                    {
-                        type: TextTypes.Paragraph,
-                        data: 'Doris Armchair',
-                        position: [0, 0, 0],
-                        scale: [1.5, 1.5, 1.5],
-                        color: 'black',
-                        opacity: 0,
-                        animations: [
-                            {
-                                type: AnimationTypes.scroll,
-                                visibilityThreshold: {
-                                    sceneTopToScreenBottomRatio: 0.5,
-                                    sceneBottomToScreenTopRatio: 0.5,
-                                },
-                                springConfig: {mass:4, friction: 500},
-                                stateIncrements: [
-                                    {
-                                        opacity: 1
-                                    }
-                                ]
-                            },
-                        ],
-                    },
-                ]
             },
         ],
     };

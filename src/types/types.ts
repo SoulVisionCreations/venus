@@ -126,6 +126,7 @@ export type CameraProps = {
     fov?: number;
     near?: number;
     far?: number;
+    zoom?: number;
 };
 
 export interface EnvironmentProps {
@@ -149,7 +150,6 @@ export interface SceneControlProps {
 }
 
 export interface CanvasNodeProps {
-    sceneId?: number;
     disablePageScrollForScrollAnimation?: boolean;
     type: ComponentTypes;
     style?: any;

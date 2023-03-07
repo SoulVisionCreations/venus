@@ -246,10 +246,10 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
         if (shouldAnimate(sceneProps, chainedAnimation.current?.visibilityThreshold ?? animationDefaults.visibilityThreshold)) {
             executeChainedAnimation();
         } else {
-            window.addEventListener('scroll', executeChainedAnimation, { passive: true });
+            window && window.addEventListener('scroll', executeChainedAnimation, { passive: true });
         }
         return () => {
-            window.removeEventListener('scroll', executeChainedAnimation);
+            window && window.removeEventListener('scroll', executeChainedAnimation);
         };
     }, [sceneProps.isSceneVisible, introAnimationState, chainedAnimationState.current]);
 
@@ -288,10 +288,10 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
         if (shouldAnimate(sceneProps, introAnimation.current?.visibilityThreshold ?? animationDefaults.visibilityThreshold)) {
             executeIntroAnimation();
         } else {
-            window.addEventListener('wheel', executeIntroAnimation, { passive: true });
+            window && window.addEventListener('wheel', executeIntroAnimation, { passive: true });
         }
         return () => {
-            window.removeEventListener('wheel', executeIntroAnimation);
+            window && window.removeEventListener('wheel', executeIntroAnimation);
         };
     }, [sceneProps.isSceneVisible, introAnimationState]);
 
@@ -395,10 +395,10 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
 
     useEffect(() => {
         if (sceneProps.isSceneVisible && scrollAnimation.current) {
-            window.addEventListener('wheel', executeScrollAnimation, { passive: true });
+            window && window.addEventListener('wheel', executeScrollAnimation, { passive: true });
         }
         return () => {
-            window.removeEventListener('wheel', executeScrollAnimation);
+            window && window.removeEventListener('wheel', executeScrollAnimation);
         };
     }, [sceneProps.isSceneVisible, scrollAnimationState]);
 

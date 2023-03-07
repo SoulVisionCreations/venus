@@ -43,6 +43,7 @@ export const getInitialState = (instance: any): Array<Vector3 | number> => {
     const rotation = instance.rotation ? new Vector3(...instance.rotation) : new Vector3(...objectDefaults.rotation);
     const scale = instance.scale ? new Vector3(...instance.scale) : new Vector3(...objectDefaults.scale);
     const opacity = instance.opacity == undefined ? 1 : instance.opacity;
+    console.log(opacity);
     return [position, rotation, scale, opacity];
 };
 

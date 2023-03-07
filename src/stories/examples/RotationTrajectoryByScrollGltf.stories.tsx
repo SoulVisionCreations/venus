@@ -7,22 +7,22 @@ import { argTypes, defaultArgs, GltfWrapper } from './utils/GltfWrapper';
 
 // eslint-disable-next-line storybook/story-exports
 export default {
-    title: 'Animations/Scroll based/Rotation by defined trajectory/Gltf',
+    title: 'Animations/Scroll based/Rotation by defined trajectory',
     component: GltfWrapper,
     argTypes: argTypes,
 };
 
 export const Example1LineTrajectory = GltfWrapper.bind({});
-Example1LineTrajectory.args = { ...defaultArgs, storyConfig: RotationByBezierTrajectoryWithScaleUpConfig };
+Example1LineTrajectory.args = { ...defaultArgs, storyConfig: RotationByLineTrajectoryConfig };
 
 export const Example2MultipleLineTrajectory = GltfWrapper.bind({});
-Example2MultipleLineTrajectory.args = { ...defaultArgs, storyConfig: RotationByLineTrajectoryConfig };
+Example2MultipleLineTrajectory.args = { ...defaultArgs, storyConfig: RotationByMultipleLineTrajectoryConfig };
 
 export const Example3MultipleLineTrajectoryWithScaleUp = GltfWrapper.bind({});
-Example3MultipleLineTrajectoryWithScaleUp.args = { ...defaultArgs, storyConfig: RotationByMultipleBezierTrajectoryWithScaleConfig };
+Example3MultipleLineTrajectoryWithScaleUp.args = { ...defaultArgs, storyConfig: RotationByMultipleLineTrajectoryWithScaleConfig };
 
 export const Example4BezierTrajectoryWithScaleUp = GltfWrapper.bind({});
-Example4BezierTrajectoryWithScaleUp.args = { ...defaultArgs, storyConfig: RotationByMultipleLineTrajectoryConfig };
+Example4BezierTrajectoryWithScaleUp.args = { ...defaultArgs, storyConfig: RotationByBezierTrajectoryWithScaleUpConfig };
 
 export const Example5MultipleBezierTrajectoryWithScaleUp = GltfWrapper.bind({});
-Example5MultipleBezierTrajectoryWithScaleUp.args = { ...defaultArgs, storyConfig: RotationByMultipleLineTrajectoryWithScaleConfig };
+Example5MultipleBezierTrajectoryWithScaleUp.args = { ...defaultArgs, storyConfig: RotationByMultipleBezierTrajectoryWithScaleConfig };

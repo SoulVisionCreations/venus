@@ -48,7 +48,7 @@ export const VideoNode = (props: VideoNodeProps) => {
                 frames.current.push(bitmap);
                 if (activeFrameIndex.current == -1) {
                     renderFirstFrame();
-                    window.addEventListener('wheel', handleScroll);
+                    window && window.addEventListener('wheel', handleScroll);
                 }
                 value.close();
             }

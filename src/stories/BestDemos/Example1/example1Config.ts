@@ -1,15 +1,144 @@
-import { stylingDefaults } from '../../../../../constants/defaults';
-import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, TextTypes, Trajectory } from '../../../../../types/enums';
-import { ContainerNodeProps } from '../../../../../types/types';
+import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, TextTypes, Trajectory } from '../../../types/enums';
+import { stylingDefaults } from '../../../constants/defaults';
+import { ContainerNodeProps } from '../../../types/types';
 
-export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodeProps = {
+export const example1Config: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
     assets: [
         { assetId: '101', assetPath: './assets/glb/scene.glb', assetType: AssetTypes.Mesh },
-        // { assetId: '11', assetPath: './assets/font/Inter_Bold.json', assetType: AssetTypes.Font },
     ],
     children: [
+        {
+            type: ComponentTypes.Canvas,
+            style: stylingDefaults.fullWidthFullHeightCanvas,
+            camera: {
+                type: CameraTypes.Orthographic,
+                position: [0, 0, 3],
+                zoom: 300
+            },
+            lights: [
+                {
+                    type: LightTypes.Ambient,
+                    intensity: 1,
+                },
+                {
+                    type: LightTypes.Directional,
+                    intensity: 2,
+                },
+            ],
+            objects: [
+                {
+                    type: ObjectTypes.MeshObject,
+                    assetId: '101',
+                    position: [0.75, 0, 0],
+                    rotation: [Math.PI/12, -Math.PI/8, 0],
+                    scale: [0.25, 0.25, 0.25],
+                    animations: [
+                        {
+                            type: AnimationTypes.intro,
+                            visibilityThreshold: {
+                                sceneTopToScreenBottomRatio: 0,
+                                sceneBottomToScreenTopRatio: 0.9,
+                            },
+                            springConfig: { mass: 4, friction: 17 },
+                            stateIncrements: [
+                                {
+                                    rotation: [0, Math.PI * 2, 0],
+                                    scale: [1.5, 1.5, 1.5],
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+            texts: [
+                {
+                    type: TextTypes.Paragraph,
+                    data: `I don't know what to write`,
+                    opacity: 0,
+                    color: 'black',
+                    animations: [
+                        {
+                            type: AnimationTypes.intro,
+                            springConfig: {duration: 1},
+                            animationTrajectories: {
+                                position: {
+                                    trajectoryMetaData: {
+                                        type: Trajectory.line3,
+                                        startPoint: [-1, -0.25, 0],
+                                        endPoint: [-1, 0.25, 0],
+                                    }
+                                },
+                                opacity: {
+                                    trajectoryMetaData: {
+                                        type: Trajectory.line1D,
+                                        startPoint: 0,
+                                        endPoint: 1,
+                                    },
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    type: TextTypes.Paragraph,
+                    data: `I don't know what to write`,
+                    opacity: 0,
+                    color: 'black',
+                    animations: [
+                        {
+                            type: AnimationTypes.intro,
+                            springConfig: {duration: 1},
+                            animationTrajectories: {
+                                position: {
+                                    trajectoryMetaData: {
+                                        type: Trajectory.line3,
+                                        startPoint: [-1, -0.5, 0],
+                                        endPoint: [-1, 0, 0],
+                                    },
+                                },
+                                opacity: {
+                                    trajectoryMetaData: {
+                                        type: Trajectory.line1D,
+                                        startPoint: 0,
+                                        endPoint: 1,
+                                    },
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    type: TextTypes.Paragraph,
+                    data: `I don't know what to write`,
+                    opacity: 0,
+                    color: 'black',
+                    animations: [
+                        {
+                            type: AnimationTypes.intro,
+                            springConfig: {duration: 1},
+                            animationTrajectories: {
+                                position: {
+                                    trajectoryMetaData: {
+                                        type: Trajectory.line3,
+                                        startPoint: [-1, -0.75, 0],
+                                        endPoint: [-1, -0.25, 0],
+                                    }
+                                },
+                                opacity: {
+                                    trajectoryMetaData: {
+                                        type: Trajectory.line1D,
+                                        startPoint: 0,
+                                        endPoint: 1,
+                                    },
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
         {
             type: ComponentTypes.Canvas,
             style: stylingDefaults.fullWidthFullHeightCanvas,
@@ -155,6 +284,14 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                                     },
                                     speed: 0.00025,
                                 },
+                                opacity: {
+                                    trajectoryMetaData: {
+                                        type: Trajectory.line1D,
+                                        startPoint: 1,
+                                        endPoint: 0,
+                                    },
+                                    speed: 0.0025,
+                                },
                             },
                         },
                     ],
@@ -274,6 +411,14 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                     ],
                 },
             ],
+        },
+        {
+            type: ComponentTypes.Canvas,
+            style: { ...stylingDefaults.fullWidthFullHeightCanvas },
+            camera: {
+                type: CameraTypes.Perspective,
+                position: [0, 0, 3],
+            },
         },
     ],
 };

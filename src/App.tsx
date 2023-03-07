@@ -28,7 +28,7 @@ export default function App({ config }: AppProps) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        window.addEventListener('resize', () => {
+        window && window.addEventListener('resize', () => {
             invalidate();
         });
         if (config.assets) {

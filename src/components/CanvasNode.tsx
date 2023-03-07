@@ -1,5 +1,5 @@
 import { AdaptiveDpr, Environment, PerformanceMonitor, Stats } from '@react-three/drei';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useThree } from '@react-three/fiber';
 import { useEffect, useRef, useState, Dispatch, SetStateAction } from 'react';
 import { CanvasNodeProps } from '../types/types';
 import Scene from './Scene';
@@ -45,10 +45,10 @@ export type SceneProps = {
 
 export default function CanvasNode(props: CanvasNodeProps) {
     const GetInfo = () => {
-        // const { gl } = useThree();
-        // useEffect(() => {
-        //     console.log(gl.info);
-        // });
+        const { gl, camera } = useThree();
+        useEffect(() => {
+            console.log(gl.info, camera);
+        });
         return null;
     };
 
@@ -92,10 +92,10 @@ export default function CanvasNode(props: CanvasNodeProps) {
 
     useEffect(() => {
         if (isSceneVisible && props.disablePageScrollForScrollAnimation && canvasContainerRef.current) {
-            window.addEventListener('wheel', handlePageScrollDisablingForScrollAnimation);
+            window && window.addEventListener('wheel', handlePageScrollDisablingForScrollAnimation);
         }
         return () => {
-            window.removeEventListener('wheel', handlePageScrollDisablingForScrollAnimation);
+            window && window.removeEventListener('wheel', handlePageScrollDisablingForScrollAnimation);
         };
     }, [canvasContainerRef.current, completedForwardScrollAnimationCount, completedBackwardScrollAnimationCount, scrollAnimationCount, isSceneVisible, canvasRect]);
 
