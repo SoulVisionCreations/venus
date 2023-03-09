@@ -108,7 +108,7 @@ export const getStateTrajectoryPoints = (
         scaleTrajectory = getTrajectoryPoints(scaleTrajectoryMetaData);
     }
     if (animationTrajectory.opacity) {
-        const opacityTrajectoryMetaData = {...animationTrajectory.opacity.trajectoryMetaData, steps: steps};
+        const opacityTrajectoryMetaData = { ...animationTrajectory.opacity.trajectoryMetaData, steps: steps };
         opacityTrajectory = getTrajectoryPoints(opacityTrajectoryMetaData);
     }
     for (let i = 0; i <= steps; i++) {
@@ -116,7 +116,7 @@ export const getStateTrajectoryPoints = (
             position: (positionTrajectory ? positionTrajectory[i] : state.current.position) as Vector3,
             rotation: (rotationTrajectory ? rotationTrajectory[i] : state.current.rotation) as Vector3,
             scale: (scaleTrajectory ? scaleTrajectory[i] : state.current.scale) as Vector3,
-            opacity: (opacityTrajectory ? opacityTrajectory[i] : state.current.opacity) as number
+            opacity: (opacityTrajectory ? opacityTrajectory[i] : state.current.opacity) as number,
         });
         stateTrajectoryArr.push(convertStateVecToArr(stateTrajectoryVec[i]));
     }

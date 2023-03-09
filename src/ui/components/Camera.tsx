@@ -55,9 +55,9 @@ const Camera = () => {
             </p>
             <p>
                 Position:
-                <input type="number" id="posx" value={position.x} onChange={(event) => handlePositionChange(event, 'x')} />
-                <input type="number" id="posy" value={position.y} onChange={(event) => handlePositionChange(event, 'y')} />
-                <input type="number" id="posz" value={position.z} onChange={(event) => handlePositionChange(event, 'z')} />
+                <input type="number" id="posx" value={position[0]} onChange={(event) => handlePositionChange(event, 'x')} />
+                <input type="number" id="posy" value={position[1]} onChange={(event) => handlePositionChange(event, 'y')} />
+                <input type="number" id="posz" value={position[2]} onChange={(event) => handlePositionChange(event, 'z')} />
             </p>
         </>
     );

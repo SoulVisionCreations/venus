@@ -5,9 +5,7 @@ import { ContainerNodeProps } from '../../../types/types';
 export const example1Config: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
-    assets: [
-        { assetId: '101', assetPath: './assets/glb/scene.glb', assetType: AssetTypes.Mesh },
-    ],
+    assets: [{ assetId: '101', assetPath: './assets/glb/scene.glb', assetType: AssetTypes.Mesh }],
     children: [
         {
             type: ComponentTypes.Canvas,
@@ -15,7 +13,7 @@ export const example1Config: ContainerNodeProps = {
             camera: {
                 type: CameraTypes.Orthographic,
                 position: [0, 0, 3],
-                zoom: 300
+                zoom: 300,
             },
             lights: [
                 {
@@ -32,7 +30,7 @@ export const example1Config: ContainerNodeProps = {
                     type: ObjectTypes.MeshObject,
                     assetId: '101',
                     position: [0.75, 0, 0],
-                    rotation: [Math.PI/12, -Math.PI/8, 0],
+                    rotation: [Math.PI / 12, -Math.PI / 8, 0],
                     scale: [0.25, 0.25, 0.25],
                     animations: [
                         {
@@ -61,14 +59,14 @@ export const example1Config: ContainerNodeProps = {
                     animations: [
                         {
                             type: AnimationTypes.intro,
-                            springConfig: {duration: 1},
+                            springConfig: { duration: 1 },
                             animationTrajectories: {
                                 position: {
                                     trajectoryMetaData: {
                                         type: Trajectory.line3,
                                         startPoint: [-1, -0.25, 0],
                                         endPoint: [-1, 0.25, 0],
-                                    }
+                                    },
                                 },
                                 opacity: {
                                     trajectoryMetaData: {
@@ -76,10 +74,10 @@ export const example1Config: ContainerNodeProps = {
                                         startPoint: 0,
                                         endPoint: 1,
                                     },
-                                }
-                            }
-                        }
-                    ]
+                                },
+                            },
+                        },
+                    ],
                 },
                 {
                     type: TextTypes.Paragraph,
@@ -89,7 +87,7 @@ export const example1Config: ContainerNodeProps = {
                     animations: [
                         {
                             type: AnimationTypes.intro,
-                            springConfig: {duration: 1},
+                            springConfig: { duration: 1 },
                             animationTrajectories: {
                                 position: {
                                     trajectoryMetaData: {
@@ -104,10 +102,10 @@ export const example1Config: ContainerNodeProps = {
                                         startPoint: 0,
                                         endPoint: 1,
                                     },
-                                }
-                            }
-                        }
-                    ]
+                                },
+                            },
+                        },
+                    ],
                 },
                 {
                     type: TextTypes.Paragraph,
@@ -117,14 +115,14 @@ export const example1Config: ContainerNodeProps = {
                     animations: [
                         {
                             type: AnimationTypes.intro,
-                            springConfig: {duration: 1},
+                            springConfig: { duration: 1 },
                             animationTrajectories: {
                                 position: {
                                     trajectoryMetaData: {
                                         type: Trajectory.line3,
                                         startPoint: [-1, -0.75, 0],
                                         endPoint: [-1, -0.25, 0],
-                                    }
+                                    },
                                 },
                                 opacity: {
                                     trajectoryMetaData: {
@@ -132,12 +130,12 @@ export const example1Config: ContainerNodeProps = {
                                         startPoint: 0,
                                         endPoint: 1,
                                     },
-                                }
-                            }
-                        }
-                    ]
-                }
-            ]
+                                },
+                            },
+                        },
+                    ],
+                },
+            ],
         },
         {
             type: ComponentTypes.Canvas,

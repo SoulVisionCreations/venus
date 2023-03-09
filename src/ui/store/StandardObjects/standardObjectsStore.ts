@@ -1,9 +1,9 @@
 import { create } from 'zustand';
-import { StandardObject } from './standardObjectStore';
+import { StandardObjectProps } from '../../../types/object3DTypes';
 
 interface StandardObjects {
-    standardObjects: StandardObject[];
-    addStandardObjects: (object: StandardObject) => void;
+    standardObjects: StandardObjectProps[];
+    addStandardObjects: (object: StandardObjectProps) => void;
     removeStandardObjects: (id: number) => void;
 }
 

@@ -1,12 +1,8 @@
 import { create } from 'zustand';
+import { ImageProps } from '../../../types/types';
 
-export type Image = {
+export type Image = ImageProps & {
     file: any;
-    position: { x: number; y: number; z: number };
-    rotation: { x: number; y: number; z: number };
-    scale: { x: number; y: number; z: number };
-    src: string;
-    // animations: any;
 };
 
 export type ImageActions = {
@@ -19,10 +15,11 @@ export type ImageActions = {
 };
 
 const InitialState: Image = {
+    assetId: '',
     file: null,
-    position: { x: 0, y: 0, z: 0 },
-    rotation: { x: 0, y: 0, z: 0 },
-    scale: { x: 1, y: 1, z: 1 },
+    position: [0, 0, 0],
+    rotation: [0, 0, 0],
+    scale: [1, 1, 1],
     src: '',
     // animations: null,
 };
@@ -31,19 +28,19 @@ const useImageStore = create<Image & ImageActions>((set) => ({
     ...InitialState,
     setFile: (file) => set({ file }),
     setPosition: (value, pos) => {
-        if (pos === 'x') set((state) => ({ position: { ...state.position, x: value } }));
-        else if (pos === 'y') set((state) => ({ position: { ...state.position, y: value } }));
-        else if (pos === 'z') set((state) => ({ position: { ...state.position, z: value } }));
+        if (pos === 'x') set((state) => ({ position: [value, (state.position as any)[1], (state.position as any)[2]] }));
+        else if (pos === 'y') set((state) => ({ position: [(state.position as any)[0], value, (state.position as any)[2]] }));
+        else if (pos === 'z') set((state) => ({ position: [(state.position as any)[0], (state.position as any)[1]], value }));
     },
-    setRotation: (value, pos) => {
-        if (pos === 'x') set((state) => ({ rotation: { ...state.rotation, x: value } }));
-        else if (pos === 'y') set((state) => ({ rotation: { ...state.rotation, y: value } }));
-        else if (pos === 'z') set((state) => ({ rotation: { ...state.rotation, z: value } }));
+    setRotation: (value, rot) => {
+        if (rot === 'x') set((state) => ({ rotation: [value, (state.rotation as any)[1], (state.rotation as any)[2]] }));
+        else if (rot === 'y') set((state) => ({ rotation: [(state.rotation as any)[0], value, (state.rotation as any)[2]] }));
+        else if (rot === 'z') set((state) => ({ rotation: [(state.rotation as any)[0], (state.rotation as any)[1]], value }));
     },
-    setScale: (value, pos) => {
-        if (pos === 'x') set((state) => ({ scale: { ...state.scale, x: value } }));
-        else if (pos === 'y') set((state) => ({ scale: { ...state.scale, y: value } }));
-        else if (pos === 'z') set((state) => ({ scale: { ...state.scale, z: value } }));
+    setScale: (value, scl) => {
+        if (scl === 'x') set((state) => ({ scale: [value, (state.scale as any)[1], (state.scale as any)[2]] }));
+        else if (scl === 'y') set((state) => ({ scale: [(state.scale as any)[0], value, (state.scale as any)[2]] }));
+        else if (scl === 'z') set((state) => ({ scale: [(state.scale as any)[0], (state.scale as any)[1]], value }));
     },
     // setAnimations: (animations) => set({animations}),
     resetImage: () => set(InitialState),

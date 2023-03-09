@@ -1,59 +1,78 @@
 import { useState } from 'react';
 import { IoMdAddCircle } from 'react-icons/io';
-import { TextTypes } from '../../types/enums';
+import { HtmlTemplateTypes } from '../../types/enums';
 import Select from './Select/Select';
-import useTextStore from '../store/Texts/textStore';
-import useTextsStore from '../store/Texts/textsStore';
 import ObjectArray from './ObjectArray/ObjectArray';
+import useHtmlTemplatesStore from '../store/HtmlTemplates/htmlTemplatesStore';
+import useHtmlTemplateStore from '../store/HtmlTemplates/htmlTemplateStore';
 
-const Texts = () => {
+const HtmlTemplates = () => {
     const [add, setAdd] = useState(false);
-    const [texts, addTexts, removeTexts] = useTextsStore((s) => [s.texts, s.addTexts, s.removeTexts]);
-    const [type, text, title, numbered, list, color, position, rotation, scale, setType, setText, setTitle, setNumbered, setList, setColor, setPosition, setRotation, setScale, resetText] =
-        useTextStore((s) => [
-            s.type,
-            s.text,
-            s.title,
-            s.numbered,
-            s.list,
-            s.color,
-            s.position,
-            s.rotation,
-            s.scale,
-            s.setType,
-            s.setText,
-            s.setTitle,
-            s.setNumbered,
-            s.setList,
-            s.setColor,
-            s.setPosition,
-            s.setRotation,
-            s.setScale,
-            s.resetText,
-        ]);
+    const [htmlTemplates, addHtmlTemplates, removeHtmlTemplates] = useHtmlTemplatesStore((s) => [s.htmlTemplates, s.addHtmlTemplates, s.removeHtmlTemplates]);
+    const [
+        type,
+        title,
+        data,
+        titleStyle,
+        dataStyle,
+        boxStyle,
+        position,
+        rotation,
+        scale,
+        setType,
+        setTitle,
+        setData,
+        setTitleStyle,
+        setDataStyle,
+        setBoxStyle,
+        setPosition,
+        setRotation,
+        // setScale,
+        resetHtmlTemplate,
+    ] = useHtmlTemplateStore((s) => [
+        s.type,
+        s.title,
+        s.data,
+        s.titleStyle,
+        s.dataStyle,
+        s.boxStyle,
+        s.position,
+        s.rotation,
+        s.scale,
+        s.setType,
+        s.setTitle,
+        s.setData,
+        s.setTitleStyle,
+        s.setDataStyle,
+        s.setBoxStyle,
+        s.setPosition,
+        s.setRotation,
+        // s.setScale,
+        s.resetHtmlTemplate,
+    ]);
 
-    const handleTextTypeChange = (event: any) => {
+    const handleHtmlTemplateTypeChange = (event: any) => {
         setType(Number(event.target.value));
     };
 
-    const handleTextChange = (event: any) => {
-        setText(event.target.value);
+    const handleDataChange = (event: any) => {
+        setData(event.target.value);
     };
 
     const handleTitleChange = (event: any) => {
         setTitle(event.target.value);
     };
 
-    const handleNumberedChange = (event: any) => {
-        setNumbered(event.target.checked);
+    const handleTitleStyleChange = (event: any) => {
+        setTitleStyle(event.target.value);
     };
 
-    const handleListChange = (event: any) => {
-        setList(event.target.value);
+    const handleDataStyleChange = (event: any) => {
+        setDataStyle(event.target.value);
     };
 
-    const handleColorChange = (event: any) => {
-        setColor(event.target.value);
+    const handleBoxStyleChange = (event: any) => {
+        setBoxStyle(event.target.value);
     };
 
     const handlePositionChange = (event: any, pos: string) => {
@@ -64,77 +83,83 @@ const Texts = () => {
         setRotation(event.target.valueAsNumber, pos);
     };
 
-    const handleScaleChange = (event: any, pos: string) => {
-        setScale(event.target.valueAsNumber, pos);
-    };
+    // const handleScaleChange = (event: any, pos: string) => {
+    //     setScale(event.target.valueAsNumber, pos);
+    // };
 
-    const addText = () => {
-        if (type === TextTypes.Paragraph) addTexts({ type: type, text: text, color: color, position: position, rotation: rotation, scale: scale });
-        else if (type === TextTypes.List) addTexts({ type: type, title: title, numbered: numbered, list: list, color: color, position: position, rotation: rotation, scale: scale });
+    const addHtmlTemplate = () => {
+        if (type === HtmlTemplateTypes.ParagraphBox)
+            addHtmlTemplates({
+                type: type,
+                title: title,
+                data: data,
+                titleStyle: JSON.parse(titleStyle),
+                dataStyle: JSON.parse(dataStyle),
+                boxStyle: JSON.parse(boxStyle),
+                position: position,
+                rotation: rotation,
+                scale: scale,
+            });
         setAdd(false);
-        resetText();
+        resetHtmlTemplate();
     };
 
     return (
         <>
-            <ObjectArray array={texts} title="Text" removeElement={removeTexts} />
+            <ObjectArray array={htmlTemplates} title="HtmlTemplates" removeElement={removeHtmlTemplates} />
             <button className="add-more-button" onClick={() => setAdd(true)}>
                 Add More <IoMdAddCircle size={28} />
             </button>
             {add && (
                 <>
                     <p>
-                        <Select title="Text Types" options={TextTypes} defaultValue={TextTypes[type]} onChange={handleTextTypeChange} />
+                        <Select title="Html Template Types" options={HtmlTemplateTypes} defaultValue={HtmlTemplateTypes[type]} onChange={handleHtmlTemplateTypeChange} />
                     </p>
-                    {type === TextTypes.Paragraph && (
+                    <p>
+                        <label htmlFor="title">Title: </label>
+                        <input type="text" id="title" name="title" onChange={handleTitleChange} value={title} />
+                    </p>
+                    {type === HtmlTemplateTypes.ParagraphBox && (
                         <p>
-                            <label htmlFor="text">Text: </label>
-                            <textarea id="text" name="text" rows={3} onChange={handleTextChange} value={text} />
+                            <label htmlFor="data">Data: </label>
+                            <input type="text" id="data" name="data" onChange={handleDataChange} value={data} />
                         </p>
                     )}
-                    {type === TextTypes.List && (
-                        <>
-                            <p>
-                                <label htmlFor="title">Title: </label>
-                                <input type="text" id="title" name="title" onChange={handleTitleChange} value={title} />
-                            </p>
-                            <p>
-                                <label htmlFor="numbered">Numbered List: </label>
-                                <input name="numbered" id="numbered" onChange={handleNumberedChange} type="checkbox" checked={numbered} />
-                            </p>
-                            <p>
-                                <label htmlFor="list">List: </label>
-                                <input type="text" id="list" name="list" onChange={handleListChange} value={list} />
-                            </p>
-                        </>
-                    )}
                     <p>
-                        <label htmlFor="color">Color: </label>
-                        <input type="color" id="color" name="color" onChange={handleColorChange} value={color} />
+                        <label htmlFor="titleStyle">Title Style: </label>
+                        <textarea id="titleStyle" name="titleStyle" rows={3} onChange={handleTitleStyleChange} value={titleStyle} />
+                    </p>
+                    <p>
+                        <label htmlFor="dataStyle">Data Style: </label>
+                        <textarea id="dataStyle" rows={3} name="dataStyle" onChange={handleDataStyleChange} value={dataStyle} />
+                    </p>
+                    <p>
+                        <label htmlFor="boxStyle">Box Style: </label>
+                        <textarea id="boxStyle" rows={3} name="boxStyle" onChange={handleBoxStyleChange} value={boxStyle} />
                     </p>
                     <p>
                         Position:
-                        <input type="number" id="posx" value={position.x} onChange={(event) => handlePositionChange(event, 'x')} />
-                        <input type="number" id="posy" value={position.y} onChange={(event) => handlePositionChange(event, 'y')} />
-                        <input type="number" id="posz" value={position.z} onChange={(event) => handlePositionChange(event, 'z')} />
+                        <input type="number" id="posx" value={(position as number[])[0]} onChange={(event) => handlePositionChange(event, 'x')} />
+                        <input type="number" id="posy" value={(position as number[])[1]} onChange={(event) => handlePositionChange(event, 'y')} />
+                        <input type="number" id="posz" value={(position as number[])[2]} onChange={(event) => handlePositionChange(event, 'z')} />
                     </p>
                     <p>
                         Rotation:
-                        <input type="number" id="roty" value={rotation.y} onChange={(event) => handleRotationChange(event, 'y')} />
-                        <input type="number" id="rotx" value={rotation.x} onChange={(event) => handleRotationChange(event, 'x')} />
-                        <input type="number" id="rotz" value={rotation.z} onChange={(event) => handleRotationChange(event, 'z')} />
+                        <input type="number" id="rotx" value={(rotation as number[])[0]} onChange={(event) => handleRotationChange(event, 'x')} />
+                        <input type="number" id="roty" value={(rotation as number[])[1]} onChange={(event) => handleRotationChange(event, 'y')} />
+                        <input type="number" id="rotz" value={(rotation as number[])[2]} onChange={(event) => handleRotationChange(event, 'z')} />
                     </p>
-                    <p>
+                    {/* <p>
                         Scale:
-                        <input type="number" id="scax" value={scale.x} onChange={(event) => handleScaleChange(event, 'x')} />
-                        <input type="number" id="scay" value={scale.y} onChange={(event) => handleScaleChange(event, 'y')} />
-                        <input type="number" id="scaz" value={scale.z} onChange={(event) => handleScaleChange(event, 'z')} />
-                    </p>
-                    <button onClick={() => addText()}>Add</button>
+                        <input type="number" id="sclx" value={scale[0]} onChange={(event) => handleScaleChange(event, 'x')} />
+                        <input type="number" id="scly" value={scale[1]} onChange={(event) => handleScaleChange(event, 'y')} />
+                        <input type="number" id="sclz" value={scale[2]} onChange={(event) => handleScaleChange(event, 'z')} />
+                    </p> */}
+                    <button onClick={() => addHtmlTemplate()}>Add</button>
                 </>
             )}
         </>
     );
 };
 
-export default Texts;
+export default HtmlTemplates;

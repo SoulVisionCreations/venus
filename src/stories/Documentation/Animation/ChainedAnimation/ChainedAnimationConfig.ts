@@ -1,14 +1,12 @@
-import { ChainedAnimation } from "../../../../types/animationTypes";
-import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes } from "../../../../types/enums";
-import { ContainerNodeProps } from "../../../../types/types";
+import { ChainedAnimation } from '../../../../types/animationTypes';
+import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes } from '../../../../types/enums';
+import { ContainerNodeProps } from '../../../../types/types';
 
 export const getChainedAnimationConfig = (props: ChainedAnimation): ContainerNodeProps => {
     return {
         type: ComponentTypes.Container,
         alignment: Alignment.Vertical,
-        assets: [
-            { assetId: '101', assetPath: './assets/glb/scene.glb', assetType: AssetTypes.Mesh },
-        ],
+        assets: [{ assetId: '101', assetPath: './assets/glb/scene.glb', assetType: AssetTypes.Mesh }],
         children: [
             {
                 type: ComponentTypes.Canvas,
@@ -34,7 +32,7 @@ export const getChainedAnimationConfig = (props: ChainedAnimation): ContainerNod
                         type: ObjectTypes.MeshObject,
                         assetId: '101',
                         position: [0, 0, 0],
-                        rotation: [Math.PI/2, 0, 0],
+                        rotation: [Math.PI / 2, 0, 0],
                         scale: [1, 1, 1],
                         animations: [
                             {
@@ -47,7 +45,7 @@ export const getChainedAnimationConfig = (props: ChainedAnimation): ContainerNod
                                 repeat: props.repeat,
                                 interval: props.interval,
                                 springConfig: props.springConfig,
-                                childAnimations: props.childAnimations
+                                childAnimations: props.childAnimations,
                             },
                         ],
                     },
@@ -55,4 +53,4 @@ export const getChainedAnimationConfig = (props: ChainedAnimation): ContainerNod
             },
         ],
     };
-}
+};

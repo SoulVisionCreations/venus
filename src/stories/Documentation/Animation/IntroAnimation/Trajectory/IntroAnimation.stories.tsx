@@ -11,11 +11,11 @@ const AppWrapper: Story<{
     springConfig?: SpringConfig;
     visibilityThreshold?: VisibilityThreshold;
     animationTrajectories: AnimationTrajectory;
-    trajectorySteps?: number
+    trajectorySteps?: number;
 }> = (args) => {
     const config = getIntroAnimationConfig(args);
-    return <App config={{...config}} />;
-}
+    return <App config={{ ...config }} />;
+};
 
 // eslint-disable-next-line storybook/story-exports
 export default {
@@ -23,7 +23,7 @@ export default {
     component: AppWrapper,
     argTypes: {
         initialPause: {
-            control: {type: 'number'},
+            control: { type: 'number' },
             description: 'The animation will start after X milliseconds, if initialPause is set to X.',
             table: {
                 type: { summary: 'number' },
@@ -31,7 +31,7 @@ export default {
             },
         },
         springConfig: {
-            control: {type: 'object'},
+            control: { type: 'object' },
             description: 'Decides the nature of spring. For trajectory based intro animations, you can only use duration based springs. The total animation time is duration*trajectorySteps.',
             table: {
                 type: { summary: 'object' },
@@ -39,21 +39,22 @@ export default {
             },
         },
         animationTrajectories: {
-            control: {type: 'object'},
-            description: 'An object which describes the trajectory to be traversed. Trajectory can be applied to any or all of state properties, which are - ( Position, Rotation and Scale ). Checkout trajectory documentation to understand more about trajectories.',
+            control: { type: 'object' },
+            description:
+                'An object which describes the trajectory to be traversed. Trajectory can be applied to any or all of state properties, which are - ( Position, Rotation and Scale ). Checkout trajectory documentation to understand more about trajectories.',
             table: {
                 type: { summary: 'object' },
                 defaultValue: { summary: `None` },
             },
         },
         trajectorySteps: {
-            control: {type: 'number'},
+            control: { type: 'number' },
             description: 'The number of steps each trajectory should be divided into.',
             table: {
                 type: { summary: 'number' },
                 defaultValue: { summary: '100' },
             },
-        }
+        },
     },
     parameters: {
         previewTabs: {
@@ -64,10 +65,11 @@ export default {
         viewMode: 'docs',
         docs: {
             description: {
-                component: 'Intro animations are for Introducing the given entity by an animation. By defination Intro animation execute only once every time the scene associated with the given entity crosses visibility threshold while scrolling. Checkout visibility threshold documentation to know more about them'
-            }
-        }
-    }
+                component:
+                    'Intro animations are for Introducing the given entity by an animation. By defination Intro animation execute only once every time the scene associated with the given entity crosses visibility threshold while scrolling. Checkout visibility threshold documentation to know more about them',
+            },
+        },
+    },
 };
 
 export const Example = AppWrapper.bind({});
@@ -90,17 +92,16 @@ Example.args = {
             trajectoryMetaData: {
                 type: Trajectory.line3,
                 startPoint: [0, 0, 0],
-                endPoint: [Math.PI/12, 4*Math.PI, 0]
-            }
+                endPoint: [Math.PI / 12, 4 * Math.PI, 0],
+            },
         },
         scale: {
             trajectoryMetaData: {
                 type: Trajectory.line3,
                 startPoint: [0.25, 0.25, 0.25],
-                endPoint: [1.25, 1.25, 1.25]
-            }
-        }
+                endPoint: [1.25, 1.25, 1.25],
+            },
+        },
     },
-    trajectorySteps: 100
+    trajectorySteps: 100,
 };
-

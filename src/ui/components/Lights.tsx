@@ -64,9 +64,9 @@ const Lights = () => {
                     </p>
                     <p>
                         Position:
-                        <input type="number" id="posx" value={position.x} onChange={(event) => handlePositionChange(event, 'x')} />
-                        <input type="number" id="posy" value={position.y} onChange={(event) => handlePositionChange(event, 'y')} />
-                        <input type="number" id="posz" value={position.z} onChange={(event) => handlePositionChange(event, 'z')} />
+                        <input type="number" id="posx" value={(position as number[])[0]} onChange={(event) => handlePositionChange(event, 'x')} />
+                        <input type="number" id="posy" value={(position as number[])[1]} onChange={(event) => handlePositionChange(event, 'y')} />
+                        <input type="number" id="posz" value={(position as number[])[2]} onChange={(event) => handlePositionChange(event, 'z')} />
                     </p>
                     <button onClick={() => addLight()}>Add</button>
                 </>

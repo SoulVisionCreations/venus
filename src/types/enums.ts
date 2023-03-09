@@ -122,7 +122,7 @@ export enum TextTypes {
     List,
 }
 
-export const enum HtmlTemplateTypes {
+export enum HtmlTemplateTypes {
     ParagraphBox,
     NumberedListBox,
     BulletedListBox,

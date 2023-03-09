@@ -50,7 +50,7 @@ export type AnimationTrajectory = {
     opacity?: {
         trajectoryMetaData: TrajectoryMetaData;
         speed?: number;
-    }
+    };
 };
 
 export type VisibilityThreshold = { sceneTopToScreenBottomRatio: number; sceneBottomToScreenTopRatio: number };

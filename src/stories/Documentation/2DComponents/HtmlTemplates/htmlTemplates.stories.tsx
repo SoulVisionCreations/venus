@@ -114,6 +114,10 @@ ParagraphBox.args = {
     dataStyle: { fontSize: '18px', padding: '2px', margin: '0px' },
 };
 
+// { "fontSize": "36px", "color": "black", "padding": "2px", "margin": "0px", "marginBottom": "20px" }
+// { "fontSize": "18px", "padding": "2px", "margin": "0px" }
+// { "background": "white", "width": "500px", "borderRadius": "10px", "border": "3px solid black", "padding": "20px" }
+
 export const NumberedListBox = HtmlTemplate.bind({});
 NumberedListBox.args = {
     type: HtmlTemplateTypes.NumberedListBox,

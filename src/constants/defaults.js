@@ -28,15 +28,15 @@ export const animationDefaults = {
     },
     introAnimation: {
         byTrajectory: {
-            springConfig: {duration: 20}
+            springConfig: { duration: 20 },
         },
         byStateIncrements: {
-            springConfig: { mass: 1, tension: 170, friction: 26 }
-        }
+            springConfig: { mass: 1, tension: 170, friction: 26 },
+        },
     },
     scrollAnimation: {
         disablePageScroll: true,
-        maxRotation: Math.PI*2,
+        maxRotation: Math.PI * 2,
         minRotation: 0,
         speed: 0.1,
         springConfig: { mass: 4, tension: 280, friction: 90 },
@@ -87,7 +87,7 @@ export const stylingDefaults = {
     },
     fullWidthFullHeightCanvas: {
         height: `${window.innerHeight}px`,
-        widht: `${window.innerWidth}px`,
+        width: `${window.innerWidth}px`,
     },
     fullWidthFullHeightVideo: {
         height: `${window.innerHeight}px`,

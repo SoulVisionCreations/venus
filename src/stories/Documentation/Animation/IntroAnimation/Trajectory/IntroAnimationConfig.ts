@@ -1,26 +1,24 @@
-import { SpringConfig } from "@react-spring/three";
-import { AnimationTrajectory, VisibilityThreshold } from "../../../../../types/animationTypes";
-import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes } from "../../../../../types/enums";
-import { ContainerNodeProps } from "../../../../../types/types";
+import { SpringConfig } from '@react-spring/three';
+import { AnimationTrajectory, VisibilityThreshold } from '../../../../../types/animationTypes';
+import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes } from '../../../../../types/enums';
+import { ContainerNodeProps } from '../../../../../types/types';
 
 export const getIntroAnimationConfig = (props: {
     initialPause?: number;
     springConfig?: SpringConfig;
     visibilityThreshold?: VisibilityThreshold;
-    animationTrajectories: AnimationTrajectory; 
-    trajectorySteps?: number
+    animationTrajectories: AnimationTrajectory;
+    trajectorySteps?: number;
 }): ContainerNodeProps => {
     return {
         type: ComponentTypes.Container,
         alignment: Alignment.Vertical,
-        style: {justifyContent: 'center', alignItems: 'center'},
-        assets: [
-            { assetId: '101', assetPath: './assets/glb/scene.glb', assetType: AssetTypes.Mesh },
-        ],
+        style: { justifyContent: 'center', alignItems: 'center' },
+        assets: [{ assetId: '101', assetPath: './assets/glb/scene.glb', assetType: AssetTypes.Mesh }],
         children: [
             {
                 type: ComponentTypes.Canvas,
-                style: {width: '500px', height: '500px'},
+                style: { width: '500px', height: '500px' },
                 camera: {
                     type: CameraTypes.Perspective,
                     position: [0, 0, 3],
@@ -54,7 +52,7 @@ export const getIntroAnimationConfig = (props: {
                                 initialPause: props.initialPause,
                                 springConfig: props.springConfig,
                                 animationTrajectories: props.animationTrajectories,
-                                trajectorySteps: props.trajectorySteps
+                                trajectorySteps: props.trajectorySteps,
                             },
                         ],
                     },
@@ -62,4 +60,4 @@ export const getIntroAnimationConfig = (props: {
             },
         ],
     };
-}
+};

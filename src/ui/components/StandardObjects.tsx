@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { IoMdAddCircle } from 'react-icons/io';
 import ObjectArray from './ObjectArray/ObjectArray';
-import { MaterialTypes, ObjectTypes, StandardGeometryTypes } from '../../types/enums';
+import { MaterialTypes, StandardGeometryTypes } from '../../types/enums';
 import useStandardObjectsStore from '../store/StandardObjects/standardObjectsStore';
 import useStandardObjectStore from '../store/StandardObjects/standardObjectStore';
 import Select from './Select/Select';
@@ -9,7 +9,8 @@ import Select from './Select/Select';
 const StandardObjects = () => {
     const [add, setAdd] = useState(false);
     const [standardObjects, addStandardObjects, removeStandardObjects] = useStandardObjectsStore((s) => [s.standardObjects, s.addStandardObjects, s.removeStandardObjects]);
-    const [geometry, material, position, rotation, scale, setGeometryType, setMaterialType, setColor, setPosition, setRotation, setScale, resetObject] = useStandardObjectStore((s) => [
+    const [type, geometry, material, position, rotation, scale, setGeometryType, setMaterialType, setColor, setPosition, setRotation, setScale, resetObject] = useStandardObjectStore((s) => [
+        s.type,
         s.geometry,
         s.material,
         s.position,
@@ -49,7 +50,7 @@ const StandardObjects = () => {
     };
 
     const addStandardObject = () => {
-        addStandardObjects({ geometry, material, position, rotation, scale, type: ObjectTypes.StandardObject });
+        addStandardObjects({ geometry, material, position, rotation, scale, type });
         setAdd(false);
         resetObject();
     };
@@ -74,21 +75,21 @@ const StandardObjects = () => {
                     </p>
                     <p>
                         Position:
-                        <input type="number" id="posx" value={position.x} onChange={(event) => handlePositionChange(event, 'x')} />
-                        <input type="number" id="posy" value={position.y} onChange={(event) => handlePositionChange(event, 'y')} />
-                        <input type="number" id="posz" value={position.z} onChange={(event) => handlePositionChange(event, 'z')} />
+                        <input type="number" id="posx" value={(position as number[])[0]} onChange={(event) => handlePositionChange(event, 'x')} />
+                        <input type="number" id="posy" value={(position as number[])[1]} onChange={(event) => handlePositionChange(event, 'y')} />
+                        <input type="number" id="posz" value={(position as number[])[2]} onChange={(event) => handlePositionChange(event, 'z')} />
                     </p>
                     <p>
                         Rotation:
-                        <input type="number" id="roty" value={rotation.y} onChange={(event) => handleRotationChange(event, 'y')} />
-                        <input type="number" id="rotx" value={rotation.x} onChange={(event) => handleRotationChange(event, 'x')} />
-                        <input type="number" id="rotz" value={rotation.z} onChange={(event) => handleRotationChange(event, 'z')} />
+                        <input type="number" id="rotx" value={(rotation as number[])[0]} onChange={(event) => handleRotationChange(event, 'x')} />
+                        <input type="number" id="roty" value={(rotation as number[])[1]} onChange={(event) => handleRotationChange(event, 'y')} />
+                        <input type="number" id="rotz" value={(rotation as number[])[2]} onChange={(event) => handleRotationChange(event, 'z')} />
                     </p>
                     <p>
                         Scale:
-                        <input type="number" id="scax" value={scale.x} onChange={(event) => handleScaleChange(event, 'x')} />
-                        <input type="number" id="scay" value={scale.y} onChange={(event) => handleScaleChange(event, 'y')} />
-                        <input type="number" id="scaz" value={scale.z} onChange={(event) => handleScaleChange(event, 'z')} />
+                        <input type="number" id="sclx" value={(scale as number[])[0]} onChange={(event) => handleScaleChange(event, 'x')} />
+                        <input type="number" id="scly" value={(scale as number[])[1]} onChange={(event) => handleScaleChange(event, 'y')} />
+                        <input type="number" id="sclz" value={(scale as number[])[2]} onChange={(event) => handleScaleChange(event, 'z')} />
                     </p>
                     <button onClick={() => addStandardObject()}>Add</button>
                 </>

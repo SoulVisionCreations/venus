@@ -1,9 +1,9 @@
 import { create } from 'zustand';
-import { Light } from './lightStore';
+import { LightProps } from '../../../types/types';
 
 interface Lights {
-    lights: Light[];
-    addLights: (light: Light) => void;
+    lights: LightProps[];
+    addLights: (light: LightProps) => void;
     removeLights: (id: number) => void;
 }
 

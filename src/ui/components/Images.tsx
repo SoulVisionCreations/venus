@@ -39,8 +39,8 @@ const Images = () => {
         const image = new Image();
         image.src = file[0].name;
         image.onload = function () {
-            const scaleRatio = { x: (scale.x * image.width) / image.height, y: scale.y * 1, z: scale.z * 1 };
-            addImages({ file: file, position: position, rotation: rotation, scale: scaleRatio, src: file[0].name });
+            const scaleRatio = [((scale as number[])[0] * image.width) / image.height, (scale as number[])[1] * 1, (scale as number[])[2] * 1];
+            addImages({ assetId: '', file: file, position: position, rotation: rotation, scale: scaleRatio, src: file[0].name });
             setAdd(false);
             resetImage();
         };
@@ -60,21 +60,21 @@ const Images = () => {
                     </p>
                     <p>
                         Position:
-                        <input type="number" id="posx" value={position.x} onChange={(event) => handlePositionChange(event, 'x')} />
-                        <input type="number" id="posy" value={position.y} onChange={(event) => handlePositionChange(event, 'y')} />
-                        <input type="number" id="posz" value={position.z} onChange={(event) => handlePositionChange(event, 'z')} />
+                        <input type="number" id="posx" value={(position as number[])[0]} onChange={(event) => handlePositionChange(event, 'x')} />
+                        <input type="number" id="posy" value={(position as number[])[1]} onChange={(event) => handlePositionChange(event, 'y')} />
+                        <input type="number" id="posz" value={(position as number[])[2]} onChange={(event) => handlePositionChange(event, 'z')} />
                     </p>
                     <p>
                         Rotation:
-                        <input type="number" id="roty" value={rotation.y} onChange={(event) => handleRotationChange(event, 'y')} />
-                        <input type="number" id="rotx" value={rotation.x} onChange={(event) => handleRotationChange(event, 'x')} />
-                        <input type="number" id="rotz" value={rotation.z} onChange={(event) => handleRotationChange(event, 'z')} />
+                        <input type="number" id="rotx" value={(rotation as number[])[0]} onChange={(event) => handleRotationChange(event, 'x')} />
+                        <input type="number" id="roty" value={(rotation as number[])[1]} onChange={(event) => handleRotationChange(event, 'y')} />
+                        <input type="number" id="rotz" value={(rotation as number[])[2]} onChange={(event) => handleRotationChange(event, 'z')} />
                     </p>
                     <p>
                         Scale:
-                        <input type="number" id="scax" value={scale.x} onChange={(event) => handleScaleChange(event, 'x')} />
-                        <input type="number" id="scay" value={scale.y} onChange={(event) => handleScaleChange(event, 'y')} />
-                        <input type="number" id="scaz" value={scale.z} onChange={(event) => handleScaleChange(event, 'z')} />
+                        <input type="number" id="sclx" value={(scale as number[])[0]} onChange={(event) => handleScaleChange(event, 'x')} />
+                        <input type="number" id="scly" value={(scale as number[])[1]} onChange={(event) => handleScaleChange(event, 'y')} />
+                        <input type="number" id="sclz" value={(scale as number[])[2]} onChange={(event) => handleScaleChange(event, 'z')} />
                     </p>
                     <button onClick={() => addImage()}>Add</button>
                 </>

@@ -1,12 +1,8 @@
 import { create } from 'zustand';
 import { CameraTypes } from '../../types/enums';
+import { CameraProps } from '../../types/types';
 
-type Camera = {
-    fov: number;
-    near: number;
-    far: number;
-    position: { x: number; y: number; z: number };
-    type: CameraTypes;
+export type CameraActions = {
     setFov: (fov: number) => void;
     setNear: (near: number) => void;
     setFar: (far: number) => void;
@@ -14,20 +10,23 @@ type Camera = {
     setType: (type: CameraTypes) => void;
 };
 
-const useCameraStore = create<Camera>((set) => ({
+const InitialState: CameraProps = {
     fov: 75,
     near: 0.1,
     far: 1000,
-    position: { x: 0, y: 0, z: 2 },
-    orthographic: false,
+    position: [0, 0, 0],
     type: CameraTypes.Perspective,
+};
+
+const useCameraStore = create<CameraProps & CameraActions>((set) => ({
+    ...InitialState,
     setFov: (fov) => set({ fov }),
     setNear: (near) => set({ near }),
     setFar: (far) => set({ far }),
     setPosition: (value, pos) => {
-        if (pos === 'x') set((state) => ({ position: { ...state.position, x: value } }));
-        else if (pos === 'y') set((state) => ({ position: { ...state.position, y: value } }));
-        else if (pos === 'z') set((state) => ({ position: { ...state.position, z: value } }));
+        if (pos === 'x') set((state) => ({ position: [value, (state.position as any)[1], (state.position as any)[2]] }));
+        else if (pos === 'y') set((state) => ({ position: [(state.position as any)[0], value, (state.position as any)[2]] }));
+        else if (pos === 'z') set((state) => ({ position: [(state.position as any)[0], (state.position as any)[1]], value }));
     },
     setType: (type) => set({ type }),
 }));

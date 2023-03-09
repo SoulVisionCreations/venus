@@ -135,7 +135,7 @@ export default function CanvasNode(props: CanvasNodeProps) {
                     htmlTemplates={props.htmlTemplates}
                     sceneProps={sceneProps}
                 />
-                {props.environment && props.environment.files.length > 0 && <Environment {...props.environment} />}
+                {props.environment?.files && <Environment {...props.environment} />}
             </Canvas>
         </div>
     );

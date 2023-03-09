@@ -1,28 +1,30 @@
 import { create } from 'zustand';
+import { EnvironmentProps } from '../../types/types';
 
-export enum EncodingTypes {
-    LinearEncoding,
-    sRGBEncoding,
-    BasicDepthPacking,
-    RGBADepthPacking,
-}
+// export enum EncodingTypes {
+//     LinearEncoding,
+//     sRGBEncoding,
+//     BasicDepthPacking,
+//     RGBADepthPacking,
+// }
 
-type Environment = {
-    files: any;
-    background: boolean;
-    encoding: EncodingTypes;
+type EnvironmentActions = {
     setFiles: (files: any) => void;
     setBackground: (background: boolean) => void;
-    setEncoding: (encoding: EncodingTypes) => void;
+    // setEncoding: (encoding: EncodingTypes) => void;
 };
 
-const useEnvironmentStore = create<Environment>((set) => ({
-    files: null,
+const InitialState: EnvironmentProps = {
+    files: '',
     background: false,
-    encoding: EncodingTypes.sRGBEncoding,
+    // encoding: EncodingTypes.sRGBEncoding,
+};
+
+const useEnvironmentStore = create<EnvironmentProps & EnvironmentActions>((set) => ({
+    ...InitialState,
     setFiles: (files) => set({ files }),
     setBackground: (background) => set({ background }),
-    setEncoding: (encoding) => set({ encoding }),
+    // setEncoding: (encoding) => set({ encoding }),
 }));
 
 const EnvironmentStoreState = useEnvironmentStore.getState;

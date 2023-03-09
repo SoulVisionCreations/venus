@@ -5,9 +5,9 @@ import { LightsStoreState } from './store/Lights/lightsStore';
 import { SceneControlStoreState } from './store/sceneControlStore';
 import { ConfigStoreState } from '../configStore';
 import { TextsStoreState } from './store/Texts/textsStore';
-import { objToArr } from './utils/utility';
 import { Texts3DStoreState } from './store/Texts3D/texts3DStore';
 import { StandardObjectsStoreState } from './store/StandardObjects/standardObjectsStore';
+import { HtmlTemplatesStoreState } from './store/HtmlTemplates/htmlTemplatesStore';
 
 function ConfigGenerator() {
     const { type, fov, near, far, position } = CameraStoreState();
@@ -18,11 +18,12 @@ function ConfigGenerator() {
         background: EnvironmentStoreState().background,
         encoding: EnvironmentStoreState().encoding,
     });
-    ConfigStoreState().setImages(objToArr(ImagesStoreState().images));
+    ConfigStoreState().setImages(ImagesStoreState().images);
     ConfigStoreState().setSceneControl({ type: SceneControlStoreState().type });
-    ConfigStoreState().setTexts(objToArr(TextsStoreState().texts));
-    ConfigStoreState().setObjects3D([...objToArr(StandardObjectsStoreState().standardObjects), ...objToArr(Texts3DStoreState().texts3D)]);
-    ConfigStoreState().setLights(objToArr(LightsStoreState().lights));
+    ConfigStoreState().setTexts(TextsStoreState().texts);
+    ConfigStoreState().setHtmlTemplates(HtmlTemplatesStoreState().htmlTemplates);
+    ConfigStoreState().setObjects3D([...StandardObjectsStoreState().standardObjects, ...Texts3DStoreState().texts3D]);
+    ConfigStoreState().setLights(LightsStoreState().lights);
 }
 
 export default ConfigGenerator;

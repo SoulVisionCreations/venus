@@ -1,12 +1,6 @@
 import { create } from 'zustand';
 import { LightTypes } from '../../../types/enums';
-
-export type Light = {
-    type: LightTypes;
-    color: string;
-    intensity: number;
-    position: { x: number; y: number; z: number };
-};
+import { LightProps } from '../../../types/types';
 
 export type LightActions = {
     setType: (type: LightTypes) => void;
@@ -16,22 +10,22 @@ export type LightActions = {
     resetLight: () => void;
 };
 
-const InitialState: Light = {
+const InitialState: LightProps = {
     type: LightTypes.Ambient,
     color: '#ffffff',
     intensity: 1,
-    position: { x: 0, y: 0, z: 0 },
+    position: [0, 0, 0],
 };
 
-const useLightStore = create<Light & LightActions>((set) => ({
+const useLightStore = create<LightProps & LightActions>((set) => ({
     ...InitialState,
     setType: (type) => set({ type }),
     setColor: (color) => set({ color }),
     setIntensity: (intensity) => set({ intensity }),
     setPosition: (value, pos) => {
-        if (pos === 'x') set((state) => ({ position: { ...state.position, x: value } }));
-        else if (pos === 'y') set((state) => ({ position: { ...state.position, y: value } }));
-        else if (pos === 'z') set((state) => ({ position: { ...state.position, z: value } }));
+        if (pos === 'x') set((state) => ({ position: [value, (state.position as any)[1], (state.position as any)[2]] }));
+        else if (pos === 'y') set((state) => ({ position: [(state.position as any)[0], value, (state.position as any)[2]] }));
+        else if (pos === 'z') set((state) => ({ position: [(state.position as any)[0], (state.position as any)[1]], value }));
     },
     resetLight: () => set(InitialState),
 }));

@@ -3,12 +3,12 @@ import { IoMdAddCircle } from 'react-icons/io';
 import ObjectArray from './ObjectArray/ObjectArray';
 import useTexts3DStore from '../store/Texts3D/texts3DStore';
 import useText3DStore from '../store/Texts3D/text3DStore';
-import { ObjectTypes } from '../../types/enums';
 
 const Texts3D = () => {
     const [add, setAdd] = useState(false);
     const [texts3D, addTexts3D, removeTexts3D] = useTexts3DStore((s) => [s.texts3D, s.addTexts3D, s.removeTexts3D]);
-    const [file, text, color, position, rotation, scale, setFile, setText, setColor, setPosition, setRotation, setScale, resetText] = useText3DStore((s) => [
+    const [type, file, text, color, position, rotation, scale, setFile, setText, setColor, setPosition, setRotation, setScale, resetText] = useText3DStore((s) => [
+        s.type,
         s.file,
         s.text,
         s.color,
@@ -49,7 +49,7 @@ const Texts3D = () => {
     };
 
     const addText3D = () => {
-        addTexts3D({ type: ObjectTypes.Text3D, text: text, color: color, position: position, rotation: rotation, scale: scale, file: file, font: file[0].name });
+        addTexts3D({ type, text: text, color: color, position: position, rotation: rotation, scale: scale, file: file, font: file[0].name });
         setAdd(false);
         resetText();
     };
@@ -76,21 +76,21 @@ const Texts3D = () => {
                     </p>
                     <p>
                         Position:
-                        <input type="number" id="posx" value={position.x} onChange={(event) => handlePositionChange(event, 'x')} />
-                        <input type="number" id="posy" value={position.y} onChange={(event) => handlePositionChange(event, 'y')} />
-                        <input type="number" id="posz" value={position.z} onChange={(event) => handlePositionChange(event, 'z')} />
+                        <input type="number" id="posx" value={(position as number[])[0]} onChange={(event) => handlePositionChange(event, 'x')} />
+                        <input type="number" id="posy" value={(position as number[])[1]} onChange={(event) => handlePositionChange(event, 'y')} />
+                        <input type="number" id="posz" value={(position as number[])[2]} onChange={(event) => handlePositionChange(event, 'z')} />
                     </p>
                     <p>
                         Rotation:
-                        <input type="number" id="roty" value={rotation.y} onChange={(event) => handleRotationChange(event, 'y')} />
-                        <input type="number" id="rotx" value={rotation.x} onChange={(event) => handleRotationChange(event, 'x')} />
-                        <input type="number" id="rotz" value={rotation.z} onChange={(event) => handleRotationChange(event, 'z')} />
+                        <input type="number" id="rotx" value={(rotation as number[])[0]} onChange={(event) => handleRotationChange(event, 'x')} />
+                        <input type="number" id="roty" value={(rotation as number[])[1]} onChange={(event) => handleRotationChange(event, 'y')} />
+                        <input type="number" id="rotz" value={(rotation as number[])[2]} onChange={(event) => handleRotationChange(event, 'z')} />
                     </p>
                     <p>
                         Scale:
-                        <input type="number" id="scax" value={scale.x} onChange={(event) => handleScaleChange(event, 'x')} />
-                        <input type="number" id="scay" value={scale.y} onChange={(event) => handleScaleChange(event, 'y')} />
-                        <input type="number" id="scaz" value={scale.z} onChange={(event) => handleScaleChange(event, 'z')} />
+                        <input type="number" id="sclx" value={(scale as number[])[0]} onChange={(event) => handleScaleChange(event, 'x')} />
+                        <input type="number" id="scly" value={(scale as number[])[1]} onChange={(event) => handleScaleChange(event, 'y')} />
+                        <input type="number" id="sclz" value={(scale as number[])[2]} onChange={(event) => handleScaleChange(event, 'z')} />
                     </p>
                     <button onClick={() => addText3D()}>Add</button>
                 </>

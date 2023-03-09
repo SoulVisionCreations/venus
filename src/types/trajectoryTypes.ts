@@ -60,7 +60,7 @@ export type line1DMetaData = {
     startPoint: number;
     endPoint: number;
     steps?: number;
-}
+};
 
 export type TrajectoryMetaData = {
     type: Trajectory;

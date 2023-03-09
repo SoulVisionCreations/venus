@@ -7,6 +7,7 @@ import TextLoader from './Text';
 import ImageLoader from './Image';
 import HtmlTemplateLoader from './HtmlTemplate';
 import { SceneProps } from './CanvasNode';
+import { v4 as uuidv4 } from 'uuid';
 
 type Props = {
     lights?: Array<LightProps> | undefined;
@@ -19,33 +20,32 @@ type Props = {
 };
 
 const addLights = (lights: Array<LightProps>) => {
-    return lights.map((lightProps: LightProps, index: number) => {
-        return <Light {...lightProps} key={index} />;
+    return lights.map((lightProps: LightProps) => {
+        return <Light {...lightProps} key={uuidv4()} />;
     });
 };
 
 const renderObjects = (objects: Array<Object3DProps>, sceneProps: SceneProps) => {
-    return objects.map((objectProps: Object3DProps, index: number) => {
-        return <Object3D objectProps={objectProps} sceneProps={sceneProps} key={index} />;
+    return objects.map((objectProps: Object3DProps) => {
+        return <Object3D objectProps={objectProps} sceneProps={sceneProps} key={uuidv4()} />;
     });
 };
 
 const renderTexts = (texts: Array<TextProps>, sceneProps: SceneProps) => {
-    console.log(texts);
-    return texts.map((textProps: TextProps, index: number) => {
-        return <TextLoader textProps={textProps} sceneProps={sceneProps} key={index} />;
+    return texts.map((textProps: TextProps) => {
+        return <TextLoader textProps={textProps} sceneProps={sceneProps} key={uuidv4()} />;
     });
 };
 
 const renderHtmlTemplates = (htmlTemplates: Array<HtmlTemplateProps>) => {
-    return htmlTemplates.map((htmlTemplateProps: HtmlTemplateProps, index: number) => {
-        return <HtmlTemplateLoader {...htmlTemplateProps} key={index} />;
+    return htmlTemplates.map((htmlTemplateProps: HtmlTemplateProps) => {
+        return <HtmlTemplateLoader {...htmlTemplateProps} key={uuidv4()} />;
     });
 };
 
 const renderImages = (images: Array<ImageProps>, sceneProps: SceneProps) => {
-    return images.map((imageProps: ImageProps, index: number) => {
-        return <ImageLoader imageProps={imageProps} sceneProps={sceneProps} key={index} />;
+    return images.map((imageProps: ImageProps) => {
+        return <ImageLoader imageProps={imageProps} sceneProps={sceneProps} key={uuidv4()} />;
     });
 };
 

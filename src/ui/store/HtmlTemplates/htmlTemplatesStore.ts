@@ -1,27 +1,27 @@
 import { create } from 'zustand';
-import { Text } from './htmlTemplateStore';
+import { HtmlTemplateProps } from '../../../types/types';
 
-interface Texts {
-    texts: Text[];
-    addTexts: (text: Text) => void;
-    removeTexts: (id: number) => void;
+interface HtmlTemplates {
+    htmlTemplates: HtmlTemplateProps[];
+    addHtmlTemplates: (htmlTemplates: HtmlTemplateProps) => void;
+    removeHtmlTemplates: (id: number) => void;
 }
 
-const useTextsStore = create<Texts>((set, get) => ({
-    texts: [],
-    addTexts: (text) =>
+const useHtmlTemplatesStore = create<HtmlTemplates>((set, get) => ({
+    htmlTemplates: [],
+    addHtmlTemplates: (htmlTemplate) =>
         set((state) => ({
-            texts: [...state.texts, text],
+            htmlTemplates: [...state.htmlTemplates, htmlTemplate],
         })),
-    removeTexts: (id) => {
-        const { texts } = get();
-        texts.splice(id, 1);
-        set({ texts });
+    removeHtmlTemplates: (id) => {
+        const { htmlTemplates } = get();
+        htmlTemplates.splice(id, 1);
+        set({ htmlTemplates });
     },
 }));
 
-const TextsStoreState = useTextsStore.getState;
+const HtmlTemplatesStoreState = useHtmlTemplatesStore.getState;
 
-export { TextsStoreState };
+export { HtmlTemplatesStoreState };
 
-export default useTextsStore;
+export default useHtmlTemplatesStore;

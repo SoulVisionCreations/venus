@@ -10,6 +10,7 @@ type Config = {
     setEnvironment: (environment: any) => void;
     setLights: (lights: any) => void;
     setTexts: (texts: any) => void;
+    setHtmlTemplates: (htmlTemplates: any) => void;
     setImages: (images: any) => void;
     setObjects3D: (texts: any) => void;
 };
@@ -44,11 +45,13 @@ const useConfigStore = create<Config>((set) => ({
     setTexts: (texts) =>
         set(
             produce((state) => {
-                // const newTexts = texts.map((text: any) => {
-                //     console.log(text);
-                //     return { ...text };
-                // });
-                state.config.children[0].texts = [...texts]; //[...newTexts];
+                state.config.children[0].texts = [...texts];
+            })
+        ),
+    setHtmlTemplates: (htmlTemplates) =>
+        set(
+            produce((state) => {
+                state.config.children[0].htmlTemplates = [...htmlTemplates];
             })
         ),
     setImages: (images) =>

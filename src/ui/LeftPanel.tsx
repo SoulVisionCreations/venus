@@ -4,6 +4,7 @@ import { SiThreedotjs } from 'react-icons/si';
 import { TbTextResize } from 'react-icons/tb';
 import { SlScreenDesktop } from 'react-icons/sl';
 import { BsImage } from 'react-icons/bs';
+import { TiHtml5 } from 'react-icons/ti';
 import './LeftPanel.css';
 import usePanelStore from './store/panelStore';
 
@@ -34,6 +35,9 @@ export const LeftPanel = () => {
             </button>
             <button className={panel == 7 ? 'selected' : 'icon'} onClick={() => setPanel(7)}>
                 <TbTextResize size={30} />
+            </button>
+            <button className={panel == 8 ? 'selected' : 'icon'} onClick={() => setPanel(8)}>
+                <TiHtml5 size={30} />
             </button>
         </div>
     );
