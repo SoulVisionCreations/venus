@@ -26,9 +26,17 @@ export const animationDefaults = {
         rotation: [0, 0, 0],
         scale: [0, 0, 0],
     },
+    introAnimation: {
+        byTrajectory: {
+            springConfig: {duration: 20}
+        },
+        byStateIncrements: {
+            springConfig: { mass: 1, tension: 170, friction: 26 }
+        }
+    },
     scrollAnimation: {
-        disableScroll: false,
-        maxRotation: Math.PI * 2,
+        disablePageScroll: true,
+        maxRotation: Math.PI*2,
         minRotation: 0,
         speed: 0.1,
         springConfig: { mass: 4, tension: 280, friction: 90 },
@@ -67,15 +75,15 @@ export const stylingDefaults = {
     },
     fullWidthSmallHeightCanvas: {
         height: '400px',
-        width: '100%',
+        width: `${window.innerWidth}px`,
     },
     fullWidthMediumHeightCanvas: {
         height: '750px',
-        width: '100%',
+        width: `${window.innerWidth}px`,
     },
     fullWidthLargeHeightCanvas: {
         height: '900px',
-        width: '100%',
+        width: `${window.innerWidth}px`,
     },
     fullWidthFullHeightCanvas: {
         height: `${window.innerHeight}px`,

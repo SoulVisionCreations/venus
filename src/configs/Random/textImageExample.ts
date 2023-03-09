@@ -9,21 +9,17 @@ export const textImageExample: ContainerNodeProps = {
     style: stylingDefaults.flexColumnContainer,
     assets: [
         // 'REC-jxvfZgVpLiDq9sM/deliverables/DLV-AhYTvfCZEUcLdXeekERqrymJA/
-        { assetId: '100001', assetPath: 'data2', assetType: AssetTypes.Implicit },
-        { assetId: '1002', assetPath: './impnerf.png', assetType: AssetTypes.Image },
-        { assetId: '1003', assetPath: './nrf.jpeg', assetType: AssetTypes.Image },
-        { assetId: '1004', assetPath: './demo.jpeg', assetType: AssetTypes.Image },
-        { assetId: '101', assetPath: './Inter_Bold.json', assetType: AssetTypes.Font },
-        { assetId: '1005', assetPath: './product.gif', assetType: AssetTypes.Image },
-        { assetId: '1006', assetPath: './avataar.png', assetType: AssetTypes.Image },
+        { assetId: '100001', assetPath: './assets/implicit/data2', assetType: AssetTypes.Implicit },
+        { assetId: '101', assetPath: './assets/font/Inter_Bold.json', assetType: AssetTypes.Font },
+        { assetId: '1005', assetPath: './assets/image/product.gif', assetType: AssetTypes.Image },
     ],
     children: [
         {
             type: ComponentTypes.Canvas,
             className: 'canvas',
             style: stylingDefaults.fullWidthLargeHeightCanvas,
-            assetIds: ['100001', '1002', '1003', '1004', '101'],
-            environment: { files: './puresky.hdr' },
+            assetIds: ['100001', '101'],
+            environment: { files: './assets/hdri/puresky.hdr' },
             camera: {
                 type: CameraTypes.Perspective,
                 position: [0, 0, 5],
@@ -87,33 +83,13 @@ export const textImageExample: ContainerNodeProps = {
                     color: '#4d4d4d',
                 },
             ],
-            images: [
-                {
-                    assetId: '1002',
-                    position: [-1.5, -0.5, 0],
-                    rotation: [0, 0.5, 0],
-                    scale: [0.7, 0.7, 0.7],
-                },
-                {
-                    assetId: '1003',
-                    position: [0, -0.5, -0.25],
-                    rotation: [0, 0, 0],
-                    scale: [1, 1, 1],
-                },
-                {
-                    assetId: '1004',
-                    position: [1.5, -0.5, 0],
-                    rotation: [0, -0.5, 0],
-                    scale: [0.7, 0.7, 0.7],
-                },
-            ],
         },
         {
             type: ComponentTypes.Canvas,
             className: 'canvas',
             style: stylingDefaults.fullWidthFullHeightCanvas,
-            assetIds: ['1005', '1006'],
-            environment: { files: './puresky.hdr' },
+            assetIds: ['1005'],
+            environment: { files: './assets/hdri/puresky.hdr' },
             camera: {
                 type: CameraTypes.Perspective,
                 position: [0, 0, 4],
@@ -148,12 +124,6 @@ export const textImageExample: ContainerNodeProps = {
                             config: { mass: 4, friction: 17 },
                         },
                     ],
-                },
-                {
-                    assetId: '1006',
-                    position: [-2, -0.8, 0],
-                    rotation: [0, 0, 0],
-                    scale: [0.5, 0.5, 0.5],
                 },
             ],
             texts: [

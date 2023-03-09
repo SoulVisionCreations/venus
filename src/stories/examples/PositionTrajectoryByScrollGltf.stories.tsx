@@ -3,7 +3,7 @@ import { argTypes, defaultArgs, GltfWrapper } from './utils/GltfWrapper';
 
 // eslint-disable-next-line storybook/story-exports
 export default {
-    title: 'Animations/Scroll based/Position by defined trajectory/Gltf',
+    title: 'Animations/Scroll based/Position by defined trajectory',
     component: GltfWrapper,
     argTypes: argTypes,
 };

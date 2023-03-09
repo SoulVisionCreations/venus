@@ -3,7 +3,7 @@ import { argTypes, defaultArgs, GltfWrapper } from './utils/GltfWrapper';
 
 // eslint-disable-next-line storybook/story-exports
 export default {
-    title: 'Animations/Time based/Gltf',
+    title: 'Animations/Time based',
     component: GltfWrapper,
     argTypes: argTypes,
 };

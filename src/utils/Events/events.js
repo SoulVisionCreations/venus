@@ -39,10 +39,10 @@ export const useEvents = (objectProps, sceneProps, scrolledRotationValue) => {
             objectProps.events.forEach((event) => {
                 switch (event.type) {
                     case eventDrivenActionTypes.rotateByScrollOnce:
-                        if (sceneProps.completelyVisibleCount == 0) window.addEventListener('wheel', rotateByScrollOnce);
+                        if (sceneProps.completelyVisibleCount == 0) window && window.addEventListener('wheel', rotateByScrollOnce);
                         break;
                     case eventDrivenActionTypes.rotateByScrollContinously:
-                        window.addEventListener('wheel', rotateByScrollContinously);
+                        window && window.addEventListener('wheel', rotateByScrollContinously);
                         break;
                 }
             });

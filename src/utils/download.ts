@@ -14,15 +14,14 @@ export function getAssetbyId(id: string | symbol) {
     return 'downloading';
 }
 
-const objLoader = new OBJLoader();
-const mtlLoader = new MTLLoader();
-const gltfLoader = new GLTFLoader();
-const dracoLoader = new DRACOLoader();
-dracoLoader.setDecoderPath('./draco/');
-gltfLoader.setDRACOLoader(dracoLoader);
-
 export async function downloadAssets(assets: AssetProps[]) {
     try {
+        const objLoader = new OBJLoader();
+        const mtlLoader = new MTLLoader();
+        const gltfLoader = new GLTFLoader();
+        const dracoLoader = new DRACOLoader();
+        dracoLoader.setDecoderPath('./draco/');
+        gltfLoader.setDRACOLoader(dracoLoader);
         for (let i = 0; i < assets.length; i++) {
             const { assetId, assetPath, assetType } = assets[i];
             if (!assetsMap[assetId]) {

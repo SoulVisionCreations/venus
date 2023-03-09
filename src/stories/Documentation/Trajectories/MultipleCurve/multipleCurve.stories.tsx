@@ -1,10 +1,11 @@
 import { Story } from '@storybook/react';
 import App from '../../../../App';
-import { SplineCurve3MetaData } from '../../../../types/trajectoryTypes';
+import { Trajectory } from '../../../../types/enums';
+import { multipleCurve3MetaData } from '../../../../types/trajectoryTypes';
 import { getSplineCurveTrajectoryConfig } from './multipleCurveTrajectoryConfig';
 
 // eslint-disable-next-line storybook/story-exports
-const multipleCurveTrajectoryAppWrapper: Story<SplineCurve3MetaData> = (args) => {
+const multipleCurveTrajectoryAppWrapper: Story<multipleCurve3MetaData> = (args) => {
     const config = getSplineCurveTrajectoryConfig(args);
     return <App config={{ ...config }} />;
 };
@@ -14,20 +15,35 @@ export default {
     title: 'Documentation/Trajectories/MultipleCurve',
     component: multipleCurveTrajectoryAppWrapper,
     argTypes: {
-        clockwise: {
-            control: { type: 'boolean' },
-            description: 'Decides direction of generated points to be clockwise/anti-clockwise',
+        curves: {
+            control: { type: 'object' },
+            description: 'Sets the curves for the multiple curve trajectory. Each curve can be instance of any other curve discussed(circle, ellipse, straightline, bezier or spline)',
             table: {
-                type: { summary: 'boolean' },
-                defaultValue: { summary: 'true' },
+                type: { summary: '[curve, curve, ..]' },
             },
         },
-        center: {
-            control: { type: 'object' },
-            description: 'Sets center of the circle',
+        closed: {
+            control: { type: 'boolean' },
+            description: 'Sets whether the trajectory points form a closed loop(start Point = end Point)',
             table: {
-                type: { summary: '[number, number, number]' },
-                defaultValue: { summary: '[0, 0, 0]' },
+                type: { summary: 'boolean' },
+                defaultValue: { summary: false },
+            },
+        },
+        steps: {
+            control: { type: 'number' },
+            description: 'Sets the number of steps taken to complete the multiple curve trajectory',
+            table: {
+                type: { summary: 'number' },
+                defaultValue: { summary: 100 },
+            },
+        },
+        equiSpacedPoints: {
+            control: { type: 'boolean' },
+            description: 'Sets whether the trajectory points should be equidistant',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: false },
             },
         },
     },
@@ -38,17 +54,33 @@ export default {
             },
         },
         viewMode: 'docs',
+        docs: {
+            description: {
+                component:
+                    'This is used to combine multiple curves to form a custom trajectory. Any combination of other mentiond curves**(circle, ellipse, straightline, bezier or spline)** can be chained together using this trajectory.',
+            },
+        },
     },
 };
 
 export const Example = multipleCurveTrajectoryAppWrapper.bind({});
 Example.args = {
-    points: [
-        [-1, -0.5, 0],
-        [1, -0.5, 0],
-        [1, 0.5, 0],
+    curves: [
+        {
+            type: Trajectory.line3,
+            startPoint: [-1, 0, 0],
+            endPoint: [1, 0, 0],
+        },
+        {
+            type: Trajectory.quadracticBezierCurve3,
+            points: [
+                [1, 0, 0],
+                [1, 0.5, 0],
+                [0, 0.5, 0],
+            ],
+        },
     ],
-    // steps?: number;
-    closed: false,
-    equiSpacedPoints: false,
+    steps: 100,
+    closed: true,
+    equiSpacedPoints: true,
 };

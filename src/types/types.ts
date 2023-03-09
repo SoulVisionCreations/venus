@@ -105,7 +105,7 @@ export interface TextProps {
     outlineBlur?: string | number;
     outlineColor?: string;
     outlineOpacity?: number;
-    fillOpacity?: number;
+    opacity?: number;
     curveRadius?: number;
     material?: Material;
 }
@@ -124,6 +124,7 @@ export type CameraProps = {
     fov?: number;
     near?: number;
     far?: number;
+    zoom?: number;
 };
 
 export interface EnvironmentProps {
@@ -147,6 +148,7 @@ export interface SceneControlProps {
 }
 
 export interface CanvasNodeProps {
+    disablePageScrollForScrollAnimation?: boolean;
     type: ComponentTypes;
     style?: any;
     className?: string;

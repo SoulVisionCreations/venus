@@ -4,10 +4,15 @@ import { TextTypes } from '../../../../types/enums';
 import { TextProps } from '../../../../types/types';
 import { getTextsConfig } from './textsConfig';
 
+const Text: Story<TextProps> = (args) => {
+    const config = getTextsConfig(args);
+    return <App config={{ ...config }} />;
+};
+
 // eslint-disable-next-line storybook/story-exports
 export default {
     title: 'Documentation/2D Components/Texts',
-    component: App,
+    component: Text,
     argTypes: {
         title: {
             table: {
@@ -170,7 +175,7 @@ export default {
                 defaultValue: { summary: 1 },
             },
         },
-        fillOpacity: {
+        opacity: {
             control: { type: 'number', step: 0.1 },
             description: 'Sets the fill opacity of the text',
             table: {
@@ -211,16 +216,11 @@ export default {
         docs: {
             description: {
                 component:
-                    'This component is used to add texts to your experience. Custom fonts can also be provided for rendering texts. Currently, there are four types of text templates supported: Paragraph, Paragraph with Title, Numbered List with Title, and Bulleted List with Title.',
+                    'This component is used to add texts to your experience. Custom fonts can also be provided for rendering texts. Currently, there are four types of text templates supported: Paragraph, Paragraph with Title, Numbered List with Title, and Bulleted List with Title. **Animations can be applied to Texts.**',
             },
         },
         viewMode: 'docs',
     },
-};
-
-const Text: Story<TextProps> = ({ ...args }) => {
-    const config = getTextsConfig(args);
-    return <App config={{ ...config }} />;
 };
 
 export const TextParagraph = Text.bind({});
@@ -247,7 +247,7 @@ TextParagraph.args = {
     outlineBlur: 0,
     outlineColor: 'black',
     outlineOpacity: 0,
-    fillOpacity: 1,
+    opacity: 1,
     curveRadius: 0,
     // material?: Material;
 };

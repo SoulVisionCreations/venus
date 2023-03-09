@@ -16,7 +16,7 @@ export const getStandardObjectConfig = ({ position, rotation, scale, geometry, m
                     far: 30,
                 },
                 environment: {
-                    files: 'puresky.hdr',
+                    files: './assets/hdri/puresky.hdr',
                 },
                 lights: [
                     {

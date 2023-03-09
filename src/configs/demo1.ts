@@ -9,15 +9,15 @@ export const DemoExample: ContainerNodeProps = {
     style: stylingDefaults.flexColumnContainer,
     assets: [
         // 'REC-jxvfZgVpLiDq9sM/deliverables/DLV-AhYTvfCZEUcLdXeekERqrymJA/
-        { assetId: '100001', assetPath: './scene.glb', assetType: AssetTypes.Mesh },
-        { assetId: '101', assetPath: './Inter_Bold.json', assetType: AssetTypes.Font },
+        { assetId: '100001', assetPath: './assets/glb/scene.glb', assetType: AssetTypes.Mesh },
+        { assetId: '101', assetPath: './assets/font/Inter_Bold.json', assetType: AssetTypes.Font },
     ],
     children: [
         {
             type: ComponentTypes.Canvas,
             className: 'canvas',
             style: stylingDefaults.fullWidthFullHeightCanvas,
-            environment: { files: './puresky.hdr' },
+            environment: { files: './assets/hdri/puresky.hdr' },
             showDimensions: true,
             assetIds: ['100001', '101'],
             camera: {

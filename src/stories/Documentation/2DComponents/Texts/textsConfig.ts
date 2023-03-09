@@ -24,7 +24,7 @@ export const getTextsConfig = ({
     outlineBlur,
     outlineColor,
     outlineOpacity,
-    fillOpacity,
+    opacity,
     curveRadius,
     numbered,
 }: TextProps) => {
@@ -63,7 +63,7 @@ export const getTextsConfig = ({
                         outlineBlur,
                         outlineColor,
                         outlineOpacity,
-                        fillOpacity,
+                        opacity,
                         curveRadius,
                         numbered,
                     },

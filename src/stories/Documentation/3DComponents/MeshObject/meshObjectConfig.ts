@@ -7,8 +7,8 @@ export const getMeshObjectConfig = ({ assetId, position, rotation, scale }: Mesh
         type: ComponentTypes.Container,
         alignment: Alignment.Vertical,
         assets: [
-            { assetId: '101', assetPath: 'scene.glb', assetType: AssetTypes.Mesh },
-            { assetId: '103', assetPath: 'objexp/', assetType: AssetTypes.Mesh },
+            { assetId: '101', assetPath: './assets/glb/scene.glb', assetType: AssetTypes.Mesh },
+            { assetId: '103', assetPath: './assets/obj/objexp/', assetType: AssetTypes.Mesh },
         ],
         children: [
             {
@@ -30,7 +30,7 @@ export const getMeshObjectConfig = ({ assetId, position, rotation, scale }: Mesh
                     },
                 ],
                 environment: {
-                    files: 'puresky.hdr',
+                    files: './assets/hdri/puresky.hdr',
                 },
                 assetIds: ['101', '103'],
                 objects: [

@@ -6,13 +6,14 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
     assets: [
-        { assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Mesh },
-        // { assetId: '11', assetPath: './Inter_Bold.json', assetType: AssetTypes.Font },
+        { assetId: '101', assetPath: './assets/glb/scene.glb', assetType: AssetTypes.Mesh },
+        // { assetId: '11', assetPath: './assets/font/Inter_Bold.json', assetType: AssetTypes.Font },
     ],
     children: [
         {
             type: ComponentTypes.Canvas,
-            style: { ...stylingDefaults.fullWidthFullHeightCanvas, height: '600px' },
+            style: stylingDefaults.fullWidthFullHeightCanvas,
+            disablePageScrollForScrollAnimation: true,
             camera: {
                 type: CameraTypes.Perspective,
                 position: [0, 0, 3],
@@ -42,6 +43,7 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                                 sceneTopToScreenBottomRatio: 0.5,
                                 sceneBottomToScreenTopRatio: 0.5,
                             },
+                            disablePageScroll: true,
                             animationTrajectories: {
                                 rotation: {
                                     trajectoryMetaData: {
@@ -68,12 +70,14 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                                     },
                                     speed: 0.00025,
                                 },
-                            },
-                            scaleOnScroll: {
-                                scaleRatio: [1, 1, 1],
-                                velocity: 0.00025,
-                                maxScale: [3, 3, 3],
-                                minScale: [2, 2, 2],
+                                scale: {
+                                    trajectoryMetaData: {
+                                        type: Trajectory.line3,
+                                        startPoint: [2, 2, 2],
+                                        endPoint: [2.5, 2.5, 2.5],
+                                    },
+                                    speed: 0.00025,
+                                },
                             },
                             springConfig: { mass: 4, tension: 280, friction: 90 },
                         },
@@ -83,7 +87,7 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                 //     type: ObjectTypes.Text3D,
                 //     assetId: '11',
                 //     text: 'Scroll Down',
-                //     font: './Inter_Bold.json',
+                //     font: './assets/font/Inter_Bold.json',
                 //     position: [0, 0, 0],
                 //     rotation: [0, 0, 0],
                 //     scale: [0.5, 0.5, 0.5],
@@ -109,9 +113,17 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                                     trajectoryMetaData: {
                                         type: Trajectory.line3,
                                         startPoint: [0, 0.075, 2],
-                                        endPoint: [0, 10, 2],
+                                        endPoint: [0, 2, 2],
                                     },
                                     speed: 0.00025,
+                                },
+                                opacity: {
+                                    trajectoryMetaData: {
+                                        type: Trajectory.line1D,
+                                        startPoint: 1,
+                                        endPoint: 0,
+                                    },
+                                    speed: 0.0025,
                                 },
                             },
                         },
@@ -139,7 +151,7 @@ export const RotationByMultipleBezierTrajectoryWithScaleConfig: ContainerNodePro
                                     trajectoryMetaData: {
                                         type: Trajectory.line3,
                                         startPoint: [0, -0.075, 2],
-                                        endPoint: [0, 10, 2],
+                                        endPoint: [0, 1.85, 2],
                                     },
                                     speed: 0.00025,
                                 },

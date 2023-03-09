@@ -5,7 +5,7 @@ import { ContainerNodeProps } from '../../types/types';
 export const GltfinRoomConfig: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
-    assets: [{ assetId: '101', assetPath: './scene.glb', assetType: AssetTypes.Mesh }],
+    assets: [{ assetId: '101', assetPath: './assets/glb/scene.glb', assetType: AssetTypes.Mesh }],
     children: [
         {
             type: ComponentTypes.Canvas,
@@ -16,7 +16,7 @@ export const GltfinRoomConfig: ContainerNodeProps = {
                 fov: 35,
             },
             environment: {
-                files: 'brown_photostudio_02_2k.hdr',
+                files: './assets/hdri/brown_photostudio_02_2k.hdr',
                 ground: {
                     height: 32,
                     radius: 130,

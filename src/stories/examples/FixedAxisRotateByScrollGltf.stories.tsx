@@ -3,7 +3,7 @@ import { GltfWrapper, argTypes, defaultArgs } from './utils/GltfWrapper';
 
 // eslint-disable-next-line storybook/story-exports
 export default {
-    title: 'Animations/Scroll based/Rotating on fixed axis/Gltf',
+    title: 'Animations/Scroll based/Rotating on fixed axis',
     component: GltfWrapper,
     argTypes: argTypes,
 };

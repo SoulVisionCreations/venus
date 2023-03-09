@@ -25,7 +25,6 @@ export const VideoNode = (props: VideoNodeProps) => {
     };
 
     const handleScroll = (e: any) => {
-        console.log('something');
         if (e.deltaY > 0) {
             activeFrameIndex.current = Math.min(frames.current.length - 1, activeFrameIndex.current + 1);
         } else if (e.deltaY < 0) {
@@ -49,7 +48,7 @@ export const VideoNode = (props: VideoNodeProps) => {
                 frames.current.push(bitmap);
                 if (activeFrameIndex.current == -1) {
                     renderFirstFrame();
-                    window.addEventListener('wheel', handleScroll);
+                    window && window.addEventListener('wheel', handleScroll);
                 }
                 value.close();
             }
@@ -73,7 +72,6 @@ export const VideoNode = (props: VideoNodeProps) => {
     useEffect(() => {
         setTimeout(() => {
             createFrames();
-            console.log(canvasRef.current);
             ctx.current = canvasRef.current.getContext('2d');
         }, 0);
     }, []);

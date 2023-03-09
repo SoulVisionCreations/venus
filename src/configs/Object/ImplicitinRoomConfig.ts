@@ -5,7 +5,7 @@ import { ContainerNodeProps } from '../../types/types';
 export const ImplicitinRoomConfig: ContainerNodeProps = {
     type: ComponentTypes.Container,
     alignment: Alignment.Vertical,
-    assets: [{ assetId: '102', assetPath: 'data2', assetType: AssetTypes.Implicit }],
+    assets: [{ assetId: '102', assetPath: './assets/implicit/data2', assetType: AssetTypes.Implicit }],
     children: [
         {
             type: ComponentTypes.Canvas,
@@ -17,7 +17,7 @@ export const ImplicitinRoomConfig: ContainerNodeProps = {
                 fov: 35,
             },
             environment: {
-                files: 'old_depot_2k.hdr',
+                files: './assets/hdri/old_depot_2k.hdr',
                 ground: {
                     height: 50,
                     radius: 130,

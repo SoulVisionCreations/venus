@@ -6,7 +6,7 @@ export const getText3DObjectConfig = ({ text, position, rotation, scale, color }
     return {
         type: ComponentTypes.Container,
         alignment: Alignment.Vertical,
-        assets: [{ assetId: '104', assetPath: 'Inter_Bold.json', assetType: AssetTypes.Font }],
+        assets: [{ assetId: '104', assetPath: './assets/font/Inter_Bold.json', assetType: AssetTypes.Font }],
         children: [
             {
                 type: ComponentTypes.Canvas,
@@ -27,7 +27,7 @@ export const getText3DObjectConfig = ({ text, position, rotation, scale, color }
                     },
                 ],
                 environment: {
-                    files: 'puresky.hdr',
+                    files: './assets/hdri/puresky.hdr',
                 },
                 assetIds: ['104'],
                 objects: [

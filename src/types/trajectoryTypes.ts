@@ -52,10 +52,16 @@ export type lineCurve3MetaData = {
 export type multipleCurve3MetaData = {
     curves: Array<TrajectoryMetaData & { type: Trajectory }>;
     steps?: number;
-    closed?: number;
+    closed?: boolean;
     equiSpacedPoints?: boolean;
 };
 
+export type line1DMetaData = {
+    startPoint: number;
+    endPoint: number;
+    steps?: number;
+}
+
 export type TrajectoryMetaData = {
     type: Trajectory;
-} & (EllipseMetaData | CircleMetaData | QuadraticBezierCurve3MetaData | CubicBezierCurve3MetaData | SplineCurve3MetaData | lineCurve3MetaData | multipleCurve3MetaData);
+} & (EllipseMetaData | CircleMetaData | QuadraticBezierCurve3MetaData | CubicBezierCurve3MetaData | SplineCurve3MetaData | lineCurve3MetaData | line1DMetaData | multipleCurve3MetaData);

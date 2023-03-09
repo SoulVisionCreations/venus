@@ -8,7 +8,7 @@ const Camera = ({ type, position = [0, 0, 5], rotation = [0, 0, 0], ...props }: 
         case CameraTypes.Perspective:
             return <PerspectiveCamera makeDefault position={arrayToVec3(position)} rotation={arrayToEuler(rotation)} {...props} />;
         case CameraTypes.Orthographic:
-            return <OrthographicCamera makeDefault position={arrayToVec3(position)} rotation={arrayToEuler(rotation)} {...props} />;
+            return <OrthographicCamera makeDefault position={arrayToVec3(position)} rotation={arrayToEuler(rotation)} zoom={props.zoom ?? 20} {...props} />;
     }
 };
 

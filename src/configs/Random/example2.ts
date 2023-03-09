@@ -9,10 +9,10 @@ export const config2: ContainerNodeProps = {
     style: stylingDefaults.flexColumnContainer,
     assets: [
         // 'REC-jxvfZgVpLiDq9sM/deliverables/DLV-AhYTvfCZEUcLdXeekERqrymJA/
-        { assetId: '100001', assetPath: 'data', assetType: AssetTypes.Implicit },
+        { assetId: '100001', assetPath: './assets/implicit/data2', assetType: AssetTypes.Implicit },
         { assetId: '10001', assetPath: './1863416.glb', assetType: AssetTypes.Mesh },
         { assetId: '1001', assetPath: './chair.png', assetType: AssetTypes.Image },
-        { assetId: '101', assetPath: './Inter_Bold.json', assetType: AssetTypes.Font },
+        { assetId: '101', assetPath: './assets/font/Inter_Bold.json', assetType: AssetTypes.Font },
     ],
     children: [
         {
@@ -20,7 +20,7 @@ export const config2: ContainerNodeProps = {
             className: 'canvas',
             style: stylingDefaults.fullWidthFullHeightCanvas,
             assetIds: ['100001', '10001', '1001', '101'],
-            environment: { files: './puresky.hdr' },
+            environment: { files: './assets/hdri/puresky.hdr' },
             camera: {
                 type: CameraTypes.Perspective,
                 position: [0, 0, 2],

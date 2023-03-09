@@ -52,6 +52,30 @@ export default {
                 defaultValue: { summary: '{ axis: [1,0,0], angle: 0 }' },
             },
         },
+        rotationZ: {
+            control: { type: 'number' },
+            description: 'Sets the rotation angle of the ellipse in radians, counterclockwise from the positive X axis',
+            table: {
+                type: { summary: 'number' },
+                defaultValue: { summary: 0 },
+            },
+        },
+        steps: {
+            control: { type: 'number' },
+            description: 'Sets the number of steps taken to complete the ellipse trajectory',
+            table: {
+                type: { summary: 'number' },
+                defaultValue: { summary: 100 },
+            },
+        },
+        equiSpacedPoints: {
+            control: { type: 'boolean' },
+            description: 'Sets whether the trajectory points should be equidistant',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: true },
+            },
+        },
     },
     parameters: {
         previewTabs: {
@@ -60,6 +84,11 @@ export default {
             },
         },
         viewMode: 'docs',
+        docs: {
+            description: {
+                component: 'This is used to apply ellipse trajectory animation to any object.',
+            },
+        },
     },
 };
 
@@ -75,7 +104,7 @@ Example.args = {
     ],
     height: 0.75,
     width: 2,
-    // rotationZ?: number;
-    // steps?: number;
-    // equiSpacedPoints?: boolean;
+    rotationZ: 0,
+    steps: 100,
+    equiSpacedPoints: true,
 };

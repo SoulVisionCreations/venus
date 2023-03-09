@@ -2,8 +2,8 @@ import { animated } from '@react-spring/three';
 import { Center, Text3D } from '@react-three/drei';
 import { getAssetbyId } from '../../../utils/download';
 import { Text3DObjectProps } from '../../../types/object3DTypes';
-import { SceneProps } from '../../Scene';
 import { useAnimation } from '../../../utils/Animations/useAnimation';
+import { SceneProps } from '../../CanvasNode';
 
 const AnimatedCenter = animated(Center);
 

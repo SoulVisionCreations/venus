@@ -3,16 +3,10 @@ import Light from './Light';
 import { Object3D } from './Object3D/object3D';
 import { HtmlTemplateProps, ImageProps, LightProps, SceneControlProps, TextProps } from '../types/types';
 import { Object3DProps } from '../types/object3DTypes';
-import { CanvasRect } from './CanvasNode';
 import TextLoader from './Text';
 import ImageLoader from './Image';
 import HtmlTemplateLoader from './HtmlTemplate';
-
-export type SceneProps = {
-    isSceneVisible: boolean;
-    isSceneCompletelyVisible: boolean;
-    canvasRect: CanvasRect;
-};
+import { SceneProps } from './CanvasNode';
 
 type Props = {
     lights?: Array<LightProps> | undefined;

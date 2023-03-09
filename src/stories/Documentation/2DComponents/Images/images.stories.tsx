@@ -3,10 +3,15 @@ import App from '../../../../App';
 import { ImageProps } from '../../../../types/types';
 import { getImagesConfig } from './imagesConfig';
 
+const Image: Story<ImageProps> = (args) => {
+    const config = getImagesConfig(args);
+    return <App config={{ ...config }} />;
+};
+
 // eslint-disable-next-line storybook/story-exports
 export default {
     title: 'Documentation/2D Components/Images',
-    component: App,
+    component: Image,
     argTypes: {
         position: {
             control: 'object',
@@ -91,16 +96,11 @@ export default {
         },
         docs: {
             description: {
-                component: 'This component is used to add images to your experience. Images can either be uploaded on the experience config generator UI or the source path must be provided.',
+                component: 'This component is used to add images to your experience. **Animations can be applied to Images**',
             },
         },
         viewMode: 'docs',
     },
-};
-
-const Image: Story<ImageProps> = ({ ...args }) => {
-    const config = getImagesConfig(args);
-    return <App config={{ ...config }} />;
 };
 
 export const ImageExample = Image.bind({});

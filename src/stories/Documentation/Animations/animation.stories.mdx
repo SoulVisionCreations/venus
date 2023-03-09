@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs';
+import App from '../../../App';
+
+<Meta
+    title="Documentation/Animation"
+    component={App}
+    parameters={{
+        previewTabs: {
+            canvas: {
+                hidden: true,
+            },
+        },
+    }}
+/>
+
+# Animation
+
+Animation is defined by multiple properties which include `visibilityThreshold`, `animationTrajectories`, and `springConfig`.
+
+## visibilityThreshold
+
+VisibilityThreshold is used to determine the point at which the animation of objects in a scene should begin with respect to the scene's position relative to the screen. It takes two parameters: `sceneTopToScreenBottomRatio` and `sceneBottomToScreenTopRatio`. As the scroll is bi-directional, bottom-to-top and top-to-bottom, one has to define these two values for animations. Both these values represent the threshold to begin the animation in the direction of scroll.
+Lets understand using an example, while scrolling from top to bottom, as soon as the distance between sceneTop and screenBottom pass the threshold `sceneTopToScreenBottomRatio` value, animation will begin. Similarly, while scrolling from bottom to top, as soon as the distance between sceneBottom and screenTop pass the threshold `sceneBottomToScreenTopRatio` value, animation will begin.
+
+![Visibility Threshold](assets/docs/visibilityThreshold.png)
+
+## animationTrajectories
+
+AnimationTrajectories refers to the animation behaviour to be applied to any object. One can select from the given animation Trajectories or form a custom Trajectory using a combination of the predefined Trajectories. For more information, refer to the Trajectory documentation.
+
+## springConfig
+
+Animations can be scroll-based, spring-based or time-based. For spring-based animations, the animation is defined by a springConfig. Spring config has the following parameters: mass, tension, friction and duration. Each of these parameters can be altered in order to change the nature of the animation.

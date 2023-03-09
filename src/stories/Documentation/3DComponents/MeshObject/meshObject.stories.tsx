@@ -3,10 +3,15 @@ import App from '../../../../App';
 import { MeshObjectProps } from '../../../../types/object3DTypes';
 import { getMeshObjectConfig } from './meshObjectConfig';
 
+const MeshObject: Story<MeshObjectProps> = (args) => {
+    const config = getMeshObjectConfig(args);
+    return <App config={{ ...config }} />;
+};
+
 // eslint-disable-next-line storybook/story-exports
 export default {
     title: 'Documentation/3D Components/MeshObject',
-    component: App,
+    component: MeshObject,
     argTypes: {
         position: {
             control: 'object',
@@ -51,17 +56,11 @@ export default {
         },
         docs: {
             description: {
-                component:
-                    'This component is used to add mesh(gltf, glb, obj) objects to your experience. Mesh objects can either be uploaded, provided a link to or selected from existing mesh options on the config generator UI',
+                component: 'This component is used to add mesh(gltf, glb, obj) objects to your experience. **Animations can be applied to Mesh Objects**',
             },
         },
         viewMode: 'docs',
     },
-};
-
-const MeshObject: Story<MeshObjectProps> = ({ ...args }) => {
-    const config = getMeshObjectConfig(args);
-    return <App config={{ ...config }} />;
 };
 
 export const GltfMeshObject = MeshObject.bind({});

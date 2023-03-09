@@ -3,7 +3,7 @@ import { Image } from '@react-three/drei';
 import { ImageProps } from '../types/types';
 import { useAnimation } from '../utils/Animations/useAnimation';
 import { getAssetbyId } from '../utils/download';
-import { SceneProps } from './Scene';
+import { SceneProps } from './CanvasNode';
 
 const AnimatedImage = animated(Image);
 

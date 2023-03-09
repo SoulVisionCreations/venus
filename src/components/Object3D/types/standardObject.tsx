@@ -3,7 +3,7 @@ import InstanceMesh from '../../InstanceMesh';
 import MaterialLoader from '../../MaterialLoader';
 import { Mesh } from '../../Mesh';
 import { StandardObjectProps } from '../../../types/object3DTypes';
-import { SceneProps } from '../../Scene';
+import { SceneProps } from '../../CanvasNode';
 
 const StandardObject = ({ objectProps, sceneProps }: { objectProps: StandardObjectProps; sceneProps: SceneProps }) => {
     const useInstancing: boolean = !(objectProps.useInstancing == undefined) && objectProps.useInstancing;

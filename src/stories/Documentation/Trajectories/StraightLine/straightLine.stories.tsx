@@ -28,6 +28,22 @@ export default {
                 type: { summary: '[number, number, number]' },
             },
         },
+        steps: {
+            control: { type: 'number' },
+            description: 'Sets the number of steps taken to complete the straight line trajectory',
+            table: {
+                type: { summary: 'number' },
+                defaultValue: { summary: 100 },
+            },
+        },
+        equiSpacedPoints: {
+            control: { type: 'boolean' },
+            description: 'Sets whether the trajectory points should be equidistant',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: true },
+            },
+        },
     },
     parameters: {
         previewTabs: {
@@ -36,6 +52,11 @@ export default {
             },
         },
         viewMode: 'docs',
+        docs: {
+            description: {
+                component: 'This is used to apply straight line trajectory animation to any object.',
+            },
+        },
     },
 };
 
@@ -43,6 +64,6 @@ export const Example = straightLineTrajectoryAppWrapper.bind({});
 Example.args = {
     startPoint: [-1, 0, 0],
     endPoint: [1, 0, 0],
-    // steps?: number;
-    // equiSpacedPoints?: boolean;
+    steps: 100,
+    equiSpacedPoints: true,
 };

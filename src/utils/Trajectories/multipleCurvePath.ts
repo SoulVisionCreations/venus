@@ -3,7 +3,7 @@ import { trajectoryDefaults } from '../../constants/defaults';
 import { Trajectory } from '../../types/enums';
 import { CubicBezierCurve3MetaData, lineCurve3MetaData, multipleCurve3MetaData, QuadraticBezierCurve3MetaData, SplineCurve3MetaData } from '../../types/trajectoryTypes';
 import { createCubicBezierCurve3, createQuadraticBezierCurve3 } from './BezierCurves';
-import { createLineCurve3 } from './line3';
+import { createLineCurve3 } from './line3D';
 import { createSplineCurve3 } from './SplineCurve';
 
 export const createMultipleCurvePath = (data: multipleCurve3MetaData) => {

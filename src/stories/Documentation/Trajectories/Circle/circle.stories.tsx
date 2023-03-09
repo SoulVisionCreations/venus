@@ -39,9 +39,33 @@ export default {
         },
         rotateCurve: {
             control: { type: 'object' },
-            description: 'Sets the axis and angle around which the circle trajectory be created',
+            description: 'Sets the axis and angle in radians around which the circle trajectory be created',
             table: {
                 type: { summary: 'object' },
+            },
+        },
+        rotationZ: {
+            control: { type: 'number' },
+            description: 'Sets the rotation angle of the circle in radians, counterclockwise from the positive X axis',
+            table: {
+                type: { summary: 'number' },
+                defaultValue: { summary: 0 },
+            },
+        },
+        steps: {
+            control: { type: 'number' },
+            description: 'Sets the number of steps taken to complete the circle trajectory',
+            table: {
+                type: { summary: 'number' },
+                defaultValue: { summary: 100 },
+            },
+        },
+        equiSpacedPoints: {
+            control: { type: 'boolean' },
+            description: 'Sets whether the trajectory points should be equidistant',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: true },
             },
         },
     },
@@ -49,6 +73,11 @@ export default {
         previewTabs: {
             canvas: {
                 hidden: true,
+            },
+        },
+        docs: {
+            description: {
+                component: 'This is used to apply circle trajectory animation to any object.',
             },
         },
         viewMode: 'docs',
@@ -66,7 +95,7 @@ Example.args = {
             angle: 0,
         },
     ],
-    // rotationZ?: number;
-    // steps?: number;
-    // equiSpacedPoints?: boolean;
+    rotationZ: 0,
+    steps: 100,
+    equiSpacedPoints: true,
 };
