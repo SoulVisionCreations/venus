@@ -45,25 +45,25 @@ export const RotationByMultipleLineTrajectoryConfig: ContainerNodeProps = {
                                         type: Trajectory.multipleCurvePath,
                                         curves: [
                                             {
-                                                type: Trajectory.line3,
+                                                type: Trajectory.line3D,
                                                 startPoint: [0, 0, Math.PI],
                                                 endPoint: [-Math.PI / 2, 0, Math.PI],
                                                 closed: false,
                                             },
                                             {
-                                                type: Trajectory.line3,
+                                                type: Trajectory.line3D,
                                                 startPoint: [-Math.PI / 2, 0, Math.PI],
                                                 endPoint: [-Math.PI / 2, 0, (3 * Math.PI) / 2],
                                                 closed: false,
                                             },
                                             {
-                                                type: Trajectory.line3,
+                                                type: Trajectory.line3D,
                                                 startPoint: [-Math.PI / 2, 0, (3 * Math.PI) / 2],
                                                 endPoint: [-Math.PI / 2, 0, (5 * Math.PI) / 4],
                                                 closed: false,
                                             },
                                             {
-                                                type: Trajectory.line3,
+                                                type: Trajectory.line3D,
                                                 startPoint: [-Math.PI / 2, 0, (5 * Math.PI) / 4],
                                                 endPoint: [-Math.PI / 4, 0, (5 * Math.PI) / 4],
                                                 closed: false,

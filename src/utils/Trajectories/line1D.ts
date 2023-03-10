@@ -1,7 +1,7 @@
-import { line1DMetaData } from '../../types/trajectoryTypes';
+import { Line1DMetaData } from '../../types/trajectoryTypes';
 import { unknownObject } from '../../types/types';
 
-export const getPointsOnLine1D = (data: line1DMetaData) => {
+export const getPointsOnLine1D = (data: Line1DMetaData) => {
     const points = [];
     let currentPoint = data.startPoint;
     const steps = data.steps == undefined ? 100 : data.steps;
@@ -16,7 +16,7 @@ export const getPointsOnLine1D = (data: line1DMetaData) => {
     return points as Array<number>;
 };
 
-export const getPointAtLine1D = (data: line1DMetaData & unknownObject, state: number) => {
+export const getPointAtLine1D = (data: Line1DMetaData & unknownObject, state: number) => {
     const length = data.endPoint - data.startPoint;
     const point = data.startPoint + length * state;
     return point;

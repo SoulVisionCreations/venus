@@ -5,27 +5,34 @@ import Select from './Select/Select';
 import useTextStore from '../store/Texts/textStore';
 import useTextsStore from '../store/Texts/textsStore';
 import ObjectArray from './ObjectArray/ObjectArray';
+import Animations from './Animations/Animations';
+import useAnimationStore from '../store/Animations/animationStore';
 
 const Texts = () => {
     const [add, setAdd] = useState(false);
+    const [showAnimation, setShowAnimation] = useAnimationStore((s) => [s.showAnimation, s.setShowAnimation]);
     const [texts, addTexts, removeTexts] = useTextsStore((s) => [s.texts, s.addTexts, s.removeTexts]);
-    const [type, title, data, color, position, rotation, scale, setType, setTitle, setData, setColor, setPosition, setRotation, setScale, resetText] = useTextStore((s) => [
-        s.type,
-        s.title,
-        s.data,
-        s.color,
-        s.position,
-        s.rotation,
-        s.scale,
-        s.setType,
-        s.setTitle,
-        s.setData,
-        s.setColor,
-        s.setPosition,
-        s.setRotation,
-        s.setScale,
-        s.resetText,
-    ]);
+    const [type, title, data, color, position, rotation, scale, animations, setType, setTitle, setData, setColor, setPosition, setRotation, setScale, removeAnimations, resetText] = useTextStore(
+        (s) => [
+            s.type,
+            s.title,
+            s.data,
+            s.color,
+            s.position,
+            s.rotation,
+            s.scale,
+            s.animations,
+            s.setType,
+            s.setTitle,
+            s.setData,
+            s.setColor,
+            s.setPosition,
+            s.setRotation,
+            s.setScale,
+            s.removeAnimations,
+            s.resetText,
+        ]
+    );
 
     const handleTextTypeChange = (event: any) => {
         setType(Number(event.target.value));
@@ -104,7 +111,13 @@ const Texts = () => {
                         <input type="number" id="scly" value={(scale as number[])[1]} onChange={(event) => handleScaleChange(event, 'y')} />
                         <input type="number" id="sclz" value={(scale as number[])[2]} onChange={(event) => handleScaleChange(event, 'z')} />
                     </p>
-                    <button onClick={() => addText()}>Add</button>
+                    <ObjectArray array={animations} title="Animation" removeElement={removeAnimations} />
+                    <button className="add-more-button" onClick={() => setShowAnimation(true)}>
+                        Add More Animations
+                        <IoMdAddCircle size={20} />
+                    </button>
+                    {showAnimation && <Animations />}
+                    <button onClick={() => addText()}>Add Text</button>
                 </>
             )}
         </>

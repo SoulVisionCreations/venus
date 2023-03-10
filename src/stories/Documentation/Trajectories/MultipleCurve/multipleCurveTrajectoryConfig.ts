@@ -1,8 +1,8 @@
 import { stylingDefaults } from '../../../../constants/defaults';
 import { Alignment, AnimationTypes, CameraTypes, ComponentTypes, LightTypes, MaterialTypes, ObjectTypes, StandardGeometryTypes, Trajectory } from '../../../../types/enums';
-import { multipleCurve3MetaData } from '../../../../types/trajectoryTypes';
+import { MultipleCurve3MetaData } from '../../../../types/trajectoryTypes';
 
-export const getSplineCurveTrajectoryConfig = ({ curves, steps, closed, equiSpacedPoints }: multipleCurve3MetaData) => {
+export const getSplineCurveTrajectoryConfig = ({ curves, steps, closed, equiSpacedPoints }: MultipleCurve3MetaData) => {
     return {
         type: ComponentTypes.Container,
         alignment: Alignment.Vertical,

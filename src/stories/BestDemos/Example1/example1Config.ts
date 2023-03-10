@@ -63,7 +63,7 @@ export const example1Config: ContainerNodeProps = {
                             animationTrajectories: {
                                 position: {
                                     trajectoryMetaData: {
-                                        type: Trajectory.line3,
+                                        type: Trajectory.line3D,
                                         startPoint: [-1, -0.25, 0],
                                         endPoint: [-1, 0.25, 0],
                                     },
@@ -91,7 +91,7 @@ export const example1Config: ContainerNodeProps = {
                             animationTrajectories: {
                                 position: {
                                     trajectoryMetaData: {
-                                        type: Trajectory.line3,
+                                        type: Trajectory.line3D,
                                         startPoint: [-1, -0.5, 0],
                                         endPoint: [-1, 0, 0],
                                     },
@@ -119,7 +119,7 @@ export const example1Config: ContainerNodeProps = {
                             animationTrajectories: {
                                 position: {
                                     trajectoryMetaData: {
-                                        type: Trajectory.line3,
+                                        type: Trajectory.line3D,
                                         startPoint: [-1, -0.75, 0],
                                         endPoint: [-1, -0.25, 0],
                                     },
@@ -199,7 +199,7 @@ export const example1Config: ContainerNodeProps = {
                                 },
                                 scale: {
                                     trajectoryMetaData: {
-                                        type: Trajectory.line3,
+                                        type: Trajectory.line3D,
                                         startPoint: [2, 2, 2],
                                         endPoint: [2.5, 2.5, 2.5],
                                     },
@@ -238,7 +238,7 @@ export const example1Config: ContainerNodeProps = {
                             animationTrajectories: {
                                 position: {
                                     trajectoryMetaData: {
-                                        type: Trajectory.line3,
+                                        type: Trajectory.line3D,
                                         startPoint: [0, 0.075, 2],
                                         endPoint: [0, 2, 2],
                                     },
@@ -276,7 +276,7 @@ export const example1Config: ContainerNodeProps = {
                             animationTrajectories: {
                                 position: {
                                     trajectoryMetaData: {
-                                        type: Trajectory.line3,
+                                        type: Trajectory.line3D,
                                         startPoint: [0, -0.075, 2],
                                         endPoint: [0, 1.85, 2],
                                     },
@@ -312,7 +312,7 @@ export const example1Config: ContainerNodeProps = {
                             animationTrajectories: {
                                 position: {
                                     trajectoryMetaData: {
-                                        type: Trajectory.line3,
+                                        type: Trajectory.line3D,
                                         startPoint: [0.415, -0.5, 2],
                                         endPoint: [0.415, 1.5, 2],
                                     },
@@ -341,7 +341,7 @@ export const example1Config: ContainerNodeProps = {
                             animationTrajectories: {
                                 position: {
                                     trajectoryMetaData: {
-                                        type: Trajectory.line3,
+                                        type: Trajectory.line3D,
                                         startPoint: [0.5, -0.65, 2],
                                         endPoint: [0.5, 1.4, 2],
                                     },
@@ -369,7 +369,7 @@ export const example1Config: ContainerNodeProps = {
                             animationTrajectories: {
                                 position: {
                                     trajectoryMetaData: {
-                                        type: Trajectory.line3,
+                                        type: Trajectory.line3D,
                                         startPoint: [-0.555, -2.1, 2],
                                         endPoint: [-0.555, 1.375, 2],
                                     },
@@ -398,7 +398,7 @@ export const example1Config: ContainerNodeProps = {
                             animationTrajectories: {
                                 position: {
                                     trajectoryMetaData: {
-                                        type: Trajectory.line3,
+                                        type: Trajectory.line3D,
                                         startPoint: [-0.6, -2.25, 2],
                                         endPoint: [-0.6, 1.25, 2],
                                     },

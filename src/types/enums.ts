@@ -59,7 +59,7 @@ export const enum SceneEffectsTypes {
     DisableScrollOnceOnCompletelyVisible,
 }
 
-export const enum AnimationTypes {
+export enum AnimationTypes {
     intro,
     chained,
     scroll,
@@ -69,7 +69,7 @@ export const enum Trajectory {
     manual,
     ellipse,
     circle,
-    line3,
+    line3D,
     line1D,
     quadracticBezierCurve3,
     cubicBezierCurve3,

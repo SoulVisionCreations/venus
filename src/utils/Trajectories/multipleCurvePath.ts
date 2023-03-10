@@ -1,12 +1,12 @@
 import { CurvePath, Vector3 } from 'three';
 import { trajectoryDefaults } from '../../constants/defaults';
 import { Trajectory } from '../../types/enums';
-import { CubicBezierCurve3MetaData, lineCurve3MetaData, multipleCurve3MetaData, QuadraticBezierCurve3MetaData, SplineCurve3MetaData } from '../../types/trajectoryTypes';
+import { CubicBezierCurve3MetaData, Line3DMetaData, MultipleCurve3MetaData, QuadraticBezierCurve3MetaData, SplineCurve3MetaData } from '../../types/trajectoryTypes';
 import { createCubicBezierCurve3, createQuadraticBezierCurve3 } from './BezierCurves';
 import { createLineCurve3 } from './line3D';
 import { createSplineCurve3 } from './SplineCurve';
 
-export const createMultipleCurvePath = (data: multipleCurve3MetaData) => {
+export const createMultipleCurvePath = (data: MultipleCurve3MetaData) => {
     const curvePath = new CurvePath();
     data.curves.forEach((curve) => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -21,8 +21,8 @@ export const createMultipleCurvePath = (data: multipleCurve3MetaData) => {
             case Trajectory.splineCurve3:
                 curvePath.add(createSplineCurve3(data as SplineCurve3MetaData));
                 break;
-            case Trajectory.line3:
-                curvePath.add(createLineCurve3(data as lineCurve3MetaData));
+            case Trajectory.line3D:
+                curvePath.add(createLineCurve3(data as Line3DMetaData));
                 break;
         }
     });
@@ -31,7 +31,7 @@ export const createMultipleCurvePath = (data: multipleCurve3MetaData) => {
     return curvePath as CurvePath<Vector3>;
 };
 
-export const getPointsOnMultipleCurvePath = (data: multipleCurve3MetaData) => {
+export const getPointsOnMultipleCurvePath = (data: MultipleCurve3MetaData) => {
     const curve = createMultipleCurvePath(data);
     const steps = data.steps == undefined ? trajectoryDefaults.steps : data.steps;
     const equiSpacedPoints = data.equiSpacedPoints == undefined ? trajectoryDefaults.equiSpacedPoints : data.equiSpacedPoints;

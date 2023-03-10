@@ -1,11 +1,11 @@
 import { Story } from '@storybook/react';
 import App from '../../../../App';
 import { Trajectory } from '../../../../types/enums';
-import { multipleCurve3MetaData } from '../../../../types/trajectoryTypes';
+import { MultipleCurve3MetaData } from '../../../../types/trajectoryTypes';
 import { getSplineCurveTrajectoryConfig } from './multipleCurveTrajectoryConfig';
 
 // eslint-disable-next-line storybook/story-exports
-const multipleCurveTrajectoryAppWrapper: Story<multipleCurve3MetaData> = (args) => {
+const multipleCurveTrajectoryAppWrapper: Story<MultipleCurve3MetaData> = (args) => {
     const config = getSplineCurveTrajectoryConfig(args);
     return <App config={{ ...config }} />;
 };
@@ -67,7 +67,7 @@ export const Example = multipleCurveTrajectoryAppWrapper.bind({});
 Example.args = {
     curves: [
         {
-            type: Trajectory.line3,
+            type: Trajectory.line3D,
             startPoint: [-1, 0, 0],
             endPoint: [1, 0, 0],
         },

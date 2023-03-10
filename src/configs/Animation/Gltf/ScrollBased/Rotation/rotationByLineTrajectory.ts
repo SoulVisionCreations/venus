@@ -42,7 +42,7 @@ export const RotationByLineTrajectoryConfig: ContainerNodeProps = {
                             animationTrajectories: {
                                 rotation: {
                                     trajectoryMetaData: {
-                                        type: Trajectory.line3,
+                                        type: Trajectory.line3D,
                                         startPoint: [Math.PI / 2, 0, 0],
                                         endPoint: [0, 0, 0],
                                         equiSpacedPoints: true,

@@ -90,14 +90,14 @@ Example.args = {
         },
         rotation: {
             trajectoryMetaData: {
-                type: Trajectory.line3,
+                type: Trajectory.line3D,
                 startPoint: [0, 0, 0],
                 endPoint: [Math.PI / 12, 4 * Math.PI, 0],
             },
         },
         scale: {
             trajectoryMetaData: {
-                type: Trajectory.line3,
+                type: Trajectory.line3D,
                 startPoint: [0.25, 0.25, 0.25],
                 endPoint: [1.25, 1.25, 1.25],
             },

@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { Animation } from '../../../types/animationTypes';
 import { TextTypes } from '../../../types/enums';
 import { TextProps } from '../../../types/types';
 
@@ -10,7 +11,8 @@ export type TextActions = {
     setPosition: (value: number, pos: string) => void;
     setRotation: (value: number, pos: string) => void;
     setScale: (value: number, pos: string) => void;
-    // setAnimations: (animations: any) => void;
+    addAnimations: (animation: Animation) => void;
+    removeAnimations: (id: number) => void;
     resetText: () => void;
 };
 
@@ -23,10 +25,10 @@ const InitialState: TextProps = {
     position: [0, 0, 0],
     rotation: [0, 0, 0],
     scale: [1, 1, 1],
-    // animations: null,
+    animations: [],
 };
 
-const useTextStore = create<TextProps & TextActions>((set) => ({
+const useTextStore = create<TextProps & TextActions>((set, get) => ({
     ...InitialState,
     setType: (type) => set({ type }),
     setData: (data) => set({ data }),
@@ -47,7 +49,15 @@ const useTextStore = create<TextProps & TextActions>((set) => ({
         else if (scl === 'y') set((state) => ({ scale: [(state.scale as any)[0], value, (state.scale as any)[2]] }));
         else if (scl === 'z') set((state) => ({ scale: [(state.scale as any)[0], (state.scale as any)[1]], value }));
     },
-    // setAnimations: (animations) => set({animations}),
+    addAnimations: (animation) =>
+        set((state) => ({
+            animations: [...(state.animations as any), animation],
+        })),
+    removeAnimations: (id) => {
+        const { animations } = get();
+        (animations as any).splice(id, 1);
+        set({ animations });
+    },
     resetText: () => set(InitialState),
 }));
 

@@ -6,7 +6,7 @@ import { ChainedAnimation, IntroAnimation, ScrollAnimation, VisibilityThreshold 
 import { AnimationTypes, Trajectory } from '../../types/enums';
 import { ImageProps, TextProps, unknownObject } from '../../types/types';
 import { animationDefaults, trajectoryDefaults } from '../../constants/defaults';
-import { line1DMetaData, TrajectoryMetaData } from '../../types/trajectoryTypes';
+import { Line1DMetaData, TrajectoryMetaData } from '../../types/trajectoryTypes';
 import { config, useSpring } from '@react-spring/three';
 import { getStateTrajectoryPoints, getTrajectory } from '../Trajectories/utility';
 import { getManualStateTrajectoryPoints } from './utility';
@@ -313,7 +313,7 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
             }
             const equiSpacedPoints = (value.trajectoryMetaData as any).equiSpacedPoints ?? trajectoryDefaults.equiSpacedPoints;
             if (key == 'opacity') {
-                state.current[key as keyof strongObject3DStateOfVectors] = getPointAtLine1D(value.trajectoryMetaData as line1DMetaData & { type: Trajectory }, value.state);
+                state.current[key as keyof strongObject3DStateOfVectors] = getPointAtLine1D(value.trajectoryMetaData as Line1DMetaData & { type: Trajectory }, value.state);
             } else {
                 state.current[key as keyof strongObject3DStateOfVectors] = equiSpacedPoints ? value.trajectory.getPointAt(value.state) : value.trajectory.getPoint(value.state);
             }

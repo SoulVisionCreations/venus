@@ -89,7 +89,7 @@ Example.args = {
             animationTrajectories: {
                 rotation: {
                     trajectoryMetaData: {
-                        type: Trajectory.line3,
+                        type: Trajectory.line3D,
                         startPoint: [Math.PI / 2, 0, 0],
                         endPoint: [Math.PI / 4, Math.PI / 4, 0],
                         closed: false,

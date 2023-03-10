@@ -1,8 +1,8 @@
 import { stylingDefaults } from '../../../../constants/defaults';
 import { Alignment, AnimationTypes, CameraTypes, ComponentTypes, LightTypes, MaterialTypes, ObjectTypes, StandardGeometryTypes, Trajectory } from '../../../../types/enums';
-import { lineCurve3MetaData } from '../../../../types/trajectoryTypes';
+import { Line3DMetaData } from '../../../../types/trajectoryTypes';
 
-export const getStraightLineTrajectoryConfig = ({ startPoint, endPoint }: lineCurve3MetaData) => {
+export const getStraightLineTrajectoryConfig = ({ startPoint, endPoint }: Line3DMetaData) => {
     return {
         type: ComponentTypes.Container,
         alignment: Alignment.Vertical,
@@ -49,7 +49,7 @@ export const getStraightLineTrajectoryConfig = ({ startPoint, endPoint }: lineCu
                                         animationTrajectories: {
                                             position: {
                                                 trajectoryMetaData: {
-                                                    type: Trajectory.line3,
+                                                    type: Trajectory.line3D,
                                                     startPoint,
                                                     endPoint,
                                                 },

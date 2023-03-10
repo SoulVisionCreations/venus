@@ -7,9 +7,9 @@ import {
     CircleMetaData,
     CubicBezierCurve3MetaData,
     EllipseMetaData,
-    line1DMetaData,
-    lineCurve3MetaData,
-    multipleCurve3MetaData,
+    Line1DMetaData,
+    Line3DMetaData,
+    MultipleCurve3MetaData,
     QuadraticBezierCurve3MetaData,
     SplineCurve3MetaData,
     TrajectoryMetaData,
@@ -33,8 +33,8 @@ export const getTrajectory = (trajectoryMetaData: TrajectoryMetaData) => {
         case Trajectory.ellipse:
             curve = createEllipse(data as EllipseMetaData);
             break;
-        case Trajectory.line3:
-            curve = createLineCurve3(data as lineCurve3MetaData);
+        case Trajectory.line3D:
+            curve = createLineCurve3(data as Line3DMetaData);
             break;
         case Trajectory.quadracticBezierCurve3:
             curve = createQuadraticBezierCurve3(data as QuadraticBezierCurve3MetaData);
@@ -46,7 +46,7 @@ export const getTrajectory = (trajectoryMetaData: TrajectoryMetaData) => {
             curve = createSplineCurve3(data as SplineCurve3MetaData);
             break;
         case Trajectory.multipleCurvePath:
-            curve = createMultipleCurvePath(data as multipleCurve3MetaData);
+            curve = createMultipleCurvePath(data as MultipleCurve3MetaData);
             break;
         case Trajectory.line1D:
             curve = data;
@@ -64,8 +64,8 @@ const getTrajectoryPoints = (trajectoryMetaData: TrajectoryMetaData) => {
         case Trajectory.ellipse:
             points = getPointsOnEllipse(data as EllipseMetaData);
             break;
-        case Trajectory.line3:
-            points = getPointsOnLineCurve3(data as lineCurve3MetaData);
+        case Trajectory.line3D:
+            points = getPointsOnLineCurve3(data as Line3DMetaData);
             break;
         case Trajectory.quadracticBezierCurve3:
             points = getPointsOnQuadraticBezierCurve3(data as QuadraticBezierCurve3MetaData);
@@ -77,10 +77,10 @@ const getTrajectoryPoints = (trajectoryMetaData: TrajectoryMetaData) => {
             points = getPointsOnSplineCurve3(data as SplineCurve3MetaData);
             break;
         case Trajectory.multipleCurvePath:
-            points = getPointsOnMultipleCurvePath(data as multipleCurve3MetaData);
+            points = getPointsOnMultipleCurvePath(data as MultipleCurve3MetaData);
             break;
         case Trajectory.line1D:
-            points = getPointsOnLine1D(data as line1DMetaData);
+            points = getPointsOnLine1D(data as Line1DMetaData);
             break;
     }
     return points;

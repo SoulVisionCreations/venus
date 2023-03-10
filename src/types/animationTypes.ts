@@ -60,20 +60,15 @@ export type ChainedAnimation = {
     repeat: boolean;
     interval?: number;
     springConfig?: SpringConfig;
-    childAnimations: Array<
-        ({ animationTrajectories: AnimationTrajectory; trajectorySteps?: number } | { stateIncrements: Array<weakObject3DStateofArrays> }) & { initialPause?: number; springConfig?: SpringConfig }
-    >;
-    visibilityThreshold?: VisibilityThreshold;
+    childAnimations: Array<IntroAnimation>;
 };
 
 export type IntroAnimation = {
     initialPause?: number;
     springConfig?: SpringConfig;
-    visibilityThreshold?: VisibilityThreshold;
 } & ({ animationTrajectories: AnimationTrajectory; trajectorySteps?: number } | { stateIncrements: Array<weakObject3DStateofArrays> });
 
 export type ScrollAnimation = {
-    visibilityThreshold?: VisibilityThreshold;
     disablePageScroll?: boolean;
     rotateOnScroll?: {
         axis: number[];
@@ -81,14 +76,17 @@ export type ScrollAnimation = {
         maxRotation?: number;
         minRotation?: number;
     };
-    scaleOnScroll?: {
-        scaleRatio: number[];
-        velocity: number;
-        minScale: number[];
-        maxScale: number[];
-    };
+    // scaleOnScroll?: {
+    //     scaleRatio: number[];
+    //     velocity: number;
+    //     minScale: number[];
+    //     maxScale: number[];
+    // };
     springConfig?: SpringConfig;
     animationTrajectories?: AnimationTrajectory;
 };
 
-export type Animation = { type: AnimationTypes } & (ScrollAnimation | IntroAnimation | ChainedAnimation);
+export type Animation = {
+    type: AnimationTypes;
+    visibilityThreshold?: VisibilityThreshold;
+} & (ScrollAnimation | IntroAnimation | ChainedAnimation);

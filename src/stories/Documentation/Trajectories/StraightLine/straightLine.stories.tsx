@@ -1,10 +1,10 @@
 import { Story } from '@storybook/react';
 import App from '../../../../App';
-import { lineCurve3MetaData } from '../../../../types/trajectoryTypes';
+import { Line3DMetaData } from '../../../../types/trajectoryTypes';
 import { getStraightLineTrajectoryConfig } from './straightLineTrajectoryConfig';
 
 // eslint-disable-next-line storybook/story-exports
-const straightLineTrajectoryAppWrapper: Story<lineCurve3MetaData> = (args) => {
+const straightLineTrajectoryAppWrapper: Story<Line3DMetaData> = (args) => {
     const config = getStraightLineTrajectoryConfig(args);
     return <App config={{ ...config }} />;
 };

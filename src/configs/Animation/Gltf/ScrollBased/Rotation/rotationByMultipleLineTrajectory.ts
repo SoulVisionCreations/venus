@@ -45,25 +45,25 @@ export const RotationByMultipleLineTrajectoryConfig: ContainerNodeProps = {
                                         type: Trajectory.multipleCurvePath,
                                         curves: [
                                             {
-                                                type: Trajectory.line3,
+                                                type: Trajectory.line3D,
                                                 startPoint: [Math.PI / 2, 0, 0],
                                                 endPoint: [0, 0, 0],
                                                 closed: false,
                                             },
                                             {
-                                                type: Trajectory.line3,
+                                                type: Trajectory.line3D,
                                                 startPoint: [0, 0, 0],
                                                 endPoint: [0, Math.PI / 2, 0],
                                                 closed: false,
                                             },
                                             {
-                                                type: Trajectory.line3,
+                                                type: Trajectory.line3D,
                                                 startPoint: [0, Math.PI / 2, 0],
                                                 endPoint: [0, Math.PI / 4, 0],
                                                 closed: false,
                                             },
                                             {
-                                                type: Trajectory.line3,
+                                                type: Trajectory.line3D,
                                                 startPoint: [0, Math.PI / 4, 0],
                                                 endPoint: [Math.PI / 4, Math.PI / 4, 0],
                                                 closed: false,

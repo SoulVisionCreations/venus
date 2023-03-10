@@ -42,21 +42,21 @@ export type SplineCurve3MetaData = {
     equiSpacedPoints?: boolean;
 };
 
-export type lineCurve3MetaData = {
+export type Line3DMetaData = {
     startPoint: number[];
     endPoint: number[];
     steps?: number;
     equiSpacedPoints?: boolean;
 };
 
-export type multipleCurve3MetaData = {
+export type MultipleCurve3MetaData = {
     curves: Array<TrajectoryMetaData & { type: Trajectory }>;
     steps?: number;
     closed?: boolean;
     equiSpacedPoints?: boolean;
 };
 
-export type line1DMetaData = {
+export type Line1DMetaData = {
     startPoint: number;
     endPoint: number;
     steps?: number;
@@ -64,4 +64,4 @@ export type line1DMetaData = {
 
 export type TrajectoryMetaData = {
     type: Trajectory;
-} & (EllipseMetaData | CircleMetaData | QuadraticBezierCurve3MetaData | CubicBezierCurve3MetaData | SplineCurve3MetaData | lineCurve3MetaData | line1DMetaData | multipleCurve3MetaData);
+} & (EllipseMetaData | CircleMetaData | QuadraticBezierCurve3MetaData | CubicBezierCurve3MetaData | SplineCurve3MetaData | Line3DMetaData | Line1DMetaData | MultipleCurve3MetaData);
