@@ -1,4 +1,4 @@
-import { AnimationTrajectory } from '../../../types/animationTypes';
+// import { AnimationTrajectory } from '../../../types/animationTypes';
 import { TrajectoryTypes } from '../../../types/enums';
 import {
     CircleMetaData,
@@ -95,21 +95,21 @@ export const initialTrajectoryMetaData: TrajectoryMetaData = {
     ...initialSplineCurve3MetaData,
 };
 
-export const IntitalAnimationTrajectoryState: AnimationTrajectory = {
-    rotation: {
-        trajectoryMetaData: initialTrajectoryMetaData,
-        speed: 0,
-    },
-    position: {
-        trajectoryMetaData: initialTrajectoryMetaData,
-        speed: 0,
-    },
-    scale: {
-        trajectoryMetaData: initialTrajectoryMetaData,
-        speed: 0,
-    },
-    opacity: {
-        trajectoryMetaData: initialTrajectoryMetaData,
-        speed: 0,
-    },
-};
+// export const IntitalAnimationTrajectoryState: AnimationTrajectory = {
+//     rotation: {
+//         trajectoryMetaData: initialTrajectoryMetaData,
+//         speed: 0,
+//     },
+//     position: {
+//         trajectoryMetaData: initialTrajectoryMetaData,
+//         speed: 0,
+//     },
+//     scale: {
+//         trajectoryMetaData: initialTrajectoryMetaData,
+//         speed: 0,
+//     },
+//     opacity: {
+//         trajectoryMetaData: initialTrajectoryMetaData,
+//         speed: 0,
+//     },
+// };

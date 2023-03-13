@@ -4,7 +4,7 @@ import { Animation, AnimationTrajectory, ChainedAnimation, IntroAnimation, Scrol
 import { AnimationTypes } from '../../../types/enums';
 import { TrajectoryMetaData } from '../../../types/trajectoryTypes';
 import { unknownObject } from '../../../types/types';
-import { initialTrajectoryMetaData, IntitalAnimationTrajectoryState } from './animationDefaults';
+import { initialTrajectoryMetaData } from './animationDefaults';
 
 export type ScrollAnimationActions = {
     setDisablePageScroll: (disablePageScroll: boolean) => void;
@@ -21,6 +21,7 @@ export type ChainedAnimationActions = {
 export type IntroAnimationActions = {
     setInitialPause: (initialPause: number) => void;
     setAnimationTrajectories: (animationTrajectory: AnimationTrajectory) => void;
+    removeAnimationTrajectory: (prop: string) => void;
     setTrajectorySteps: (trajectorySteps: number) => void;
     setStateIncrements: (stateIncrements: number) => void;
     setTrajectoryMetaData: (trajectoryMetaData: TrajectoryMetaData, prop: string) => void;
@@ -44,7 +45,7 @@ const InitialChainedAnimationState: ChainedAnimation = {
 
 const InitialIntroAnimationState: IntroAnimation = {
     initialPause: 0,
-    animationTrajectories: IntitalAnimationTrajectoryState,
+    animationTrajectories: {},
     trajectorySteps: 100,
     stateIncrements: [],
 };
@@ -57,7 +58,7 @@ const IntitalScrollAnimationState: ScrollAnimation = {
         maxRotation: 0,
         minRotation: 0,
     },
-    animationTrajectories: IntitalAnimationTrajectoryState,
+    animationTrajectories: {},
 };
 
 const InitialState: Animation & unknownObject = {
@@ -80,7 +81,7 @@ const InitialState: Animation & unknownObject = {
 
 // stateIncrement: { position: [0, 0, 0], rotation: [0, 0, 0], scale: [1, 1, 1], opacity: 1 };
 
-const useAnimationStore = create<Animation & unknownObject & AnimationActions>((set) => ({
+const useAnimationStore = create<Animation & unknownObject & AnimationActions>((set, get) => ({
     ...InitialState,
     setShowAnimation: (showAnimation) => set({ showAnimation }),
     setType: (type) => set({ type }),
@@ -123,12 +124,17 @@ const useAnimationStore = create<Animation & unknownObject & AnimationActions>((
     setInterval: (interval) => set({ interval }),
     setChildAnimations: (childAnimations) => set({ childAnimations }),
     setAnimationTrajectories: (animationTrajectories) => set({ animationTrajectories }),
+    removeAnimationTrajectory: (prop) => {
+        const { animationTrajectories } = get();
+        delete animationTrajectories[prop];
+        set({ animationTrajectories });
+    },
     setTrajectorySteps: (trajectorySteps) => set({ trajectorySteps }),
     setStateIncrements: (stateIncrements) => set({ stateIncrements }),
     setTrajectoryMetaData: (trajectoryMetaData, prop) => {
         set(
             produce((state) => {
-                state.animationTrajectories[prop].trajectoryMetaData = trajectoryMetaData;
+                state.animationTrajectories[prop] = { trajectoryMetaData };
             })
         );
         set({ trajectoryMetaData: initialTrajectoryMetaData });

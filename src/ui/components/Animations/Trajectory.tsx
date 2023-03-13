@@ -4,11 +4,11 @@ import './Animations.css';
 import useTrajectoryMetaDataStore from '../../store/Animations/TrajectoryMetaDataStore';
 import { IoMdAddCircle } from 'react-icons/io';
 import { useState } from 'react';
-import ObjectArray from '../ObjectArray/ObjectArray';
+import useAnimationStore from '../../store/Animations/animationStore';
 
 const Trajectory = ({ prop }: { prop: string }) => {
     const [add, setAdd] = useState(false);
-    const [setTrajectoryMetaData] = useTrajectoryMetaDataStore((s) => [s.setTrajectoryMetaData]);
+    const [setTrajectoryMetaData] = useAnimationStore((s) => [s.setTrajectoryMetaData]);
     const [
         // show,
         type,
@@ -42,7 +42,7 @@ const Trajectory = ({ prop }: { prop: string }) => {
         setSteps,
         setWidth,
         addPoint,
-        removePoint,
+        // removePoint,
         resetPoint,
         resetAnimationTrajectory,
     ] = useTrajectoryMetaDataStore((s) => [
@@ -78,7 +78,7 @@ const Trajectory = ({ prop }: { prop: string }) => {
         s.setSteps,
         s.setWidth,
         s.addPoint,
-        s.removePoint,
+        // s.removePoint,
         s.resetPoint,
         s.resetAnimationTrajectory,
     ]);
@@ -145,36 +145,42 @@ const Trajectory = ({ prop }: { prop: string }) => {
         switch (type) {
             case TrajectoryTypes.circle:
                 setTrajectoryMetaData({ type, radius, center, clockwise, rotationZ, equiSpacedPoints, steps }, prop);
+                break;
             case TrajectoryTypes.ellipse:
                 setTrajectoryMetaData({ type, height, width, center, clockwise, rotationZ, equiSpacedPoints, steps }, prop);
+                break;
             case TrajectoryTypes.quadracticBezierCurve3:
                 setTrajectoryMetaData({ type, points, steps, closed, equiSpacedPoints }, prop);
+                break;
             case TrajectoryTypes.cubicBezierCurve3:
                 setTrajectoryMetaData({ type, points, steps, closed, equiSpacedPoints }, prop);
+                break;
             case TrajectoryTypes.splineCurve3:
                 setTrajectoryMetaData({ type, points, steps, closed, equiSpacedPoints }, prop);
+                break;
             case TrajectoryTypes.line3D:
                 setTrajectoryMetaData({ type, startPoint, endPoint, steps, equiSpacedPoints }, prop);
+                break;
             case TrajectoryTypes.line1D:
                 setTrajectoryMetaData({ type, startPoint: startPoint[0], endPoint: endPoint[0], steps, equiSpacedPoints }, prop);
+                break;
         }
         resetAnimationTrajectory();
     };
 
     return (
         <div className="trajectory">
-            TrajectoryTypes:
             <p>
-                <Select title="Text Types" options={TrajectoryTypes} defaultValue={TrajectoryTypes[type]} onChange={handleTrajectoryTypeChange} />
+                <Select title="Trajectory Types" options={TrajectoryTypes} defaultValue={TrajectoryTypes[type]} onChange={handleTrajectoryTypeChange} />
             </p>
             {type === TrajectoryTypes.circle && (
-                <p>
+                <>
                     <label htmlFor="radius">Radius: </label>
                     <input type="number" id="radius" name="radius" onChange={handleRadiusChange} value={radius} />
-                </p>
+                </>
             )}
             {type === TrajectoryTypes.ellipse && (
-                <>
+                <div className="row">
                     <p>
                         <label htmlFor="height">Height: </label>
                         <input type="number" id="height" name="height" onChange={handleHeightChange} value={height} />
@@ -183,7 +189,7 @@ const Trajectory = ({ prop }: { prop: string }) => {
                         <label htmlFor="width">Width: </label>
                         <input type="number" id="width" name="width" onChange={handleWidthChange} value={width} />
                     </p>
-                </>
+                </div>
             )}
             {(type === TrajectoryTypes.circle || type === TrajectoryTypes.ellipse) && (
                 <>
@@ -204,7 +210,7 @@ const Trajectory = ({ prop }: { prop: string }) => {
                 </>
             )}
             {type === TrajectoryTypes.line3D && (
-                <>
+                <div className="row">
                     <p>
                         Start Point:
                         <input type="number" id="start3x" value={(startPoint as number[])[0]} onChange={(event) => handleStartPointChange(event, 'x')} />
@@ -217,10 +223,10 @@ const Trajectory = ({ prop }: { prop: string }) => {
                         <input type="number" id="end3y" value={(endPoint as number[])[1]} onChange={(event) => handleEndPointChange(event, 'y')} />
                         <input type="number" id="end3z" value={(endPoint as number[])[2]} onChange={(event) => handleEndPointChange(event, 'z')} />
                     </p>
-                </>
+                </div>
             )}
             {type === TrajectoryTypes.line1D && (
-                <>
+                <div className="row">
                     <p>
                         Start Point:
                         <input type="number" id="start1x" value={(startPoint as number[])[0]} onChange={(event) => handleStartPointChange(event, 'x')} />
@@ -229,7 +235,7 @@ const Trajectory = ({ prop }: { prop: string }) => {
                         End Point:
                         <input type="number" id="end1x" value={(endPoint as number[])[0]} onChange={(event) => handleEndPointChange(event, 'x')} />
                     </p>
-                </>
+                </div>
             )}
             <p>
                 <label htmlFor="steps"> Steps: </label>
@@ -253,25 +259,22 @@ const Trajectory = ({ prop }: { prop: string }) => {
                         <label htmlFor="closed"> Closed: </label>
                         <input type="checkbox" id="closed" name="closed" onChange={handleClosedChange} checked={closed} />
                     </p>
-                    Points:
-                    <ObjectArray array={points} title="Point" removeElement={removePoint} />
-                    <button className="add-more-button" onClick={() => setAdd(true)}>
-                        Add More <IoMdAddCircle size={28} />
+                    <p>Points: {JSON.stringify(points)}</p>
+                    <button className="add-point-button" onClick={() => setAdd(true)}>
+                        Add More Points <IoMdAddCircle size={20} />
                     </button>
                     {add && (
-                        <>
-                            <p>
-                                Point:
-                                <input type="number" id="pointx" value={(point as number[])[0]} onChange={(event) => handlePointChange(event, 'x')} />
-                                <input type="number" id="pointy" value={(point as number[])[1]} onChange={(event) => handlePointChange(event, 'y')} />
-                                <input type="number" id="pointz" value={(point as number[])[2]} onChange={(event) => handlePointChange(event, 'z')} />
-                            </p>
+                        <p>
+                            Point:
+                            <input type="number" id="pointx" value={(point as number[])[0]} onChange={(event) => handlePointChange(event, 'x')} />
+                            <input type="number" id="pointy" value={(point as number[])[1]} onChange={(event) => handlePointChange(event, 'y')} />
+                            <input type="number" id="pointz" value={(point as number[])[2]} onChange={(event) => handlePointChange(event, 'z')} />
                             <button onClick={() => addP()}>Add Point</button>
-                        </>
+                        </p>
                     )}
                 </>
             )}
-            <button onClick={() => addTrajectory()}>Add</button>
+            <button onClick={() => addTrajectory()}>Add Trajectory</button>
         </div>
     );
 };

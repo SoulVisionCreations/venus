@@ -18,6 +18,30 @@
     display: flex;
 }
 
+.spring-config {
+    display: flex;
+    border: 1px solid black;
+    padding: 5px;
+    margin: 10px 0;
+}
+
+.visibility-threshold {
+    display: flex;
+    border: 1px solid black;
+    padding: 5px;
+    margin: 10px 0;
+}
+
 .close-icon {
     float: right;
+}
+
+.add-point-button {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.trajectory {
 }

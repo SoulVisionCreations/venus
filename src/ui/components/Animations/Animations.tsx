@@ -7,7 +7,7 @@ import useTextStore from '../../store/Texts/textStore';
 import { useState } from 'react';
 import Trajectory from './Trajectory';
 
-export enum animationTrajectories {
+export enum animatabaleProps {
     position,
     rotation,
     scale,
@@ -15,7 +15,7 @@ export enum animationTrajectories {
 }
 
 const Animations = () => {
-    const [addAnimationTrajectory, setAddAnimationTrajectory] = useState(0);
+    const [animatabaleProp, setAnimatabaleProp] = useState(0);
     const [addAnimations] = useTextStore((s) => [s.addAnimations]);
     const [
         type,
@@ -28,6 +28,7 @@ const Animations = () => {
         trajectorySteps,
         trajectorySpeed,
         interval,
+        animationTrajectories,
         setShowAnimation,
         setType,
         setSpringConfig,
@@ -39,6 +40,7 @@ const Animations = () => {
         setTrajectorySteps,
         setTrajectorySpeed,
         setInterval,
+        // removeAnimationTrajectory,
         resetAnimation,
     ] = useAnimationStore((s) => [
         s.type,
@@ -51,6 +53,7 @@ const Animations = () => {
         s.trajectorySteps,
         s.trajectorySpeed,
         s.interval,
+        s.animationTrajectories,
         s.setShowAnimation,
         s.setType,
         s.setSpringConfig,
@@ -62,6 +65,7 @@ const Animations = () => {
         s.setTrajectorySteps,
         s.setTrajectorySpeed,
         s.setInterval,
+        // s.removeAnimationTrajectory,
         s.resetAnimation,
     ]);
 
@@ -85,8 +89,8 @@ const Animations = () => {
         setRotateOnScroll(event.target.valueAsNumber, pos);
     };
 
-    const handleAnimationTrajectoryChange = (event: any) => {
-        setAddAnimationTrajectory(event.target.value);
+    const handleAnimatablePropChange = (event: any) => {
+        setAnimatabaleProp(event.target.value);
     };
 
     const addAnimation = () => {
@@ -100,11 +104,11 @@ const Animations = () => {
             <button className="close-icon" onClick={() => setShowAnimation(false)}>
                 <GrClose size={20} />
             </button>
-            Animations:
+            <h1>Animations:</h1>
             <p>
                 <Select title="Animation Types" options={AnimationTypes} defaultValue={AnimationTypes[type]} onChange={handleAnimationTypeChange} />
             </p>
-            <div className="row">
+            <div className="spring-config">
                 Spring Config:
                 <p>
                     <label htmlFor="duration">Duration: </label>
@@ -123,7 +127,7 @@ const Animations = () => {
                     <input type="number" id="tension" name="tension" onChange={(event) => handleSpringConfigChange(event, 'tension')} value={springConfig?.tension} />
                 </p>
             </div>
-            <div className="row">
+            <div className="visibility-threshold">
                 Visibility Threshold:
                 <p>
                     <label htmlFor="sceneTopToScreenBottomRatio">SceneTopToScreenBottomRatio: </label>
@@ -185,14 +189,13 @@ const Animations = () => {
                         <label htmlFor="trajectorySteps">Trajectory Steps: </label>
                         <input type="number" name="trajectorySteps" id="trajectorySteps" onChange={(event) => setTrajectorySteps(event.target.valueAsNumber)} value={trajectorySteps} />
                     </p>
-                    Animation Trajectories:
-                    <Select
-                        title="Animation Trajectory Types"
-                        options={animationTrajectories}
-                        defaultValue={animationTrajectories[addAnimationTrajectory]}
-                        onChange={handleAnimationTrajectoryChange}
-                    />
-                    <Trajectory prop={animationTrajectories[addAnimationTrajectory]} />
+                    <h2>Animation Trajectories:</h2>
+                    {animationTrajectories?.position && <p>position: {JSON.stringify(animationTrajectories.position.trajectoryMetaData)} </p>}
+                    {animationTrajectories?.rotation && <p>rotation: {JSON.stringify(animationTrajectories.rotation.trajectoryMetaData)} </p>}
+                    {animationTrajectories?.scale && <p>scale: {JSON.stringify(animationTrajectories.scale.trajectoryMetaData)} </p>}
+                    {animationTrajectories?.opacity && <p>opacity: {JSON.stringify(animationTrajectories.opacity.trajectoryMetaData)} </p>}
+                    <Select title="Animatabale Prop" options={animatabaleProps} defaultValue={animatabaleProps[animatabaleProp]} onChange={handleAnimatablePropChange} />
+                    <Trajectory prop={animatabaleProps[animatabaleProp]} />
                     <p>
                         <label htmlFor="trajectorySpeed">Trajectory Speed: </label>
                         <input type="number" name="trajectorySpeed" id="trajectorySpeed" onChange={(event) => setTrajectorySpeed(event.target.valueAsNumber)} value={trajectorySpeed} />
@@ -215,7 +218,7 @@ const Animations = () => {
                     </p>
                 </>
             )}
-            <button onClick={() => addAnimation()}>Add</button>
+            <button onClick={() => addAnimation()}>Add Animation</button>
         </div>
     );
 };

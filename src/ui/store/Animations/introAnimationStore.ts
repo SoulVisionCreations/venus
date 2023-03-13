@@ -4,7 +4,6 @@ import { AnimationTrajectory, IntroAnimation } from '../../../types/animationTyp
 import { weakObject3DStateofArrays } from '../../../types/object3DTypes';
 import { TrajectoryMetaData } from '../../../types/trajectoryTypes';
 import { unknownObject } from '../../../types/types';
-import { IntitalAnimationTrajectoryState } from './animationDefaults';
 
 export type IntroAnimationActions = {
     setShow: (show: boolean) => void;
@@ -24,7 +23,7 @@ export type IntroAnimationActions = {
 
 const InitialIntroAnimationState: IntroAnimation = {
     initialPause: 0,
-    animationTrajectories: IntitalAnimationTrajectoryState,
+    animationTrajectories: {},
     trajectorySteps: 100,
     stateIncrements: [],
 };
