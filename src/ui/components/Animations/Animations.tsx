@@ -4,8 +4,18 @@ import useAnimationStore from '../../store/Animations/animationStore';
 import './Animations.css';
 import { GrClose } from 'react-icons/gr';
 import useTextStore from '../../store/Texts/textStore';
+import { useState } from 'react';
+import Trajectory from './Trajectory';
+
+export enum animationTrajectories {
+    position,
+    rotation,
+    scale,
+    opacity,
+}
 
 const Animations = () => {
+    const [addAnimationTrajectory, setAddAnimationTrajectory] = useState(0);
     const [addAnimations] = useTextStore((s) => [s.addAnimations]);
     const [
         type,
@@ -16,6 +26,7 @@ const Animations = () => {
         initialPause,
         repeat,
         trajectorySteps,
+        trajectorySpeed,
         interval,
         setShowAnimation,
         setType,
@@ -26,6 +37,7 @@ const Animations = () => {
         setInitialPause,
         setRepeat,
         setTrajectorySteps,
+        setTrajectorySpeed,
         setInterval,
         resetAnimation,
     ] = useAnimationStore((s) => [
@@ -37,6 +49,7 @@ const Animations = () => {
         s.initialPause,
         s.repeat,
         s.trajectorySteps,
+        s.trajectorySpeed,
         s.interval,
         s.setShowAnimation,
         s.setType,
@@ -47,6 +60,7 @@ const Animations = () => {
         s.setInitialPause,
         s.setRepeat,
         s.setTrajectorySteps,
+        s.setTrajectorySpeed,
         s.setInterval,
         s.resetAnimation,
     ]);
@@ -69,6 +83,10 @@ const Animations = () => {
 
     const handleRotateOnScrollChange = (event: any, pos: string) => {
         setRotateOnScroll(event.target.valueAsNumber, pos);
+    };
+
+    const handleAnimationTrajectoryChange = (event: any) => {
+        setAddAnimationTrajectory(event.target.value);
     };
 
     const addAnimation = () => {
@@ -138,9 +156,9 @@ const Animations = () => {
                         Rotate On Scroll:
                         <p>
                             Axis:
-                            <input type="number" id="axisx" value={(rotateOnScroll.axis as number[])[0]} onChange={(event) => handleRotateOnScrollChange(event, 'axisx')} />
-                            <input type="number" id="axisy" value={(rotateOnScroll.axis as number[])[1]} onChange={(event) => handleRotateOnScrollChange(event, 'axisy')} />
-                            <input type="number" id="axisy" value={(rotateOnScroll.axis as number[])[2]} onChange={(event) => handleRotateOnScrollChange(event, 'axisz')} />
+                            <input type="number" id="axisx" value={(rotateOnScroll.axis as number[])[0]} onChange={(event) => handleRotateOnScrollChange(event, 'x')} />
+                            <input type="number" id="axisy" value={(rotateOnScroll.axis as number[])[1]} onChange={(event) => handleRotateOnScrollChange(event, 'y')} />
+                            <input type="number" id="axisy" value={(rotateOnScroll.axis as number[])[2]} onChange={(event) => handleRotateOnScrollChange(event, 'z')} />
                         </p>
                         <p>
                             <label htmlFor="velocity">Velocity: </label>
@@ -166,6 +184,18 @@ const Animations = () => {
                     <p>
                         <label htmlFor="trajectorySteps">Trajectory Steps: </label>
                         <input type="number" name="trajectorySteps" id="trajectorySteps" onChange={(event) => setTrajectorySteps(event.target.valueAsNumber)} value={trajectorySteps} />
+                    </p>
+                    Animation Trajectories:
+                    <Select
+                        title="Animation Trajectory Types"
+                        options={animationTrajectories}
+                        defaultValue={animationTrajectories[addAnimationTrajectory]}
+                        onChange={handleAnimationTrajectoryChange}
+                    />
+                    <Trajectory prop={animationTrajectories[addAnimationTrajectory]} />
+                    <p>
+                        <label htmlFor="trajectorySpeed">Trajectory Speed: </label>
+                        <input type="number" name="trajectorySpeed" id="trajectorySpeed" onChange={(event) => setTrajectorySpeed(event.target.valueAsNumber)} value={trajectorySpeed} />
                     </p>
                 </>
             )}

@@ -2,7 +2,7 @@ import { SpringConfig } from '@react-spring/three';
 import { Story } from '@storybook/react';
 import App from '../../../../../App';
 import { AnimationTrajectory, VisibilityThreshold } from '../../../../../types/animationTypes';
-import { Trajectory } from '../../../../../types/enums';
+import { TrajectoryTypes } from '../../../../../types/enums';
 import { getIntroAnimationConfig } from './IntroAnimationConfig';
 
 // eslint-disable-next-line storybook/story-exports
@@ -41,7 +41,7 @@ export default {
         animationTrajectories: {
             control: { type: 'object' },
             description:
-                'An object which describes the trajectory to be traversed. Trajectory can be applied to any or all of state properties, which are - ( Position, Rotation and Scale ). Checkout trajectory documentation to understand more about trajectories.',
+                'An object which describes the trajectory to be traversed. TrajectoryTypes can be applied to any or all of state properties, which are - ( Position, Rotation and Scale ). Checkout trajectory documentation to understand more about trajectories.',
             table: {
                 type: { summary: 'object' },
                 defaultValue: { summary: `None` },
@@ -79,7 +79,7 @@ Example.args = {
     animationTrajectories: {
         position: {
             trajectoryMetaData: {
-                type: Trajectory.quadracticBezierCurve3,
+                type: TrajectoryTypes.quadracticBezierCurve3,
                 points: [
                     [0, -30, -50],
                     [0, 10, -15],
@@ -90,14 +90,14 @@ Example.args = {
         },
         rotation: {
             trajectoryMetaData: {
-                type: Trajectory.line3D,
+                type: TrajectoryTypes.line3D,
                 startPoint: [0, 0, 0],
                 endPoint: [Math.PI / 12, 4 * Math.PI, 0],
             },
         },
         scale: {
             trajectoryMetaData: {
-                type: Trajectory.line3D,
+                type: TrajectoryTypes.line3D,
                 startPoint: [0.25, 0.25, 0.25],
                 endPoint: [1.25, 1.25, 1.25],
             },

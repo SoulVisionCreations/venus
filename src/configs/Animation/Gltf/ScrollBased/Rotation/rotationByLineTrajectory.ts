@@ -1,5 +1,5 @@
 import { stylingDefaults } from '../../../../../constants/defaults';
-import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, Trajectory } from '../../../../../types/enums';
+import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, TrajectoryTypes } from '../../../../../types/enums';
 import { ContainerNodeProps } from '../../../../../types/types';
 
 export const RotationByLineTrajectoryConfig: ContainerNodeProps = {
@@ -42,7 +42,7 @@ export const RotationByLineTrajectoryConfig: ContainerNodeProps = {
                             animationTrajectories: {
                                 rotation: {
                                     trajectoryMetaData: {
-                                        type: Trajectory.line3D,
+                                        type: TrajectoryTypes.line3D,
                                         startPoint: [Math.PI / 2, 0, 0],
                                         endPoint: [0, 0, 0],
                                         equiSpacedPoints: true,

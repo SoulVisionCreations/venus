@@ -1,5 +1,5 @@
 import { AnimationTrajectory } from '../../../types/animationTypes';
-import { Trajectory } from '../../../types/enums';
+import { TrajectoryTypes } from '../../../types/enums';
 import {
     CircleMetaData,
     CubicBezierCurve3MetaData,
@@ -84,7 +84,7 @@ export const initialLine1DMetaData: Line1DMetaData = {
 };
 
 export const initialTrajectoryMetaData: TrajectoryMetaData = {
-    type: Trajectory.line3D,
+    type: TrajectoryTypes.line3D,
     ...initialEllipseMetaData,
     ...initialCircleMetaData,
     ...initialCubicBezierCurve3MetaData,
@@ -95,7 +95,7 @@ export const initialTrajectoryMetaData: TrajectoryMetaData = {
     ...initialSplineCurve3MetaData,
 };
 
-export const IntitalTrajectoryState: AnimationTrajectory = {
+export const IntitalAnimationTrajectoryState: AnimationTrajectory = {
     rotation: {
         trajectoryMetaData: initialTrajectoryMetaData,
         speed: 0,

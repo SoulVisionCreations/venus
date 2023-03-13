@@ -1,4 +1,4 @@
-import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, Trajectory } from '../../../../types/enums';
+import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, TrajectoryTypes } from '../../../../types/enums';
 import { ContainerNodeProps } from '../../../../types/types';
 
 export const ellipse3Config: ContainerNodeProps = {
@@ -48,7 +48,7 @@ export const ellipse3Config: ContainerNodeProps = {
                                     animationTrajectories: {
                                         position: {
                                             trajectoryMetaData: {
-                                                type: Trajectory.ellipse,
+                                                type: TrajectoryTypes.ellipse,
                                                 center: [0, 0, 0],
                                                 height: 1,
                                                 width: 2.5,
@@ -63,7 +63,7 @@ export const ellipse3Config: ContainerNodeProps = {
                                         },
                                         rotation: {
                                             trajectoryMetaData: {
-                                                type: Trajectory.quadracticBezierCurve3,
+                                                type: TrajectoryTypes.quadracticBezierCurve3,
                                                 points: [
                                                     [Math.PI / 4, 0, 0],
                                                     [Math.PI / 2, 2 * Math.PI, 0],
@@ -73,7 +73,7 @@ export const ellipse3Config: ContainerNodeProps = {
                                         },
                                         scale: {
                                             trajectoryMetaData: {
-                                                type: Trajectory.quadracticBezierCurve3,
+                                                type: TrajectoryTypes.quadracticBezierCurve3,
                                                 points: [
                                                     [0.4, 0.4, 0.4],
                                                     [1, 1, 1],

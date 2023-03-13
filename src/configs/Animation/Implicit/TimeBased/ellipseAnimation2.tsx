@@ -1,4 +1,4 @@
-import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, Trajectory } from '../../../../types/enums';
+import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, TrajectoryTypes } from '../../../../types/enums';
 import { ContainerNodeProps } from '../../../../types/types';
 
 export const ellipse2Config: ContainerNodeProps = {
@@ -48,7 +48,7 @@ export const ellipse2Config: ContainerNodeProps = {
                                     animationTrajectories: {
                                         position: {
                                             trajectoryMetaData: {
-                                                type: Trajectory.ellipse,
+                                                type: TrajectoryTypes.ellipse,
                                                 center: [0, 0, 0],
                                                 height: 0.75,
                                                 width: 2.5,

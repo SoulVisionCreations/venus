@@ -1,4 +1,4 @@
-import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, Trajectory } from '../../../../types/enums';
+import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, TrajectoryTypes } from '../../../../types/enums';
 import { ContainerNodeProps } from '../../../../types/types';
 
 export const circleConfig2: ContainerNodeProps = {
@@ -48,7 +48,7 @@ export const circleConfig2: ContainerNodeProps = {
                                     animationTrajectories: {
                                         position: {
                                             trajectoryMetaData: {
-                                                type: Trajectory.circle,
+                                                type: TrajectoryTypes.circle,
                                                 center: [0, 0, 0],
                                                 radius: 1,
                                                 rotateCurve: [
@@ -61,7 +61,7 @@ export const circleConfig2: ContainerNodeProps = {
                                         },
                                         rotation: {
                                             trajectoryMetaData: {
-                                                type: Trajectory.quadracticBezierCurve3,
+                                                type: TrajectoryTypes.quadracticBezierCurve3,
                                                 points: [
                                                     [Math.PI / 4, 0, 0],
                                                     [Math.PI / 4, Math.PI / 2, 0],
@@ -71,7 +71,7 @@ export const circleConfig2: ContainerNodeProps = {
                                         },
                                         scale: {
                                             trajectoryMetaData: {
-                                                type: Trajectory.quadracticBezierCurve3,
+                                                type: TrajectoryTypes.quadracticBezierCurve3,
                                                 points: [
                                                     [0.4, 0.4, 0.4],
                                                     [1, 1, 1],

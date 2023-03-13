@@ -65,7 +65,7 @@ export enum AnimationTypes {
     scroll,
 }
 
-export const enum Trajectory {
+export enum TrajectoryTypes {
     manual,
     ellipse,
     circle,

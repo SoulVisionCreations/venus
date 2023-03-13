@@ -1,4 +1,4 @@
-import { Trajectory } from './enums';
+import { TrajectoryTypes } from './enums';
 
 export type EllipseMetaData = {
     clockwise?: boolean;
@@ -50,7 +50,7 @@ export type Line3DMetaData = {
 };
 
 export type MultipleCurve3MetaData = {
-    curves: Array<TrajectoryMetaData & { type: Trajectory }>;
+    curves: Array<TrajectoryMetaData & { type: TrajectoryTypes }>;
     steps?: number;
     closed?: boolean;
     equiSpacedPoints?: boolean;
@@ -63,5 +63,5 @@ export type Line1DMetaData = {
 };
 
 export type TrajectoryMetaData = {
-    type: Trajectory;
+    type: TrajectoryTypes;
 } & (EllipseMetaData | CircleMetaData | QuadraticBezierCurve3MetaData | CubicBezierCurve3MetaData | SplineCurve3MetaData | Line3DMetaData | Line1DMetaData | MultipleCurve3MetaData);

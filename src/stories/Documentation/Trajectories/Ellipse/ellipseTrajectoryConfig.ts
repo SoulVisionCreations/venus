@@ -1,5 +1,5 @@
 import { stylingDefaults } from '../../../../constants/defaults';
-import { Alignment, AnimationTypes, CameraTypes, ComponentTypes, LightTypes, MaterialTypes, ObjectTypes, StandardGeometryTypes, Trajectory } from '../../../../types/enums';
+import { Alignment, AnimationTypes, CameraTypes, ComponentTypes, LightTypes, MaterialTypes, ObjectTypes, StandardGeometryTypes, TrajectoryTypes } from '../../../../types/enums';
 import { EllipseMetaData } from '../../../../types/trajectoryTypes';
 
 export const getEllipseTrajectoryConfig = ({ clockwise, center, height, width, rotateCurve }: EllipseMetaData) => {
@@ -49,7 +49,7 @@ export const getEllipseTrajectoryConfig = ({ clockwise, center, height, width, r
                                         animationTrajectories: {
                                             position: {
                                                 trajectoryMetaData: {
-                                                    type: Trajectory.ellipse,
+                                                    type: TrajectoryTypes.ellipse,
                                                     center,
                                                     clockwise,
                                                     height,

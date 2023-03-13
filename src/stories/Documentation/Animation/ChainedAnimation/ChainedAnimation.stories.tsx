@@ -2,7 +2,7 @@ import { config } from '@react-spring/three';
 import { Story } from '@storybook/react';
 import App from '../../../../App';
 import { ChainedAnimation } from '../../../../types/animationTypes';
-import { Trajectory } from '../../../../types/enums';
+import { TrajectoryTypes } from '../../../../types/enums';
 import { getChainedAnimationConfig } from './ChainedAnimationConfig';
 
 // eslint-disable-next-line storybook/story-exports
@@ -89,7 +89,7 @@ Example.args = {
             animationTrajectories: {
                 rotation: {
                     trajectoryMetaData: {
-                        type: Trajectory.line3D,
+                        type: TrajectoryTypes.line3D,
                         startPoint: [Math.PI / 2, 0, 0],
                         endPoint: [Math.PI / 4, Math.PI / 4, 0],
                         closed: false,

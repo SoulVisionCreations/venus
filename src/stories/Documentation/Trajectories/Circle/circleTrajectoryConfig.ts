@@ -1,5 +1,5 @@
 import { stylingDefaults } from '../../../../constants/defaults';
-import { Alignment, AnimationTypes, CameraTypes, ComponentTypes, LightTypes, MaterialTypes, ObjectTypes, StandardGeometryTypes, Trajectory } from '../../../../types/enums';
+import { Alignment, AnimationTypes, CameraTypes, ComponentTypes, LightTypes, MaterialTypes, ObjectTypes, StandardGeometryTypes, TrajectoryTypes } from '../../../../types/enums';
 import { CircleMetaData } from '../../../../types/trajectoryTypes';
 
 export const getCircleTrajectoryConfig = ({ clockwise, center, radius, rotateCurve }: CircleMetaData) => {
@@ -49,7 +49,7 @@ export const getCircleTrajectoryConfig = ({ clockwise, center, radius, rotateCur
                                         animationTrajectories: {
                                             position: {
                                                 trajectoryMetaData: {
-                                                    type: Trajectory.circle,
+                                                    type: TrajectoryTypes.circle,
                                                     center,
                                                     clockwise,
                                                     radius,

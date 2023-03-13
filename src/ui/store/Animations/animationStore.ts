@@ -2,8 +2,9 @@ import produce from 'immer';
 import { create } from 'zustand';
 import { Animation, AnimationTrajectory, ChainedAnimation, IntroAnimation, ScrollAnimation, VisibilityThreshold } from '../../../types/animationTypes';
 import { AnimationTypes } from '../../../types/enums';
+import { TrajectoryMetaData } from '../../../types/trajectoryTypes';
 import { unknownObject } from '../../../types/types';
-import { IntitalTrajectoryState } from './animationDefaults';
+import { initialTrajectoryMetaData, IntitalAnimationTrajectoryState } from './animationDefaults';
 
 export type ScrollAnimationActions = {
     setDisablePageScroll: (disablePageScroll: boolean) => void;
@@ -11,17 +12,19 @@ export type ScrollAnimationActions = {
 };
 
 export type ChainedAnimationActions = {
-    setInitialPause: (initialPause: boolean) => void;
+    setInitialPause: (initialPause: number) => void;
     setRepeat: (repeat: boolean) => void;
     setInterval: (interval: number) => void;
     setChildAnimations: (animations: Animation) => void;
 };
 
 export type IntroAnimationActions = {
-    setInitialPause: (initialPause: boolean) => void;
+    setInitialPause: (initialPause: number) => void;
     setAnimationTrajectories: (animationTrajectory: AnimationTrajectory) => void;
     setTrajectorySteps: (trajectorySteps: number) => void;
     setStateIncrements: (stateIncrements: number) => void;
+    setTrajectoryMetaData: (trajectoryMetaData: TrajectoryMetaData, prop: string) => void;
+    setTrajectorySpeed: (trajectorySpeed: number, prop: string) => void;
 };
 
 export type AnimationActions = {
@@ -41,7 +44,7 @@ const InitialChainedAnimationState: ChainedAnimation = {
 
 const InitialIntroAnimationState: IntroAnimation = {
     initialPause: 0,
-    animationTrajectories: IntitalTrajectoryState,
+    animationTrajectories: IntitalAnimationTrajectoryState,
     trajectorySteps: 100,
     stateIncrements: [],
 };
@@ -54,7 +57,7 @@ const IntitalScrollAnimationState: ScrollAnimation = {
         maxRotation: 0,
         minRotation: 0,
     },
-    animationTrajectories: IntitalTrajectoryState,
+    animationTrajectories: IntitalAnimationTrajectoryState,
 };
 
 const InitialState: Animation & unknownObject = {
@@ -122,6 +125,22 @@ const useAnimationStore = create<Animation & unknownObject & AnimationActions>((
     setAnimationTrajectories: (animationTrajectories) => set({ animationTrajectories }),
     setTrajectorySteps: (trajectorySteps) => set({ trajectorySteps }),
     setStateIncrements: (stateIncrements) => set({ stateIncrements }),
+    setTrajectoryMetaData: (trajectoryMetaData, prop) => {
+        set(
+            produce((state) => {
+                state.animationTrajectories[prop].trajectoryMetaData = trajectoryMetaData;
+            })
+        );
+        set({ trajectoryMetaData: initialTrajectoryMetaData });
+    },
+    setTrajectorySpeed: (speed, prop) => {
+        set(
+            produce((state) => {
+                state.animationTrajectories[prop].speed = speed;
+            })
+        );
+        set({ speed: 0 });
+    },
     resetAnimation: () => set(InitialState),
 }));
 

@@ -1,5 +1,5 @@
 import { stylingDefaults } from '../../../../../constants/defaults';
-import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, Trajectory } from '../../../../../types/enums';
+import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, TrajectoryTypes } from '../../../../../types/enums';
 import { ContainerNodeProps } from '../../../../../types/types';
 
 export const RotationByMultipleLineTrajectoryConfig: ContainerNodeProps = {
@@ -42,28 +42,28 @@ export const RotationByMultipleLineTrajectoryConfig: ContainerNodeProps = {
                             animationTrajectories: {
                                 rotation: {
                                     trajectoryMetaData: {
-                                        type: Trajectory.multipleCurvePath,
+                                        type: TrajectoryTypes.multipleCurvePath,
                                         curves: [
                                             {
-                                                type: Trajectory.line3D,
+                                                type: TrajectoryTypes.line3D,
                                                 startPoint: [Math.PI / 2, 0, 0],
                                                 endPoint: [0, 0, 0],
                                                 closed: false,
                                             },
                                             {
-                                                type: Trajectory.line3D,
+                                                type: TrajectoryTypes.line3D,
                                                 startPoint: [0, 0, 0],
                                                 endPoint: [0, Math.PI / 2, 0],
                                                 closed: false,
                                             },
                                             {
-                                                type: Trajectory.line3D,
+                                                type: TrajectoryTypes.line3D,
                                                 startPoint: [0, Math.PI / 2, 0],
                                                 endPoint: [0, Math.PI / 4, 0],
                                                 closed: false,
                                             },
                                             {
-                                                type: Trajectory.line3D,
+                                                type: TrajectoryTypes.line3D,
                                                 startPoint: [0, Math.PI / 4, 0],
                                                 endPoint: [Math.PI / 4, Math.PI / 4, 0],
                                                 closed: false,

@@ -1,5 +1,5 @@
 import { stylingDefaults } from '../../../../constants/defaults';
-import { Alignment, AnimationTypes, CameraTypes, ComponentTypes, LightTypes, MaterialTypes, ObjectTypes, StandardGeometryTypes, Trajectory } from '../../../../types/enums';
+import { Alignment, AnimationTypes, CameraTypes, ComponentTypes, LightTypes, MaterialTypes, ObjectTypes, StandardGeometryTypes, TrajectoryTypes } from '../../../../types/enums';
 import { QuadraticBezierCurve3MetaData } from '../../../../types/trajectoryTypes';
 
 export const getQuadraticBezierCurveTrajectoryConfig = ({ points, steps, closed, equiSpacedPoints }: QuadraticBezierCurve3MetaData) => {
@@ -49,7 +49,7 @@ export const getQuadraticBezierCurveTrajectoryConfig = ({ points, steps, closed,
                                         animationTrajectories: {
                                             position: {
                                                 trajectoryMetaData: {
-                                                    type: Trajectory.quadracticBezierCurve3,
+                                                    type: TrajectoryTypes.quadracticBezierCurve3,
                                                     points,
                                                     steps,
                                                     closed,

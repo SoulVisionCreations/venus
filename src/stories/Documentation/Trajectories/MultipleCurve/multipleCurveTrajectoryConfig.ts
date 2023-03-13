@@ -1,5 +1,5 @@
 import { stylingDefaults } from '../../../../constants/defaults';
-import { Alignment, AnimationTypes, CameraTypes, ComponentTypes, LightTypes, MaterialTypes, ObjectTypes, StandardGeometryTypes, Trajectory } from '../../../../types/enums';
+import { Alignment, AnimationTypes, CameraTypes, ComponentTypes, LightTypes, MaterialTypes, ObjectTypes, StandardGeometryTypes, TrajectoryTypes } from '../../../../types/enums';
 import { MultipleCurve3MetaData } from '../../../../types/trajectoryTypes';
 
 export const getSplineCurveTrajectoryConfig = ({ curves, steps, closed, equiSpacedPoints }: MultipleCurve3MetaData) => {
@@ -49,7 +49,7 @@ export const getSplineCurveTrajectoryConfig = ({ curves, steps, closed, equiSpac
                                         animationTrajectories: {
                                             position: {
                                                 trajectoryMetaData: {
-                                                    type: Trajectory.multipleCurvePath,
+                                                    type: TrajectoryTypes.multipleCurvePath,
                                                     curves,
                                                     steps,
                                                     closed,

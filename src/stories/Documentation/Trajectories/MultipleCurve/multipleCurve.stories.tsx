@@ -1,6 +1,6 @@
 import { Story } from '@storybook/react';
 import App from '../../../../App';
-import { Trajectory } from '../../../../types/enums';
+import { TrajectoryTypes } from '../../../../types/enums';
 import { MultipleCurve3MetaData } from '../../../../types/trajectoryTypes';
 import { getSplineCurveTrajectoryConfig } from './multipleCurveTrajectoryConfig';
 
@@ -67,12 +67,12 @@ export const Example = multipleCurveTrajectoryAppWrapper.bind({});
 Example.args = {
     curves: [
         {
-            type: Trajectory.line3D,
+            type: TrajectoryTypes.line3D,
             startPoint: [-1, 0, 0],
             endPoint: [1, 0, 0],
         },
         {
-            type: Trajectory.quadracticBezierCurve3,
+            type: TrajectoryTypes.quadracticBezierCurve3,
             points: [
                 [1, 0, 0],
                 [1, 0.5, 0],

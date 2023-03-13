@@ -1,6 +1,6 @@
 import { CurvePath, Vector3 } from 'three';
 import { trajectoryDefaults } from '../../constants/defaults';
-import { Trajectory } from '../../types/enums';
+import { TrajectoryTypes } from '../../types/enums';
 import { CubicBezierCurve3MetaData, Line3DMetaData, MultipleCurve3MetaData, QuadraticBezierCurve3MetaData, SplineCurve3MetaData } from '../../types/trajectoryTypes';
 import { createCubicBezierCurve3, createQuadraticBezierCurve3 } from './BezierCurves';
 import { createLineCurve3 } from './line3D';
@@ -12,16 +12,16 @@ export const createMultipleCurvePath = (data: MultipleCurve3MetaData) => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { type, ...data } = curve;
         switch (curve.type) {
-            case Trajectory.quadracticBezierCurve3:
+            case TrajectoryTypes.quadracticBezierCurve3:
                 curvePath.add(createQuadraticBezierCurve3(data as QuadraticBezierCurve3MetaData));
                 break;
-            case Trajectory.cubicBezierCurve3:
+            case TrajectoryTypes.cubicBezierCurve3:
                 curvePath.add(createCubicBezierCurve3(data as CubicBezierCurve3MetaData));
                 break;
-            case Trajectory.splineCurve3:
+            case TrajectoryTypes.splineCurve3:
                 curvePath.add(createSplineCurve3(data as SplineCurve3MetaData));
                 break;
-            case Trajectory.line3D:
+            case TrajectoryTypes.line3D:
                 curvePath.add(createLineCurve3(data as Line3DMetaData));
                 break;
         }

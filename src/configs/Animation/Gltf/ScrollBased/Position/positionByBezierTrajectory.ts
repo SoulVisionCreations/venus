@@ -1,5 +1,5 @@
 import { stylingDefaults } from '../../../../../constants/defaults';
-import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, Trajectory } from '../../../../../types/enums';
+import { Alignment, AnimationTypes, AssetTypes, CameraTypes, ComponentTypes, LightTypes, ObjectTypes, TrajectoryTypes } from '../../../../../types/enums';
 import { ContainerNodeProps } from '../../../../../types/types';
 
 export const PositionByBezierTrajectoryWithScaleAndRotateConfig: ContainerNodeProps = {
@@ -71,7 +71,7 @@ export const PositionByBezierTrajectoryWithScaleAndRotateConfig: ContainerNodePr
                                     animationTrajectories: {
                                         position: {
                                             trajectoryMetaData: {
-                                                type: Trajectory.quadracticBezierCurve3,
+                                                type: TrajectoryTypes.quadracticBezierCurve3,
                                                 points: [
                                                     [0, -10, -50],
                                                     [0, 0.5, -10],
@@ -130,7 +130,7 @@ export const PositionByBezierTrajectoryWithScaleAndRotateConfig: ContainerNodePr
                                     animationTrajectories: {
                                         position: {
                                             trajectoryMetaData: {
-                                                type: Trajectory.quadracticBezierCurve3,
+                                                type: TrajectoryTypes.quadracticBezierCurve3,
                                                 points: [
                                                     [0, -10, -50],
                                                     [0, 0.5, -10],

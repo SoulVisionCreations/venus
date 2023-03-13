@@ -1,7 +1,7 @@
 import { Vector3 } from 'three';
 import { animationDefaults } from '../../constants/defaults';
 import { AnimationTrajectory } from '../../types/animationTypes';
-import { Trajectory } from '../../types/enums';
+import { TrajectoryTypes } from '../../types/enums';
 import { strongObject3DStateOfArrays, strongObject3DStateOfVectors } from '../../types/object3DTypes';
 import {
     CircleMetaData,
@@ -27,28 +27,28 @@ export const getTrajectory = (trajectoryMetaData: TrajectoryMetaData) => {
     let curve;
     const { type, ...data } = trajectoryMetaData;
     switch (type) {
-        case Trajectory.circle:
+        case TrajectoryTypes.circle:
             curve = createCircle(data as CircleMetaData);
             break;
-        case Trajectory.ellipse:
+        case TrajectoryTypes.ellipse:
             curve = createEllipse(data as EllipseMetaData);
             break;
-        case Trajectory.line3D:
+        case TrajectoryTypes.line3D:
             curve = createLineCurve3(data as Line3DMetaData);
             break;
-        case Trajectory.quadracticBezierCurve3:
+        case TrajectoryTypes.quadracticBezierCurve3:
             curve = createQuadraticBezierCurve3(data as QuadraticBezierCurve3MetaData);
             break;
-        case Trajectory.cubicBezierCurve3:
+        case TrajectoryTypes.cubicBezierCurve3:
             curve = createCubicBezierCurve3(data as CubicBezierCurve3MetaData);
             break;
-        case Trajectory.splineCurve3:
+        case TrajectoryTypes.splineCurve3:
             curve = createSplineCurve3(data as SplineCurve3MetaData);
             break;
-        case Trajectory.multipleCurvePath:
+        case TrajectoryTypes.multipleCurvePath:
             curve = createMultipleCurvePath(data as MultipleCurve3MetaData);
             break;
-        case Trajectory.line1D:
+        case TrajectoryTypes.line1D:
             curve = data;
     }
     return curve;
@@ -58,28 +58,28 @@ const getTrajectoryPoints = (trajectoryMetaData: TrajectoryMetaData) => {
     const { type, ...data } = trajectoryMetaData;
     let points: Array<Vector3 | number> = [];
     switch (type) {
-        case Trajectory.circle:
+        case TrajectoryTypes.circle:
             points = getPointsOnCircle(data as CircleMetaData);
             break;
-        case Trajectory.ellipse:
+        case TrajectoryTypes.ellipse:
             points = getPointsOnEllipse(data as EllipseMetaData);
             break;
-        case Trajectory.line3D:
+        case TrajectoryTypes.line3D:
             points = getPointsOnLineCurve3(data as Line3DMetaData);
             break;
-        case Trajectory.quadracticBezierCurve3:
+        case TrajectoryTypes.quadracticBezierCurve3:
             points = getPointsOnQuadraticBezierCurve3(data as QuadraticBezierCurve3MetaData);
             break;
-        case Trajectory.cubicBezierCurve3:
+        case TrajectoryTypes.cubicBezierCurve3:
             points = getPointsOnCubicBezierCurve3(data as CubicBezierCurve3MetaData);
             break;
-        case Trajectory.splineCurve3:
+        case TrajectoryTypes.splineCurve3:
             points = getPointsOnSplineCurve3(data as SplineCurve3MetaData);
             break;
-        case Trajectory.multipleCurvePath:
+        case TrajectoryTypes.multipleCurvePath:
             points = getPointsOnMultipleCurvePath(data as MultipleCurve3MetaData);
             break;
-        case Trajectory.line1D:
+        case TrajectoryTypes.line1D:
             points = getPointsOnLine1D(data as Line1DMetaData);
             break;
     }

@@ -13,14 +13,14 @@ export const ImplicitinRoomConfig: ContainerNodeProps = {
             style: { width: '70%', height: '100%', position: 'fixed', left: '5%' },
             camera: {
                 type: CameraTypes.Perspective,
-                position: [0, 10, 130],
+                position: [0, 10, 60],
                 fov: 35,
             },
             environment: {
                 files: './assets/hdri/old_depot_2k.hdr',
                 ground: {
-                    height: 50,
-                    radius: 130,
+                    height: 12,
+                    radius: 120,
                 },
             },
             sceneControl: {

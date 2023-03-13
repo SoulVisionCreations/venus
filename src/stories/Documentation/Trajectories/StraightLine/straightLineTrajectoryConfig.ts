@@ -1,5 +1,5 @@
 import { stylingDefaults } from '../../../../constants/defaults';
-import { Alignment, AnimationTypes, CameraTypes, ComponentTypes, LightTypes, MaterialTypes, ObjectTypes, StandardGeometryTypes, Trajectory } from '../../../../types/enums';
+import { Alignment, AnimationTypes, CameraTypes, ComponentTypes, LightTypes, MaterialTypes, ObjectTypes, StandardGeometryTypes, TrajectoryTypes } from '../../../../types/enums';
 import { Line3DMetaData } from '../../../../types/trajectoryTypes';
 
 export const getStraightLineTrajectoryConfig = ({ startPoint, endPoint }: Line3DMetaData) => {
@@ -49,7 +49,7 @@ export const getStraightLineTrajectoryConfig = ({ startPoint, endPoint }: Line3D
                                         animationTrajectories: {
                                             position: {
                                                 trajectoryMetaData: {
-                                                    type: Trajectory.line3D,
+                                                    type: TrajectoryTypes.line3D,
                                                     startPoint,
                                                     endPoint,
                                                 },

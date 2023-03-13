@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { areEqualVectors, convertVec3ToArray, getInitialState } from '../utility';
 import { Object3DProps, strongObject3DStateOfArrays, strongObject3DStateOfVectors, weakObject3DStateofVectors } from '../../types/object3DTypes';
 import { ChainedAnimation, IntroAnimation, ScrollAnimation, VisibilityThreshold } from '../../types/animationTypes';
-import { AnimationTypes, Trajectory } from '../../types/enums';
+import { AnimationTypes, TrajectoryTypes } from '../../types/enums';
 import { ImageProps, TextProps, unknownObject } from '../../types/types';
 import { animationDefaults, trajectoryDefaults } from '../../constants/defaults';
 import { Line1DMetaData, TrajectoryMetaData } from '../../types/trajectoryTypes';
@@ -313,7 +313,7 @@ export const useAnimation = (objectProps: Object3DProps | ImageProps | TextProps
             }
             const equiSpacedPoints = (value.trajectoryMetaData as any).equiSpacedPoints ?? trajectoryDefaults.equiSpacedPoints;
             if (key == 'opacity') {
-                state.current[key as keyof strongObject3DStateOfVectors] = getPointAtLine1D(value.trajectoryMetaData as Line1DMetaData & { type: Trajectory }, value.state);
+                state.current[key as keyof strongObject3DStateOfVectors] = getPointAtLine1D(value.trajectoryMetaData as Line1DMetaData & { type: TrajectoryTypes }, value.state);
             } else {
                 state.current[key as keyof strongObject3DStateOfVectors] = equiSpacedPoints ? value.trajectory.getPointAt(value.state) : value.trajectory.getPoint(value.state);
             }
